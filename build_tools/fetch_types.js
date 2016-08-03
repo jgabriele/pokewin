@@ -52,18 +52,19 @@ function fetchAll(types, promisesList) {
           res = JSON.parse(res);
           return {
             name: res.name,
+            names: res.names.map((lang) => ({ name: lang.name, lang: lang.language.name })),
             damages: {
               half: {
-                from: res.damage_relations.half_damage_from,
-                to: res.damage_relations.half_damage_to
+                from: res.damage_relations.half_damage_from.map((type) => type.name),
+                to: res.damage_relations.half_damage_to.map((type) => type.name)
               },
               no: {
-                from: res.damage_relations.no_damage_from,
-                to: res.damage_relations.no_damage_to
+                from: res.damage_relations.no_damage_from.map((type) => type.name),
+                to: res.damage_relations.no_damage_to.map((type) => type.name)
               },
               double: {
-                from: res.damage_relations.double_damage_from,
-                to: res.damage_relations.double_damage_to
+                from: res.damage_relations.double_damage_from.map((type) => type.name),
+                to: res.damage_relations.double_damage_to.map((type) => type.name)
               }
             }
           }
