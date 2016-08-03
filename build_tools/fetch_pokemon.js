@@ -1,12 +1,19 @@
-var http = require('http');
+var http  = require('http');
+var fs    = require('fs');
 
-function fetchPokemon(index) {
-  return new Promise((resolve, reject) => {
-    const url = 'http://pokeapi.co/api/v2/pokemon/' + index + '/';
+/**
+ * Fetch pokemon from pokeapi
+ * If success, resolve its data
+ * If fail, resolve its index
+ * We want it to resolve always so Promise.all() can resolve with partial data
+ */
+function fetchPokemon(index, url) {
+  return new Promise((resolve) => {
+    url = url ? url : 'http://pokeapi.co/api/v2/pokemon/' + index + '/';
     const request = http.get(url, (response) => {
-      // handle http errors
       if (response.statusCode < 200 || response.statusCode > 299) {
-         reject(new Error('Failed to load page, status code: ' + response.statusCode + 'url: ' + url));
+        console.log('Wrong status code for #' + index);
+        resolve(index);
        }
 
       // temporary data holder
@@ -16,32 +23,66 @@ function fetchPokemon(index) {
       response.on('data', (chunk) => body.push(chunk));
 
       // we are done, resolve promise with those joined chunks
-      response.on('end', () => resolve(body.join('')));
-    });
-
-    // handle connection errors of the request
-    request.on('error', (err) => reject(err));
-  });
-}
-
-console.log('let\'s go');
-
-const allPromises = [];
-for (var i=1; i<=80; i++) {
-  allPromises.push(fetchPokemon(i));
-}
-
-Promise.all(allPromises)
-  .then((result) => {
-    const pokemons = [];
-    result.forEach((res) => {
-      const pokemon = JSON.parse(res);
-      pokemons.push({
-        name: pokemon.name,
-        types: pokemon.types.map((type) => type.type)
+      response.on('end', () => {
+        resolve(body.join(''));
       });
     });
 
-    console.log(pokemons);
-  })
-  .catch((err) => console.error(err));
+    request.on('error', (err) => {
+      console.log('Request Error for #' + index);
+      resolve(index)
+    });
+  });
+}
+
+function fetchAll(pokemons, promisesList) {
+  return Promise.all(promisesList)
+    .then((results) => {
+      // Failed request resolve the index of the Pokemon who failed
+      const failedRequests = results
+        .filter((res) => typeof (res) === 'number');
+
+      // We concat the pokemons we already have (it's a recursive call)
+      // with the one we just fetched successfully
+      pokemons = pokemons.concat(results
+        .filter((res) => typeof (res) === 'string')
+        .map((res) => {
+          res = JSON.parse(res);
+          return {
+            name: res.name,
+            types: res.types.map((type) => type.type.name)
+          }
+        }));
+
+      return [pokemons, failedRequests];
+    })
+    .then((res) => {
+      const pokemons = res[0];
+      const failedIndexes = res[1];
+
+      if (failedIndexes.length) {
+        console.log('Retrying for', failedIndexes.length, 'pokemons');
+        const retryPromises = failedIndexes.map((index) => fetchPokemon(index));
+        return fetchAll(pokemons, retryPromises)
+      } else {
+        return pokemons;
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
+
+console.log('Fetching 151 Pokemons from pokeapi.co...');
+
+const allPromises = [];
+for (var i=1; i<=151; i++) {
+  allPromises.push(fetchPokemon(i));
+}
+
+fetchAll([], allPromises)
+  .then((pokemonsJSON) => {
+    fs.writeFile('./build/data/pokemons.json', JSON.stringify(pokemonsJSON), function () {
+      console.log('SUCCESS!');
+    });
+  });
