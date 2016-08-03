@@ -1,0 +1,28 @@
+{
+  "name": "gym-advisor",
+  "version": "1.0.0",
+  "description": "Coach app for Pokemon Go who advise you which Pokemon to take against another",
+  "main": "front/index.html",
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-cssmin": "0.1.7",
+    "gulp-sass": "2.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shyrion/gym-advisor-go.git"
+  },
+  "keywords": [
+    "pokemon-go",
+    "gym"
+  ],
+  "author": "Jeremy Gabriele",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shyrion/gym-advisor-go/issues"
+  },
+  "homepage": "https://github.com/Shyrion/gym-advisor-go#readme"
+}
