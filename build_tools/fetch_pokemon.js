@@ -7,9 +7,9 @@ var fs    = require('fs');
  * If fail, resolve its index
  * We want it to resolve always so Promise.all() can resolve with partial data
  */
-function fetchPokemon(index, url) {
+function fetchPokemon(index) {
   return new Promise((resolve) => {
-    url = url ? url : 'http://pokeapi.co/api/v2/pokemon/' + index + '/';
+    const url = 'http://pokeapi.co/api/v2/pokemon/' + index + '/';
     const request = http.get(url, (response) => {
       if (response.statusCode < 200 || response.statusCode > 299) {
         console.log('Wrong status code for #' + index);
