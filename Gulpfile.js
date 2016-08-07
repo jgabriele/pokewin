@@ -18,9 +18,40 @@ gulp.task('sass', function() {
   gulp.src(SRC_DIR + 'style.scss')
     .pipe(sass()).on('error', swallowError)
     .pipe(cssmin())
-    .pipe(gulp.dest(BUILD_FOLDER));
+    .pipe(gulp.dest(BUILD_DIR));
 });
 
 //=====================//
-//======== DATA =======//
+//======= STATIC ======//
 //=====================//
+
+gulp.task('static', ['html', 'images', 'data', 'fonts']);
+
+gulp.task('html', function() {
+  gulp.src(SRC_DIR + '*.html')
+    .pipe(gulp.dest(BUILD_DIR));
+});
+
+gulp.task('images', function() {
+  gulp.src(SRC_DIR + 'images/*.jpg')
+    .pipe(gulp.dest(BUILD_DIR + '/images'));
+});
+
+gulp.task('data', function() {
+  gulp.src(SRC_DIR + 'data/*.json')
+    .pipe(gulp.dest(BUILD_DIR + '/data'));
+});
+
+gulp.task('fonts', function() {
+  gulp.src(SRC_DIR + 'fonts/*.*')
+    .pipe(gulp.dest(BUILD_DIR + '/fonts'));
+});
+
+
+//=====================//
+//======= WATCH =======//
+//=====================//
+
+gulp.task('watch', function() {
+  gulp.watch(SRC_DIR + '**/*.*', ['sass', 'static']);
+});

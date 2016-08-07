@@ -100,7 +100,7 @@ allPromises.push(fetchType(10002));
 
 fetchAll([], allPromises)
   .then((typesJSON) => {
-    fs.writeFile('./build/data/types.json', JSON.stringify(typesJSON), function () {
+    fs.writeFile('./front/data/types.json', JSON.stringify(typesJSON), function () {
       console.log('SUCCESS!');
     });
   });

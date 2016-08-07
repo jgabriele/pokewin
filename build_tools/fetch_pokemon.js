@@ -48,10 +48,7 @@ function fetchAll(pokemons, promisesList) {
         .filter((res) => typeof (res) === 'string')
         .map((res) => {
           res = JSON.parse(res);
-          return {
-            name: res.name,
-            types: res.types.map((type) => type.type.name)
-          }
+          return _createPokemon(res);
         }));
 
       return [pokemons, failedRequests];
@@ -73,6 +70,16 @@ function fetchAll(pokemons, promisesList) {
     });
 }
 
+function _createPokemon(pokemonJSON) {
+  return {
+    name: pokemonJSON.name,
+    types: pokemonJSON.types.map((type) => ({
+        slot: type.slot,
+        name: type.type.name
+      }))
+  }
+}
+
 console.log('Fetching 151 Pokemons from pokeapi.co...');
 
 const allPromises = [];
@@ -82,7 +89,7 @@ for (var i=1; i<=151; i++) {
 
 fetchAll([], allPromises)
   .then((pokemonsJSON) => {
-    fs.writeFile('./build/data/pokemons.json', JSON.stringify(pokemonsJSON), function () {
+    fs.writeFile('./front/data/pokemons.json', JSON.stringify(pokemonsJSON), function () {
       console.log('SUCCESS!');
     });
   });
