@@ -1,6 +1,7 @@
 var gulp    = require('gulp');
 var sass    = require('gulp-sass');
 var cssmin  = require('gulp-cssmin');
+var babel   = require('gulp-babel');
 
 var SRC_DIR   = './front/';
 var BUILD_DIR = './build/';
@@ -18,6 +19,18 @@ gulp.task('sass', function() {
   gulp.src(SRC_DIR + 'style.scss')
     .pipe(sass()).on('error', swallowError)
     .pipe(cssmin())
+    .pipe(gulp.dest(BUILD_DIR));
+});
+
+//=====================//
+//========= JS --======//
+//=====================//
+
+gulp.task('js', function() {
+  gulp.src(SRC_DIR + '*.js')
+    .pipe(babel({
+      presets: ['es2015']
+    }))
     .pipe(gulp.dest(BUILD_DIR));
 });
 
@@ -53,5 +66,5 @@ gulp.task('fonts', function() {
 //=====================//
 
 gulp.task('watch', function() {
-  gulp.watch(SRC_DIR + '**/*.*', ['sass', 'static']);
+  gulp.watch(SRC_DIR + '**/*.*', ['sass', 'js', 'static']);
 });
