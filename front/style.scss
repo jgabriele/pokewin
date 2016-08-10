@@ -15,6 +15,7 @@
 html {
   margin: 0;
   body {
+    font-family: 'Lato';
     margin: 0;
   }
 }
@@ -27,7 +28,6 @@ html {
 
     display: inline-block;
 
-    font-family: 'Lato';
     font-weight: normal;
     font-size: 16px;
 
@@ -39,18 +39,11 @@ html {
   }
 }
 
-hr {
-  position: relative;
-  top: -10px;
-  margin: 0px 10px;
-}
-
 .pokedex {
   text-align: center;
   .pokemon {
     display: inline-block;
 
-    font-family: 'Lato';
     font-weight: bold;
     font-size: 12px;
 
@@ -75,43 +68,259 @@ hr {
 
 
 
-
-
-
-
-
-.overlay {
-  background: black;
-  opacity: .2;
-  position: absolute;
-
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-}
-
-.pokemon-name {
+.title {
+  overflow: hidden;
   text-align: center;
-  padding-top: 15px;
-  h2 {
+
+  &:before, &:after {
+    background: black;
+    content: "";
     display: inline-block;
-
-    font-family: 'Lato';
-    font-weight: normal;
-    font-size: 20px;
-
+    height: 1px;
     position: relative;
-    padding: 0px 20px;
-    z-index: 1000;
+    vertical-align: middle;
+    width: 50%;
+  }
 
-    margin: 0;
+  &:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+
+  &:after {
+    left: 0.5em;
+    margin-right: -50%;
   }
 }
 
-.data {
-  background: white;
-  border-radius: 5px 5px 0px 0px;
-  width: 96%;
-  margin: auto;
-  height: 100%;
+h2.title {
+  padding-top: 15px;
+  font-size: 16px;
+  margin: 0;
+}
+
+h3.title {
+  padding-top: 15px;
+  font-size: 14px;
+  margin: 0;
+}
+
+
+.type {
+
+  text-align: center;
+
+  &.normal,
+  &.fighting,
+  &.flying,
+  &.poison,
+  &.ground,
+  &.rock,
+  &.bug,
+  &.ghost,
+  &.steel,
+  &.fire,
+  &.water,
+  &.grass,
+  &.electric,
+  &.psychic,
+  &.ice,
+  &.dragon,
+  &.dark,
+  &.fairy,
+  &.unknown,
+  &.shadow {
+      border-radius: 3px;
+      color: white;
+      font-size: 10px;
+      padding: 2px;
+  }
+
+  &.normal {
+    background: grey;
+  }
+
+  &.fighting {
+    background: #c18a51;
+  }
+
+  &.flying {
+    background: #5a87ca;
+  }
+
+  &.poison {
+    background: #393254;
+  }
+
+  &.ground {
+    background: #a55401;
+  }
+
+  &.rock {
+    background: #795858;
+  }
+
+  &.bug {
+    background: #577b00;
+  }
+
+  &.ghost {
+    background: #3d3363;
+  }
+
+  &.steel {
+    background: #8b8fa0;
+  }
+
+  &.fire {
+    background: #e65822;
+  }
+
+  &.water {
+    background: #1b4bf9;
+  }
+
+  &.grass {
+    background: #149a03;
+  }
+
+  &.electric {
+    background: #fbdf18;
+  }
+
+  &.psychic {
+    background: grey;
+  }
+
+  &.ice {
+    background: #3dbecc;
+  }
+
+  &.dragon {
+    background: #87329c;
+  }
+
+  &.dark {
+    background: black;
+  }
+
+  &.fairy {
+    background: #ff93f2;
+  }
+}
+
+
+.overlay {
+
+  .background {
+    background: black;
+    opacity: .7;
+    position: fixed;
+
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .pokemon-name {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 15px;
+    margin: 0 0 5px 0;
+  }
+
+  .main-pokemon {
+    margin: auto;
+    width: 96%;
+
+    .stats {
+      display: flex;
+      align-items: flex-end;
+
+      padding: 0px 15px;
+
+      > * {
+        display: inline-block;
+      }
+
+      .cp, .types {
+        position: relative;
+        top: 10px;
+
+        .type {
+          text-transform: uppercase;
+          font-size: 11px;
+        }
+      }
+
+      .cp {
+        flex: 1;
+        text-align: center;
+
+        .value {
+          box-sizing: border-box;
+          font-family: Lato;
+          font-size: 16px;
+          text-align: center;
+          width: 100%;
+        }
+      }
+      .picture {
+        flex: 3;
+        text-align: center;
+
+        img {
+          max-height: 200px;
+        }
+      }
+      .types {
+        flex: 1;
+
+        .type {
+          margin-bottom: 3px;
+        }
+      }
+    }
+    .counters {
+      background: white;
+      border-radius: 5px 5px 0px 0px;
+
+      position: relative;
+      bottom: 60px;
+
+      padding-top: 70px;
+      height: 100%;
+
+      z-index: -1;
+
+      .type, .cp-value {
+        margin: 2px 0px;
+      }
+
+      .cp-value {
+        text-align: center;
+      }
+    }
+  }
+
+  .other-pokemon {
+    display: inline-block;
+
+    font-weight: bold;
+    font-size: 12px;
+
+    margin: 8px;
+
+    .picture {
+      display: flex;
+      width: 70px;
+      height: 70px;
+
+      img {
+        object-fit: contain;
+        width: 70px;
+      }
+    }
+  }
 }
