@@ -216,6 +216,10 @@ h3.title {
 
 .overlay {
 
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+
   .background {
     background: black;
     opacity: .7;

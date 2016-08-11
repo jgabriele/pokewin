@@ -13,11 +13,29 @@ pokemon.forEach((pokemon) => {
     </div>\
   </div>`;
 
-  const div = document.createElement('div');
-  div.innerHTML = htmlString;
-  const el = div.firstChild;
-
-  fragment.appendChild(el);
+  fragment.appendChild(_DOMElementFromString(htmlString));
 });
 
 document.querySelector('.pokedex').appendChild(fragment);
+
+const detailFragment = document.createDocumentFragment();
+pokemon.slice(0,20).forEach((pokemon) => {
+  const mainType = pokemon.types.filter((type) => type.slot === 1)[0].name;
+  let htmlString = `<div class="other-pokemon">\
+    <div class="picture">\
+      <img src="images/${pokemon.name}.jpg" />\
+    </div>\
+    <div class="type ${mainType}">Blizzard</div>\
+    <div class="cp-value">CP 1200</div>\
+  </div>`;
+
+  detailFragment.appendChild(_DOMElementFromString(htmlString));
+});
+
+function _DOMElementFromString(htmlString) {
+  const div = document.createElement('div');
+  div.innerHTML = htmlString;
+  return div.firstChild;
+}
+
+document.querySelector('.beaten-by').appendChild(detailFragment);
