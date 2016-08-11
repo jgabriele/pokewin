@@ -82,6 +82,10 @@ html {
     width: 50%;
   }
 
+  &.title--normal {
+    font-weight: normal;
+  }
+
   &:before {
     right: 0.5em;
     margin-left: -50%;
@@ -137,75 +141,75 @@ h3.title {
   }
 
   &.normal {
-    background: grey;
+    background: #8a8a59;
   }
 
   &.fighting {
-    background: #c18a51;
+    background: #c03028;
   }
 
   &.flying {
-    background: #5a87ca;
+    background: #a890f0;
   }
 
   &.poison {
-    background: #393254;
+    background: #a040a0;
   }
 
   &.ground {
-    background: #a55401;
+    background: #e0c068;
   }
 
   &.rock {
-    background: #795858;
+    background: #b8a038;
   }
 
   &.bug {
-    background: #577b00;
+    background: #a8b820;
   }
 
   &.ghost {
-    background: #3d3363;
+    background: #705898;
   }
 
   &.steel {
-    background: #8b8fa0;
+    background: #b8b8d0;
   }
 
   &.fire {
-    background: #e65822;
+    background: #f08030;
   }
 
   &.water {
-    background: #1b4bf9;
+    background: #6890f0;
   }
 
   &.grass {
-    background: #149a03;
+    background: #78c850;
   }
 
   &.electric {
-    background: #fbdf18;
+    background: #f8d030;
   }
 
   &.psychic {
-    background: grey;
+    background: #f85888;
   }
 
   &.ice {
-    background: #3dbecc;
+    background: #98d8d8;
   }
 
   &.dragon {
-    background: #87329c;
+    background: #7038f8;
   }
 
   &.dark {
-    background: black;
+    background: #705848;
   }
 
   &.fairy {
-    background: #ff93f2;
+    background: #e898e8;
   }
 }
 
