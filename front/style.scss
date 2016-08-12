@@ -113,6 +113,9 @@ h3.title {
 .type {
 
   text-align: center;
+  min-width: 60px;
+  text-transform: uppercase;
+  font-size: 11px;
 
   &.normal,
   &.fighting,
@@ -220,6 +223,10 @@ h3.title {
   top: 0;
   z-index: 1000;
 
+  &.overlay--hidden {
+    display: none;
+  }
+
   .background {
     background: black;
     opacity: .7;
@@ -232,8 +239,9 @@ h3.title {
 
   .pokemon-name {
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
+    text-transform: uppercase;
     padding-top: 15px;
     margin: 0 0 5px 0;
   }
@@ -255,11 +263,6 @@ h3.title {
       .cp, .types {
         position: relative;
         top: 10px;
-
-        .type {
-          text-transform: uppercase;
-          font-size: 11px;
-        }
       }
 
       .cp {
