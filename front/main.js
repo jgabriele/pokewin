@@ -69,7 +69,7 @@ function updateDetail(pokemon) {
       <div class="type ${move.type.toLowerCase()}">${move.name}</div>\
       <div class="cp-value">CP 1200</div>\
     </div>`;
-  });
+  }).join('');
 
   const overlayDataHTML = `<div><h2 class="pokemon-name">
         ${pokemon.name}
@@ -102,6 +102,9 @@ function updateDetail(pokemon) {
 
   const overlayDOMEl = _DOMElementFromString(overlayDataHTML);
 
+  document.querySelector('.overlay__data').innerHTML = '';
+  document.querySelector('.overlay__data').appendChild(overlayDOMEl);
+
   // Add event listeners
   overlayDOMEl.querySelectorAll('.other-pokemon').forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -110,9 +113,6 @@ function updateDetail(pokemon) {
       showDetail();
     });
   });
-
-  document.querySelector('.overlay__data').innerHTML = '';
-  document.querySelector('.overlay__data').appendChild(overlayDOMEl);
 }
 
 function showDetail() {
