@@ -30,7 +30,7 @@ gulp.task('js', function() {
   gulp.src(SRC_DIR + '*.js')
     .pipe(babel({
       presets: ['es2015']
-    }))
+    })).on('error', swallowError)
     .pipe(gulp.dest(BUILD_DIR));
 });
 

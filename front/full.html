@@ -12,47 +12,47 @@
   <meta name="fragment" content="!">
 </head>
 <body>
-
-  <h2 class="title">
-    GYM ADVISOR
-  </h2>
-
   <section class="pokedex">
+    <h2 class="title">
+      GYM ADVISOR
+    </h2>
     <h3 class="title">
       Most seen
     </h3>
   </section>
 
-  <div class="overlay">
-    <div class="background"></div>
-    <h2 class="pokemon-name">
-      Dragonite
-    </h2>
-    <section class="main-pokemon">
+  <div class="overlay is-hidden">
+    <div class="overlay__background"></div>
+    <div class="overlay__data">
+      <h2 class="pokemon-name">
+        Dragonite
+      </h2>
+      <section class="main-pokemon">
 
-      <div class="stats">
-        <div class="cp">
-          <div class="title">CP</div>
-          <input class="value" type="number" min=0 max=0 value="2400" />
+        <div class="stats">
+          <div class="cp">
+            <div class="title">CP</div>
+            <input class="value" type="number" min=0 max=0 value="2400" />
+          </div>
+          <div class="picture">
+            <img src="images/dragonite.png" />
+          </div>
+          <div class="types">
+            <div class="type dragon">Dragon</div>
+            <div class="type flying">Flying</div>
+          </div>
         </div>
-        <div class="picture">
-          <img src="images/dragonite.png" />
-        </div>
-        <div class="types">
-          <div class="type dragon">Dragon</div>
-          <div class="type flying">Flying</div>
-        </div>
-      </div>
 
-      <div class="counters">
-        <h3 class="title title--normal">
-          Can be beaten by
-        </h3>
+        <div class="counters">
+          <h3 class="title title--normal">
+            Can be beaten by
+          </h3>
 
-        <div class="beaten-by">
+          <div class="beaten-by">
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 
   <script type="text/javascript" src="main.js">

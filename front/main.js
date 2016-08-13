@@ -2,6 +2,21 @@ const pokemons = [{"name":"bulbasaur","types":[{"slot":2,"name":"poison"},{"slot
 const types = [{"name":"normal","names":[{"name":"ノーマル","lang":"ja"},{"name":"노말","lang":"ko"},{"name":"Normal","lang":"fr"},{"name":"Normal","lang":"de"},{"name":"Normal","lang":"es"},{"name":"Normale","lang":"it"},{"name":"Normal","lang":"en"}],"damages":{"half":{"from":[],"to":["rock","steel"]},"no":{"from":["ghost"],"to":["ghost"]},"double":{"from":["fighting"],"to":[]}}},{"name":"fighting","names":[{"name":"かくとう","lang":"ja"},{"name":"격투","lang":"ko"},{"name":"Combat","lang":"fr"},{"name":"Kampf","lang":"de"},{"name":"Lucha","lang":"es"},{"name":"Lotta","lang":"it"},{"name":"Fighting","lang":"en"}],"damages":{"half":{"from":["rock","bug","dark"],"to":["flying","poison","bug","psychic","fairy"]},"no":{"from":[],"to":["ghost"]},"double":{"from":["flying","psychic","fairy"],"to":["normal","rock","steel","ice","dark"]}}},{"name":"flying","names":[{"name":"ひこう","lang":"ja"},{"name":"비행","lang":"ko"},{"name":"Vol","lang":"fr"},{"name":"Flug","lang":"de"},{"name":"Volador","lang":"es"},{"name":"Volante","lang":"it"},{"name":"Flying","lang":"en"}],"damages":{"half":{"from":["fighting","bug","grass"],"to":["rock","steel","electric"]},"no":{"from":["ground"],"to":[]},"double":{"from":["rock","electric","ice"],"to":["fighting","bug","grass"]}}},{"name":"poison","names":[{"name":"どく","lang":"ja"},{"name":"독","lang":"ko"},{"name":"Poison","lang":"fr"},{"name":"Gift","lang":"de"},{"name":"Veneno","lang":"es"},{"name":"Veleno","lang":"it"},{"name":"Poison","lang":"en"}],"damages":{"half":{"from":["fighting","poison","bug","grass","fairy"],"to":["poison","ground","rock","ghost"]},"no":{"from":[],"to":["steel"]},"double":{"from":["ground","psychic"],"to":["grass","fairy"]}}},{"name":"ground","names":[{"name":"じめん","lang":"ja"},{"name":"땅","lang":"ko"},{"name":"Sol","lang":"fr"},{"name":"Boden","lang":"de"},{"name":"Tierra","lang":"es"},{"name":"Terra","lang":"it"},{"name":"Ground","lang":"en"}],"damages":{"half":{"from":["poison","rock"],"to":["bug","grass"]},"no":{"from":["electric"],"to":["flying"]},"double":{"from":["water","grass","ice"],"to":["poison","rock","steel","fire","electric"]}}},{"name":"rock","names":[{"name":"いわ","lang":"ja"},{"name":"바위","lang":"ko"},{"name":"Roche","lang":"fr"},{"name":"Gestein","lang":"de"},{"name":"Roca","lang":"es"},{"name":"Roccia","lang":"it"},{"name":"Rock","lang":"en"}],"damages":{"half":{"from":["normal","flying","poison","fire"],"to":["fighting","ground","steel"]},"no":{"from":[],"to":[]},"double":{"from":["fighting","ground","steel","water","grass"],"to":["flying","bug","fire","ice"]}}},{"name":"bug","names":[{"name":"むし","lang":"ja"},{"name":"벌레","lang":"ko"},{"name":"Insecte","lang":"fr"},{"name":"Käfer","lang":"de"},{"name":"Bicho","lang":"es"},{"name":"Coleottero","lang":"it"},{"name":"Bug","lang":"en"}],"damages":{"half":{"from":["fighting","ground","grass"],"to":["fighting","flying","poison","ghost","steel","fire","fairy"]},"no":{"from":[],"to":[]},"double":{"from":["flying","rock","fire"],"to":["grass","psychic","dark"]}}},{"name":"ghost","names":[{"name":"ゴースト","lang":"ja"},{"name":"고스트","lang":"ko"},{"name":"Spectre","lang":"fr"},{"name":"Geist","lang":"de"},{"name":"Fantasma","lang":"es"},{"name":"Spettro","lang":"it"},{"name":"Ghost","lang":"en"}],"damages":{"half":{"from":["poison","bug"],"to":["dark"]},"no":{"from":["normal","fighting"],"to":["normal"]},"double":{"from":["ghost","dark"],"to":["ghost","psychic"]}}},{"name":"steel","names":[{"name":"はがね","lang":"ja"},{"name":"강철","lang":"ko"},{"name":"Acier","lang":"fr"},{"name":"Stahl","lang":"de"},{"name":"Acero","lang":"es"},{"name":"Acciaio","lang":"it"},{"name":"Steel","lang":"en"}],"damages":{"half":{"from":["normal","flying","rock","bug","steel","grass","psychic","ice","dragon","fairy"],"to":["steel","fire","water","electric"]},"no":{"from":["poison"],"to":[]},"double":{"from":["fighting","ground","fire"],"to":["rock","ice","fairy"]}}},{"name":"fire","names":[{"name":"ほのお","lang":"ja"},{"name":"불꽃","lang":"ko"},{"name":"Feu","lang":"fr"},{"name":"Feuer","lang":"de"},{"name":"Fuego","lang":"es"},{"name":"Fuoco","lang":"it"},{"name":"Fire","lang":"en"}],"damages":{"half":{"from":["bug","steel","fire","grass","ice","fairy"],"to":["rock","fire","water","dragon"]},"no":{"from":[],"to":[]},"double":{"from":["ground","rock","water"],"to":["bug","steel","grass","ice"]}}},{"name":"water","names":[{"name":"みず","lang":"ja"},{"name":"물","lang":"ko"},{"name":"Eau","lang":"fr"},{"name":"Wasser","lang":"de"},{"name":"Agua","lang":"es"},{"name":"Acqua","lang":"it"},{"name":"Water","lang":"en"}],"damages":{"half":{"from":["steel","fire","water","ice"],"to":["water","grass","dragon"]},"no":{"from":[],"to":[]},"double":{"from":["grass","electric"],"to":["ground","rock","fire"]}}},{"name":"grass","names":[{"name":"くさ","lang":"ja"},{"name":"풀","lang":"ko"},{"name":"Plante","lang":"fr"},{"name":"Pflanze","lang":"de"},{"name":"Planta","lang":"es"},{"name":"Erba","lang":"it"},{"name":"Grass","lang":"en"}],"damages":{"half":{"from":["ground","water","grass","electric"],"to":["flying","poison","bug","steel","fire","grass","dragon"]},"no":{"from":[],"to":[]},"double":{"from":["flying","poison","bug","fire","ice"],"to":["ground","rock","water"]}}},{"name":"electric","names":[{"name":"でんき","lang":"ja"},{"name":"전기","lang":"ko"},{"name":"Électrik","lang":"fr"},{"name":"Elektro","lang":"de"},{"name":"Eléctrico","lang":"es"},{"name":"Elettro","lang":"it"},{"name":"Electric","lang":"en"}],"damages":{"half":{"from":["flying","steel","electric"],"to":["grass","electric","dragon"]},"no":{"from":[],"to":["ground"]},"double":{"from":["ground"],"to":["flying","water"]}}},{"name":"psychic","names":[{"name":"エスパー","lang":"ja"},{"name":"에스퍼","lang":"ko"},{"name":"Psy","lang":"fr"},{"name":"Psycho","lang":"de"},{"name":"Psíquico","lang":"es"},{"name":"Psico","lang":"it"},{"name":"Psychic","lang":"en"}],"damages":{"half":{"from":["fighting","psychic"],"to":["steel","psychic"]},"no":{"from":[],"to":["dark"]},"double":{"from":["bug","ghost","dark"],"to":["fighting","poison"]}}},{"name":"ice","names":[{"name":"こおり","lang":"ja"},{"name":"얼음","lang":"ko"},{"name":"Glace","lang":"fr"},{"name":"Eis","lang":"de"},{"name":"Hielo","lang":"es"},{"name":"Ghiaccio","lang":"it"},{"name":"Ice","lang":"en"}],"damages":{"half":{"from":["ice"],"to":["steel","fire","water","ice"]},"no":{"from":[],"to":[]},"double":{"from":["fighting","rock","steel","fire"],"to":["flying","ground","grass","dragon"]}}},{"name":"dragon","names":[{"name":"ドラゴン","lang":"ja"},{"name":"드래곤","lang":"ko"},{"name":"Dragon","lang":"fr"},{"name":"Drache","lang":"de"},{"name":"Dragón","lang":"es"},{"name":"Drago","lang":"it"},{"name":"Dragon","lang":"en"}],"damages":{"half":{"from":["fire","water","grass","electric"],"to":["steel"]},"no":{"from":[],"to":["fairy"]},"double":{"from":["ice","dragon","fairy"],"to":["dragon"]}}},{"name":"dark","names":[{"name":"あく","lang":"ja"},{"name":"악","lang":"ko"},{"name":"Ténèbres","lang":"fr"},{"name":"Unlicht","lang":"de"},{"name":"Siniestro","lang":"es"},{"name":"Buio","lang":"it"},{"name":"Dark","lang":"en"}],"damages":{"half":{"from":["ghost","dark"],"to":["fighting","dark","fairy"]},"no":{"from":["psychic"],"to":[]},"double":{"from":["fighting","bug","fairy"],"to":["ghost","psychic"]}}},{"name":"fairy","names":[{"name":"フェアリー","lang":"ja"},{"name":"페어리","lang":"ko"},{"name":"Fée","lang":"fr"},{"name":"Fee","lang":"de"},{"name":"Hada","lang":"es"},{"name":"Folletto","lang":"it"},{"name":"Fairy","lang":"en"}],"damages":{"half":{"from":["fighting","bug","dark"],"to":["poison","steel","fire"]},"no":{"from":["dragon"],"to":[]},"double":{"from":["poison","steel"],"to":["fighting","dragon","dark"]}}},{"name":"unknown","names":[{"name":"？？？","lang":"ja"},{"name":"???","lang":"fr"},{"name":"???","lang":"de"},{"name":"???","lang":"es"},{"name":"???","lang":"it"},{"name":"???","lang":"en"}],"damages":{"half":{"from":[],"to":[]},"no":{"from":[],"to":[]},"double":{"from":[],"to":[]}}},{"name":"shadow","names":[{"name":"ダーク","lang":"ja"},{"name":"Obscur","lang":"fr"},{"name":"Crypto","lang":"de"},{"name":"Ombra","lang":"it"},{"name":"Shadow","lang":"en"}],"damages":{"half":{"from":[],"to":[]},"no":{"from":[],"to":[]},"double":{"from":[],"to":[]}}}];
 const moves = [{"name":"Fury Cutter","type":"Bug","power":3},{"name":"Bug Bite","type":"Bug","power":5},{"name":"Bite","type":"Dark","power":6},{"name":"Sucker Punch","type":"Dark","power":7},{"name":"Dragon Breath","type":"Dragon","power":6},{"name":"Thunder Shock","type":"Electric","power":5},{"name":"Spark","type":"Electric","power":7},{"name":"Low Kick","type":"Fighting","power":5},{"name":"Karate Chop","type":"Fighting","power":6},{"name":"Ember","type":"Fire","power":0},{"name":"Wing Attack","type":"Flying","power":9},{"name":"Peck","type":"Flying","power":0},{"name":"Lick","type":"Ghost","power":5},{"name":"Shadow Claw","type":"Ghost","power":1},{"name":"Vine Whip","type":"Grass","power":7},{"name":"Razor Leaf","type":"Grass","power":5},{"name":"Mud Shot","type":"Ground","power":6},{"name":"Ice Shard","type":"Ice","power":5},{"name":"Frost Breath","type":"Ice","power":9},{"name":"Quick Attack","type":"Normal","power":0},{"name":"Scratch","type":"Normal","power":6},{"name":"Tackle","type":"Normal","power":2},{"name":"Pound","type":"Normal","power":7},{"name":"Cut","type":"Normal","power":2},{"name":"Poison Jab","type":"Poison","power":2},{"name":"Acid","type":"Poison","power":0},{"name":"Psycho Cut","type":"Psychic","power":7},{"name":"Rock Throw","type":"Rock","power":2},{"name":"Metal Claw","type":"Steel","power":8},{"name":"Bullet Punch","type":"Steel","power":0},{"name":"Water Gun","type":"Water","power":6},{"name":"Splash","type":"Water","power":0},{"name":"Water Gun","type":"Water","power":0},{"name":"Mud Slap","type":"Ground","power":5},{"name":"Zen Headbutt","type":"Psychic","power":2},{"name":"Confusion","type":"Psychic","power":5},{"name":"Poison Sting","type":"Poison","power":6},{"name":"Bubble","type":"Water","power":5},{"name":"Feint Attack","type":"Dark","power":2},{"name":"Steel Wing","type":"Steel","power":5},{"name":"Fire Fang","type":"Fire","power":0},{"name":"Rock Smash","type":"Fighting","power":5},{"name":"Wrap","type":"Normal","power":25,"charge":5},{"name":"Hyper Beam","type":"Normal","power":120,"charge":1},{"name":"Dark Pulse","type":"Dark","power":45,"charge":3},{"name":"Sludge","type":"Poison","power":30,"charge":4},{"name":"Vice Grip","type":"Normal","power":25,"charge":5},{"name":"Flame Wheel","type":"Fire","power":40,"charge":4},{"name":"Megahorn","type":"Bug","power":80,"charge":1},{"name":"Flamethrower","type":"Fire","power":55,"charge":2},{"name":"Dig","type":"Ground","power":70,"charge":3},{"name":"Cross Chop","type":"Fighting","power":60,"charge":1},{"name":"Psybeam","type":"Psychic","power":40,"charge":4},{"name":"Earthquake","type":"Ground","power":100,"charge":1},{"name":"Stone Edge","type":"Rock","power":80,"charge":1},{"name":"Ice Punch","type":"Ice","power":45,"charge":3},{"name":"Heart Stamp","type":"Psychic","power":20,"charge":4},{"name":"Discharge","type":"Electric","power":35,"charge":3},{"name":"Flash Cannon","type":"Steel","power":60,"charge":3},{"name":"Drill Peck","type":"Flying","power":40,"charge":3},{"name":"Ice Beam","type":"Ice","power":65,"charge":2},{"name":"Blizzard","type":"Ice","power":100,"charge":1},{"name":"Heat Wave","type":"Fire","power":80,"charge":1},{"name":"Aerial Ace","type":"Flying","power":30,"charge":4},{"name":"Drill Run","type":"Ground","power":50,"charge":3},{"name":"Petal Blizzard","type":"Grass","power":65,"charge":2},{"name":"Mega Drain","type":"Grass","power":15,"charge":5},{"name":"Bug Buzz","type":"Bug","power":75,"charge":2},{"name":"Poison Fang","type":"Poison","power":25,"charge":5},{"name":"Night Slash","type":"Dark","power":30,"charge":4},{"name":"Bubble Beam","type":"Water","power":30,"charge":4},{"name":"Submission","type":"Fighting","power":30,"charge":3},{"name":"Low Sweep","type":"Fighting","power":30,"charge":4},{"name":"Aqua Jet","type":"Water","power":25,"charge":5},{"name":"Aqua Tail","type":"Water","power":45,"charge":2},{"name":"Seed Bomb","type":"Grass","power":40,"charge":3},{"name":"Psyshock","type":"Psychic","power":40,"charge":3},{"name":"Ancient Power","type":"Rock","power":35,"charge":4},{"name":"Rock Tomb","type":"Rock","power":30,"charge":4},{"name":"Rock Slide","type":"Rock","power":50,"charge":3},{"name":"Power Gem","type":"Rock","power":40,"charge":3},{"name":"Shadow Sneak","type":"Ghost","power":15,"charge":5},{"name":"Shadow Punch","type":"Ghost","power":20,"charge":4},{"name":"Ominous Wind","type":"Ghost","power":30,"charge":4},{"name":"Shadow Ball","type":"Ghost","power":45,"charge":3},{"name":"Magnet Bomb","type":"Steel","power":30,"charge":4},{"name":"Iron Head","type":"Steel","power":30,"charge":3},{"name":"Parabolic Charge","type":"Electric","power":15,"charge":5},{"name":"Thunder Punch","type":"Electric","power":40,"charge":3},{"name":"Thunder","type":"Electric","power":100,"charge":1},{"name":"Thunderbolt","type":"Electric","power":55,"charge":2},{"name":"Twister","type":"Dragon","power":25,"charge":5},{"name":"Dragon Pulse","type":"Dragon","power":65,"charge":2},{"name":"Dragon Claw","type":"Dragon","power":35,"charge":2},{"name":"Disarming Voice","type":"Fairy","power":25,"charge":5},{"name":"Draining Kiss","type":"Fairy","power":25,"charge":5},{"name":"Dazzling Gleam","type":"Fairy","power":55,"charge":3},{"name":"Moonblast","type":"Fairy","power":85,"charge":1},{"name":"Play Rough","type":"Fairy","power":55,"charge":2},{"name":"Cross Poison","type":"Poison","power":25,"charge":4},{"name":"Sludge Bomb","type":"Poison","power":55,"charge":2},{"name":"Sludge Wave","type":"Poison","power":70,"charge":1},{"name":"Gunk Shot","type":"Poison","power":65,"charge":1},{"name":"Bone Club","type":"Ground","power":25,"charge":4},{"name":"Bulldoze","type":"Ground","power":35,"charge":4},{"name":"Mud Bomb","type":"Ground","power":30,"charge":4},{"name":"Signal Beam","type":"Bug","power":45,"charge":3},{"name":"X-Scissor","type":"Bug","power":35,"charge":3},{"name":"Flame Charge","type":"Fire","power":25,"charge":5},{"name":"Flame Burst","type":"Fire","power":30,"charge":4},{"name":"Fire Blast","type":"Fire","power":100,"charge":1},{"name":"Brine","type":"Water","power":25,"charge":4},{"name":"Water Pulse","type":"Water","power":35,"charge":4},{"name":"Scald","type":"Water","power":55,"charge":3},{"name":"Hydro Pump","type":"Water","power":90,"charge":1},{"name":"Psychic","type":"Psychic","power":55,"charge":2},{"name":"Psystrike","type":"Psychic","power":70,"charge":1},{"name":"Icy Wind","type":"Ice","power":25,"charge":5},{"name":"Giga Drain","type":"Grass","power":35,"charge":3},{"name":"Fire Punch","type":"Fire","power":40,"charge":3},{"name":"Solar Beam","type":"Grass","power":120,"charge":1},{"name":"Leaf Blade","type":"Grass","power":45,"charge":2},{"name":"Power Whip","type":"Grass","power":70,"charge":1},{"name":"Air Cutter","type":"Flying","power":30,"charge":4},{"name":"Hurricane","type":"Flying","power":80,"charge":1},{"name":"Brick Break","type":"Fighting","power":30,"charge":3},{"name":"Swift","type":"Normal","power":30,"charge":4},{"name":"Horn Attack","type":"Normal","power":25,"charge":4},{"name":"Stomp","type":"Normal","power":30,"charge":4},{"name":"Hyper Fang","type":"Normal","power":35,"charge":3},{"name":"Body Slam","type":"Normal","power":40,"charge":2},{"name":"Rest","type":"Normal","power":35,"charge":3},{"name":"Struggle","type":"Normal","power":15,"charge":5},{"name":"Scald*","type":"Water","power":35,"charge":3},{"name":"Hydro Pump*","type":"Water","power":60,"charge":1},{"name":"Wrap*","type":"Normal","power":15,"charge":5},{"name":"Wrap*","type":"Normal","power":15,"charge":5}];
 
+function _findByName(list, name) {
+  const results = list.filter((item) => item.name === name);
+  return results && results[0];
+}
+
+function _augmentPokemonsData (pokemonsData, typesData) {
+  return pokemonsData.map((pokemon) => {
+    return {
+      name: pokemon.name,
+      types: pokemon.types.sort((type1, type2) => type1.slot > type2.slot)
+                  .map((type) => _findByName(typesData, type.name))
+    }
+  });
+}
+
 function updateList(pokemons) {
   const fragment = document.createDocumentFragment();
 
@@ -32,54 +47,82 @@ function updateList(pokemons) {
 }
 
 function updateDetail(pokemon) {
-  const detailFragment = document.createDocumentFragment();
 
-  document.querySelector('.pokemon-name').innerText = pokemon.name;
-  document.querySelector('.overlay .types').innerHTML = '';
-
-  const typesFragment = document.createDocumentFragment();
-  pokemon.types.sort((type1, type2) => type1.slot > type2.slot )
+  const defaultCPValue = 2400;
+  const typesHTML = pokemon.types.sort((type1, type2) => type1.slot > type2.slot )
               .map((type) => `<div class="type ${type.name}">${type.name}</div>`)
-              .map(_DOMElementFromString)
-              .forEach((el) => {
-                typesFragment.appendChild(el);
-              });
-  document.querySelector('.overlay .types').appendChild(typesFragment);
+              .join('');
 
-  document.querySelector('.overlay .picture img').src = `images/${pokemon.name}.png`;
+  const strongTypes = pokemon.types.reduce(
+    (state, type) => state.concat(type.damages.double.from), []);
 
-  pokemons.slice(0,20).forEach((pokemon) => {
+  const strongMoves = moves.filter(
+      (move) => strongTypes.indexOf(move.type.toLowerCase()) !== -1);
+
+  const beatenByHTML = pokemons.slice(0,20).map((pokemon, i) => {
+    const move = strongMoves[i%strongMoves.length];
     const mainType = pokemon.types.filter((type) => type.slot === 1)[0].name;
-    let htmlString = `<div class="other-pokemon">\
+    return `<div class="other-pokemon">\
       <div class="picture">\
         <img src="images/${pokemon.name}.png" />\
       </div>\
-      <div class="type ${mainType}">Blizzard</div>\
+      <div class="type ${move.type.toLowerCase()}">${move.name}</div>\
       <div class="cp-value">CP 1200</div>\
     </div>`;
+  });
 
-    const el = _DOMElementFromString(htmlString);
+  const overlayDataHTML = `<div><h2 class="pokemon-name">
+        ${pokemon.name}
+      </h2>
+      <section class="main-pokemon">
+        <div class="stats">
+          <div class="cp">
+            <div class="title">CP</div>
+            <input class="value" type="number" min=0 max=0 value="${defaultCPValue}" />
+          </div>
+          <div class="picture">
+            <img src="images/${pokemon.name}.png" />
+          </div>
+          <div class="types">
+            ${typesHTML}
+          </div>
+        </div>
 
+        <div class="counters">
+          <h3 class="title title--normal">
+            Can be beaten by
+          </h3>
+
+          <div class="beaten-by">
+            ${beatenByHTML}
+          </div>
+        </div>
+      </section>
+    </div><div>`;
+
+  const overlayDOMEl = _DOMElementFromString(overlayDataHTML);
+
+  // Add event listeners
+  overlayDOMEl.querySelectorAll('.other-pokemon').forEach((el) => {
     el.addEventListener('click', (e) => {
       const pokemonId = e.currentTarget.dataset.id;
       updateDetail(pokemons[pokemonId]);
       showDetail();
     });
-
-    detailFragment.appendChild(el);
   });
 
-  document.querySelector('.overlay .background').addEventListener('click', hideDetail);
-
-  document.querySelector('.beaten-by').appendChild(detailFragment);
+  document.querySelector('.overlay__data').innerHTML = '';
+  document.querySelector('.overlay__data').appendChild(overlayDOMEl);
 }
 
 function showDetail() {
-  document.querySelector('.overlay').classList.remove('overlay--hidden')
+  document.querySelector('.overlay').classList.remove('is-hidden')
+  document.querySelector('.pokedex').classList.add('is-blur')
 }
 
 function hideDetail() {
-  document.querySelector('.overlay').classList.add('overlay--hidden')
+  document.querySelector('.overlay').classList.add('is-hidden')
+  document.querySelector('.pokedex').classList.remove('is-blur')
 }
 
 function addKeyboardListener() {
@@ -99,6 +142,8 @@ function _DOMElementFromString(htmlString) {
 
 // Startup
 
+const pokemonsFull = _augmentPokemonsData(pokemons, types, moves);
 addKeyboardListener();
-updateList(pokemons);
-hideDetail();
+updateList(pokemonsFull);
+
+document.querySelector('.overlay__background').addEventListener('click', hideDetail);
