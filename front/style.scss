@@ -268,6 +268,7 @@ h3.title {
 
   .overlay__data {
     position: relative;
+    z-index: 100;
     .pokemon-name {
       color: white;
       font-size: 18px;
