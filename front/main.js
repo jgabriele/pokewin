@@ -91,12 +91,21 @@ function updateDetail(pokemon) {
   const strongMoves = moves.filter(
       (move) => strongTypes.indexOf(move.type.toLowerCase()) !== -1);
 
-  let strongMovesName = strongMoves.map(sm => sm.name);
-  const strongPokemons = pokemonsFull.filter(
+  const strongMovesName = strongMoves.map(sm => sm.name);
+  let strongPokemons = pokemonsFull.filter(
       (p) => {
           const movesName = p.moves.map(m => m && m.name || '');
           return movesName.reduce((state, moveName) => state || strongMovesName.indexOf(moveName) !== -1, false)
       });
+
+  // Filter strong pokemons to remove those that are weak to the current pokemon's types
+  const pokemonMovesType = pokemon.moves.map(m => m.type);
+  strongPokemons = strongPokemons.filter((strongPokemon) => {
+    const weaknesses = strongPokemon.types.reduce(
+      (state, type) => state.concat(type.damages.double.from), []);
+
+    return !_intersect(pokemon.types, weaknesses, (types, item) => types.indexOf(item.name) !== -1).length;
+  });
 
   const beatenByHTML = strongPokemons.map((pokemon, i) => {
     const strongMovesNames = strongMoves.map(m => m.name);
