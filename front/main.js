@@ -99,7 +99,7 @@ function updateDetail(pokemon) {
       });
 
   // Filter strong pokemons to remove those that are weak to the current pokemon's types
-  const pokemonMovesType = pokemon.moves.map(m => m.type);
+  const pokemonMovesType = pokemon.moves.map(m => m && m.type || '');
   strongPokemons = strongPokemons.filter((strongPokemon) => {
     const weaknesses = strongPokemon.types.reduce(
       (state, type) => state.concat(type.damages.double.from), []);
