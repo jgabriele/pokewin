@@ -321,22 +321,25 @@ h3.title {
       }
     }
 
-    .other-pokemon {
-      display: inline-block;
+    .counters {
+      text-align: center;
+      .other-pokemon {
+        display: inline-block;
 
-      font-weight: bold;
-      font-size: 12px;
+        font-weight: bold;
+        font-size: 12px;
 
-      margin: 8px;
+        margin: 8px;
 
-      .picture {
-        display: flex;
-        width: 70px;
-        height: 70px;
-
-        img {
-          object-fit: contain;
+        .picture {
+          display: flex;
           width: 70px;
+          height: 70px;
+
+          img {
+            object-fit: contain;
+            width: 70px;
+          }
         }
       }
     }
