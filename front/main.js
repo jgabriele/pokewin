@@ -29,7 +29,7 @@ const TYPE_TO_CSS_CLASS = [
 
 const NAVIGATOR_LANG_TO_LANG = {
   'en-US': 'en',
-  'fr-FR': 'fr'
+  'fr-fr': 'fr'
 };
 
 function _findByName(list, name) {
