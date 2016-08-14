@@ -240,7 +240,7 @@ function LocaleManager(dictionary) {
 }
 
 LocaleManager.prototype.setLanguage = function(lang) {
-  this._lang = 'fr';
+  this._lang = lang;
 }
 
 LocaleManager.prototype.translate = function(key, lang) {
