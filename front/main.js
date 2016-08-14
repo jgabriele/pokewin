@@ -120,7 +120,6 @@ function updateDetail(pokemon) {
       <div class="type ${move.type.toLowerCase()}" style="font-size: ${fontSize}">\
         <span class="name">${move.name}</span>\
       </div>\
-      <div class="cp-value">CP 1200</div>\
     </div>`;
   }).join('');
 
@@ -130,8 +129,6 @@ function updateDetail(pokemon) {
       <section class="main-pokemon">
         <div class="stats">
           <div class="cp">
-            <div class="title">CP</div>
-            <input class="value" type="number" min=0 max=0 value="${defaultCPValue}" />
           </div>
           <div class="picture">
             <img src="images/${pokemon.name}.png" />
