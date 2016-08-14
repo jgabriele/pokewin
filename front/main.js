@@ -27,6 +27,11 @@ const TYPE_TO_CSS_CLASS = [
   'shadow'    // 20
 ];
 
+const NAVIGATOR_LANG_TO_LANG = {
+  'en-US': 'en',
+  'fr-FR': 'fr'
+};
+
 function _findByName(list, name) {
   const results = list.filter((item) => item.name === name);
   return results && results[0];
@@ -259,7 +264,8 @@ LocaleManager.prototype.translate = function(key, lang) {
 }
 
 var localeManager = new LocaleManager(dictionary);
-localeManager.setLanguage('fr');
+const browserLang = navigator.language || navigator.userLanguage || 'en';
+localeManager.setLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
 
 // Startup
 const pokemonsFull = _augmentPokemonsData(pokemons, types, moves, pokemonMoves);
