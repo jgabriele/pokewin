@@ -165,7 +165,7 @@ function updateDetail(pokemon) {
     const fontSize = _getFontSize(move.name, 60);
     return `<div class="other-pokemon" data-id="${pokemon.id}">\
       <div class="picture">\
-        <img src="images/${localeManager.translate(pokemon.key, 'en')}.png" />\
+        <img src="images/${localeManager.translate(pokemon.key, 'en').toLowerCase()}.png" />\
       </div>\
       <div class="type ${_getTypeClass(_findById(types, move.type).id).toLowerCase()}" style="font-size: ${fontSize}">\
         <span class="name">${move.name}</span>\
@@ -181,7 +181,7 @@ function updateDetail(pokemon) {
           <div class="cp">
           </div>
           <div class="picture">
-            <img src="images/${localeManager.translate(pokemon.key, 'en')}.png" />
+            <img src="images/${localeManager.translate(pokemon.key, 'en').toLowerCase()}.png" />
           </div>
           <div class="types">
             ${typesHTML}
