@@ -11,6 +11,8 @@ function swallowError(err) {
   this.emit('end');
 }
 
+gulp.task('build', ['js', 'sass', 'static']);
+
 //=====================//
 //======== CSS ========//
 //=====================//
