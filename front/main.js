@@ -172,6 +172,7 @@ function updateDetail(pokemon) {
 }
 
 function showDetail() {
+  window.scroll(0, 0);
   document.querySelector('.overlay').classList.remove('is-hidden')
   document.querySelector('.pokedex').classList.add('is-blur')
 }
