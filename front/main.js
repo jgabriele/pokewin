@@ -14,6 +14,24 @@ function _intersect(array1, array2, predicate) {
   });
 }
 
+function _decreaseFontSize(el, unit) {
+  const currentValue = Number(el.style.fontSize.substring(0, el.style.fontSize.indexOf(unit)));
+  el.style.fontSize = currentValue - 1 + unit;
+}
+
+function _getFontSize(moveName, maxSize) {
+  maxSize = maxSize * 0.95; // We want to fit in 95% of the size;
+
+  const calculationDiv = document.getElementsByClassName('font-size-calculation')[0];
+  calculationDiv.innerText = moveName.toUpperCase();
+  calculationDiv.style.fontSize = '10px';
+  var countdown = 10;
+  while(countdown-- && calculationDiv.offsetWidth > maxSize) {
+    _decreaseFontSize(calculationDiv, 'px');
+  }
+  return calculationDiv.style.fontSize;
+}
+
 function _augmentPokemonsData(pokemonsData, typesData, moves, pokemonMoves) {
   return pokemonsData.map((pokemon) => {
     const currentPokemonMoves = _findByName(pokemonMoves, pokemon.name);
@@ -64,7 +82,7 @@ function updateDetail(pokemon) {
 
   const defaultCPValue = 2400;
   const typesHTML = pokemon.types.sort((type1, type2) => type1.slot > type2.slot )
-              .map((type) => `<div class="type ${type.name}">${type.name}</div>`)
+              .map((type) => `<div class="type ${type.name}"><span class="name">${type.name}</span></div>`)
               .join('');
 
   const strongTypes = pokemon.types.reduce(
@@ -85,11 +103,14 @@ function updateDetail(pokemon) {
     const move = _intersect(pokemon.moves, strongMovesNames,
       (list, item) => item && (list.indexOf(item.name) !== -1))[0];
     const mainType = pokemon.types[0].name;
+    const fontSize = _getFontSize(move.name, 60);
     return `<div class="other-pokemon">\
       <div class="picture">\
         <img src="images/${pokemon.name}.png" />\
       </div>\
-      <div class="type ${move.type.toLowerCase()}">${move.name}</div>\
+      <div class="type ${move.type.toLowerCase()}" style="font-size: ${fontSize}">\
+        <span class="name">${move.name}</span>\
+      </div>\
       <div class="cp-value">CP 1200</div>\
     </div>`;
   }).join('');
