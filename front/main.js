@@ -159,7 +159,7 @@ function updateDetail(pokemon) {
   document.querySelector('.overlay__data').appendChild(overlayDOMEl);
 
   // Add event listeners
-  overlayDOMEl.querySelectorAll('.other-pokemon').forEach((el) => {
+  Array.prototype.forEach.call(overlayDOMEl.querySelectorAll('.other-pokemon'), (el) => {
     el.addEventListener('click', (e) => {
       const pokemonId = e.currentTarget.dataset.id;
       updateDetail(pokemons[pokemonId]);
