@@ -201,4 +201,4 @@ addKeyboardListener();
 updateList(pokemonsFull);
 
 document.querySelector('.overlay__background').addEventListener('click', hideDetail);
-document.querySelector('.overlay__button').addEventListener('click', hideDetail);
+document.querySelector('.overlay__button .button').addEventListener('click', hideDetail);
