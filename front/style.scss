@@ -12,6 +12,36 @@
   font-style: normal;
 }
 
+@mixin flex($value) {
+  -webkit-flex: $value;
+     -moz-flex: $value;
+      -ms-flex: $value;
+          flex: $value;
+}
+
+@mixin display-flex() {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+  } @else {
+    -webkit-box-align: $value;
+    -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+  -moz-align-items: $value;
+  align-items: $value;
+}
+
 html {
   margin: 0;
   body {
@@ -50,7 +80,7 @@ html {
     margin: 8px;
 
     .picture {
-      display: flex;
+      @include display-flex();
       width: 70px;
       height: 70px;
 
@@ -121,8 +151,8 @@ h3.title {
   border-radius: 3px;
   box-sizing: border-box;
 
-  display: flex;
-  align-items: center;
+  @include display-flex();
+  @include align-items(center);
 
   color: white;
   text-align: center;
@@ -251,8 +281,8 @@ h3.title {
       width: 96%;
 
       .stats {
-        display: flex;
-        align-items: flex-end;
+        @include display-flex();
+        @include align-items(flex-end);
 
         padding: 0px 15px;
 
@@ -266,7 +296,7 @@ h3.title {
         }
 
         .cp {
-          flex: 1;
+          @include flex(1);
           text-align: center;
 
           .value {
@@ -278,7 +308,7 @@ h3.title {
           }
         }
         .picture {
-          flex: 3;
+          @include flex(3);
           text-align: center;
 
           img {
@@ -287,7 +317,7 @@ h3.title {
           }
         }
         .types {
-          flex: 1;
+          @include flex(1);
 
           .type {
             margin-bottom: 3px;
@@ -327,7 +357,7 @@ h3.title {
         margin: 8px;
 
         .picture {
-          display: flex;
+          @include display-flex();
           width: 70px;
           height: 70px;
 
