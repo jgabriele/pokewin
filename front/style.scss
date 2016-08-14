@@ -1,5 +1,12 @@
 @font-face {
   font-family: 'Lato';
+  src: url('./fonts/Lato-Light.ttf');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
   src: url('./fonts/Lato-Regular.ttf');
   font-weight: normal;
   font-style: normal;
@@ -266,14 +273,15 @@ h3.title {
     z-index: 1000;
 
     .button {
-      background: rgba(24, 195, 187, 0.5);
-      border: 2px solid #14a9a2;
+      background: rgba(24, 195, 187, 0.9);
+      border: 2px solid #0e7974;
       border-radius: 50%;
 
       display: inline-block;
 
       color: white;
       font-size: 24px;
+      font-weight: 100;
 
       width: 30px;
       height: 30px;
@@ -313,7 +321,7 @@ h3.title {
         @include align-items(flex-end);
 
         position: relative;
-        top: 50px;
+        top: 60px;
 
         padding: 0px 15px;
 
@@ -357,6 +365,7 @@ h3.title {
       }
       .counters {
         background: white;
+        border: 2px solid black;
         border-radius: 5px 5px 0px 0px;
 
         padding-top: 70px;
