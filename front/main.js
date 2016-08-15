@@ -221,7 +221,8 @@ function updateDetail(pokemon) {
     </div>`;
   }).join('');
 
-  const overlayDataHTML = `<div><h2 class="pokemon-name">
+  const overlayDataHTML = `<div>
+      <h2 class="pokemon-name">
         ${pokemon.name}
       </h2>
       <section class="main-pokemon">
