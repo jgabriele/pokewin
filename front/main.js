@@ -275,6 +275,10 @@ function hideDetail() {
   document.querySelector('.pokedex').classList.remove('is-blur')
 }
 
+function toggleIntro() {
+  document.querySelector('.intro').classList.toggle('is-expanded');
+}
+
 function addKeyboardListener() {
   window.addEventListener('keyup', (e) => {
     if (e.keyCode === 27) {
@@ -328,5 +332,8 @@ const pokemonsFull = _augmentPokemonsData(pokemons, types, moves, pokemonMoves);
 addKeyboardListener();
 updateList(pokemonsFull);
 
-document.querySelector('.overlay__background').addEventListener('click', hideDetail);
-document.querySelector('.overlay__button .button').addEventListener('click', hideDetail);
+document.querySelector('.js-background').addEventListener('click', hideDetail);
+document.querySelector('.js-close').addEventListener('click', hideDetail);
+
+
+document.querySelector('.js-intro').addEventListener('click', toggleIntro);

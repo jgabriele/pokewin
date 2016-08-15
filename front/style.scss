@@ -83,6 +83,27 @@ html {
     font-size: 14px;
     margin: 5px 0px;
   }
+
+  &.is-expanded {
+    > * {
+      display: none;
+    }
+
+    p:first-child {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 40px);
+      vertical-align: middle;
+    }
+    &:after {
+      content: '+';
+      display: inline-block;
+      font-weight: bold;
+      color: #197979;
+    }
+  }
 }
 
 .pokedex {
@@ -93,7 +114,7 @@ html {
     font-weight: bold;
     font-size: 12px;
 
-    margin: 8px;
+    margin: 8px 12px;
 
     .picture {
       @include display-flex();
@@ -369,7 +390,7 @@ h3.title {
           @include flex(1);
 
           .type {
-            margin-bottom: 3px;
+            margin-bottom: 5px;
           }
         }
       }
@@ -384,7 +405,7 @@ h3.title {
         z-index: -1;
 
         .type, .cp-value {
-          margin: 2px auto;
+          margin: 5px auto;
         }
 
         .cp-value {
@@ -401,7 +422,7 @@ h3.title {
         font-weight: bold;
         font-size: 12px;
 
-        margin: 8px;
+        margin: 8px 10px;
 
         .picture {
           @include display-flex();
