@@ -84,7 +84,7 @@ html {
     margin: 5px 0px;
   }
 
-  &.is-expanded {
+  &.is-collapsed {
     > * {
       display: none;
     }
