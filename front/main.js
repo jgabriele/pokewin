@@ -156,7 +156,7 @@ function updateList(pokemons) {
 
   var i = 0;
   pokemons.forEach((pokemon) => {
-    let htmlString = `<div class="pokemon" data-id="${pokemon.id}">\
+    let htmlString = `<div class="pokemon js-pokemon" data-id="${pokemon.id}">\
       <div class="picture">\
         <img src="${_getImagePath(pokemon)}">\
       </div>\
@@ -165,14 +165,7 @@ function updateList(pokemons) {
       </div>\
     </div>`;
 
-    const el = _DOMElementFromString(htmlString);
-
-    el.addEventListener('click', (e) => {
-      const pokemonId = e.currentTarget.dataset.id;
-      updateDetail(_findById(pokemonsFull, pokemonId));
-      showDetail();
-    });
-    fragment.appendChild(el);
+    fragment.appendChild(_DOMElementFromString(htmlString));
   });
 
   document.querySelector('.pokedex').appendChild(fragment);
@@ -211,9 +204,8 @@ function updateDetail(pokemon) {
     const strongMovesIds = strongMoves.map(m => m.id);
     const move = _intersect(pokemon.moves, strongMovesIds,
       (list, item) => item && (list.indexOf(item.id) !== -1))[0];
-    const mainType = pokemon.types[0].name;
     const fontSize = _getFontSize(move.name, 60);
-    return `<div class="other-pokemon" data-id="${pokemon.id}">\
+    return `<div class="other-pokemon js-pokemon" data-id="${pokemon.id}">\
       <div class="picture">\
         <img src="${_getImagePath(pokemon)}" />\
       </div>\
@@ -251,19 +243,8 @@ function updateDetail(pokemon) {
       </section>
     </div><div>`;
 
-  const overlayDOMEl = _DOMElementFromString(overlayDataHTML);
-
   document.querySelector('.overlay__data').innerHTML = '';
-  document.querySelector('.overlay__data').appendChild(overlayDOMEl);
-
-  // Add event listeners
-  Array.prototype.forEach.call(overlayDOMEl.querySelectorAll('.other-pokemon'), (el) => {
-    el.addEventListener('click', (e) => {
-      const pokemonId = e.currentTarget.dataset.id;
-      updateDetail(_findById(pokemonsFull, pokemonId));
-      showDetail();
-    });
-  });
+  document.querySelector('.overlay__data').appendChild(_DOMElementFromString(overlayDataHTML));
 }
 
 function showDetail() {
@@ -341,6 +322,16 @@ if (nbVisits && nbVisits >= 3) {
 const pokemonsFull = _augmentPokemonsData(pokemons, types, moves, pokemonMoves);
 addKeyboardListener();
 updateList(pokemonsFull);
+
+// Listeners
+
+Array.prototype.forEach.call(document.querySelectorAll('.js-pokemon'), (el) => {
+  el.addEventListener('click', (e) => {
+    const pokemonId = e.currentTarget.dataset.id;
+    updateDetail(_findById(pokemonsFull, pokemonId));
+    showDetail();
+  });
+});
 
 document.querySelector('.js-background').addEventListener('click', hideDetail);
 document.querySelector('.js-close').addEventListener('click', hideDetail);
