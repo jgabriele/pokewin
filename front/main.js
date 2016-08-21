@@ -176,36 +176,18 @@ function updateDetail(pokemon) {
     </div>`;
   }).join('');
 
-  const overlayDataHTML = `<div>
-      <h2 class="pokemon-name">
-        ${pokemon.name}
-      </h2>
-      <section class="main-pokemon">
-        <div class="stats">
-          <div class="cp">
-          </div>
-          <div class="picture">
-            <img src="${pokemon.image}" />
-          </div>
-          <div class="types">
-            ${typesHTML}
-          </div>
-        </div>
+  const imageHTML = `<img src="${pokemon.image}" />`;
+  const counterTitle = localeManager.translate('TEXT_CAN_BE_BEATEN_BY');
 
-        <div class="counters">
-          <h3 class="title title--normal">
-            ${localeManager.translate('TEXT_CAN_BE_BEATEN_BY')}
-          </h3>
+  document.querySelector('.overlay__data .js-name').innerText = pokemon.name;
+  document.querySelector('.overlay__data .js-picture').innerHTML = imageHTML;
+  document.querySelector('.overlay__data .js-types').innerHTML = typesHTML;
 
-          <div class="beaten-by">
-            ${beatenByHTML}
-          </div>
-        </div>
-      </section>
-    </div><div>`;
+  document.querySelector('.overlay__data .counters .js-counters-title').innerHTML = counterTitle;
+  document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = beatenByHTML;
 
-  document.querySelector('.overlay__data').innerHTML = '';
-  document.querySelector('.overlay__data').appendChild(_DOMElementFromString(overlayDataHTML));
+  // document.querySelector('.overlay__data').innerHTML = '';
+  // document.querySelector('.overlay__data').appendChild(_DOMElementFromString(overlayDataHTML));
 }
 
 function showDetail() {
@@ -270,7 +252,7 @@ Array.prototype.forEach.call(localisables, (localisableElement) => {
   localisableElement.innerText = localeManager.translate(key);
 });
 
-// Startup
+//===== Startup =====//
 
 // Check in localStorage whether we need to show the intro collapsed on start
 let nbVisits = localStorage && localStorage.getItem(NB_VISITS_KEY);
