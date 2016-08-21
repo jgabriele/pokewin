@@ -291,6 +291,8 @@ h3.title {
 
   position: absolute;
   top: 0;
+
+  width: 100%;
   z-index: 1000;
 
   .overlay__button {
@@ -380,6 +382,7 @@ h3.title {
         .picture {
           @include flex(3);
           text-align: center;
+          min-height: 150px;
 
           img {
             max-height: 200px;
@@ -398,6 +401,7 @@ h3.title {
         background: white;
         border: 2px solid black;
         border-radius: 5px 5px 0px 0px;
+        box-sizing: border-box;
 
         padding-top: 70px;
         height: 100%;
