@@ -92,17 +92,29 @@ html {
     p:first-child {
       display: inline-block;
       white-space: nowrap;
+      vertical-align: middle;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: calc(100% - 40px);
-      vertical-align: middle;
+      margin-bottom: 0;
+      width: 100%;
     }
     &:after {
       content: '+';
-      display: inline-block;
+      display: block;
       font-weight: bold;
       color: #197979;
     }
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  &:after {
+    content: '-';
+    display: block;
+    font-weight: bold;
+    color: #197979;
   }
 }
 
