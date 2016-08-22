@@ -120,6 +120,7 @@ function _getImagePath(pokemon) {
 
 function _augmentPokemonsData(data) {
   return data.pokemons.map((pokemon) => {
+
     return {
       id: pokemon.id,
       name: localeManager.translate(pokemon.key),
@@ -133,7 +134,8 @@ function _augmentPokemonsData(data) {
       counters: pokemon.counters.map((counter) => ({
         id: counter.pokemonId,
         image: _getImagePath(_findById(data.pokemons, counter.pokemonId)),
-        move: _findMoveById(counter.moves[0].move)
+        move: _findMoveById(counter.moves[0].move),
+        efficiency: counter.moves[0].efficiency
       }))
     }
   });
@@ -166,17 +168,30 @@ function updateDetail(pokemon) {
 
   const beatenByHTML = pokemon.counters.map((counter) => {
     const moveName = localeManager.translate(counter.move.key);
+    const moveType = counter.move.type;
     const fontSize = _getFontSize(moveName, 70);
+    const cp = Math.round(2400 / counter.efficiency);
 
-    return `<div class="other-pokemon js-pokemon" data-id="${counter.id}">
+    return {
+      id: counter.id,
+      image: counter.image,
+      moveType,
+      moveName,
+      fontSize,
+      cp
+    };
+  })
+  .sort((item1, item2) => item1.cp - item2.cp)
+  .map((counterData) => `<div class="other-pokemon js-pokemon" data-id="${counterData.id}">
       <div class="picture">
-        <img src="${counter.image}" />
+        <img src="${counterData.image}" />
       </div>
-      <div class="type ${_getTypeClass(_findById(data.types, counter.move.type).id).toLowerCase()}" style="font-size: ${fontSize}">
-        <span class="name">${moveName}</span>
+      <div class="type ${_getTypeClass(_findById(data.types, counterData.moveType).id).toLowerCase()}" style="font-size: ${counterData.fontSize}">
+        <span class="name">${counterData.moveName}</span>
       </div>
-    </div>`;
-  }).join('');
+      <div class="cp-value">CP ${counterData.cp}</div>
+    </div>`)
+  .join('');
 
   const imageHTML = `<img src="${pokemon.image}" />`;
   const counterTitle = localeManager.translate('TEXT_CAN_BE_BEATEN_BY');
