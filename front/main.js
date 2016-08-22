@@ -38,6 +38,71 @@ if (!Object.assign) {
   });
 }
 
+
+
+// Platform detect
+
+/**
+ * Checks if the browser supports CSS viewport height (vw) units
+ *
+ * See this issue: https://github.com/Modernizr/Modernizr/issues/1805
+ *
+ * Basically vh detection is super shit so we use vw. Thanks iOS!
+ * @return {Boolean}
+ */
+const supportsViewportUnits = (function () {
+    if (document.readyState !== 'complete' && document.readyState !== 'loaded') {
+        window.console.warn('testing viewport support before dom is ready');
+    }
+
+    const element = document.createElement('div');
+    element.setAttribute('style', 'height:10px;width:100vw;position:fixed;left:-105%;top:-105%;');
+    document.body.appendChild(element);
+
+    const elementWidth = element.clientWidth;
+
+    document.body.removeChild(element);
+
+    return elementWidth === document.body.clientWidth;
+})();
+
+const supportsInlineSVG = (function () {
+    // It's not possible to emulate this method via URL properly. It
+    // relies in legacy browser behavior and some JS DOM manipulation
+    // will be required to implement it properly.
+
+    const div = document.createElement('div');
+    div.innerHTML = '<svg/>';
+    return (typeof SVGRect !== 'undefined' && div.firstChild && div.firstChild.namespaceURI) === 'http://www.w3.org/2000/svg';
+})()
+
+const supportsBorderRadius = (function () {
+    const propList = ['borderRadius', 'BorderRadius', 'MozBorderRadius', 'WebkitBorderRadius', 'OBorderRadius', 'KhtmlBorderRadius'];
+
+    for (let i = 0; i < propList.length; i++) {
+        if (document.body.style[propList[i]] !== undefined) {
+            return true;
+        }
+    }
+
+    return false;
+})()
+
+
+const isAndroid = /(Android)\s+([\d.]+)/.test(window.navigator.userAgent);
+
+/**
+ * Checks if the browser is an old android webkit
+ * @return {Boolean}
+ */
+const isOldAndroidWebkit = isAndroid && !supportsViewportUnits;
+
+/**
+ * Checks if the browser is so old
+ * @return {Boolean}
+ */
+const isLegacyBrowser = !supportsBorderRadius || !supportsInlineSVG;
+
 const TYPE_TO_CSS_CLASS = [
   'normal',   // 1
   'fighting', // 2
