@@ -131,6 +131,7 @@ function _augmentPokemonsData(data) {
                       cssClass: _getTypeClass(type.id)
                   })),
       counters: pokemon.counters.map((counter) => ({
+        id: counter.pokemonId,
         image: _getImagePath(_findById(data.pokemons, counter.pokemonId)),
         move: _findMoveById(counter.moves[0].move)
       }))
@@ -166,7 +167,8 @@ function updateDetail(pokemon) {
   const beatenByHTML = pokemon.counters.map((counter) => {
     const moveName = localeManager.translate(counter.move.key);
     const fontSize = _getFontSize(moveName, 70);
-    return `<div class="other-pokemon js-pokemon" data-id="${counter.pokemon}">
+
+    return `<div class="other-pokemon js-pokemon" data-id="${counter.id}">
       <div class="picture">
         <img src="${counter.image}" />
       </div>
@@ -269,13 +271,21 @@ updateList(pokemonsFull);
 
 // Listeners
 
-Array.prototype.forEach.call(document.querySelectorAll('.js-pokemon'), (el) => {
-  el.addEventListener('click', (e) => {
-    const pokemonId = e.currentTarget.dataset.id;
-    updateDetail(_findById(pokemonsFull, pokemonId));
-    showDetail();
+function _openPokemonDetail(event) {
+  const pokemonId = event.currentTarget.dataset.id;
+  updateDetail(_findById(pokemonsFull, pokemonId));
+  showDetail();
+  _addEventListeners();
+}
+
+function _addEventListeners() {
+  Array.prototype.forEach.call(document.querySelectorAll('.js-pokemon'), (el) => {
+    el.removeEventListener('click', _openPokemonDetail);
+    el.addEventListener('click', _openPokemonDetail);
   });
-});
+}
+
+_addEventListeners();
 
 document.querySelector('.js-background').addEventListener('click', hideDetail);
 document.querySelector('.js-close').addEventListener('click', hideDetail);
