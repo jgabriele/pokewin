@@ -68,5 +68,9 @@ gulp.task('fonts', function() {
 //=====================//
 
 gulp.task('watch', function() {
-  gulp.watch(SRC_DIR + '**/*.*', ['sass', 'js', 'static']);
+  gulp.watch(SRC_DIR + '**/*.scss', ['sass']);
+  gulp.watch(SRC_DIR + '**/*.js', ['js']);
+  gulp.watch(SRC_DIR + '**/*.html', ['static']);
+  gulp.watch(SRC_DIR + '**/*.png', ['static']);
+  gulp.watch(SRC_DIR + '**/*.json', ['static']);
 });
