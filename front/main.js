@@ -38,8 +38,6 @@ if (!Object.assign) {
   });
 }
 
-
-
 // Platform detect
 
 /**
@@ -102,6 +100,16 @@ const isOldAndroidWebkit = isAndroid && !supportsViewportUnits;
  * @return {Boolean}
  */
 const isLegacyBrowser = !supportsBorderRadius || !supportsInlineSVG;
+
+
+
+
+
+
+const _state = {};
+
+
+
 
 const TYPE_TO_CSS_CLASS = [
   'normal',   // 1
@@ -231,7 +239,7 @@ function updateDetail(pokemon) {
             .map((type) => `<div class="type ${type.cssClass}"><span class="name">${type.name}</span></div>`)
             .join('');
 
-  const beatenByHTML = pokemon.counters.map((counter) => {
+  _state.counters = pokemon.counters.map((counter) => {
     const moveName = localeManager.translate(counter.move.key);
     const moveType = counter.move.type;
     const fontSize = _getFontSize(moveName, 70);
@@ -243,11 +251,26 @@ function updateDetail(pokemon) {
       moveType,
       moveName,
       fontSize,
+      efficiency: counter.efficiency,
       cp
     };
   })
-  .sort((item1, item2) => item1.cp - item2.cp)
-  .map((counterData) => `<div class="other-pokemon js-pokemon" data-id="${counterData.id}">
+  .sort((item1, item2) => item1.cp - item2.cp);
+
+  const imageHTML = `<img src="${pokemon.image}" />`;
+  const counterTitle = localeManager.translate('TEXT_CAN_BE_BEATEN_BY');
+
+  document.querySelector('.overlay__data .js-name').innerText = pokemon.name;
+  document.querySelector('.overlay__data .js-picture').innerHTML = imageHTML;
+  document.querySelector('.overlay__data .js-types').innerHTML = typesHTML;
+
+  document.querySelector('.overlay__data .counters .js-counters-title').innerHTML = counterTitle;
+
+  _renderCounters(_state.counters);
+}
+
+function _renderCounters(counters) {
+  const beatenByHTML = counters.map((counterData) => `<div class="other-pokemon js-pokemon" data-id="${counterData.id}">
       <div class="picture">
         <img src="${counterData.image}" />
       </div>
@@ -258,41 +281,22 @@ function updateDetail(pokemon) {
     </div>`)
   .join('');
 
-  const imageHTML = `<img src="${pokemon.image}" />`;
-  const counterTitle = localeManager.translate('TEXT_CAN_BE_BEATEN_BY');
-
-  document.querySelector('.overlay__data .js-name').innerText = pokemon.name;
-  document.querySelector('.overlay__data .js-picture').innerHTML = imageHTML;
-  document.querySelector('.overlay__data .js-types').innerHTML = typesHTML;
-
-  document.querySelector('.overlay__data .counters .js-counters-title').innerHTML = counterTitle;
   document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = beatenByHTML;
-
-  // document.querySelector('.overlay__data').innerHTML = '';
-  // document.querySelector('.overlay__data').appendChild(_DOMElementFromString(overlayDataHTML));
 }
 
 function showDetail() {
   window.scroll(0, 0);
   document.querySelector('.overlay').classList.remove('is-hidden')
-  document.querySelector('.pokedex').classList.add('is-blur')
+  // document.querySelector('.pokedex').classList.add('is-blur')
 }
 
 function hideDetail() {
   document.querySelector('.overlay').classList.add('is-hidden')
-  document.querySelector('.pokedex').classList.remove('is-blur')
+  // document.querySelector('.pokedex').classList.remove('is-blur')
 }
 
 function toggleIntro() {
   document.querySelector('.intro').classList.toggle('is-collapsed');
-}
-
-function addKeyboardListener() {
-  window.addEventListener('keyup', (e) => {
-    if (e.keyCode === 27) {
-      hideDetail();
-    }
-  })
 }
 
 function _DOMElementFromString(htmlString) {
@@ -351,21 +355,43 @@ updateList(pokemonsFull);
 
 // Listeners
 
+function addKeyboardListener() {
+  window.addEventListener('keyup', (e) => {
+    if (e.keyCode === 27) {
+      hideDetail();
+    }
+  })
+}
+
 function _openPokemonDetail(event) {
   const pokemonId = event.currentTarget.dataset.id;
   updateDetail(_findById(pokemonsFull, pokemonId));
   showDetail();
-  _addEventListeners();
+  _addPokemonClickEventListeners();
 }
 
-function _addEventListeners() {
+function _addPokemonClickEventListeners() {
   Array.prototype.forEach.call(document.querySelectorAll('.js-pokemon'), (el) => {
     el.removeEventListener('click', _openPokemonDetail);
     el.addEventListener('click', _openPokemonDetail);
   });
 }
 
-_addEventListeners();
+function _addInputChangeClick() {
+  document.querySelector('.js-cp-input').addEventListener('change', _recomputeMoves)
+}
+
+function _recomputeMoves(e) {
+  const newValue = e.target.value;
+  _state.counters = _state.counters.map((counter) => Object.assign({}, counter, {
+    cp: Math.round(Number(newValue) / counter.efficiency)
+  }));
+
+  _renderCounters(_state.counters);
+}
+
+_addPokemonClickEventListeners();
+_addInputChangeClick();
 
 document.querySelector('.js-background').addEventListener('click', hideDetail);
 document.querySelector('.js-close').addEventListener('click', hideDetail);
