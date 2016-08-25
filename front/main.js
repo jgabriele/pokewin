@@ -444,13 +444,18 @@ function _renderCounters(counters) {
 
 function showDetail() {
   window.scroll(0, 0);
-  document.querySelector('.overlay').classList.remove('is-hidden')
-  // document.querySelector('.pokedex').classList.add('is-blur')
+  const overlay = document.querySelector('.overlay');
+  overlay.style.display = "initial";
+  overlay.classList.remove('is-hidden');
 }
 
+const overlay = document.querySelector('.overlay');
+overlay.addEventListener('transitionend', () => {
+  overlay.style.display = "none";
+});
+overlay.style.display = "none";
 function hideDetail() {
-  document.querySelector('.overlay').classList.add('is-hidden')
-  // document.querySelector('.pokedex').classList.remove('is-blur')
+  overlay.classList.add('is-hidden');
 }
 
 function toggleIntro() {
@@ -489,6 +494,11 @@ LocaleManager.prototype.translate = function(key, lang) {
 const loadingEl = document.querySelector('.loading-screen');
 const loadingProgress = document.querySelector('.loading-screen .progress .value');
 
+loadingEl.addEventListener('transitionend', () => {
+    loadingEl.style.display = "none";
+  });loadingEl.addEventListener('webkitTransitionend', () => {
+    loadingEl.style.display = "none";
+  });
 function _hideLoading() {
   loadingEl.classList.add('is-hidden');
 }
@@ -555,10 +565,13 @@ let localeManager, pokemonsFull;
 function _fetchJson(entries) {
   console.log('Entries to fetch: ', entries.join(','));
   const data = {};
+  let i = 1;
   entries.forEach((entry) => {
     const req = new XMLHttpRequest();
     req.open("GET", `http://localhost:8080/data/${entry}.json`, false);
     req.send();
+
+    _setProgress(100/entries.length * i++);
 
     if(req.status === 200) {
       localStorage.setItem(entry, req.response);
@@ -581,6 +594,8 @@ function _startup () {
 
   if (remainingEntries.length) {
     _fetchJson(remainingEntries);
+  } else {
+    _hideLoading();
   }
 
   pokemons = JSON.parse(localStorage.getItem('pokemons'));
@@ -619,4 +634,3 @@ function _startup () {
 }
 
 _startup();
-_setProgress(100);

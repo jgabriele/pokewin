@@ -73,15 +73,17 @@ html {
   width: 100%;
   z-index: 1000;
 
-  &.is-hidden {
-    display: none;
-  }
-
-  .text {
+  .loading-message {
     flex: 1;
     text-align: center;
 
-    .message {
+    .spinner {
+      text-align: center;
+      margin: auto;
+      width: 50px;
+    }
+
+    .text {
       font-size: 20px;
     }
     .progress {
@@ -338,10 +340,15 @@ h3.title {
 }
 
 .is-hidden {
-  display: none;
+  -webkit-transition: opacity 200ms;
+  transition: opacity 200ms;
+
+  opacity: 0;
 }
 
 .overlay {
+  -webkit-transition: opacity 200ms;
+  transition: opacity 200ms;
 
   position: absolute;
   top: 0;
