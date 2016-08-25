@@ -534,7 +534,7 @@ function _fetchJson(entries) {
   const data = {};
   entries.forEach((entry) => {
     const req = new XMLHttpRequest();
-    req.open("GET", `localhost:8080/data/${entry}.json`, false);
+    req.open("GET", `data/${entry}.json`, false);
     req.send();
 
     if(req.status === 200) {
