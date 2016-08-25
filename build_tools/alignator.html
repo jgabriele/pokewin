@@ -61,13 +61,14 @@
                 imageEl.src = canvas.toDataURL();
 
                 var url = imageEl.src.replace(/^data:image\/[^;]/, 'data:application/octet-stream')
-                // window.open(url);
-                //
+
                 var link = document.createElement('a');
                 link.href = url;
                 link.download = imageName;
                 link.innerHTML = imageName;
                 resultsDiv.appendChild(link);
+
+                link.click();
 
                 ctx.clearRect(0,0, 300, 300);
 
