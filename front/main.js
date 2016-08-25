@@ -320,6 +320,7 @@ function _augmentPokemonsData(pokemons) {
       return {
         id: pokemon.id,
         name: localeManager.translate(pokemon.key),
+        key: pokemon.key,
         image: _getImagePath(_findById(pokemons, pokemon.id)),
         types: pokemon.types
           .map((typeId) => _findById(types, typeId))
@@ -337,7 +338,7 @@ function _augmentPokemonsData(pokemons) {
 }
 
 function _getPokemonSpritesheetPosition(pokemon, size = 70) {
-  const name = pokemon.name || pokemon.image.split('/')[1].split('.')[0];
+  const name = localeManager.translate(pokemon.key, 'en') || pokemon.image.split('/')[1].split('.')[0];
   const key = name.toLowerCase()
     .replace(/♀/g, '_f')
     .replace(/♂/g, '_m')
@@ -568,7 +569,7 @@ function _fetchJson(entries) {
   let i = 1;
   entries.forEach((entry) => {
     const req = new XMLHttpRequest();
-    req.open("GET", `http://localhost:8080/data/${entry}.json`, false);
+    req.open("GET", `${location.origin}/data/${entry}.json`, false);
     req.send();
 
     _setProgress(100/entries.length * i++);
@@ -606,6 +607,7 @@ function _startup () {
   localeManager = new LocaleManager(dictionary);
   const browserLang = navigator.language || navigator.userLanguage || 'en';
   localeManager.setLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
+  localeManager.setLanguage('fr');
 
   const localisables = document.querySelectorAll('[data-localisable-key]');
   Array.prototype.forEach.call(localisables, (localisableElement) => {
