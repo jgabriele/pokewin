@@ -484,6 +484,29 @@ LocaleManager.prototype.translate = function(key, lang) {
   return translations[lang || this._lang];
 }
 
+//===== Loading screen =====//
+
+const loadingEl = document.querySelector('.loading-screen');
+const loadingProgress = document.querySelector('.loading-screen .progress .value');
+
+function _hideLoading() {
+  loadingEl.classList.add('is-hidden');
+}
+
+function _setProgress(progress) {
+  const currentValue = Number(loadingProgress.innerHTML);
+  let intervalIndex = 0;
+  for (let i=currentValue+1; i<=progress; i++) {
+    setTimeout(function (i) {
+      loadingProgress.innerHTML = i;
+
+      if (i === 100) {
+        _hideLoading();
+      }
+    }.bind(this, i), 50 * ++intervalIndex);
+  }
+}
+
 //===== Startup =====//
 
 // Listeners
@@ -534,7 +557,7 @@ function _fetchJson(entries) {
   const data = {};
   entries.forEach((entry) => {
     const req = new XMLHttpRequest();
-    req.open("GET", `data/${entry}.json`, false);
+    req.open("GET", `http://localhost:8080/data/${entry}.json`, false);
     req.send();
 
     if(req.status === 200) {
@@ -596,3 +619,4 @@ function _startup () {
 }
 
 _startup();
+_setProgress(100);
