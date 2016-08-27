@@ -510,7 +510,7 @@ function _hideLoading() {
 function _setProgress(progress) {
   loadingProgress.innerHTML = progress;
   if (progress === 100) {
-    _hideLoading();
+    setTimeout(_hideLoading, 1000);
   }
 
   return;
