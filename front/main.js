@@ -443,20 +443,23 @@ function _renderCounters(counters) {
   document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = beatenByHTML;
 }
 
+const overlay = document.querySelector('.overlay');
+const pokedex = document.querySelector('.pokedex');
+
 function showDetail() {
   window.scroll(0, 0);
-  const overlay = document.querySelector('.overlay');
   overlay.style.display = "initial";
   overlay.classList.remove('is-hidden');
+  pokedex.classList.add('is-behind');
 }
 
-const overlay = document.querySelector('.overlay');
 overlay.addEventListener('transitionend', () => {
   overlay.style.display = "none";
 });
 overlay.style.display = "none";
 function hideDetail() {
   overlay.classList.add('is-hidden');
+  pokedex.classList.remove('is-behind');
 }
 
 function toggleIntro() {
@@ -505,17 +508,12 @@ function _hideLoading() {
 }
 
 function _setProgress(progress) {
-  const currentValue = Number(loadingProgress.innerHTML);
-  let intervalIndex = 0;
-  for (let i=currentValue+1; i<=progress; i++) {
-    setTimeout(function (i) {
-      loadingProgress.innerHTML = i;
-
-      if (i === 100) {
-        _hideLoading();
-      }
-    }.bind(this, i), 50 * ++intervalIndex);
+  loadingProgress.innerHTML = progress;
+  if (progress === 100) {
+    _hideLoading();
   }
+
+  return;
 }
 
 //===== Startup =====//
@@ -563,21 +561,47 @@ let pokemons = null, types = null, moves = null, dictionary = null;
 
 let localeManager, pokemonsFull;
 
-function _fetchJson(entries) {
-  console.log('Entries to fetch: ', entries.join(','));
-  const data = {};
-  let i = 1;
-  entries.forEach((entry) => {
-    const req = new XMLHttpRequest();
-    req.open("GET", `${location.origin}/data/${entry}.json`, false);
-    req.send();
+function _createGetAjaxPromise(url) {
+  return new Promise ((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
 
-    _setProgress(100/entries.length * i++);
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          resolve(xhr.response);
+        } else {
+          reject(xhr.statusText);
+        }
+      }
+    };
 
-    if(req.status === 200) {
-      localStorage.setItem(entry, req.response);
-    }
+    xhr.onerror = function (e) {
+      reject(xhr.statusText);
+    };
+
+    xhr.send();
   });
+}
+
+// Fetches JSON data and update progress status
+function _fetchJson(entries) {
+  const data = {};
+  let progress = 0;
+  let index = 0;
+  const dataPromises = entries
+    .map((entry) => {
+      return _createGetAjaxPromise(`${location.origin}/data/${entry}.json`)
+        .then((json) => {
+          // Update progress bar
+          progress = 100/entries.length * ++index;
+          _setProgress(progress);
+
+          return [entry, json];
+        });
+    });
+
+  return Promise.all(dataPromises);
 }
 
 function _startup () {
@@ -589,50 +613,54 @@ function _startup () {
     'dictionary'
   ];
 
-  const remainingEntries = entries.filter((entry) => {
-    return !localStorage.getItem(entry);
-  });
+  _fetchJson(entries)
+    .then((allJSONResults) => {
+      allJSONResults.forEach((tuple) => { // tuple is [entry, json]
+        localStorage.setItem(tuple[0], tuple[1]);
+      });
 
-  if (remainingEntries.length) {
-    _fetchJson(remainingEntries);
-  } else {
-    _hideLoading();
-  }
+      // We need one object like {entryName: json, otherEntry: otherjson}
+      const entryJsonMap = allJSONResults.reduce((state, tuple) => {
+        state[tuple[0]] = tuple[1];
+        return state;
+      }, {});
 
-  pokemons = JSON.parse(localStorage.getItem('pokemons'));
-  types = JSON.parse(localStorage.getItem('types'));
-  moves = JSON.parse(localStorage.getItem('moves'));
-  dictionary = JSON.parse(localStorage.getItem('dictionary'));
+      pokemons = JSON.parse(entryJsonMap.pokemons);
+      types = JSON.parse(entryJsonMap.types);
+      moves = JSON.parse(entryJsonMap.moves);
+      dictionary = JSON.parse(entryJsonMap.dictionary);
 
-  localeManager = new LocaleManager(dictionary);
-  const browserLang = navigator.language || navigator.userLanguage || 'en';
-  localeManager.setLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
-  localeManager.setLanguage('fr');
+      localeManager = new LocaleManager(dictionary);
+      const browserLang = navigator.language || navigator.userLanguage || 'en';
+      localeManager.setLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
+      localeManager.setLanguage('fr');
 
-  const localisables = document.querySelectorAll('[data-localisable-key]');
-  Array.prototype.forEach.call(localisables, (localisableElement) => {
-    const key = localisableElement.dataset.localisableKey;
-    localisableElement.innerText = localeManager.translate(key);
-  });
+      const localisables = document.querySelectorAll('[data-localisable-key]');
+      Array.prototype.forEach.call(localisables, (localisableElement) => {
+        const key = localisableElement.dataset.localisableKey;
+        localisableElement.innerText = localeManager.translate(key);
+      });
 
-  pokemonsFull = _augmentPokemonsData(pokemons);
-  updateList(pokemonsFull);
+      pokemonsFull = _augmentPokemonsData(pokemons);
+      updateList(pokemonsFull);
 
-  _addKeyboardListener();
-  _addPokemonClickEventListeners();
-  _addInputChangeClick();
+      _addKeyboardListener();
+      _addPokemonClickEventListeners();
+      _addInputChangeClick();
 
-  document.querySelector('.js-background').addEventListener('click', hideDetail);
-  document.querySelector('.js-close').addEventListener('click', hideDetail);
-  document.querySelector('.js-intro').addEventListener('click', toggleIntro);
+      document.querySelector('.js-background').addEventListener('click', hideDetail);
+      document.querySelector('.js-close').addEventListener('click', hideDetail);
+      document.querySelector('.js-intro').addEventListener('click', toggleIntro);
 
-  // Check in localStorage whether we need to show the intro collapsed on start
-  let nbVisits = localStorage && localStorage.getItem(NB_VISITS_KEY);
-  if (nbVisits && nbVisits >= 3) {
-    toggleIntro();
-  } else {
-    localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
-  }
+      // Check in localStorage whether we need to show the intro collapsed on start
+      let nbVisits = localStorage && localStorage.getItem(NB_VISITS_KEY);
+      if (nbVisits && nbVisits >= 3) {
+        toggleIntro();
+      } else {
+        localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
+      }
+    })
+    .catch((err) => console.error.bind(console))
 }
 
 _startup();

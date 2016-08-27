@@ -346,6 +346,11 @@ h3.title {
   opacity: 0;
 }
 
+.is-behind {
+  position: fixed;
+  width: 100%;
+}
+
 .overlay {
   -webkit-transition: opacity 200ms;
   transition: opacity 200ms;
@@ -353,6 +358,7 @@ h3.title {
   position: absolute;
   top: 0;
 
+  margin-bottom: 50px;
   width: 100%;
   z-index: 1000;
 
