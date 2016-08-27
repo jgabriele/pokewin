@@ -50,6 +50,9 @@
 }
 
 html {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+
   margin: 0;
   body {
     font-family: 'Lato';
@@ -89,25 +92,6 @@ html {
     .progress {
       font-size: 14px;
     }
-  }
-}
-
-.title-wrapper {
-  text-align: center;
-  padding-top: 15px;
-  h1 {
-    background: white;
-
-    display: inline-block;
-
-    font-weight: normal;
-    font-size: 16px;
-
-    position: relative;
-    padding: 0px 20px;
-    z-index: 1000;
-
-    margin: 0;
   }
 }
 
@@ -161,7 +145,7 @@ html {
     font-weight: bold;
     font-size: 12px;
 
-    margin: 8px 12px;
+    margin: 8px;
 
     .picture {
       width: 70px;
@@ -227,7 +211,7 @@ h2.title {
 }
 
 h3.title {
-  padding-top: 15px;
+  padding: 15px 0px;
   font-size: 14px;
   margin: 0;
 }
