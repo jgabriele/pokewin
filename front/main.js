@@ -509,11 +509,6 @@ function _hideLoading() {
 
 function _setProgress(progress) {
   loadingProgress.innerHTML = progress;
-  if (progress === 100) {
-    setTimeout(_hideLoading, 1000);
-  }
-
-  return;
 }
 
 //===== Startup =====//
@@ -659,6 +654,8 @@ function _startup () {
       } else {
         localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
       }
+
+      setTimeout(_hideLoading, 800);
     })
     .catch((err) => console.error.bind(console))
 }
