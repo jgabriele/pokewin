@@ -1,9 +1,7 @@
-
-
-var gulp    = require('gulp');
-var sass    = require('gulp-sass');
-var cssmin  = require('gulp-cssmin');
-var babel   = require('gulp-babel');
+import gulp    from 'gulp';
+import sass    from 'gulp-sass';
+import cssmin  from 'gulp-cssmin';
+import babel   from 'gulp-babel';
 
 var SRC_DIR   = './front/';
 var BUILD_DIR = './build/';

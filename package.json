@@ -4,6 +4,7 @@
   "description": "Coach app for Pokemon Go who advise you which Pokemon to take against another",
   "main": "front/index.html",
   "devDependencies": {
+    "babel-core": "^6.14.0",
     "babel-preset-es2015": "6.13.2",
     "gulp": "3.9.1",
     "gulp-babel": "6.1.2",
