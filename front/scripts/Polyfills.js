@@ -6,7 +6,7 @@
  */
 export default class Polyfills {
   /**
-   * Your olf method, wrap in a static method
+   * Your old method, wrap in a static method
    * @example Polyfills.objectAssign()
    */
   static objectAssign() {

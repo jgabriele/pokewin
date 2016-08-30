@@ -1,4 +1,4 @@
-const TYPE_TO_CSS_CLASS = [
+export default [
   'normal',   // 1
   'fighting', // 2
   'flying',   // 3
