@@ -1,7 +1,11 @@
-var gulp    = require('gulp');
-var sass    = require('gulp-sass');
-var cssmin  = require('gulp-cssmin');
-var babel   = require('gulp-babel');
+import browserify from 'browserify';
+import buffer     from 'vinyl-buffer';
+import source     from 'vinyl-source-stream';
+
+import gulp    from 'gulp';
+import sass    from 'gulp-sass';
+import cssmin  from 'gulp-cssmin';
+import babel   from 'gulp-babel';
 
 var SRC_DIR   = './front/';
 var BUILD_DIR = './build/';
@@ -25,14 +29,16 @@ gulp.task('sass', function() {
 });
 
 //=====================//
-//========= JS --======//
+//========= JS ========//
 //=====================//
 
-gulp.task('js', function() {
-  gulp.src(SRC_DIR + '*.js')
-    .pipe(babel({
-      presets: ['es2015']
-    })).on('error', swallowError)
+gulp.task('js', () => {
+  return browserify(`${SRC_DIR}main.js`)
+    .transform('babelify')
+    .bundle()
+    .on('error', swallowError)
+    .pipe(source('main.js'))
+    .pipe(buffer())
     .pipe(gulp.dest(BUILD_DIR));
 });
 
@@ -74,3 +80,5 @@ gulp.task('watch', function() {
   gulp.watch(SRC_DIR + '**/*.png', ['static']);
   gulp.watch(SRC_DIR + '**/*.json', ['static']);
 });
+
+gulp.task('default', ['build', 'watch']);
