@@ -1,3 +1,5 @@
+
+
 var gulp    = require('gulp');
 var sass    = require('gulp-sass');
 var cssmin  = require('gulp-cssmin');
@@ -74,3 +76,5 @@ gulp.task('watch', function() {
   gulp.watch(SRC_DIR + '**/*.png', ['static']);
   gulp.watch(SRC_DIR + '**/*.json', ['static']);
 });
+
+gulp.task('default', ['build', 'watch']);
