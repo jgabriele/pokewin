@@ -1,3 +1,7 @@
+import browserify from 'browserify';
+import buffer     from 'vinyl-buffer';
+import source     from 'vinyl-source-stream';
+
 import gulp    from 'gulp';
 import sass    from 'gulp-sass';
 import cssmin  from 'gulp-cssmin';
@@ -25,14 +29,16 @@ gulp.task('sass', function() {
 });
 
 //=====================//
-//========= JS --======//
+//========= JS ========//
 //=====================//
 
-gulp.task('js', function() {
-  gulp.src(SRC_DIR + '*.js')
-    .pipe(babel({
-      presets: ['es2015']
-    })).on('error', swallowError)
+gulp.task('js', () => {
+  return browserify(`${SRC_DIR}main.js`)
+    .transform('babelify')
+    .bundle()
+    .on('error', swallowError)
+    .pipe(source('main.js'))
+    .pipe(buffer())
     .pipe(gulp.dest(BUILD_DIR));
 });
 

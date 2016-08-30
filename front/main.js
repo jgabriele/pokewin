@@ -1,40 +1,11 @@
-const pos = {"abra":{"x":0,"y":1},"aerodactyl":{"x":8,"y":3},"alakazam":{"x":1,"y":0},"arbok":{"x":1,"y":1},"arcanine":{"x":0,"y":2},"articuno":{"x":1,"y":2},"bellsprout":{"x":2,"y":0},"beedrill":{"x":2,"y":1},"bulbasaur":{"x":2,"y":2},"chansey":{"x":0,"y":3},"blastoise":{"x":1,"y":3},"butterfree":{"x":2,"y":3},"caterpie":{"x":3,"y":0},"charizard":{"x":3,"y":1},"charmander":{"x":3,"y":2},"charmeleon":{"x":3,"y":3},"clefable":{"x":0,"y":4},"clefairy":{"x":1,"y":4},"cloyster":{"x":2,"y":4},"cubone":{"x":3,"y":4},"dewgong":{"x":4,"y":0},"diglett":{"x":4,"y":1},"ditto":{"x":4,"y":2},"dodrio":{"x":4,"y":3},"doduo":{"x":4,"y":4},"dragonair":{"x":0,"y":5},"dragonite":{"x":1,"y":5},"dratini":{"x":2,"y":5},"drowzee":{"x":3,"y":5},"dugtrio":{"x":4,"y":5},"eevee":{"x":5,"y":0},"ekans":{"x":5,"y":1},"electrode":{"x":5,"y":2},"farfetchd":{"x":5,"y":3},"fearow":{"x":5,"y":4},"flareon":{"x":5,"y":5},"electabuzz":{"x":0,"y":6},"gastly":{"x":1,"y":6},"gengar":{"x":2,"y":6},"geodude":{"x":3,"y":6},"gloom":{"x":4,"y":6},"golbat":{"x":5,"y":6},"golduck":{"x":6,"y":0},"exeggcute":{"x":6,"y":1},"graveler":{"x":6,"y":2},"grimer":{"x":6,"y":3},"haunter":{"x":6,"y":4},"exeggutor":{"x":6,"y":5},"hitmonchan":{"x":6,"y":6},"hitmonlee":{"x":0,"y":7},"hypno":{"x":1,"y":7},"goldeen":{"x":2,"y":7},"jigglypuff":{"x":3,"y":7},"golem":{"x":4,"y":7},"kabuto":{"x":5,"y":7},"growlithe":{"x":6,"y":7},"gyarados":{"x":7,"y":0},"kabutops":{"x":7,"y":1},"kakuna":{"x":7,"y":2},"horsea":{"x":7,"y":3},"kingler":{"x":7,"y":4},"koffing":{"x":7,"y":5},"ivysaur":{"x":7,"y":6},"krabby":{"x":7,"y":7},"lapras":{"x":0,"y":8},"machop":{"x":1,"y":8},"magmar":{"x":2,"y":8},"magnemite":{"x":3,"y":8},"mankey":{"x":4,"y":8},"marowak":{"x":5,"y":8},"metapod":{"x":6,"y":8},"mewtwo":{"x":7,"y":8},"jolteon":{"x":8,"y":0},"moltres":{"x":8,"y":1},"jynx":{"x":8,"y":2},"muk":{"x":0,"y":0},"nidoking":{"x":8,"y":4},"nidoqueen":{"x":8,"y":5},"nidoran_f":{"x":8,"y":6},"nidoran_m":{"x":8,"y":7},"nidorina":{"x":8,"y":8},"nidorino":{"x":0,"y":9},"ninetales":{"x":1,"y":9},"oddish":{"x":2,"y":9},"kadabra":{"x":3,"y":9},"omastar":{"x":4,"y":9},"paras":{"x":5,"y":9},"parasect":{"x":6,"y":9},"kangaskhan":{"x":7,"y":9},"persian":{"x":8,"y":9},"lickitung":{"x":9,"y":0},"machamp":{"x":9,"y":1},"machoke":{"x":9,"y":2},"magikarp":{"x":9,"y":3},"magneton":{"x":9,"y":4},"meowth":{"x":9,"y":5},"mew":{"x":9,"y":6},"mr_mime":{"x":9,"y":7},"omanyte":{"x":9,"y":8},"onix":{"x":9,"y":9},"pidgeot":{"x":0,"y":10},"pidgeotto":{"x":1,"y":10},"pidgey":{"x":2,"y":10},"pikachu":{"x":3,"y":10},"pinsir":{"x":4,"y":10},"poliwag":{"x":5,"y":10},"poliwhirl":{"x":6,"y":10},"poliwrath":{"x":7,"y":10},"ponyta":{"x":8,"y":10},"porygon":{"x":9,"y":10},"primeape":{"x":10,"y":0},"psyduck":{"x":10,"y":1},"raichu":{"x":10,"y":2},"rapidash":{"x":10,"y":3},"raticate":{"x":10,"y":4},"rattata":{"x":10,"y":5},"rhydon":{"x":10,"y":6},"rhyhorn":{"x":10,"y":7},"sandshrew":{"x":10,"y":8},"sandslash":{"x":10,"y":9},"scyther":{"x":10,"y":10},"seadra":{"x":0,"y":11},"seaking":{"x":1,"y":11},"seel":{"x":2,"y":11},"shellder":{"x":3,"y":11},"slowbro":{"x":4,"y":11},"slowpoke":{"x":5,"y":11},"snorlax":{"x":6,"y":11},"spearow":{"x":7,"y":11},"squirtle":{"x":8,"y":11},"starmie":{"x":9,"y":11},"staryu":{"x":10,"y":11},"tangela":{"x":11,"y":0},"tauros":{"x":11,"y":1},"tentacool":{"x":11,"y":2},"tentacruel":{"x":11,"y":3},"vaporeon":{"x":11,"y":4},"venomoth":{"x":11,"y":5},"venonat":{"x":11,"y":6},"venusaur":{"x":11,"y":7},"victreebel":{"x":11,"y":8},"vileplume":{"x":11,"y":9},"voltorb":{"x":11,"y":10},"vulpix":{"x":11,"y":11},"wartortle":{"x":0,"y":12},"weedle":{"x":1,"y":12},"weepinbell":{"x":2,"y":12},"weezing":{"x":3,"y":12},"wigglytuff":{"x":4,"y":12},"zapdos":{"x":5,"y":12},"zubat":{"x":6,"y":12}};
+import TYPE_TO_CSS_CLASS from './scripts/TYPE_TO_CSS_CLASS';
+import pos from './scripts/pos';
+import Polyfills from './scripts/Polyfills';
+
 const NB_VISITS_KEY = 'number-of-visits';
 
 // Polyfills
-
-if (!Object.assign) {
-  Object.defineProperty(Object, 'assign', {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: function(target) {
-      'use strict';
-      if (target === undefined || target === null) {
-        throw new TypeError('Cannot convert first argument to object');
-      }
-
-      var to = Object(target);
-      for (var i = 1; i < arguments.length; i++) {
-        var nextSource = arguments[i];
-        if (nextSource === undefined || nextSource === null) {
-          continue;
-        }
-        nextSource = Object(nextSource);
-
-        var keysArray = Object.keys(Object(nextSource));
-        for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-          var nextKey = keysArray[nextIndex];
-          var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-          if (desc !== undefined && desc.enumerable) {
-            to[nextKey] = nextSource[nextKey];
-          }
-        }
-      }
-      return to;
-    }
-  });
-}
+Polyfills.objectAssign();
 
 // Platform detect
 
@@ -109,28 +80,7 @@ const _state = {};
 
 
 
-const TYPE_TO_CSS_CLASS = [
-  'normal',   // 1
-  'fighting', // 2
-  'flying',   // 3
-  'poison',   // 4
-  'ground',   // 5
-  'rock',     // 6
-  'bug',      // 7
-  'ghost',    // 8
-  'steel',    // 9
-  'fire',     // 10
-  'water',    // 11
-  'grass',    // 12
-  'electric', // 13
-  'psychic',  // 14
-  'ice',      // 15
-  'dragon',   // 16
-  'dark',     // 17
-  'fairy',    // 18
-  'unknown',  // 19
-  'shadow'    // 20
-];
+
 
 const NAVIGATOR_LANG_TO_LANG = {
   'en-US': 'en',
