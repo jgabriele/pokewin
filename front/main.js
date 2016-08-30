@@ -2,85 +2,9 @@ import TYPE_TO_CSS_CLASS from './scripts/TYPE_TO_CSS_CLASS';
 import pos from './scripts/pos';
 import Polyfills from './scripts/Polyfills';
 
-const NB_VISITS_KEY = 'number-of-visits';
-
-// Polyfills
 Polyfills.objectAssign();
 
-// Platform detect
-
-/**
- * Checks if the browser supports CSS viewport height (vw) units
- *
- * See this issue: https://github.com/Modernizr/Modernizr/issues/1805
- *
- * Basically vh detection is super shit so we use vw. Thanks iOS!
- * @return {Boolean}
- */
-const supportsViewportUnits = (function () {
-    if (document.readyState !== 'complete' && document.readyState !== 'loaded') {
-        window.console.warn('testing viewport support before dom is ready');
-    }
-
-    const element = document.createElement('div');
-    element.setAttribute('style', 'height:10px;width:100vw;position:fixed;left:-105%;top:-105%;');
-    document.body.appendChild(element);
-
-    const elementWidth = element.clientWidth;
-
-    document.body.removeChild(element);
-
-    return elementWidth === document.body.clientWidth;
-})();
-
-const supportsInlineSVG = (function () {
-    // It's not possible to emulate this method via URL properly. It
-    // relies in legacy browser behavior and some JS DOM manipulation
-    // will be required to implement it properly.
-
-    const div = document.createElement('div');
-    div.innerHTML = '<svg/>';
-    return (typeof SVGRect !== 'undefined' && div.firstChild && div.firstChild.namespaceURI) === 'http://www.w3.org/2000/svg';
-})()
-
-const supportsBorderRadius = (function () {
-    const propList = ['borderRadius', 'BorderRadius', 'MozBorderRadius', 'WebkitBorderRadius', 'OBorderRadius', 'KhtmlBorderRadius'];
-
-    for (let i = 0; i < propList.length; i++) {
-        if (document.body.style[propList[i]] !== undefined) {
-            return true;
-        }
-    }
-
-    return false;
-})()
-
-
-const isAndroid = /(Android)\s+([\d.]+)/.test(window.navigator.userAgent);
-
-/**
- * Checks if the browser is an old android webkit
- * @return {Boolean}
- */
-const isOldAndroidWebkit = isAndroid && !supportsViewportUnits;
-
-/**
- * Checks if the browser is so old
- * @return {Boolean}
- */
-const isLegacyBrowser = !supportsBorderRadius || !supportsInlineSVG;
-
-
-
-
-
-
-const _state = {};
-
-
-
-
-
+const NB_VISITS_KEY = 'number-of-visits';
 
 const NAVIGATOR_LANG_TO_LANG = {
   'en-US': 'en',
@@ -92,6 +16,8 @@ const MINIUM_MOVE_EFFICIENCY_REQUIRED = 1.25;
 
 const RATIO_EFFICIENT = 1.25;
 const RATIO_WEAK = 0.8;
+
+const _state = {};
 
 function _findById(list, id) {
   if (typeof(id) === 'string') {
