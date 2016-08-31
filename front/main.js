@@ -504,7 +504,6 @@ function _startup () {
       localeManager = new LocaleManager(dictionary);
       const browserLang = navigator.language || navigator.userLanguage || 'en';
       localeManager.setLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
-      localeManager.setLanguage('fr');
 
       const localisables = document.querySelectorAll('[data-localisable-key]');
       Array.prototype.forEach.call(localisables, (localisableElement) => {
