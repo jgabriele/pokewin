@@ -1,7 +1,9 @@
 import TYPE_TO_CSS_CLASS from './scripts/TYPE_TO_CSS_CLASS';
 import pos from './scripts/pos';
 import Polyfills from './scripts/Polyfills';
+
 import LocaleManager from './scripts/LocaleManager';
+import Preloader from './scripts/Preloader';
 
 Polyfills.objectAssign();
 
@@ -413,68 +415,22 @@ function _recomputeMoves(e) {
 // Startup
 
 let pokemons = null, types = null, moves = null, dictionary = null;
-
 let pokemonsFull;
 
-function _createGetAjaxPromise(url) {
-  return new Promise ((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-
-    xhr.onload = function (e) {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          resolve(xhr.response);
-        } else {
-          reject(xhr.statusText);
-        }
-      }
-    };
-
-    xhr.onerror = function (e) {
-      reject(xhr.statusText);
-    };
-
-    xhr.send();
-  });
-}
-
-// Fetches JSON data and update progress status
-function _fetchJson(entries) {
-  const data = {};
-  let progress = 0;
-  let index = 0;
-  const dataPromises = entries
-    .map((entry) => {
-      return _createGetAjaxPromise(`${location.origin}/data/${entry}.json`)
-        .then((json) => {
-          // Update progress bar
-          progress = 100/entries.length * ++index;
-          _setProgress(progress);
-
-          return [entry, json];
-        });
-    });
-
-  return Promise.all(dataPromises);
-}
-
 function _startup () {
-  // Check in localstorage that we don't already have the data
-  const entries = [
-    'pokemons',
-    'types',
-    'moves',
-    'dictionary'
-  ];
+  const preloader = new Preloader()
+    .on(Preloader.EVENTS.PROGRESS, _setProgress);
 
-  _fetchJson(entries)
+  preloader
+    .fetchAll([
+      {name: 'pokemons', url: `${location.origin}/data/pokemons.json`},
+      {name: 'types', url: `${location.origin}/data/types.json`},
+      {name: 'moves', url: `${location.origin}/data/moves.json`},
+      {name: 'dictionary', url: `${location.origin}/data/dictionary.json`}
+    ])
     .then((allJSONResults) => {
-      allJSONResults.forEach((tuple) => { // tuple is [entry, json]
-        localStorage.setItem(tuple[0], tuple[1]);
-      });
-
       // We need one object like {entryName: json, otherEntry: otherjson}
+      // from array of [entryName, json]
       const entryJsonMap = allJSONResults.reduce((state, tuple) => {
         state[tuple[0]] = tuple[1];
         return state;
