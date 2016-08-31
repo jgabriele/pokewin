@@ -1,6 +1,7 @@
 import TYPE_TO_CSS_CLASS from './scripts/TYPE_TO_CSS_CLASS';
 import pos from './scripts/pos';
 import Polyfills from './scripts/Polyfills';
+import LocaleManager from './scripts/LocaleManager';
 
 Polyfills.objectAssign();
 
@@ -65,7 +66,7 @@ function _getTypeClass(typeId) {
 }
 
 function _getImagePath(pokemon) {
-  const imageName = localeManager.translate(pokemon.key, 'en')
+  const imageName = LocaleManager.getInstance().translate(pokemon.key, 'en')
     .toLowerCase()
     .replace(/ /g, '_')
     .replace(/♀/g, '_f')
@@ -195,13 +196,13 @@ function _augmentPokemonsData(pokemons) {
     .map((pokemon) => {
       return {
         id: pokemon.id,
-        name: localeManager.translate(pokemon.key),
+        name: LocaleManager.getInstance().translate(pokemon.key),
         key: pokemon.key,
         image: _getImagePath(_findById(pokemons, pokemon.id)),
         types: pokemon.types
           .map((typeId) => _findById(types, typeId))
           .map((type) => Object.assign({}, type, {
-              name: localeManager.translate(type.key),
+              name: LocaleManager.getInstance().translate(type.key),
               cssClass: _getTypeClass(type.id)
           })),
         moves: {
@@ -214,7 +215,7 @@ function _augmentPokemonsData(pokemons) {
 }
 
 function _getPokemonSpritesheetPosition(pokemon, size = 70) {
-  const name = pokemon.image.split('/')[1].split('.')[0] || localeManager.translate(pokemon.key, 'en');
+  const name = pokemon.image.split('/')[1].split('.')[0] || LocaleManager.getInstance().translate(pokemon.key, 'en');
   const key = name.toLowerCase()
     .replace(/♀/g, '_f')
     .replace(/♂/g, '_m')
@@ -275,7 +276,7 @@ function updateDetail(pokemon) {
             .join('');
 
   _state.counters = counters.map((counter) => {
-    const moveName = localeManager.translate(counter.move.key);
+    const moveName = LocaleManager.getInstance().translate(counter.move.key);
     const moveType = counter.move.type;
     const fontSize = _getFontSize(moveName, 70);
     const cp = Math.round(2400 / counter.efficiency);
@@ -293,7 +294,7 @@ function updateDetail(pokemon) {
   .sort((item1, item2) => item1.cp - item2.cp);
 
   const imageHTML = `<div class="pokemon-image"  style="${_getPokemonSpritesheetPosition(pokemon, 150)}"/></div>`;
-  const counterTitle = localeManager.translate('TEXT_CAN_BE_BEATEN_BY');
+  const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
 
   document.querySelector('.overlay__data .js-name').innerText = pokemon.name;
   document.querySelector('.overlay__data .js-picture').innerHTML = imageHTML;
@@ -350,24 +351,7 @@ function _DOMElementFromString(htmlString) {
 
 //===== Locale Manager =====//
 
-function LocaleManager(dictionary) {
-  this._dictionary = dictionary;
-  this._lang = 'en';
-}
 
-LocaleManager.prototype.setLanguage = function(lang) {
-  this._lang = lang || 'en';
-}
-
-LocaleManager.prototype.translate = function(key, lang) {
-  const translations = this._dictionary[key];
-  if (!translations) {
-    console.error('No translation at all for', key);
-    return;
-  }
-
-  return translations[lang || this._lang];
-}
 
 //===== Loading screen =====//
 
@@ -430,7 +414,7 @@ function _recomputeMoves(e) {
 
 let pokemons = null, types = null, moves = null, dictionary = null;
 
-let localeManager, pokemonsFull;
+let pokemonsFull;
 
 function _createGetAjaxPromise(url) {
   return new Promise ((resolve, reject) => {
@@ -501,7 +485,8 @@ function _startup () {
       moves = JSON.parse(entryJsonMap.moves);
       dictionary = JSON.parse(entryJsonMap.dictionary);
 
-      localeManager = new LocaleManager(dictionary);
+      LocaleManager.prepare(dictionary);
+      const localeManager = LocaleManager.getInstance();
       const browserLang = navigator.language || navigator.userLanguage || 'en';
       localeManager.setLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
 
