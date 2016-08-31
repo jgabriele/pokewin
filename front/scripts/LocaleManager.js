@@ -19,6 +19,14 @@ LocaleManager.prototype.translate = function(key, lang) {
   return translations[lang || this._lang];
 }
 
+LocaleManager.prototype.scanAndLocalise = function() {
+  const localisables = document.querySelectorAll('[data-localisable-key]');
+  Array.prototype.forEach.call(localisables, (localisableElement) => {
+    const key = localisableElement.dataset.localisableKey;
+    localisableElement.innerText = this.translate(key);
+  });
+}
+
 let _instance;
 LocaleManager.getInstance = function() {
   if (_instance) {

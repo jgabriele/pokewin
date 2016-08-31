@@ -392,11 +392,9 @@ function _startup () {
       const browserLang = navigator.language || navigator.userLanguage || 'en';
       localeManager.setLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
 
-      const localisables = document.querySelectorAll('[data-localisable-key]');
-      Array.prototype.forEach.call(localisables, (localisableElement) => {
-        const key = localisableElement.dataset.localisableKey;
-        localisableElement.innerText = localeManager.translate(key);
-      });
+      localeManager.scanAndLocalise();
+
+      window.__localeManager = localeManager;
 
       pokemonsFull = _augmentPokemonsData(pokemons);
       updateList(pokemonsFull);
