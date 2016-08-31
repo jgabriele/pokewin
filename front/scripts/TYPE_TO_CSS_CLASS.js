@@ -1,4 +1,5 @@
 export default [
+  '',
   'normal',   // 1
   'fighting', // 2
   'flying',   // 3

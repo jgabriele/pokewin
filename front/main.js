@@ -1,9 +1,9 @@
-import TYPE_TO_CSS_CLASS from './scripts/TYPE_TO_CSS_CLASS';
 import pos from './scripts/pos';
 import Polyfills from './scripts/Polyfills';
 
 import LocaleManager from './scripts/LocaleManager';
 import Preloader from './scripts/Preloader';
+import Utils from './scripts/Utils';
 
 Polyfills.objectAssign();
 
@@ -39,47 +39,6 @@ function _findMoveById(id) {
   move.type = _findTypeById(move.type);
   return move;
 }
-
-function _intersect(array1, array2, predicate) {
-  return array1.filter(function(item) {
-      return predicate(array2, item);
-  });
-}
-
-function _decreaseFontSize(el, unit) {
-  const currentValue = Number(el.style.fontSize.substring(0, el.style.fontSize.indexOf(unit)));
-  el.style.fontSize = currentValue - 1 + unit;
-}
-
-function _getFontSize(moveName, maxSize) {
-  maxSize = maxSize * 0.95; // We want to fit in 95% of the size;
-
-  const calculationDiv = document.getElementsByClassName('font-size-calculation')[0];
-  calculationDiv.innerText = moveName.toUpperCase();
-  calculationDiv.style.fontSize = '10px';
-  while(calculationDiv.offsetWidth > maxSize) {
-    _decreaseFontSize(calculationDiv, 'px');
-  }
-  return calculationDiv.style.fontSize;
-}
-
-function _getTypeClass(typeId) {
-  return TYPE_TO_CSS_CLASS[typeId-1];
-}
-
-function _getImagePath(pokemon) {
-  const imageName = LocaleManager.getInstance().translate(pokemon.key, 'en')
-    .toLowerCase()
-    .replace(/ /g, '_')
-    .replace(/♀/g, '_f')
-    .replace(/♂/g, '_m')
-    .replace(/\./g, '')
-    .replace(/'/g, '')
-    .replace(/-/g, '_')
-  return `images/${imageName}.png`;
-}
-
-
 
 
 // Pokemon counters
@@ -182,14 +141,11 @@ function _getCounters(pokemon, otherPokemon) {
 
   return {
     id: otherPokemon.id,
-    image: _getImagePath(_findById(pokemons, otherPokemon.id)),
+    key: otherPokemon.key,
     move: _findMoveById(moves[0].move),
     efficiency: moves[0].efficiency
   };
 }
-
-
-
 
 
 
@@ -200,12 +156,11 @@ function _augmentPokemonsData(pokemons) {
         id: pokemon.id,
         name: LocaleManager.getInstance().translate(pokemon.key),
         key: pokemon.key,
-        image: _getImagePath(_findById(pokemons, pokemon.id)),
         types: pokemon.types
           .map((typeId) => _findById(types, typeId))
           .map((type) => Object.assign({}, type, {
               name: LocaleManager.getInstance().translate(type.key),
-              cssClass: _getTypeClass(type.id)
+              cssClass: Utils.getClassForType(type.id)
           })),
         moves: {
           quick: pokemon.moves.quick.map(_findMoveById),
@@ -217,7 +172,7 @@ function _augmentPokemonsData(pokemons) {
 }
 
 function _getPokemonSpritesheetPosition(pokemon, size = 70) {
-  const name = pokemon.image.split('/')[1].split('.')[0] || LocaleManager.getInstance().translate(pokemon.key, 'en');
+  const name = LocaleManager.getInstance().translate(pokemon.key, 'en');
   const key = name.toLowerCase()
     .replace(/♀/g, '_f')
     .replace(/♂/g, '_m')
@@ -233,7 +188,7 @@ function _getPokemonSpritesheetPosition(pokemon, size = 70) {
 }
 
 function _pokemonToHTML(pokemon) {
-  return _DOMElementFromString(
+  return Utils.DOMElementFromString(
     `<div class="pokemon js-pokemon" data-id="${pokemon.id}">
       <div class="picture">
         <div class="pokemon-image" style="${_getPokemonSpritesheetPosition(pokemon)}" /></div>
@@ -280,12 +235,12 @@ function updateDetail(pokemon) {
   _state.counters = counters.map((counter) => {
     const moveName = LocaleManager.getInstance().translate(counter.move.key);
     const moveType = counter.move.type;
-    const fontSize = _getFontSize(moveName, 70);
+    const fontSize = Utils.getFontSize(moveName, 70);
     const cp = Math.round(2400 / counter.efficiency);
 
     return {
       id: counter.id,
-      image: counter.image,
+      key: counter.key,
       moveType,
       moveName,
       fontSize,
@@ -312,7 +267,7 @@ function _renderCounters(counters) {
       <div class="picture">
         <div class="pokemon-image" style="${_getPokemonSpritesheetPosition(counterData)}"/></div>
       </div>
-      <div class="type ${_getTypeClass(counterData.moveType.id).toLowerCase()}" style="font-size: ${counterData.fontSize}">
+      <div class="type ${Utils.getClassForType(counterData.moveType.id).toLowerCase()}" style="font-size: ${counterData.fontSize}">
         <span class="name">${counterData.moveName}</span>
       </div>
       <div class="cp-value">CP ${counterData.cp}</div>
@@ -345,16 +300,6 @@ function toggleIntro() {
   document.querySelector('.intro').classList.toggle('is-collapsed');
 }
 
-function _DOMElementFromString(htmlString) {
-  const div = document.createElement('div');
-  div.innerHTML = htmlString;
-  return div.firstChild;
-}
-
-//===== Locale Manager =====//
-
-
-
 //===== Loading screen =====//
 
 const loadingEl = document.querySelector('.loading-screen');
@@ -362,7 +307,8 @@ const loadingProgress = document.querySelector('.loading-screen .progress .value
 
 loadingEl.addEventListener('transitionend', () => {
     loadingEl.style.display = "none";
-  });loadingEl.addEventListener('webkitTransitionend', () => {
+  });
+loadingEl.addEventListener('webkitTransitionend', () => {
     loadingEl.style.display = "none";
   });
 function _hideLoading() {
@@ -471,7 +417,7 @@ function _startup () {
         localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
       }
 
-      setTimeout(_hideLoading, 800);
+      setTimeout(_hideLoading, 600);
     })
     .catch((err) => console.error.bind(console))
 }
