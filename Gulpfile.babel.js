@@ -6,6 +6,7 @@ import gulp    from 'gulp';
 import sass    from 'gulp-sass';
 import cssmin  from 'gulp-cssmin';
 import babel   from 'gulp-babel';
+import uglify  from 'gulp-uglify';
 
 var SRC_DIR   = './front/';
 var BUILD_DIR = './build/';
@@ -39,6 +40,7 @@ gulp.task('js', () => {
     .on('error', swallowError)
     .pipe(source('main.js'))
     .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest(BUILD_DIR));
 });
 
