@@ -191,7 +191,7 @@ function _pokemonToHTML(pokemon) {
   return Utils.DOMElementFromString(
     `<div class="pokemon js-pokemon" data-id="${pokemon.id}">
       <div class="picture">
-        <div class="pokemon-image" style="${_getPokemonSpritesheetPosition(pokemon)}" /></div>
+        <div class="pokemon-image is-loading" style="${_getPokemonSpritesheetPosition(pokemon)}" /></div>
       </div>
       <div class="name">
         ${pokemon.name}
@@ -250,7 +250,8 @@ function updateDetail(pokemon) {
   })
   .sort((item1, item2) => item1.cp - item2.cp);
 
-  const imageHTML = `<div class="pokemon-image"  style="${_getPokemonSpritesheetPosition(pokemon, 150)}"/></div>`;
+  const isLoadingClass = isLoading ? ' is-loading' : '';
+  const imageHTML = `<div class="pokemon-image${isLoadingClass}"  style="${_getPokemonSpritesheetPosition(pokemon, 150)}"/></div>`;
   const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
 
   document.querySelector('.overlay__data .js-name').innerText = pokemon.name;
@@ -263,9 +264,10 @@ function updateDetail(pokemon) {
 }
 
 function _renderCounters(counters) {
+  const isLoadingClass = isLoading ? ' is-loading' : '';
   const beatenByHTML = counters.map((counterData) => `<div class="other-pokemon js-pokemon" data-id="${counterData.id}">
       <div class="picture">
-        <div class="pokemon-image" style="${_getPokemonSpritesheetPosition(counterData)}"/></div>
+        <div class="pokemon-image${isLoadingClass}" style="${_getPokemonSpritesheetPosition(counterData)}"/></div>
       </div>
       <div class="type ${Utils.getClassForType(counterData.moveType.id).toLowerCase()}" style="font-size: ${counterData.fontSize}">
         <span class="name">${counterData.moveName}</span>
@@ -349,6 +351,13 @@ function _addInputChangeClick() {
   document.querySelector('.js-cp-input').addEventListener('change', _recomputeMoves)
 }
 
+function _removeLoadingState() {
+  isLoading = false;
+  Array.prototype.forEach.call(document.querySelectorAll('.pokemon-image'), (el) => {
+    el.classList.remove('is-loading');
+  });
+}
+
 function _recomputeMoves(e) {
   const newValue = e.target.value;
   _state.counters = _state.counters.map((counter) => Object.assign({}, counter, {
@@ -362,6 +371,7 @@ function _recomputeMoves(e) {
 
 let pokemons = null, types = null, moves = null, dictionary = null;
 let pokemonsFull;
+let isLoading = true;
 
 function _startup () {
   const preloader = new Preloader()
@@ -369,10 +379,27 @@ function _startup () {
 
   preloader
     .fetchAll([
-      {name: 'pokemons', url: `${location.origin}/data/pokemons.json`},
-      {name: 'types', url: `${location.origin}/data/types.json`},
-      {name: 'moves', url: `${location.origin}/data/moves.json`},
-      {name: 'dictionary', url: `${location.origin}/data/dictionary.json`}
+      {
+        name: 'pokemons',
+        url: `${location.origin}/data/pokemons.json`
+      },
+      {
+        name: 'types',
+        url: `${location.origin}/data/types.json`
+      },
+      {
+        name: 'moves',
+        url: `${location.origin}/data/moves.json`
+      },
+      {
+        name: 'dictionary',
+        url: `${location.origin}/data/dictionary.json`
+      },
+      {
+        name: 'spritesheet-lowres',
+        url: `${location.origin}/images/pokemon-spritesheet-lowres.png`,
+        type: 'image'
+      }
     ])
     .then((allJSONResults) => {
       // We need one object like {entryName: json, otherEntry: otherjson}
@@ -415,6 +442,9 @@ function _startup () {
         localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
       }
 
+      preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
+        .then(_removeLoadingState);
+    document.auery
       setTimeout(_hideLoading, 600);
     })
     .catch((err) => console.error.bind(console))

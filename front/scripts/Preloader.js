@@ -1,4 +1,5 @@
-const Event = require('events');
+import Event from 'events';
+import Utils from './Utils';
 
 const EVENTS = {
   PROGRESS: 'progress'
@@ -15,8 +16,15 @@ Preloader.prototype.fetchAll = function(entries) {
   let index = 0;
   const dataPromises = entries
     .map((entry) => {
-      return _createGetAjaxPromise(entry.url)
-        .then((json) => {
+      let promise;
+
+      if (entry.type === 'image') {
+        promise = this.preloadImage(entry.url);
+      } else {
+        promise = _createGetAjaxPromise(entry.url);
+      }
+
+      return promise.then((json) => {
           // Send progress event
           progress = 100/entries.length * ++index;
           this.emit(EVENTS.PROGRESS, progress);
@@ -26,6 +34,16 @@ Preloader.prototype.fetchAll = function(entries) {
     });
 
   return Promise.all(dataPromises);
+}
+
+Preloader.prototype.preloadImage = function(imageUrl) {
+  return new Promise((resolve, reject) => {
+    const img = Utils.DOMElementFromString('<img class="is-hidden" style="position:absolute;">');
+    img.src = imageUrl;
+    document.body.appendChild(img);
+
+    img.addEventListener('load', resolve);
+  });
 }
 
 // TODO move in Utils

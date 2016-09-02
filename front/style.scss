@@ -173,8 +173,14 @@ html {
 
 .picture {
   .pokemon-image {
+
+    &.is-loading {
+      background-image: url('images/pokemon-spritesheet-lowres.png');
+    }
+
     background-image: url('images/pokemon-spritesheet.png');
-    background-size: calc(2400px*70/200); // Size of spritesheet / (200/70)
+    // (size of div * Size of spritesheet / size of item in spriteseheet)
+    background-size: calc(70px*12);
     background-repeat: no-repeat;
 
     width: 100%;
