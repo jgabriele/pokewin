@@ -38,7 +38,7 @@ Preloader.prototype.fetchAll = function(entries) {
 
 Preloader.prototype.preloadImage = function(imageUrl) {
   return new Promise((resolve, reject) => {
-    const img = Utils.DOMElementFromString('<img class="is-hidden" style="position:absolute;">');
+    const img = Utils.DOMElementFromString('<img style="display: none;">');
     img.src = imageUrl;
     document.body.appendChild(img);
 
