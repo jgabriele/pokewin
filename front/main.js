@@ -143,7 +143,8 @@ function _getCounters(pokemon, otherPokemon) {
     id: otherPokemon.id,
     key: otherPokemon.key,
     move: _findMoveById(moves[0].move),
-    efficiency: moves[0].efficiency
+    efficiency: moves[0].efficiency,
+    cpMax: otherPokemon.cpMax
   };
 }
 
@@ -166,7 +167,8 @@ function _augmentPokemonsData(pokemons) {
           quick: pokemon.moves.quick.map(_findMoveById),
           charge: pokemon.moves.special.map(_findMoveById)
         },
-        tiers: pokemon.tiers
+        tiers: pokemon.tiers,
+        cpMax: pokemon.cpMax
       }
     });
 }
@@ -238,6 +240,10 @@ function updateDetail(pokemon) {
     const fontSize = Utils.getFontSize(moveName, 70);
     const cp = Math.round(2400 / counter.efficiency);
 
+    if (counter.cpMax < cp) {
+      return null;
+    }
+
     return {
       id: counter.id,
       key: counter.key,
@@ -248,6 +254,7 @@ function updateDetail(pokemon) {
       cp
     };
   })
+  .filter(c => c) // Filter null entries
   .sort((item1, item2) => item1.cp - item2.cp);
 
   const isLoadingClass = isLoading ? ' is-loading' : '';
