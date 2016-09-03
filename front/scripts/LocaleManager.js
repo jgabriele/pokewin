@@ -5,8 +5,9 @@ function LocaleManager(dictionary) {
   this._lang = 'en';
 }
 
-LocaleManager.prototype.setLanguage = function(lang) {
-  this._lang = lang || 'en';
+LocaleManager.prototype.setLanguage = function(lang='en') {
+  this._lang = lang;
+  document.getElementsByTagName('html')[0].setAttribute('lang', lang)
 }
 
 LocaleManager.prototype.translate = function(key, lang) {
