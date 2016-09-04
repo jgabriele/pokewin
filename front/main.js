@@ -195,7 +195,7 @@ function _pokemonToHTML(pokemon) {
       <div class="picture">
         <div class="pokemon-image is-loading" style="${_getPokemonSpritesheetPosition(pokemon)}" /></div>
       </div>
-      <div class="name">
+      <div class="name" data-localisable-key="${pokemon.key}">
         ${pokemon.name}
       </div>
     </div>`);
@@ -261,7 +261,7 @@ function updateDetail(pokemon) {
   const imageHTML = `<div class="pokemon-image${isLoadingClass}"  style="${_getPokemonSpritesheetPosition(pokemon, 150)}"/></div>`;
   const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
 
-  document.querySelector('.overlay__data .js-name').innerText = pokemon.name;
+  document.querySelector('.overlay__data .js-name').innerText = LocaleManager.getInstance().translate(pokemon.key);
   document.querySelector('.overlay__data .js-picture').innerHTML = imageHTML;
   document.querySelector('.overlay__data .js-types').innerHTML = typesHTML;
 
@@ -272,7 +272,8 @@ function updateDetail(pokemon) {
 
 function _renderCounters(counters) {
   const isLoadingClass = isLoading ? ' is-loading' : '';
-  const beatenByHTML = counters.map((counterData) => `<div class="other-pokemon js-pokemon" data-id="${counterData.id}">
+  const beatenByHTML = counters.map((counterData) => `
+    <div class="other-pokemon js-pokemon" data-id="${counterData.id}">
       <div class="picture">
         <div class="pokemon-image${isLoadingClass}" style="${_getPokemonSpritesheetPosition(counterData)}"/></div>
       </div>
@@ -354,6 +355,40 @@ function _addPokemonClickEventListeners() {
   });
 }
 
+function _collapseLanguage() {
+  document.querySelector('.js-language-selector').classList.remove('is-expanded');
+}
+
+function _onUpdateLanguage(e) {
+  const lang = e.target.dataset.language;
+
+  _changeLanguage(lang || 'en');
+
+  document.body.removeEventListener('click', _collapseLanguage);
+
+  // Collapse the language selection
+  _collapseLanguage();
+
+  // To avoid .js-language-selector to reopen
+  e.stopPropagation();
+};
+
+function _addLanguageSelectorCallbacks() {
+  document.querySelector('.js-language-selector').addEventListener('click', (e) => {
+    document.querySelector('.js-language-selector').classList.add('is-expanded');
+
+    document.body.addEventListener('click', _collapseLanguage);
+
+    Array.prototype.forEach.call(document.querySelectorAll('.js-language'), (el) => {
+      el.removeEventListener('click', _onUpdateLanguage);
+      el.addEventListener('click', _onUpdateLanguage);
+    });
+
+    // To avoid body to _collapseLanguage
+    e.stopPropagation();
+  });
+}
+
 function _addInputChangeClick() {
   document.querySelector('.js-cp-input').addEventListener('input', _recomputeMoves)
 }
@@ -372,6 +407,20 @@ function _recomputeMoves(e) {
   }));
 
   _renderCounters(_state.counters);
+}
+
+function _changeLanguage(lang) {
+  LocaleManager.getInstance().setLanguage(lang || 'en');
+  LocaleManager.getInstance().scanAndLocalise();
+
+  // Add selected class to the language in the list of possible languages
+  Array.prototype.forEach.call(document.querySelectorAll('.js-language'), (el) => {
+    if (el.dataset.language === lang) {
+      el.classList.add('is-selected');
+    } else {
+      el.classList.remove('is-selected');
+    }
+  });
 }
 
 // Startup
@@ -424,9 +473,7 @@ function _startup () {
       LocaleManager.prepare(dictionary);
       const localeManager = LocaleManager.getInstance();
       const browserLang = navigator.language || navigator.userLanguage || 'en';
-      localeManager.setLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
-
-      localeManager.scanAndLocalise();
+      _changeLanguage(NAVIGATOR_LANG_TO_LANG[browserLang])
 
       window.__localeManager = localeManager;
 
@@ -451,7 +498,9 @@ function _startup () {
 
       preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
         .then(_removeLoadingState);
-    document.auery
+
+      _addLanguageSelectorCallbacks();
+
       setTimeout(_hideLoading, 600);
     })
     .catch((err) => console.error.bind(console))

@@ -1,5 +1,3 @@
-
-
 function LocaleManager(dictionary) {
   this._dictionary = dictionary;
   this._lang = 'en';
@@ -17,7 +15,7 @@ LocaleManager.prototype.translate = function(key, lang) {
     return;
   }
 
-  return translations[lang || this._lang];
+  return translations[lang || this._lang] || translations['en'];
 }
 
 LocaleManager.prototype.scanAndLocalise = function() {
