@@ -130,6 +130,12 @@
       Other pokemons
     </h3>
     <div class="pokemon-tiers-section-3"></div>
+
+    <footer>
+      <div class="delimiter"></div>
+      <div data-localisable-key="TEXT_FOOTER"></div>
+      <div class="fb-like" data-href="https://www.facebook.com/pokewin.win/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+    </footer>
   </section>
 
   <div class="overlay is-hidden">
@@ -174,7 +180,17 @@
 
     ga('create', 'UA-45180397-2', 'auto');
     ga('send', 'pageview');
+  </script>
 
+  <div id="fb-root"></div>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7&appId=684853784906640";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   </script>
 </body>
 </html>
