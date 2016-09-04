@@ -355,7 +355,7 @@ function _addPokemonClickEventListeners() {
 }
 
 function _addInputChangeClick() {
-  document.querySelector('.js-cp-input').addEventListener('change', _recomputeMoves)
+  document.querySelector('.js-cp-input').addEventListener('input', _recomputeMoves)
 }
 
 function _removeLoadingState() {
