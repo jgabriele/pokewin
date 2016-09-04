@@ -24,7 +24,7 @@ LocaleManager.prototype.scanAndLocalise = function() {
   const localisables = document.querySelectorAll('[data-localisable-key]');
   Array.prototype.forEach.call(localisables, (localisableElement) => {
     const key = localisableElement.dataset.localisableKey;
-    localisableElement.innerText = this.translate(key);
+    localisableElement.innerHTML = this.translate(key);
   });
 }
 
