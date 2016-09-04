@@ -14,7 +14,7 @@ const Utils = {
   getFontSize(moveName, maxSize) {
     maxSize = maxSize * 0.95; // We want to fit in 95% of the size;
 
-    const calculationDiv = document.getElementsByClassName('font-size-calculation')[0];
+    const calculationDiv = document.getElementsByClassName('js-font-size-calculation')[0];
     calculationDiv.innerText = moveName.toUpperCase();
     calculationDiv.style.fontSize = '10px';
     while(calculationDiv.offsetWidth > maxSize) {
