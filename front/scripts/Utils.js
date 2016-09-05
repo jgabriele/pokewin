@@ -1,4 +1,6 @@
 import TYPE_TO_CSS_CLASS from './TYPE_TO_CSS_CLASS';
+import pos from './pos';
+import LocaleManager from './LocaleManager';
 
 const Utils = {
   DOMElementFromString(htmlString) {
@@ -21,6 +23,22 @@ const Utils = {
       _decreaseFontSize(calculationDiv, 'px');
     }
     return calculationDiv.style.fontSize;
+  },
+
+  getPokemonSpritesheetPosition(pokemon, size=70) {
+    const name = LocaleManager.getInstance().translate(pokemon.key, 'en');
+    const key = name.toLowerCase()
+      .replace(/♀/g, '_f')
+      .replace(/♂/g, '_m')
+      .replace(/'/g, '')
+      .replace(/\./g, '_')
+      .replace(/ /g, '');
+    const indexX = pos[key].x;
+    const indexY = pos[key].y;
+    const x = indexX * size;
+    const y = indexY * size;
+
+    return `background-position: -${x}px -${y}px`;
   }
 }
 

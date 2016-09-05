@@ -1,9 +1,10 @@
-import pos from './scripts/pos';
 import Polyfills from './scripts/Polyfills';
 
 import LocaleManager from './scripts/LocaleManager';
 import Preloader from './scripts/Preloader';
 import Utils from './scripts/Utils';
+
+import ListView from './scripts/Views/ListView';
 
 Polyfills.objectAssign();
 
@@ -173,57 +174,6 @@ function _augmentPokemonsData(pokemons) {
     });
 }
 
-function _getPokemonSpritesheetPosition(pokemon, size = 70) {
-  const name = LocaleManager.getInstance().translate(pokemon.key, 'en');
-  const key = name.toLowerCase()
-    .replace(/♀/g, '_f')
-    .replace(/♂/g, '_m')
-    .replace(/'/g, '')
-    .replace(/\./g, '_')
-    .replace(/ /g, '');
-  const indexX = pos[key].x;
-  const indexY = pos[key].y;
-  const x = indexX * size;
-  const y = indexY * size;
-
-  return `background-position: -${x}px -${y}px`;
-}
-
-function _pokemonToHTML(pokemon) {
-  return Utils.DOMElementFromString(
-    `<div class="pokemon js-pokemon" data-id="${pokemon.id}">
-      <div class="picture">
-        <div class="pokemon-image is-loading" style="${_getPokemonSpritesheetPosition(pokemon)}" /></div>
-      </div>
-      <div class="name" data-localisable-key="${pokemon.key}">
-        ${pokemon.name}
-      </div>
-    </div>`);
-}
-
-function updateList(pokemons) {
-  const t1DOMNodes = pokemons
-    .filter(p => p.tiers === 1)
-    .map(_pokemonToHTML);
-  const t1Fragment = document.createDocumentFragment();
-  t1DOMNodes.forEach(t1Fragment.appendChild.bind(t1Fragment));
-  document.querySelector('.pokemon-tiers-section-1').appendChild(t1Fragment);
-
-  const t2DOMNodes = pokemons
-    .filter(p => p.tiers === 2)
-    .map(_pokemonToHTML);
-  const t2Fragment = document.createDocumentFragment();
-  t2DOMNodes.forEach(t2Fragment.appendChild.bind(t2Fragment));
-  document.querySelector('.pokemon-tiers-section-2').appendChild(t2Fragment);
-
-  const t3DOMNodes = pokemons
-    .filter(p => p.tiers === 3)
-    .map(_pokemonToHTML);
-  const t3Fragment = document.createDocumentFragment();
-  t3DOMNodes.forEach(t3Fragment.appendChild.bind(t3Fragment));
-  document.querySelector('.pokemon-tiers-section-3').appendChild(t3Fragment);
-}
-
 function updateDetail(pokemon) {
   // Get counters for current pokemon
   const counters = pokemonsFull
@@ -258,7 +208,7 @@ function updateDetail(pokemon) {
   .sort((item1, item2) => item1.cp - item2.cp);
 
   const isLoadingClass = isLoading ? ' is-loading' : '';
-  const imageHTML = `<div class="pokemon-image${isLoadingClass}"  style="${_getPokemonSpritesheetPosition(pokemon, 150)}"/></div>`;
+  const imageHTML = `<div class="pokemon-image${isLoadingClass}"  style="${Utils.getPokemonSpritesheetPosition(pokemon, 150)}"/></div>`;
   const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
 
   document.querySelector('.overlay__data .js-name').innerText = LocaleManager.getInstance().translate(pokemon.key);
@@ -275,7 +225,7 @@ function _renderCounters(counters) {
   const beatenByHTML = counters.map((counterData) => `
     <div class="other-pokemon js-pokemon" data-id="${counterData.id}">
       <div class="picture">
-        <div class="pokemon-image${isLoadingClass}" style="${_getPokemonSpritesheetPosition(counterData)}"/></div>
+        <div class="pokemon-image${isLoadingClass}" style="${Utils.getPokemonSpritesheetPosition(counterData)}"/></div>
       </div>
       <div class="type ${Utils.getClassForType(counterData.moveType.id).toLowerCase()}" style="font-size: ${counterData.fontSize}">
         <span class="name">${counterData.moveName}</span>
@@ -478,7 +428,7 @@ function _startup () {
       window.__localeManager = localeManager;
 
       pokemonsFull = _augmentPokemonsData(pokemons);
-      updateList(pokemonsFull);
+      ListView.render(pokemonsFull);
 
       _addKeyboardListener();
       _addPokemonClickEventListeners();
