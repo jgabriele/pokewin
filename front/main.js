@@ -6,6 +6,7 @@ import Utils          from './scripts/Utils';
 
 import ListView     from './scripts/Views/ListView';
 import CounterView  from './scripts/Views/CounterView';
+import DetailsView  from './scripts/Views/DetailsView';
 
 Polyfills.objectAssign();
 
@@ -176,59 +177,39 @@ function _augmentPokemonsData(pokemons) {
 }
 
 function updateDetail(pokemon) {
-  // Get counters for current pokemon
   const counters = pokemonsFull
     .map(_getCounters.bind(null, pokemon))
-    .filter(p => p); // Filter null efficiencies
+    .filter(p => p) // Filter null efficiencies
+    .map((counter) => {
+      const moveName = LocaleManager.getInstance().translate(counter.move.key);
+      const moveType = counter.move.type;
+      const fontSize = Utils.getFontSize(moveName, 70);
+      const cp = Math.round(2400 / counter.efficiency);
 
-  const typesHTML = pokemon.types
-            .map((type) => `<div class="type ${type.cssClass}"><span class="name">${type.name}</span></div>`)
-            .join('');
+      if (counter.cpMax < cp) {
+        return null;
+      }
 
-  _state.counters = counters.map((counter) => {
-    const moveName = LocaleManager.getInstance().translate(counter.move.key);
-    const moveType = counter.move.type;
-    const fontSize = Utils.getFontSize(moveName, 70);
-    const cp = Math.round(2400 / counter.efficiency);
+      return {
+        id: counter.id,
+        key: counter.key,
+        moveType,
+        moveName,
+        fontSize,
+        efficiency: counter.efficiency,
+        cp
+      };
+    })
+    .filter(c => c) // Filter null entries
+    .sort((item1, item2) => item1.cp - item2.cp);
 
-    if (counter.cpMax < cp) {
-      return null;
-    }
+  _state.counters = counters;
 
-    return {
-      id: counter.id,
-      key: counter.key,
-      moveType,
-      moveName,
-      fontSize,
-      efficiency: counter.efficiency,
-      cp
-    };
+  DetailsView.render({
+    pokemon,
+    counters,
+    isLoading
   })
-  .filter(c => c) // Filter null entries
-  .sort((item1, item2) => item1.cp - item2.cp);
-
-  const isLoadingClass = isLoading ? ' is-loading' : '';
-  const imageHTML = `<div class="pokemon-image${isLoadingClass}"  style="${Utils.getPokemonSpritesheetPosition(pokemon, 150)}"/></div>`;
-  const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
-
-  document.querySelector('.overlay__data .js-name').innerText = LocaleManager.getInstance().translate(pokemon.key);
-  document.querySelector('.overlay__data .js-picture').innerHTML = imageHTML;
-  document.querySelector('.overlay__data .js-types').innerHTML = typesHTML;
-
-  document.querySelector('.overlay__data .counters .js-counters-title').innerHTML = counterTitle;
-
-  _renderCounters(_state.counters);
-}
-
-function _renderCounters(counters) {
-  const beatenByHTML = counters.map((counterData) => {
-    counterData.isLoading = isLoading;
-    return CounterView.render(counterData);
-  })
-  .join('');
-
-  document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = beatenByHTML;
 }
 
 const overlay = document.querySelector('.overlay');
