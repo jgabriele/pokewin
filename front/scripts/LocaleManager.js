@@ -3,6 +3,18 @@ function LocaleManager(dictionary) {
   this._lang = 'en';
 }
 
+LocaleManager.prototype.getLanguages = function() {
+  return [
+    { name: 'EN', code: 'en' },
+    { name: 'FR', code: 'fr' },
+    { name: 'DE', code: 'de' },
+    { name: 'ES', code: 'es' },
+    { name: 'IT', code: 'it' },
+    { name: 'JP', code: 'jp' },
+    { name: 'KO', code: 'ko' }
+  ];
+}
+
 LocaleManager.prototype.setLanguage = function(lang='en') {
   this._lang = lang;
   document.getElementsByTagName('html')[0].setAttribute('lang', lang)

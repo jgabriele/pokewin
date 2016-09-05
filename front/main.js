@@ -4,9 +4,10 @@ import LocaleManager  from './scripts/LocaleManager';
 import Preloader      from './scripts/Preloader';
 import Utils          from './scripts/Utils';
 
-import ListView     from './scripts/Views/ListView';
-import CounterView  from './scripts/Views/CounterView';
-import DetailsView  from './scripts/Views/DetailsView';
+import ListView             from './scripts/Views/ListView';
+import CounterView          from './scripts/Views/CounterView';
+import DetailsView          from './scripts/Views/DetailsView';
+import LanguageSelectView   from './scripts/Views/LanguageSelectView';
 
 Polyfills.objectAssign();
 
@@ -275,40 +276,6 @@ function _onPokemonSelected(pokemon) {
   showDetail();
 }
 
-function _collapseLanguage() {
-  document.querySelector('.js-language-selector').classList.remove('is-expanded');
-}
-
-function _onUpdateLanguage(e) {
-  const lang = e.target.dataset.language;
-
-  _changeLanguage(lang || 'en');
-
-  document.body.removeEventListener('click', _collapseLanguage);
-
-  // Collapse the language selection
-  _collapseLanguage();
-
-  // To avoid .js-language-selector to reopen
-  e.stopPropagation();
-};
-
-function _addLanguageSelectorCallbacks() {
-  document.querySelector('.js-language-selector').addEventListener('click', (e) => {
-    document.querySelector('.js-language-selector').classList.add('is-expanded');
-
-    document.body.addEventListener('click', _collapseLanguage);
-
-    Array.prototype.forEach.call(document.querySelectorAll('.js-language'), (el) => {
-      el.removeEventListener('click', _onUpdateLanguage);
-      el.addEventListener('click', _onUpdateLanguage);
-    });
-
-    // To avoid body to _collapseLanguage
-    e.stopPropagation();
-  });
-}
-
 function _addInputChangeClick() {
   document.querySelector('.js-cp-input').addEventListener('input', _recomputeMoves)
 }
@@ -329,18 +296,9 @@ function _recomputeMoves(e) {
   _renderCounters(_state.counters);
 }
 
-function _changeLanguage(lang) {
+function _onLanguageSelected(lang) {
   LocaleManager.getInstance().setLanguage(lang || 'en');
   LocaleManager.getInstance().scanAndLocalise();
-
-  // Add selected class to the language in the list of possible languages
-  Array.prototype.forEach.call(document.querySelectorAll('.js-language'), (el) => {
-    if (el.dataset.language === lang) {
-      el.classList.add('is-selected');
-    } else {
-      el.classList.remove('is-selected');
-    }
-  });
 }
 
 // Startup
@@ -393,7 +351,14 @@ function _startup () {
       LocaleManager.prepare(dictionary);
       const localeManager = LocaleManager.getInstance();
       const browserLang = navigator.language || navigator.userLanguage || 'en';
-      _changeLanguage(NAVIGATOR_LANG_TO_LANG[browserLang])
+
+      const languageSelectView = new LanguageSelectView(
+          document.querySelector('.js-language-selector-wrapper'),
+          localeManager.getLanguages()
+        )
+        .on(LanguageSelectView.ACTIONS.SELECT_LANGUAGE, _onLanguageSelected);
+      languageSelectView.render();
+      languageSelectView.selectLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
 
       window.__localeManager = localeManager;
 
@@ -420,8 +385,6 @@ function _startup () {
 
       preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
         .then(_removeLoadingState);
-
-      _addLanguageSelectorCallbacks();
 
       setTimeout(_hideLoading, 600);
     })
