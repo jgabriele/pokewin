@@ -38,9 +38,8 @@ Preloader.prototype.fetchAll = function(entries) {
 
 Preloader.prototype.preloadImage = function(imageUrl) {
   return new Promise((resolve, reject) => {
-    const img = Utils.DOMElementFromString('<img style="display: none;">');
+    const img = new Image();
     img.src = imageUrl;
-    document.body.appendChild(img);
 
     img.addEventListener('load', resolve);
   });
