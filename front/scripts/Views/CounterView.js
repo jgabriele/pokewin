@@ -1,20 +1,37 @@
 import Utils from '../Utils.js';
+import Event from 'events';
 
-const CounterView = {
-  render(data) {
-    const isLoadingClass = data.isLoading ? ' is-loading' : '';
+const ACTIONS = {
+  SELECT_COUNTER: 'select-pokemon'
+}
 
-    return `
-      <div class="other-pokemon js-pokemon" data-id="${data.id}">
-        <div class="picture">
-          <div class="pokemon-image${isLoadingClass}" style="${Utils.getPokemonSpritesheetPosition(data)}"/></div>
+function CounterView() {}
+
+CounterView.prototype = Object.create(Event.prototype);
+
+CounterView.prototype.prerender = function(counter) {
+  const isLoadingClass = counter.isLoading ? ' is-loading' : '';
+
+  const domEl = Utils.DOMElementFromString(
+    `<div class="other-pokemon js-pokemon">
+      <div class="picture">
+        <div class="pokemon-image${isLoadingClass}"
+            style="${Utils.getPokemonSpritesheetPosition(counter)}"/>
         </div>
-        <div class="type ${Utils.getClassForType(data.moveType.id).toLowerCase()}" style="font-size: ${data.fontSize}">
-          <span class="name">${data.moveName}</span>
-        </div>
-        <div class="cp-value">CP ${data.cp}</div>
-      </div>`;
-  }
-};
+      </div>
+      <div class="type ${Utils.getClassForType(counter.moveType.id).toLowerCase()}" style="font-size: ${counter.fontSize}">
+        <span class="name">${counter.moveName}</span>
+      </div>
+      <div class="cp-value">
+        CP ${counter.cp}
+      </div>
+    </div>`);
+
+  domEl.addEventListener('click', this.emit.bind(this, ACTIONS.SELECT_COUNTER, counter));
+
+  return domEl;
+}
+
+CounterView.ACTIONS = ACTIONS;
 
 export default CounterView;

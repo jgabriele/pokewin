@@ -147,7 +147,8 @@ function _getCounters(pokemon, otherPokemon) {
     key: otherPokemon.key,
     move: _findMoveById(moves[0].move),
     efficiency: moves[0].efficiency,
-    cpMax: otherPokemon.cpMax
+    cpMax: otherPokemon.cpMax,
+    pokemon: otherPokemon // Keep trace of initial pokemon data (used for onClick)
   };
 }
 
@@ -197,7 +198,8 @@ function updateDetail(pokemon) {
         moveName,
         fontSize,
         efficiency: counter.efficiency,
-        cp
+        cp,
+        pokemon: counter.pokemon
       };
     })
     .filter(c => c) // Filter null entries
@@ -205,11 +207,13 @@ function updateDetail(pokemon) {
 
   _state.counters = counters;
 
-  DetailsView.render({
-    pokemon,
-    counters,
-    isLoading
-  })
+  new DetailsView()
+    .on(DetailsView.EVENTS.COUNTER_SELECTED, _onPokemonSelected)
+    .render({
+      pokemon,
+      counters,
+      isLoading
+    })
 }
 
 const overlay = document.querySelector('.overlay');
@@ -266,18 +270,9 @@ function _addKeyboardListener() {
   })
 }
 
-function _openPokemonDetail(event) {
-  const pokemonId = event.currentTarget.dataset.id;
-  updateDetail(_findById(pokemonsFull, pokemonId));
+function _onPokemonSelected(pokemon) {
+  updateDetail(pokemon);
   showDetail();
-  _addPokemonClickEventListeners();
-}
-
-function _addPokemonClickEventListeners() {
-  Array.prototype.forEach.call(document.querySelectorAll('.js-pokemon'), (el) => {
-    el.removeEventListener('click', _openPokemonDetail);
-    el.addEventListener('click', _openPokemonDetail);
-  });
 }
 
 function _collapseLanguage() {
@@ -403,10 +398,12 @@ function _startup () {
       window.__localeManager = localeManager;
 
       pokemonsFull = _augmentPokemonsData(pokemons);
-      ListView.render(pokemonsFull);
+      const listView = new ListView()
+        .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected);
+
+      listView.render(pokemonsFull);
 
       _addKeyboardListener();
-      _addPokemonClickEventListeners();
       _addInputChangeClick();
 
       document.querySelector('.js-background').addEventListener('click', hideDetail);
