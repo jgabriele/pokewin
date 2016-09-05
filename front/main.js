@@ -1,10 +1,11 @@
 import Polyfills from './scripts/Polyfills';
 
-import LocaleManager from './scripts/LocaleManager';
-import Preloader from './scripts/Preloader';
-import Utils from './scripts/Utils';
+import LocaleManager  from './scripts/LocaleManager';
+import Preloader      from './scripts/Preloader';
+import Utils          from './scripts/Utils';
 
-import ListView from './scripts/Views/ListView';
+import ListView     from './scripts/Views/ListView';
+import CounterView  from './scripts/Views/CounterView';
 
 Polyfills.objectAssign();
 
@@ -221,17 +222,10 @@ function updateDetail(pokemon) {
 }
 
 function _renderCounters(counters) {
-  const isLoadingClass = isLoading ? ' is-loading' : '';
-  const beatenByHTML = counters.map((counterData) => `
-    <div class="other-pokemon js-pokemon" data-id="${counterData.id}">
-      <div class="picture">
-        <div class="pokemon-image${isLoadingClass}" style="${Utils.getPokemonSpritesheetPosition(counterData)}"/></div>
-      </div>
-      <div class="type ${Utils.getClassForType(counterData.moveType.id).toLowerCase()}" style="font-size: ${counterData.fontSize}">
-        <span class="name">${counterData.moveName}</span>
-      </div>
-      <div class="cp-value">CP ${counterData.cp}</div>
-    </div>`)
+  const beatenByHTML = counters.map((counterData) => {
+    counterData.isLoading = isLoading;
+    return CounterView.render(counterData);
+  })
   .join('');
 
   document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = beatenByHTML;
