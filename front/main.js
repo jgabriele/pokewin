@@ -40,13 +40,6 @@ function _findMoveById(id) {
   return move;
 }
 
-
-// Pokemon counters
-
-
-
-
-
 function _augmentPokemonsData(pokemons) {
   return pokemons
     .map((pokemon) => {
@@ -69,9 +62,8 @@ function _augmentPokemonsData(pokemons) {
       }
     });
 }
-
-function updateDetail(pokemon) {
-  const counters = pokemonsFull
+function updateDetail(pokemons, pokemon) {
+  const counters = pokemons
     .map(PokeUtils.getCounters.bind(null, MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemon))
     .filter(p => p) // Filter null efficiencies
     .map((counter) => {
@@ -100,7 +92,7 @@ function updateDetail(pokemon) {
     .sort((item1, item2) => item1.cp - item2.cp);
 
   new DetailsView()
-    .on(DetailsView.EVENTS.COUNTER_SELECTED, _onPokemonSelected)
+    .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
     .render({
       pokemon,
       counters,
@@ -162,8 +154,8 @@ function _addKeyboardListener() {
   })
 }
 
-function _onPokemonSelected(pokemon) {
-  updateDetail(pokemon);
+function _onPokemonSelected(pokemons, pokemon) {
+  updateDetail(pokemons, pokemon);
   showDetail();
 }
 
@@ -240,7 +232,7 @@ function _startup () {
 
       pokemonsFull = _augmentPokemonsData(pokemons);
       const listView = new ListView()
-        .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected);
+        .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull));
       listView.render(pokemonsFull);
 
       _addKeyboardListener();
