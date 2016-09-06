@@ -49,6 +49,7 @@ DetailsView.prototype._renderCounters = function(counters, isLoading) {
   const counterFragment = document.createDocumentFragment();
   countersNodes.forEach(counterFragment.appendChild.bind(counterFragment));
 
+  document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = '';
   document.querySelector('.overlay__data .counters .js-beaten-by').appendChild(counterFragment);
 }
 
