@@ -1,12 +1,16 @@
 import browserify from 'browserify';
+import watchify   from 'watchify';
+
 import buffer     from 'vinyl-buffer';
 import source     from 'vinyl-source-stream';
 
-import gulp    from 'gulp';
-import sass    from 'gulp-sass';
-import cssmin  from 'gulp-cssmin';
-import babel   from 'gulp-babel';
-import uglify  from 'gulp-uglify';
+import gulp       from 'gulp';
+import sass       from 'gulp-sass';
+import cssmin     from 'gulp-cssmin';
+import babel      from 'gulp-babel';
+import uglify     from 'gulp-uglify';
+import sourcemaps from 'gulp-sourcemaps';
+import gutil      from 'gulp-util';
 
 var SRC_DIR   = './front/';
 var BUILD_DIR = './build/';
@@ -33,16 +37,31 @@ gulp.task('sass', function() {
 //========= JS ========//
 //=====================//
 
-gulp.task('js', () => {
-  return browserify(`${SRC_DIR}main.js`)
-    .transform('babelify')
+var options = {
+  entries: [`${SRC_DIR}main.js`],
+  debug: true,
+  transform: ['babelify']
+};
+var opts = Object.assign({}, watchify.args, options);
+var b = watchify(browserify(opts));
+b.on('update', buildJS); // on any dep update, runs the bundler
+b.on('log', gutil.log);
+
+function buildJS() {
+  return b
     .bundle()
     .on('error', swallowError)
     .pipe(source('main.js'))
     .pipe(buffer())
-    .pipe(uglify())
+
+    .pipe(sourcemaps.init({loadMaps: true}))
+       .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+
     .pipe(gulp.dest(BUILD_DIR));
-});
+}
+
+gulp.task('js', buildJS);
 
 //=====================//
 //======= STATIC ======//
