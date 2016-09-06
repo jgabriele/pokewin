@@ -7,13 +7,18 @@ const EVENTS = {
   COUNTER_SELECTED: 'pokemon-selected'
 }
 
-function DetailsView() {}
+function DetailsView() {
+  this._state = {};
+  document.querySelector('.js-cp-input').addEventListener('input', this.recomputeCounters.bind(this));
+}
 
 DetailsView.prototype = Object.create(Event.prototype);
 
 DetailsView.prototype.render = function(data) {
   const pokemon = data.pokemon;
   const counters = data.counters;
+
+  this._state.counters = counters;
 
   const typesHTML = pokemon.types
             .map((type) => `
@@ -35,10 +40,10 @@ DetailsView.prototype.render = function(data) {
   const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
   document.querySelector('.overlay__data .counters .js-counters-title').innerHTML = counterTitle;
 
-  this._renderCounters(counters, data.isLoading);
+  this.renderCounters(this._state.counters, data.isLoading);
 }
 
-DetailsView.prototype._renderCounters = function(counters, isLoading) {
+DetailsView.prototype.renderCounters = function(counters, isLoading) {
   const countersNodes = counters.map((counterData) => {
     const counterView = new CounterView()
       .on(CounterView.ACTIONS.SELECT_COUNTER, this.emit.bind(this, EVENTS.COUNTER_SELECTED, counterData.pokemon))
@@ -51,6 +56,15 @@ DetailsView.prototype._renderCounters = function(counters, isLoading) {
 
   document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = '';
   document.querySelector('.overlay__data .counters .js-beaten-by').appendChild(counterFragment);
+}
+
+DetailsView.prototype.recomputeCounters = function(e) {
+  const newValue = e.target.value;
+  this._state.counters = this._state.counters.map((counter) => Object.assign({}, counter, {
+    cp: Math.round(Number(newValue) / counter.efficiency)
+  }));
+
+  this.renderCounters(this._state.counters);
 }
 
 DetailsView.EVENTS = EVENTS;

@@ -21,7 +21,6 @@ const NAVIGATOR_LANG_TO_LANG = {
 };
 
 const MINIUM_MOVE_EFFICIENCY_REQUIRED = 1.25;
-const _state = {};
 
 function _findById(list, id) {
   if (typeof(id) === 'string') {
@@ -100,8 +99,6 @@ function updateDetail(pokemon) {
     .filter(c => c) // Filter null entries
     .sort((item1, item2) => item1.cp - item2.cp);
 
-  _state.counters = counters;
-
   new DetailsView()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, _onPokemonSelected)
     .render({
@@ -170,24 +167,11 @@ function _onPokemonSelected(pokemon) {
   showDetail();
 }
 
-function _addInputChangeClick() {
-  document.querySelector('.js-cp-input').addEventListener('input', _recomputeMoves)
-}
-
 function _removeLoadingState() {
   isLoading = false;
   Array.prototype.forEach.call(document.querySelectorAll('.pokemon-image'), (el) => {
     el.classList.remove('is-loading');
   });
-}
-
-function _recomputeMoves(e) {
-  const newValue = e.target.value;
-  _state.counters = _state.counters.map((counter) => Object.assign({}, counter, {
-    cp: Math.round(Number(newValue) / counter.efficiency)
-  }));
-
-  _renderCounters(_state.counters);
 }
 
 function _onLanguageSelected(lang) {
@@ -260,7 +244,6 @@ function _startup () {
       listView.render(pokemonsFull);
 
       _addKeyboardListener();
-      _addInputChangeClick();
 
       document.querySelector('.js-background').addEventListener('click', hideDetail);
       document.querySelector('.js-close').addEventListener('click', hideDetail);
