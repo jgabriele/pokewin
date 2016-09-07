@@ -2,7 +2,13 @@ const RATIO_EFFICIENT = 1.25;
 const RATIO_WEAK = 0.8;
 
 export default {
-  getCounters(efficiencyThreshold, pokemon, otherPokemon){
+  getCounters(efficiencyThreshold, pokemons, pokemon){
+    return pokemons
+      .map(this.getCountersDataForPokemon.bind(null, efficiencyThreshold, pokemon))
+      .filter(p => p); // Filter null efficiencies
+  },
+
+  getCountersDataForPokemon(efficiencyThreshold, pokemon, otherPokemon){
     const moves = _getMovesEfficiency(otherPokemon, pokemon, efficiencyThreshold);
 
     if (!moves.length) {
@@ -12,7 +18,7 @@ export default {
     return {
       id: otherPokemon.id,
       key: otherPokemon.key,
-      move: moves[0],
+      move: moves[0].move,
       efficiency: moves[0].efficiency,
       cpMax: otherPokemon.cpMax,
       pokemon: otherPokemon // Keep trace of initial pokemon data (used for onClick)
@@ -65,7 +71,7 @@ function _calculatePokemonEfficiency(attackPokemon, attackPokemonMove, defensePo
   }, 1);
 
   return {
-    move: attackPokemonMove.id,
+    move: attackPokemonMove,
     efficiency: (attackEfficiency / defenseEfficiency).toFixed(3)
   };
 }

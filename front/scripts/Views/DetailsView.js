@@ -7,16 +7,27 @@ const EVENTS = {
   COUNTER_SELECTED: 'pokemon-selected'
 }
 
+const INITIAL_DEFENSE_POKEMON_CP = 2200;
+
 function DetailsView() {
-  this._state = {};
-  document.querySelector('.js-cp-input').addEventListener('input', this.recomputeCounters.bind(this));
+  this._state = {
+    defensePokemonCP: INITIAL_DEFENSE_POKEMON_CP
+  };
+
+  this._input = document.querySelector('.js-cp-input');
+  this._input.addEventListener('input', this.onInputUpdate.bind(this));
+  this._input.value = this._state.defensePokemonCP;
 }
 
 DetailsView.prototype = Object.create(Event.prototype);
 
 DetailsView.prototype.render = function(data) {
   const pokemon = data.pokemon;
-  const counters = data.counters;
+  const counters = data.counters
+    // Filter out pokemons that cannot have enough CP
+    .filter(highCPMaxFilter.bind(this, this._state.defensePokemonCP))
+    .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
+    .sort((item1, item2) => item1.cp - item2.cp);;
 
   this._state.counters = counters;
 
@@ -58,13 +69,41 @@ DetailsView.prototype.renderCounters = function(counters, isLoading) {
   document.querySelector('.overlay__data .counters .js-beaten-by').appendChild(counterFragment);
 }
 
-DetailsView.prototype.recomputeCounters = function(e) {
-  const newValue = e.target.value;
+DetailsView.prototype.onInputUpdate = function(e) {
+  this._state.defensePokemonCP = e.target.value;
+  this.recomputeCounters();
+}
+
+DetailsView.prototype.recomputeCounters = function() {
+  const newValue = this._state.defensePokemonCP;
   this._state.counters = this._state.counters.map((counter) => Object.assign({}, counter, {
     cp: Math.round(Number(newValue) / counter.efficiency)
   }));
 
   this.renderCounters(this._state.counters);
+}
+
+function highCPMaxFilter(cp, counter) {
+  return counter.cpMax >= cp;
+}
+
+function counterDataToViewData(defensePokemonCP, counter){
+    const move = counter.move;
+    const moveName = LocaleManager.getInstance().translate(move.key);
+    const moveType = move.type;
+    const fontSize = Utils.getFontSize(moveName, 70);
+    const cp = Math.round(defensePokemonCP / counter.efficiency);
+
+    return {
+      id: counter.id,
+      key: counter.key,
+      moveType,
+      moveName,
+      fontSize,
+      efficiency: counter.efficiency,
+      cp,
+      pokemon: counter.pokemon
+    };
 }
 
 DetailsView.EVENTS = EVENTS;

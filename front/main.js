@@ -22,6 +22,8 @@ const NAVIGATOR_LANG_TO_LANG = {
 
 const MINIUM_MOVE_EFFICIENCY_REQUIRED = 1.25;
 
+//------------------
+
 function _findById(list, id) {
   if (typeof(id) === 'string') {
     id = Number(id);
@@ -62,34 +64,12 @@ function _augmentPokemonsData(pokemons) {
       }
     });
 }
+
+//------------------
+
 function updateDetail(pokemons, pokemon) {
-  const counters = pokemons
-    .map(PokeUtils.getCounters.bind(null, MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemon))
-    .filter(p => p) // Filter null efficiencies
-    .map((counter) => {
-      const move = _findMoveById(counter.move.move);
-      const moveName = LocaleManager.getInstance().translate(move.key);
-      const moveType = move.type;
-      const fontSize = Utils.getFontSize(moveName, 70);
-      const cp = Math.round(2400 / counter.efficiency);
-
-      if (counter.cpMax < cp) {
-        return null;
-      }
-
-      return {
-        id: counter.id,
-        key: counter.key,
-        moveType,
-        moveName,
-        fontSize,
-        efficiency: counter.efficiency,
-        cp,
-        pokemon: counter.pokemon
-      };
-    })
-    .filter(c => c) // Filter null entries
-    .sort((item1, item2) => item1.cp - item2.cp);
+  const counters = PokeUtils
+    .getCounters(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon);
 
   new DetailsView()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
