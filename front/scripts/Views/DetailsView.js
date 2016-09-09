@@ -23,13 +23,14 @@ DetailsView.prototype = Object.create(Event.prototype);
 
 DetailsView.prototype.render = function(data) {
   const pokemon = data.pokemon;
-  const counters = data.counters
+  this._state.counters = data.counters;
+
+  const counters = this._state.counters
     // Filter out pokemons that cannot have enough CP
     .filter(highCPMaxFilter.bind(this, this._state.defensePokemonCP))
     .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
-    .sort((item1, item2) => item1.cp - item2.cp);;
+    .sort((item1, item2) => item1.cp - item2.cp);
 
-  this._state.counters = counters;
 
   const typesHTML = pokemon.types
             .map((type) => `
@@ -51,7 +52,7 @@ DetailsView.prototype.render = function(data) {
   const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
   document.querySelector('.overlay__data .counters .js-counters-title').innerHTML = counterTitle;
 
-  this.renderCounters(this._state.counters, data.isLoading);
+  this.renderCounters(counters, data.isLoading);
 }
 
 DetailsView.prototype.renderCounters = function(counters, isLoading) {
@@ -76,15 +77,16 @@ DetailsView.prototype.onInputUpdate = function(e) {
 
 DetailsView.prototype.recomputeCounters = function() {
   const newValue = this._state.defensePokemonCP;
-  this._state.counters = this._state.counters.map((counter) => Object.assign({}, counter, {
-    cp: Math.round(Number(newValue) / counter.efficiency)
-  }));
+  const counters = this._state.counters
+    .filter(highCPMaxFilter.bind(this, newValue))
+    .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
+    .sort((item1, item2) => item1.cp - item2.cp);
 
-  this.renderCounters(this._state.counters);
+  this.renderCounters(counters);
 }
 
 function highCPMaxFilter(cp, counter) {
-  return counter.cpMax >= cp;
+  return counter.cpMax * counter.efficiency >= cp;
 }
 
 function counterDataToViewData(defensePokemonCP, counter){
