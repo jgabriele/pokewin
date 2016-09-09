@@ -7,7 +7,7 @@ const EVENTS = {
   COUNTER_SELECTED: 'pokemon-selected'
 }
 
-const INITIAL_DEFENSE_POKEMON_CP = 2200;
+const INITIAL_DEFENSE_POKEMON_CP = 2000;
 
 function DetailsView() {
   this._state = {
