@@ -237,6 +237,9 @@ function _startup () {
 
       // debug
       window.__localeManager = localeManager;
+      window.__pokemons = pokemons;
+      window.__types = types;
+      window.__moves = moves;
     })
     .catch((err) => console.error.bind(console))
 }
