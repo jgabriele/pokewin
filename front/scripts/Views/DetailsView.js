@@ -3,8 +3,14 @@ import Utils          from '../Utils.js';
 import LocaleManager  from '../LocaleManager';
 import CounterView    from './CounterView';
 
+const ROLLING_TIMEOUT = 4 * 1000; // 4 sec
+
 const EVENTS = {
   COUNTER_SELECTED: 'pokemon-selected'
+}
+
+const ACTIONS = {
+  CLOSE: 'close'
 }
 
 const INITIAL_DEFENSE_POKEMON_CP = 2000;
@@ -52,15 +58,25 @@ DetailsView.prototype.render = function(data) {
   const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
   document.querySelector('.overlay__data .counters .js-counters-title').innerHTML = counterTitle;
 
+  document.querySelector('.js-close').addEventListener('click', this.onClose.bind(this));
+
   this.renderCounters(counters, data.isLoading);
 }
 
 DetailsView.prototype.renderCounters = function(counters, isLoading) {
-  const countersNodes = counters.map((counterData) => {
+  const counterViewsAndData = counters.map((counterData) => {
     const counterView = new CounterView()
-      .on(CounterView.ACTIONS.SELECT_COUNTER, this.emit.bind(this, EVENTS.COUNTER_SELECTED, counterData.pokemon))
+      .on(CounterView.ACTIONS.SELECT_COUNTER, this.emit.bind(this, EVENTS.COUNTER_SELECTED, counterData.pokemon));
     counterData.isLoading = isLoading;
-    return counterView.prerender(counterData);
+    return [counterView, counterData];
+  });
+
+  const counterViews = counterViewsAndData.map((tuple) => tuple[0]);
+
+  this.launchTimeoutForRotation(counterViews);
+
+  const countersNodes = counterViewsAndData.map((counterViewAndData) => {
+    return counterViewAndData[0].prerender(counterViewAndData[1]);
   });
 
   const counterFragment = document.createDocumentFragment();
@@ -76,6 +92,7 @@ DetailsView.prototype.onInputUpdate = function(e) {
 }
 
 DetailsView.prototype.recomputeCounters = function() {
+  window.clearTimeout(this._rollingTimeout);
   const newValue = this._state.defensePokemonCP;
   const counters = this._state.counters
     .filter(highCPMaxFilter.bind(this, newValue))
@@ -85,29 +102,40 @@ DetailsView.prototype.recomputeCounters = function() {
   this.renderCounters(counters);
 }
 
+DetailsView.prototype.launchTimeoutForRotation = function(counterViews) {
+  this._rollingTimeout = setTimeout(() => {
+    counterViews.forEach((counterView) => {
+      counterView.rollMove();
+    });
+    this.launchTimeoutForRotation(counterViews);
+  }, ROLLING_TIMEOUT);
+}
+
+DetailsView.prototype.onClose = function() {
+  window.clearTimeout(this._rollingTimeout);
+  this.emit(ACTIONS.CLOSE);
+}
+
 function highCPMaxFilter(cp, counter) {
-  return counter.cpMax * counter.efficiency >= cp;
+  return counter.cpMax * counter.moves[0].efficiency >= cp;
 }
 
 function counterDataToViewData(defensePokemonCP, counter){
-    const move = counter.move;
-    const moveName = LocaleManager.getInstance().translate(move.key);
-    const moveType = move.type;
-    const fontSize = Utils.getFontSize(moveName, 70);
-    const cp = Math.round(defensePokemonCP / counter.efficiency);
+    const move = counter.moves[0];
+    const cp = Math.round(defensePokemonCP / move.efficiency);
 
     return {
       id: counter.id,
       key: counter.key,
-      moveType,
-      moveName,
-      fontSize,
-      efficiency: counter.efficiency,
+      moves: counter.moves.map((move) => Object.assign({}, move, {
+        name: LocaleManager.getInstance().translate(move.key)
+      })),
       cp,
       pokemon: counter.pokemon
     };
 }
 
 DetailsView.EVENTS = EVENTS;
+DetailsView.ACTIONS = ACTIONS;
 
 export default DetailsView;

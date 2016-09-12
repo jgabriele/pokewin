@@ -74,6 +74,7 @@ function updateDetail(pokemons, pokemon) {
 
   new DetailsView()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
+    .on(DetailsView.ACTIONS.CLOSE, hideDetail)
     .render({
       pokemon,
       counters,
@@ -232,7 +233,6 @@ function _startup () {
       _addKeyboardListener();
 
       document.querySelector('.js-background').addEventListener('click', hideDetail);
-      document.querySelector('.js-close').addEventListener('click', hideDetail);
       document.querySelector('.js-intro').addEventListener('click', toggleIntro);
 
       // Check in localStorage whether we need to show the intro collapsed on start

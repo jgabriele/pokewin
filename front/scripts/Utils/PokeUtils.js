@@ -18,8 +18,7 @@ export default {
     return {
       id: otherPokemon.id,
       key: otherPokemon.key,
-      move: moves[0].move,
-      efficiency: moves[0].efficiency,
+      moves,
       cpMax: otherPokemon.cpMax,
       pokemon: otherPokemon // Keep trace of initial pokemon data (used for onClick)
     };
@@ -27,14 +26,14 @@ export default {
 };
 
 
-// Return list of tuples { move, efficiency } where efficiency is attackEff / defenseEff
+// Return list of moves augmented with their efficiency where efficiency is attackEff / defenseEff
 // attackEff is efficiency of attackPokemon's move against defensePokemon type
 // defenseEff is efficiency of each defensePokemon moveS against attackPokemon type
 function _getMovesEfficiency(attackPokemon, defensePokemon, efficiencyThreshold) {
   const attackPokemonMoves = attackPokemon.moves.quick.concat(attackPokemon.moves.charge);
   const defensePokemonMoves = defensePokemon.moves.quick.concat(defensePokemon.moves.charge);
 
-  return attackPokemonMoves
+  const efficientMoves = attackPokemonMoves
     .map((move) => {
       return _calculatePokemonEfficiency(
         attackPokemon,
@@ -43,9 +42,20 @@ function _getMovesEfficiency(attackPokemon, defensePokemon, efficiencyThreshold)
         defensePokemonMoves
       );
     })
-    .filter((moveEfficiency) => {
-      return moveEfficiency.efficiency >= efficiencyThreshold;
+    .filter((move) => {
+      return move.efficiency >= efficiencyThreshold;
     });
+
+  // Among the moves, all are above the efficiency threshold but
+  // sometimes some are less efficient than other ones. We're only
+  // taking the most efficient
+  // eg: x1.45 and x1.8 are above x1.25, we want only x1.8 efficiency
+  const maxEfficiency = efficientMoves.reduce((state, move) =>
+    move.efficiency > state ? move.efficiency : state
+  , 0);
+
+  return efficientMoves
+    .filter((move) => move.efficiency >= maxEfficiency);
 }
 
 // Tell the type efficiency of one attack with one move against a defense Pokemon
@@ -70,10 +80,9 @@ function _calculatePokemonEfficiency(attackPokemon, attackPokemonMove, defensePo
     return (state * oldIndex + currentMoveEfficiency) / index;
   }, 1);
 
-  return {
-    move: attackPokemonMove,
+  return Object.assign({}, attackPokemonMove, {
     efficiency: (attackEfficiency / defenseEfficiency).toFixed(3)
-  };
+  });
 }
 
 function _calculateMoveEfficiency(attackPokemon, attackMove, defenseTypes) {
