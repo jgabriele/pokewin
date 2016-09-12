@@ -99,11 +99,11 @@ gulp.task('fonts', function() {
 //=====================//
 
 gulp.task('watch', function() {
-  gulp.watch(SRC_DIR + '**/*.scss', ['sass']);
-  gulp.watch(SRC_DIR + '**/*.js', ['js']);
+  gulp.watch(SRC_DIR + '**/*.scss', ['build']);
+  gulp.watch(SRC_DIR + '**/*.js', ['build']);
   gulp.watch(SRC_DIR + '**/*.html', ['build']);
-  gulp.watch(SRC_DIR + '**/*.png', ['static']);
-  gulp.watch(SRC_DIR + '**/*.json', ['static']);
+  gulp.watch(SRC_DIR + '**/*.png', ['images']);
+  gulp.watch(SRC_DIR + '**/*.json', ['data']);
 });
 
 gulp.task('default', ['build', 'watch']);

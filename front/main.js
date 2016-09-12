@@ -207,7 +207,6 @@ function _startup () {
 
       LocaleManager.prepare(dictionary);
       const localeManager = LocaleManager.getInstance();
-      const browserLang = navigator.language || navigator.userLanguage || 'en';
 
       const languageSelectView = new LanguageSelectView(
           document.querySelector('.js-language-selector-wrapper'),
@@ -216,14 +215,15 @@ function _startup () {
         .on(LanguageSelectView.ACTIONS.SELECT_LANGUAGE, _onLanguageSelected);
       languageSelectView.render();
 
-      // If user already used the app and selected another language, use
-      // this one preferably
-      const storedLanguage = localStorage.getItem(LANGUAGE_KEY);
-      if (localStorage && storedLanguage) {
-        languageSelectView.selectLanguage(storedLanguage);
-      } else {
-        languageSelectView.selectLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
-      }
+      // Priority for language:
+      // 1) lang parameter in Query String
+      // 2) value for localStorage
+      // 3) browser language
+      const queryLanguage = Utils.getLanguageQueryParameter();
+      const storedLanguage = localStorage && localStorage.getItem(LANGUAGE_KEY);
+      const browserLang = NAVIGATOR_LANG_TO_LANG[navigator.language || navigator.userLanguage || 'en'];
+      const requestedLang = queryLanguage || storedLanguage || browserLang;
+      languageSelectView.selectLanguage(requestedLang);
 
       pokemonsFull = _augmentPokemonsData(pokemons);
       const listView = new ListView()
