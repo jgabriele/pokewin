@@ -11,6 +11,7 @@ import babel      from 'gulp-babel';
 import uglify     from 'gulp-uglify';
 import sourcemaps from 'gulp-sourcemaps';
 import gutil      from 'gulp-util';
+import md5        from 'gulp-md5-plus';
 
 var SRC_DIR   = './front/';
 var BUILD_DIR = './build/';
@@ -26,10 +27,11 @@ gulp.task('build', ['js', 'sass', 'static']);
 //======== CSS ========//
 //=====================//
 
-gulp.task('sass', function() {
+gulp.task('sass', ['html'], function() {
   gulp.src(SRC_DIR + 'style.scss')
     .pipe(sass()).on('error', swallowError)
     .pipe(cssmin())
+    .pipe(md5(10, `./build/*.html`))
     .pipe(gulp.dest(BUILD_DIR));
 });
 
@@ -58,10 +60,12 @@ function buildJS() {
        .pipe(uglify())
     .pipe(sourcemaps.write('./'))
 
+    .pipe(md5(10, `${BUILD_DIR}*.html`))
+
     .pipe(gulp.dest(BUILD_DIR));
 }
 
-gulp.task('js', buildJS);
+gulp.task('js', ['html'], buildJS);
 
 //=====================//
 //======= STATIC ======//
@@ -97,7 +101,7 @@ gulp.task('fonts', function() {
 gulp.task('watch', function() {
   gulp.watch(SRC_DIR + '**/*.scss', ['sass']);
   gulp.watch(SRC_DIR + '**/*.js', ['js']);
-  gulp.watch(SRC_DIR + '**/*.html', ['static']);
+  gulp.watch(SRC_DIR + '**/*.html', ['build']);
   gulp.watch(SRC_DIR + '**/*.png', ['static']);
   gulp.watch(SRC_DIR + '**/*.json', ['static']);
 });
