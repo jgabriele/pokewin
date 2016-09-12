@@ -13,6 +13,7 @@ import LanguageSelectView   from './scripts/Views/LanguageSelectView';
 Polyfills.objectAssign();
 
 const NB_VISITS_KEY = 'number-of-visits';
+const LANGUAGE_KEY = 'language';
 
 const NAVIGATOR_LANG_TO_LANG = {
   'en-US': 'en',
@@ -146,9 +147,14 @@ function _removeLoadingState() {
   });
 }
 
-function _onLanguageSelected(lang) {
-  LocaleManager.getInstance().setLanguage(lang || 'en');
+function _onLanguageSelected(lang = 'en') {
+  LocaleManager.getInstance().setLanguage(lang);
   LocaleManager.getInstance().scanAndLocalise();
+
+  // Save preferred language in localstorage
+  if (localStorage) {
+    localStorage.setItem(LANGUAGE_KEY, lang);
+  }
 }
 
 // Startup
@@ -208,7 +214,15 @@ function _startup () {
         )
         .on(LanguageSelectView.ACTIONS.SELECT_LANGUAGE, _onLanguageSelected);
       languageSelectView.render();
-      languageSelectView.selectLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
+
+      // If user already used the app and selected another language, use
+      // this one preferably
+      const storedLanguage = localStorage.getItem(LANGUAGE_KEY);
+      if (localStorage && storedLanguage) {
+        languageSelectView.selectLanguage(storedLanguage);
+      } else {
+        languageSelectView.selectLanguage(NAVIGATOR_LANG_TO_LANG[browserLang]);
+      }
 
       pokemonsFull = _augmentPokemonsData(pokemons);
       const listView = new ListView()
@@ -222,11 +236,13 @@ function _startup () {
       document.querySelector('.js-intro').addEventListener('click', toggleIntro);
 
       // Check in localStorage whether we need to show the intro collapsed on start
-      let nbVisits = localStorage && localStorage.getItem(NB_VISITS_KEY);
-      if (nbVisits && nbVisits >= 3) {
-        toggleIntro();
-      } else {
-        localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
+      if (localStorage) {
+        let nbVisits = localStorage.getItem(NB_VISITS_KEY);
+        if (nbVisits && nbVisits >= 3) {
+          toggleIntro();
+        } else {
+          localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
+        }
       }
 
       // Preload the high res spritesheet now that the page has loaded
