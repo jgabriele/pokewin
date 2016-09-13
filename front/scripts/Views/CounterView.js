@@ -44,7 +44,7 @@ CounterView.prototype.prerender = function(counter) {
 CounterView.prototype.rollMove = function() {
   const move = this.getNextMove();
   const moveEl = this._el.querySelector('.js-move');
-  moveEl.classList = '';
+  moveEl.className = '';
   moveEl.classList.add('type');
   moveEl.classList.add('js-move');
   moveEl.classList.add(Utils.getClassForType(move.type.id).toLowerCase());
