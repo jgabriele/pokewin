@@ -34,7 +34,7 @@ CounterView.prototype.prerender = function(counter) {
       </div>
     </div>`);
 
-  domEl.addEventListener('click', this.emit.bind(this, ACTIONS.SELECT_COUNTER, counter));
+  domEl.addEventListener('touchend', this.emit.bind(this, ACTIONS.SELECT_COUNTER, counter));
 
   this._el = domEl;
 

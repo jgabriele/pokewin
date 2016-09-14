@@ -3,7 +3,8 @@ import Event          from 'events';
 import LocaleManager  from '../LocaleManager';
 
 const ACTIONS = {
-  SELECT_POKEMON: 'select-pokemon'
+  SELECT_POKEMON: 'select-pokemon',
+  LONG_SELECT_POKEMON: 'long-select-pokemon'
 }
 
 function PokemonView() {}
@@ -22,9 +23,25 @@ PokemonView.prototype.prerender = function(pokemon) {
       </div>
     </div>`);
 
-  domEl.addEventListener('click', this.emit.bind(this, ACTIONS.SELECT_POKEMON, pokemon));
+  domEl.addEventListener('touchstart', this.onTouchStart.bind(this));
+  domEl.addEventListener('touchend', () => this.onTouchEnd(pokemon));
 
   return domEl;
+}
+
+PokemonView.prototype.onTouchStart = function() {
+  this._touchStartTime = new Date();
+}
+
+PokemonView.prototype.onTouchEnd = function(pokemon) {
+  const diff = new Date() - this._touchStartTime;
+
+  if (diff < 250) {
+    this.emit(ACTIONS.SELECT_POKEMON, pokemon);
+  } else {
+    this.emit(ACTIONS.LONG_SELECT_POKEMON, pokemon);
+  }
+
 }
 
 PokemonView.ACTIONS = ACTIONS;
