@@ -56,11 +56,11 @@ function buildJS() {
     .pipe(source('main.js'))
     .pipe(buffer())
 
+    .pipe(md5(10, `${BUILD_DIR}*.html`))
+
     .pipe(sourcemaps.init({loadMaps: true}))
        .pipe(uglify())
     .pipe(sourcemaps.write('./'))
-
-    .pipe(md5(10, `${BUILD_DIR}*.html`))
 
     .pipe(gulp.dest(BUILD_DIR));
 }
