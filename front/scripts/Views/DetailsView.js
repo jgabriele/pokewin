@@ -55,8 +55,6 @@ DetailsView.prototype.render = function(data) {
   document.querySelector('.overlay__data .js-picture').innerHTML = imageHTML;
   document.querySelector('.overlay__data .js-types').innerHTML = typesHTML;
 
-  const counterTitle = LocaleManager.getInstance().translate('TEXT_CAN_BE_BEATEN_BY');
-  document.querySelector('.overlay__data .counters .js-counters-title').innerHTML = counterTitle;
 
   document.querySelector('.js-close').addEventListener('click', this.onClose.bind(this));
 
