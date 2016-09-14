@@ -10,6 +10,8 @@ import CounterView          from './scripts/Views/CounterView';
 import DetailsView          from './scripts/Views/DetailsView';
 import LanguageSelectView   from './scripts/Views/LanguageSelectView';
 
+import FavouritesModel from './scripts/Models/Favourites';
+
 Polyfills.objectAssign();
 
 const NB_VISITS_KEY = 'number-of-visits';
@@ -68,17 +70,25 @@ function _augmentPokemonsData(pokemons) {
 
 //------------------
 
+function toggleFavourite(pokemonId) {
+  FavouritesModel.toggle(pokemonId);
+}
+
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
     .getCounters(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon);
 
+  const isFavourite = FavouritesModel.get(pokemon.id);
+
   new DetailsView()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
+    .on(DetailsView.ACTIONS.FAVOURITE, toggleFavourite.bind(null, pokemon.id))
     .on(DetailsView.ACTIONS.CLOSE, hideDetail)
     .render({
       pokemon,
       counters,
-      isLoading
+      isLoading,
+      isFavourite
     })
 }
 

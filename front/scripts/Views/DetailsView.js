@@ -10,7 +10,8 @@ const EVENTS = {
 }
 
 const ACTIONS = {
-  CLOSE: 'close'
+  CLOSE: 'close',
+  FAVOURITE: 'favourite'
 }
 
 const INITIAL_DEFENSE_POKEMON_CP = 2000;
@@ -20,9 +21,19 @@ function DetailsView() {
     defensePokemonCP: INITIAL_DEFENSE_POKEMON_CP
   };
 
+  this._favourite = document.querySelector('.js-favourite');
+  this._favourite.addEventListener('click', this.onFavourite.bind(this));
+
   this._input = document.querySelector('.js-cp-input');
   this._input.addEventListener('input', this.onInputUpdate.bind(this));
   this._input.value = this._state.defensePokemonCP;
+
+  this._name = document.querySelector('.overlay__data .js-name');
+  this._picture = document.querySelector('.overlay__data .js-picture');
+  this._types = document.querySelector('.overlay__data .js-types');
+
+  this._close = document.querySelector('.js-close');
+  this._close.addEventListener('click', this.onClose.bind(this));
 }
 
 DetailsView.prototype = Object.create(Event.prototype);
@@ -51,12 +62,12 @@ DetailsView.prototype.render = function(data) {
         style="${Utils.getPokemonSpritesheetPosition(pokemon, 150)}"/>
     </div>`;
 
-  document.querySelector('.overlay__data .js-name').innerText = LocaleManager.getInstance().translate(pokemon.key);
-  document.querySelector('.overlay__data .js-picture').innerHTML = imageHTML;
-  document.querySelector('.overlay__data .js-types').innerHTML = typesHTML;
+  this._name.innerText = LocaleManager.getInstance().translate(pokemon.key);
+  this._picture.innerHTML = imageHTML;
+  this._types.innerHTML = typesHTML;
 
-
-  document.querySelector('.js-close').addEventListener('click', this.onClose.bind(this));
+  const method = data.isFavourite ? 'add' : 'remove';
+  this._favourite.classList[method]('is-active');
 
   this.renderCounters(counters, data.isLoading);
 }
@@ -112,6 +123,11 @@ DetailsView.prototype.launchTimeoutForRotation = function(counterViews) {
 DetailsView.prototype.onClose = function() {
   window.clearTimeout(this._rollingTimeout);
   this.emit(ACTIONS.CLOSE);
+}
+
+DetailsView.prototype.onFavourite = function() {
+  this._favourite.classList.toggle('is-active');
+  this.emit(ACTIONS.FAVOURITE);
 }
 
 function highCPMaxFilter(cp, counter) {
