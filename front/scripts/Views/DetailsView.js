@@ -17,6 +17,9 @@ const ACTIONS = {
 const INITIAL_DEFENSE_POKEMON_CP = 2000;
 
 function DetailsView() {
+  this.EVENTS = EVENTS;
+  this.ACTIONS = ACTIONS;
+
   this._state = {
     defensePokemonCP: INITIAL_DEFENSE_POKEMON_CP
   };
@@ -149,7 +152,4 @@ function counterDataToViewData(defensePokemonCP, counter){
     };
 }
 
-DetailsView.EVENTS = EVENTS;
-DetailsView.ACTIONS = ACTIONS;
-
-export default DetailsView;
+export default new DetailsView();

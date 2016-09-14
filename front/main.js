@@ -80,7 +80,7 @@ function updateDetail(pokemons, pokemon) {
 
   const isFavourite = FavouritesModel.get(pokemon.id);
 
-  new DetailsView()
+  DetailsView
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
     .on(DetailsView.ACTIONS.FAVOURITE, toggleFavourite.bind(null, pokemon.id))
     .on(DetailsView.ACTIONS.CLOSE, hideDetail)
