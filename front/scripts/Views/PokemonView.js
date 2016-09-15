@@ -7,17 +7,6 @@ const ACTIONS = {
   LONG_SELECT_POKEMON: 'long-select-pokemon'
 }
 
-// Attaching the "click" tp touchend triggers it even in case of scroll
-// and we don't want that. So we set a flag when we scroll and during 50ms
-// after stopping;
-let _isScrolling = false;
-let _scrollStopTimoutId = null;
-document.addEventListener('scroll', () => {
-  _isScrolling = true;
-  window.clearTimeout(_scrollStopTimoutId);
-  _scrollStopTimoutId = window.setTimeout(() => { _isScrolling = false }, 50);
-});
-
 function PokemonView() {}
 
 PokemonView.prototype = Object.create(Event.prototype);
@@ -45,7 +34,7 @@ PokemonView.prototype.onTouchStart = function() {
 }
 
 PokemonView.prototype.onTouchEnd = function(pokemon) {
-  if (_isScrolling) {
+  if (Utils.isDocumentScrolling()) {
     return;
   }
 

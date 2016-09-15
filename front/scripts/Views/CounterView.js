@@ -34,7 +34,7 @@ CounterView.prototype.prerender = function(counter) {
       </div>
     </div>`);
 
-  domEl.addEventListener('touchend', this.emit.bind(this, ACTIONS.SELECT_COUNTER, counter));
+  domEl.addEventListener('touchend', () => this.onTouchEnd(counter));
 
   this._el = domEl;
 
@@ -56,6 +56,14 @@ CounterView.prototype.rollMove = function() {
 
 CounterView.prototype.getNextMove = function() {
   return this._moves[this._index++ % this._moves.length];
+}
+
+CounterView.prototype.onTouchEnd = function (counter) {
+  if (Utils.isDocumentScrolling()) {
+    return;
+  }
+
+  this.emit(ACTIONS.SELECT_COUNTER, counter);
 }
 
 CounterView.ACTIONS = ACTIONS;
