@@ -265,9 +265,9 @@ function _startup () {
       preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
         .then(_removeLoadingState);
 
-      setTimeout(_hideLoading, 600);
+      setTimeout(_hideLoading, 200);
 
-      setTimeout(() => LoadingModal.showModal(), 1000);
+      setTimeout(() => LoadingModal.showModal(), 600);
 
       // debug
       window.__localeManager = localeManager;
