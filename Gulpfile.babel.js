@@ -106,7 +106,7 @@ gulp.task('watch', function() {
   gulp.watch(SRC_DIR + '**/*.js', ['build']);
   gulp.watch(SRC_DIR + '**/*.html', ['build']);
   gulp.watch(SRC_DIR + '**/*.png', ['images']);
-  gulp.watch(SRC_DIR + '**/*.json', ['data']);
+  gulp.watch(SRC_DIR + '**/*.json', ['build']);
 });
 
 gulp.task('default', ['build', 'watch']);
