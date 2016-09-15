@@ -71,7 +71,7 @@ DetailsView.prototype.render = function(data) {
 DetailsView.prototype.renderCounters = function(counters, isLoading) {
   const counterViewsAndData = counters.map((counterData) => {
     const counterView = new CounterView()
-      .on(CounterView.ACTIONS.SELECT_COUNTER, this.emit.bind(this, EVENTS.COUNTER_SELECTED, counterData.pokemon));
+      .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon));
     counterData.isLoading = isLoading;
     return [counterView, counterData];
   });
@@ -119,6 +119,11 @@ DetailsView.prototype.launchTimeoutForRotation = function(counterViews) {
 DetailsView.prototype.onClose = function() {
   window.clearTimeout(this._rollingTimeout);
   this.emit(ACTIONS.CLOSE);
+}
+
+DetailsView.prototype.onSelectCounter = function(pokemon) {
+  window.clearTimeout(this._rollingTimeout);
+  this.emit(EVENTS.COUNTER_SELECTED, pokemon);
 }
 
 function highCPMaxFilter(cp, counter) {
