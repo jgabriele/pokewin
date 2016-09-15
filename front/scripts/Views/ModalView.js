@@ -4,28 +4,31 @@ export default {
     this._overlayRoot = this._overlayData = null;
   },
 
-  render(contentDOM) {
+  render(contentDOM, callbacks) {
     if (!this._el) {
       return;
     }
 
     const html = `
       <section class="overlay overlay--modal is-hidden js-modal-overlay">
-        <div class="overlay__background"></div>
+        <div class="overlay__background js-modal-overlay-background"></div>
         <div class="overlay__data js-modal-overlay-data">
         </div>
       </section>
-    `
+    `;
 
     this._el.innerHTML = html;
     this._overlayRoot = this._el.querySelector('.js-modal-overlay');
     this._overlayData = this._el.querySelector('.js-modal-overlay-data');
+    this._overlayBackground = this._el.querySelector('.js-modal-overlay-background');
 
     this._overlayData.appendChild(contentDOM);
 
     this._overlayRoot.addEventListener('transitionend', () => {
       this._overlayRoot.style.display = "none";
     });
+
+    this._overlayBackground.addEventListener('click', callbacks.onOverlayBackground);
 
     this.show();
   },

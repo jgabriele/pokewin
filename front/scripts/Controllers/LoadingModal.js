@@ -26,7 +26,9 @@ export default {
     }
 
     const okMessageDOM = OkMessage.render(data.title, data.text, data.okText, callbacks);
-    ModalView.render(okMessageDOM);
+    ModalView.render(okMessageDOM, {
+      onOverlayBackground: this.onDismiss.bind(this)
+    });
   },
 
   pickNextModal() {
