@@ -7,7 +7,7 @@ const MODALS_SHOWN_KEY = 'modals-shown';
 
 const availableModals = [
   { type: 'FACEBOOK', condition: hasSeenWebsiteOnce },
-  { type: 'WHATS_NEW_LONG_PRESS' },
+  { type: 'WHATS_NEW_ROTATION' },
 ];
 
 export default {
@@ -41,9 +41,6 @@ export default {
         const title = LocaleManager.getInstance().translate(`TEXT_LOADING_MODAL_${availableModalType}_TITLE`);
         const text = LocaleManager.getInstance().translate(`TEXT_LOADING_MODAL_${availableModalType}_TEXT`);
         const okText = LocaleManager.getInstance().translate(`TEXT_LOADING_MODAL_${availableModalType}_OK_TEXT`);
-
-        console.log(title, text, okText);
-
         return title && text && okText && {
           title,
           text,
