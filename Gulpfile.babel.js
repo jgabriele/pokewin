@@ -83,8 +83,11 @@ gulp.task('images', function() {
     .pipe(gulp.dest(BUILD_DIR + '/images'));
 });
 
-gulp.task('data', function() {
+gulp.task('data', ['js'], function() {
   gulp.src(SRC_DIR + 'data/*.json')
+
+    .pipe(md5(10, `${BUILD_DIR}*.js`))
+
     .pipe(gulp.dest(BUILD_DIR + '/data'));
 });
 
