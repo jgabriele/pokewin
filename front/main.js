@@ -16,7 +16,6 @@ import FavouritesModel from './scripts/Models/Favourites';
 
 Polyfills.objectAssign();
 
-const NB_VISITS_KEY = 'number-of-visits';
 const LANGUAGE_KEY = 'language';
 
 const NAVIGATOR_LANG_TO_LANG = {
@@ -254,12 +253,12 @@ function _startup () {
 
       // Check in localStorage whether we need to show the intro collapsed on start
       if (localStorage) {
-        let nbVisits = localStorage.getItem(NB_VISITS_KEY);
+        let nbVisits = Utils.getNumberOfVisits();
         if (nbVisits && nbVisits >= 3) {
           toggleIntro();
-        } else {
-          localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
         }
+
+        Utils.increateVisits();
       }
 
       // Preload the high res spritesheet now that the page has loaded

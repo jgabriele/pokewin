@@ -2,6 +2,8 @@ import TYPE_TO_CSS_CLASS from './TYPE_TO_CSS_CLASS';
 import pos from './pos';
 import LocaleManager from './LocaleManager';
 
+const NB_VISITS_KEY = 'number-of-visits';
+
 const Utils = {
   DOMElementFromString(htmlString) {
     const div = document.createElement('div');
@@ -57,6 +59,17 @@ const Utils = {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+  },
+
+  getNumberOfVisits() {
+    return Number(localStorage.getItem(NB_VISITS_KEY)) || 0;
+  },
+
+  increateVisits() {
+    if (localStorage) {
+      let nbVisits = this.getNumberOfVisits();
+      localStorage.setItem(NB_VISITS_KEY, ++nbVisits);
+    }
   }
 }
 
