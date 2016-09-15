@@ -10,6 +10,8 @@ import CounterView          from './scripts/Views/CounterView';
 import DetailsView          from './scripts/Views/DetailsView';
 import LanguageSelectView   from './scripts/Views/LanguageSelectView';
 
+import LoadingModal from './scripts/Controllers/LoadingModal';
+
 import FavouritesModel from './scripts/Models/Favourites';
 
 Polyfills.objectAssign();
@@ -70,6 +72,10 @@ function _augmentPokemonsData(pokemons) {
 
 //------------------
 
+LoadingModal.init(document.querySelector('.js-modal-wrapper'));
+
+//------------------
+
 function toggleFavourite(pokemonId) {
   FavouritesModel.toggle(pokemonId);
 }
@@ -93,22 +99,22 @@ function updateDetail(pokemons, pokemon) {
     })
 }
 
-const overlay = document.querySelector('.overlay');
+const detailsOverlay = document.querySelector('.js-details-overlay');
 const pokedex = document.querySelector('.pokedex');
 
 function showDetail() {
   window.scroll(0, 0);
-  overlay.style.display = "initial";
-  overlay.classList.remove('is-hidden');
+  detailsOverlay.style.display = "initial";
+  detailsOverlay.classList.remove('is-hidden');
   pokedex.classList.add('is-behind');
 }
 
-overlay.addEventListener('transitionend', () => {
-  overlay.style.display = "none";
+detailsOverlay.addEventListener('transitionend', () => {
+  detailsOverlay.style.display = "none";
 });
-overlay.style.display = "none";
+detailsOverlay.style.display = "none";
 function hideDetail() {
-  overlay.classList.add('is-hidden');
+  detailsOverlay.classList.add('is-hidden');
   pokedex.classList.remove('is-behind');
 }
 
@@ -261,6 +267,8 @@ function _startup () {
         .then(_removeLoadingState);
 
       setTimeout(_hideLoading, 600);
+
+      setTimeout(() => LoadingModal.showModal(), 1000);
 
       // debug
       window.__localeManager = localeManager;

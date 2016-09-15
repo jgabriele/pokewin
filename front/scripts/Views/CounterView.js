@@ -1,4 +1,4 @@
-import Utils from '../Utils.js';
+import Utils from '../Utils';
 import Event from 'events';
 
 const ACTIONS = {
