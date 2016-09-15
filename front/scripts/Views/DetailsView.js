@@ -10,8 +10,7 @@ const EVENTS = {
 }
 
 const ACTIONS = {
-  CLOSE: 'close',
-  FAVOURITE: 'favourite'
+  CLOSE: 'close'
 }
 
 const INITIAL_DEFENSE_POKEMON_CP = 2000;
@@ -23,9 +22,6 @@ function DetailsView() {
   this._state = {
     defensePokemonCP: INITIAL_DEFENSE_POKEMON_CP
   };
-
-  this._favourite = document.querySelector('.js-favourite');
-  this._favourite.addEventListener('click', this.onFavourite.bind(this));
 
   this._input = document.querySelector('.js-cp-input');
   this._input.addEventListener('input', this.onInputUpdate.bind(this));
@@ -68,9 +64,6 @@ DetailsView.prototype.render = function(data) {
   this._name.innerText = LocaleManager.getInstance().translate(pokemon.key);
   this._picture.innerHTML = imageHTML;
   this._types.innerHTML = typesHTML;
-
-  const method = data.isFavourite ? 'add' : 'remove';
-  this._favourite.classList[method]('is-active');
 
   this.renderCounters(counters, data.isLoading);
 }
@@ -126,11 +119,6 @@ DetailsView.prototype.launchTimeoutForRotation = function(counterViews) {
 DetailsView.prototype.onClose = function() {
   window.clearTimeout(this._rollingTimeout);
   this.emit(ACTIONS.CLOSE);
-}
-
-DetailsView.prototype.onFavourite = function() {
-  this._favourite.classList.toggle('is-active');
-  this.emit(ACTIONS.FAVOURITE);
 }
 
 function highCPMaxFilter(cp, counter) {
