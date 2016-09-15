@@ -6,7 +6,7 @@ import Utils          from '../Utils';
 const MODALS_SHOWN_KEY = 'modals-shown';
 
 const availableModals = [
-  { type: 'FACEBOOK', condition: hasSeenWebsiteOnce },
+  { type: 'FACEBOOK', condition: hasSeenWebsiteMultipleTimes },
   { type: 'WHATS_NEW_ROTATION' },
 ];
 
@@ -70,8 +70,7 @@ export default {
   }
 }
 
-function hasSeenWebsiteOnce() {
-  // It's 1 because at the moment this code is executed
-  // the increment has already been done
-  return Utils.getNumberOfVisits() > 1;
+function hasSeenWebsiteMultipleTimes() {
+  // If the guy came more than 3 times, he'll be more likely to drop a like
+  return Utils.getNumberOfVisits() > 3;
 }
