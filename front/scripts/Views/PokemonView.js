@@ -8,14 +8,14 @@ const ACTIONS = {
 }
 
 // Attaching the "click" tp touchend triggers it even in case of scroll
-// and we don't want that. So we set a flag when we scroll and during 300ms
+// and we don't want that. So we set a flag when we scroll and during 100ms
 // after stopping;
 let _isScrolling = false;
 let _scrollStopTimoutId = null;
 document.addEventListener('scroll', () => {
   _isScrolling = true;
   window.clearTimeout(_scrollStopTimoutId);
-  _scrollStopTimoutId = window.setTimeout(() => { _isScrolling = false }, 300);
+  _scrollStopTimoutId = window.setTimeout(() => { _isScrolling = false }, 100);
 });
 
 function PokemonView() {}
