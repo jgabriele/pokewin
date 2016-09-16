@@ -2,6 +2,7 @@ import Event        from 'events';
 import Utils          from '../Utils.js';
 import LocaleManager  from '../LocaleManager';
 import CounterView    from './CounterView';
+import FavouritesModel from '../Models/Favourites';
 
 const ROLLING_TIMEOUT = 4 * 1000; // 4 sec
 
@@ -69,15 +70,19 @@ DetailsView.prototype.render = function(data) {
 }
 
 DetailsView.prototype.renderCounters = function(counters, isLoading) {
-  const counterViewsAndData = counters.map((counterData) => {
-    const counterView = new CounterView()
-      .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon));
-    counterData.isLoading = isLoading;
-    return [counterView, counterData];
-  });
+  const counterViewsAndData = counters
+    .map((counterData) => Object.assign({}, counterData, {
+      isFavourite: FavouritesModel.get(counterData.id)
+    }))
+    .map((counterData) => {
+      const counterView = new CounterView()
+        .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon));
+      counterData.isLoading = isLoading;
+      return [counterView, counterData];
+    });
 
+  // For the rotation we only need the list of views
   const counterViews = counterViewsAndData.map((tuple) => tuple[0]);
-
   this.launchTimeoutForRotation(counterViews);
 
   const countersNodes = counterViewsAndData.map((counterViewAndData) => {

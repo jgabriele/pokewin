@@ -19,8 +19,9 @@ CounterView.prototype.prerender = function(counter) {
   const move = this.getNextMove();
   const fontSize = Utils.getFontSize(move.name, 70);
 
+  const favouriteClass = counter.isFavourite ? ' is-favourite' : '';
   const domEl = Utils.DOMElementFromString(
-    `<div class="other-pokemon js-pokemon">
+    `<div class="other-pokemon${favouriteClass} js-pokemon">
       <div class="picture">
         <div class="pokemon-image${isLoadingClass}"
             style="${Utils.getPokemonSpritesheetPosition(counter)}"/>
