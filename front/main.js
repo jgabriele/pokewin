@@ -9,6 +9,8 @@ import ListView             from './scripts/Views/ListView';
 import CounterView          from './scripts/Views/CounterView';
 import DetailsView          from './scripts/Views/DetailsView';
 import LanguageSelectView   from './scripts/Views/LanguageSelectView';
+import ModalView            from './scripts/Views/ModalView';
+import MultipleChoices      from './scripts/Views/Modal/MultipleChoices';
 
 import LoadingModal from './scripts/Controllers/LoadingModal';
 
@@ -73,54 +75,20 @@ function _augmentPokemonsData(pokemons) {
 
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
 
-// import MultipleChoices from './scripts/Views/Modal/MultipleChoices';
-// import ModalView      from './scripts/Views/ModalView';
-// const title = 'What do you want to do?';
-// const choices = [
-//   {
-//     icon: 'star',
-//     title: 'Add to favourite',
-//     onClick: () => console.log('Favourite')
-//   },
-//   {
-//     icon: 'star',
-//     title: 'Add to custom section',
-//     onClick: () => console.log('Custom Section')
-//   },
-//   {
-//     icon: 'star',
-//     type: 'EXIT',
-//     title: 'Nothing thanks',
-//     onClick: ModalView.hide.bind(ModalView)
-//   }
-// ];
-// const message = MultipleChoices.render(title, choices);
-// ModalView.render(message, {
-//   onOverlayBackground: ModalView.hide.bind(ModalView)
-// });
-
 //------------------
-
-function toggleFavourite(pokemonId) {
-  FavouritesModel.toggle(pokemonId);
-}
 
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
     .getCounters(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon);
 
-  const isFavourite = FavouritesModel.get(pokemon.id);
-
   DetailsView
     .removeAllListeners()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
-    .on(DetailsView.ACTIONS.FAVOURITE, toggleFavourite.bind(null, pokemon.id))
     .on(DetailsView.ACTIONS.CLOSE, hideDetail)
     .render({
       pokemon,
       counters,
-      isLoading,
-      isFavourite
+      isLoading
     })
 }
 
@@ -181,6 +149,46 @@ function _addKeyboardListener() {
 function _onPokemonSelected(pokemons, pokemon) {
   updateDetail(pokemons, pokemon);
   showDetail();
+}
+
+function _onPokemonLongSelected(pokemon) {
+  const isFavourited = FavouritesModel.get(pokemon.id);
+  const title = 'What do you want to do?';
+  const choices = [
+    {
+      icon: 'star',
+      title: isFavourited ? 'Remove from favourites' : 'Add to favourite',
+      onClick: () => {
+        FavouritesModel[isFavourited ? 'remove' : 'add'](pokemon.id);
+        ModalView.hide();
+      }
+    },
+    // {
+    //   icon: 'star',
+    //   title: 'Add to custom section',
+    //   onClick: () => console.log('Custom Section')
+    // },
+    {
+      icon: 'star',
+      type: 'EXIT',
+      title: 'Nothing thanks',
+      onClick: () => {
+        ModalView.hide();
+      }
+    }
+  ];
+  const message = MultipleChoices.render(title, choices);
+
+  // Need setTimeout here because else background of ModalView will
+  // receive touchend as well
+  setTimeout(() => {
+    ModalView.render(message, {
+      onOverlayBackground: () => {
+        console.log(arguments);
+        ModalView.hide();
+      }
+    });
+  }, 0);
 }
 
 function _removeLoadingState() {
@@ -269,7 +277,8 @@ function _startup () {
 
       pokemonsFull = _augmentPokemonsData(pokemons);
       const listView = new ListView()
-        .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull));
+        .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull))
+        .on(ListView.EVENTS.POKEMON_LONG_SELECTED, _onPokemonLongSelected);
       listView.render(pokemonsFull);
 
       _addKeyboardListener();
