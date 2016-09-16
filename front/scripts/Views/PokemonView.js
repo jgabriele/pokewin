@@ -23,8 +23,12 @@ PokemonView.prototype.prerender = function(pokemon) {
       </div>
     </div>`);
 
-  domEl.addEventListener('touchstart', this.onTouchStart.bind(this));
-  domEl.addEventListener('touchend', () => this.onTouchEnd(pokemon));
+  if (Utils.isMobileDevice()) {
+    domEl.addEventListener('touchstart', this.onTouchStart.bind(this));
+    domEl.addEventListener('touchend', () => this.onTouchEnd(pokemon));
+  } else {
+    domEl.addEventListener('click', () => this.onTouchEnd(pokemon));
+  }
 
   return domEl;
 }
@@ -40,10 +44,11 @@ PokemonView.prototype.onTouchEnd = function(pokemon) {
 
   const diff = new Date() - this._touchStartTime;
 
-  if (diff < 250) {
-    this.emit(ACTIONS.SELECT_POKEMON, pokemon);
-  } else {
+  // More than 250ms is a long select
+  if (diff > 250) {
     this.emit(ACTIONS.LONG_SELECT_POKEMON, pokemon);
+  } else {
+    this.emit(ACTIONS.SELECT_POKEMON, pokemon);
   }
 
 }

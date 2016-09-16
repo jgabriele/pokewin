@@ -34,7 +34,12 @@ CounterView.prototype.prerender = function(counter) {
       </div>
     </div>`);
 
-  domEl.addEventListener('touchend', () => this.onTouchEnd(counter));
+
+  if (Utils.isMobileDevice()) {
+    domEl.addEventListener('touchend', () => this.onTouchEnd(counter));
+  } else {
+    domEl.addEventListener('click', () => this.onTouchEnd(counter));
+  }
 
   this._el = domEl;
 
