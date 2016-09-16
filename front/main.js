@@ -73,6 +73,32 @@ function _augmentPokemonsData(pokemons) {
 
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
 
+// import MultipleChoices from './scripts/Views/Modal/MultipleChoices';
+// import ModalView      from './scripts/Views/ModalView';
+// const title = 'What do you want to do?';
+// const choices = [
+//   {
+//     icon: 'star',
+//     title: 'Add to favourite',
+//     onClick: () => console.log('Favourite')
+//   },
+//   {
+//     icon: 'star',
+//     title: 'Add to custom section',
+//     onClick: () => console.log('Custom Section')
+//   },
+//   {
+//     icon: 'star',
+//     type: 'EXIT',
+//     title: 'Nothing thanks',
+//     onClick: ModalView.hide.bind(ModalView)
+//   }
+// ];
+// const message = MultipleChoices.render(title, choices);
+// ModalView.render(message, {
+//   onOverlayBackground: ModalView.hide.bind(ModalView)
+// });
+
 //------------------
 
 function toggleFavourite(pokemonId) {
