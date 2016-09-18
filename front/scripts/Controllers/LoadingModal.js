@@ -7,7 +7,7 @@ const MODALS_SHOWN_KEY = 'modals-shown';
 
 const availableModals = [
   { type: 'FACEBOOK', condition: hasSeenWebsiteMultipleTimes },
-  { type: 'WHATS_NEW_ROTATION' },
+  { type: 'WHATS_NEW_DPS' }
 ];
 
 export default {
