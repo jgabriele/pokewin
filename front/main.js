@@ -277,8 +277,8 @@ function _startup () {
 
       pokemonsFull = _augmentPokemonsData(pokemons);
       const listView = new ListView()
-        .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull))
-        .on(ListView.EVENTS.POKEMON_LONG_SELECTED, _onPokemonLongSelected);
+        .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull));
+        // .on(ListView.EVENTS.POKEMON_LONG_SELECTED, _onPokemonLongSelected);
       listView.render(pokemonsFull);
 
       _addKeyboardListener();

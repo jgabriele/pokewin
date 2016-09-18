@@ -71,9 +71,9 @@ DetailsView.prototype.render = function(data) {
 
 DetailsView.prototype.renderCounters = function(counters, isLoading) {
   const counterViewsAndData = counters
-    .map((counterData) => Object.assign({}, counterData, {
-      isFavourite: FavouritesModel.get(counterData.id)
-    }))
+    // .map((counterData) => Object.assign({}, counterData, {
+    //   isFavourite: FavouritesModel.get(counterData.id)
+    // }))
     .map((counterData) => {
       const counterView = new CounterView()
         .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon));
@@ -83,7 +83,6 @@ DetailsView.prototype.renderCounters = function(counters, isLoading) {
 
   // For the rotation we only need the list of views
   const counterViews = counterViewsAndData.map((tuple) => tuple[0]);
-  this.launchTimeoutForRotation(counterViews);
 
   const countersNodes = counterViewsAndData.map((counterViewAndData) => {
     return counterViewAndData[0].prerender(counterViewAndData[1]);
@@ -102,7 +101,6 @@ DetailsView.prototype.onInputUpdate = function(e) {
 }
 
 DetailsView.prototype.recomputeCounters = function() {
-  window.clearTimeout(this._rollingTimeout);
   const newValue = this._state.defensePokemonCP;
   const counters = this._state.counters
     .filter(highCPMaxFilter.bind(this, newValue))
@@ -112,22 +110,11 @@ DetailsView.prototype.recomputeCounters = function() {
   this.renderCounters(counters);
 }
 
-DetailsView.prototype.launchTimeoutForRotation = function(counterViews) {
-  this._rollingTimeout = setTimeout(() => {
-    counterViews.forEach((counterView) => {
-      counterView.rollMove();
-    });
-    this.launchTimeoutForRotation(counterViews);
-  }, ROLLING_TIMEOUT);
-}
-
 DetailsView.prototype.onClose = function() {
-  window.clearTimeout(this._rollingTimeout);
   this.emit(ACTIONS.CLOSE);
 }
 
 DetailsView.prototype.onSelectCounter = function(pokemon) {
-  window.clearTimeout(this._rollingTimeout);
   this.emit(EVENTS.COUNTER_SELECTED, pokemon);
 }
 
