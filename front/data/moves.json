@@ -1,1 +1,891 @@
-[{"type":7,"power":3,"key":"MOVE_FURY_CUTTER","id":0},{"type":7,"power":5,"key":"MOVE_BUG_BITE","id":1},{"type":17,"power":6,"key":"MOVE_BITE","id":2},{"type":17,"power":7,"key":"MOVE_SUCKER_PUNCH","id":3},{"type":16,"power":6,"key":"MOVE_DRAGON_BREATH","id":4},{"type":13,"power":5,"key":"MOVE_THUNDER_SHOCK","id":5},{"type":13,"power":7,"key":"MOVE_SPARK","id":6},{"type":2,"power":5,"key":"MOVE_LOW_KICK","id":7},{"type":2,"power":6,"key":"MOVE_KARATE_CHOP","id":8},{"type":10,"power":0,"key":"MOVE_EMBER","id":9},{"type":3,"power":9,"key":"MOVE_WING_ATTACK","id":10},{"type":3,"power":0,"key":"MOVE_PECK","id":11},{"type":8,"power":5,"key":"MOVE_LICK","id":12},{"type":8,"power":1,"key":"MOVE_SHADOW_CLAW","id":13},{"type":12,"power":7,"key":"MOVE_VINE_WHIP","id":14},{"type":12,"power":5,"key":"MOVE_RAZOR_LEAF","id":15},{"type":5,"power":6,"key":"MOVE_MUD_SHOT","id":16},{"type":15,"power":5,"key":"MOVE_ICE_SHARD","id":17},{"type":15,"power":9,"key":"MOVE_FROST_BREATH","id":18},{"type":1,"power":0,"key":"MOVE_QUICK_ATTACK","id":19},{"type":1,"power":6,"key":"MOVE_SCRATCH","id":20},{"type":1,"power":2,"key":"MOVE_TACKLE","id":21},{"type":1,"power":7,"key":"MOVE_POUND","id":22},{"type":1,"power":2,"key":"MOVE_CUT","id":23},{"type":4,"power":2,"key":"MOVE_POISON_JAB","id":24},{"type":4,"power":0,"key":"MOVE_ACID","id":25},{"type":14,"power":7,"key":"MOVE_PSYCHO_CUT","id":26},{"type":6,"power":2,"key":"MOVE_ROCK_THROW","id":27},{"type":9,"power":8,"key":"MOVE_METAL_CLAW","id":28},{"type":9,"power":0,"key":"MOVE_BULLET_PUNCH","id":29},{"type":11,"power":6,"key":"MOVE_WATER_GUN","id":30},{"type":11,"power":0,"key":"MOVE_SPLASH","id":31},{"type":11,"power":0,"key":"MOVE_WATER_GUN","id":32},{"type":5,"power":5,"key":"MOVE_MUD_SLAP","id":33},{"type":14,"power":2,"key":"MOVE_ZEN_HEADBUTT","id":34},{"type":14,"power":5,"key":"MOVE_CONFUSION","id":35},{"type":4,"power":6,"key":"MOVE_POISON_STING","id":36},{"type":11,"power":5,"key":"MOVE_BUBBLE","id":37},{"type":17,"power":2,"key":"MOVE_FEINT_ATTACK","id":38},{"type":9,"power":5,"key":"MOVE_STEEL_WING","id":39},{"type":10,"power":0,"key":"MOVE_FIRE_FANG","id":40},{"type":2,"power":5,"key":"MOVE_ROCK_SMASH","id":41},{"type":1,"power":25,"charge":5,"key":"MOVE_WRAP","id":42},{"type":1,"power":120,"charge":1,"key":"MOVE_HYPER_BEAM","id":43},{"type":17,"power":45,"charge":3,"key":"MOVE_DARK_PULSE","id":44},{"type":4,"power":30,"charge":4,"key":"MOVE_SLUDGE","id":45},{"type":1,"power":25,"charge":5,"key":"MOVE_VICE_GRIP","id":46},{"type":10,"power":40,"charge":4,"key":"MOVE_FLAME_WHEEL","id":47},{"type":7,"power":80,"charge":1,"key":"MOVE_MEGAHORN","id":48},{"type":10,"power":55,"charge":2,"key":"MOVE_FLAMETHROWER","id":49},{"type":5,"power":70,"charge":3,"key":"MOVE_DIG","id":50},{"type":2,"power":60,"charge":1,"key":"MOVE_CROSS_CHOP","id":51},{"type":14,"power":40,"charge":4,"key":"MOVE_PSYBEAM","id":52},{"type":5,"power":100,"charge":1,"key":"MOVE_EARTHQUAKE","id":53},{"type":6,"power":80,"charge":1,"key":"MOVE_STONE_EDGE","id":54},{"type":15,"power":45,"charge":3,"key":"MOVE_ICE_PUNCH","id":55},{"type":14,"power":20,"charge":4,"key":"MOVE_HEART_STAMP","id":56},{"type":13,"power":35,"charge":3,"key":"MOVE_DISCHARGE","id":57},{"type":9,"power":60,"charge":3,"key":"MOVE_FLASH_CANNON","id":58},{"type":3,"power":40,"charge":3,"key":"MOVE_DRILL_PECK","id":59},{"type":15,"power":65,"charge":2,"key":"MOVE_ICE_BEAM","id":60},{"type":15,"power":100,"charge":1,"key":"MOVE_BLIZZARD","id":61},{"type":10,"power":80,"charge":1,"key":"MOVE_HEAT_WAVE","id":62},{"type":3,"power":30,"charge":4,"key":"MOVE_AERIAL_ACE","id":63},{"type":5,"power":50,"charge":3,"key":"MOVE_DRILL_RUN","id":64},{"type":12,"power":65,"charge":2,"key":"MOVE_PETAL_BLIZZARD","id":65},{"type":12,"power":15,"charge":5,"key":"MOVE_MEGA_DRAIN","id":66},{"type":7,"power":75,"charge":2,"key":"MOVE_BUG_BUZZ","id":67},{"type":4,"power":25,"charge":5,"key":"MOVE_POISON_FANG","id":68},{"type":17,"power":30,"charge":4,"key":"MOVE_NIGHT_SLASH","id":69},{"type":11,"power":30,"charge":4,"key":"MOVE_BUBBLE_BEAM","id":70},{"type":2,"power":30,"charge":3,"key":"MOVE_SUBMISSION","id":71},{"type":2,"power":30,"charge":4,"key":"MOVE_LOW_SWEEP","id":72},{"type":11,"power":25,"charge":5,"key":"MOVE_AQUA_JET","id":73},{"type":11,"power":45,"charge":2,"key":"MOVE_AQUA_TAIL","id":74},{"type":12,"power":40,"charge":3,"key":"MOVE_SEED_BOMB","id":75},{"type":14,"power":40,"charge":3,"key":"MOVE_PSYSHOCK","id":76},{"type":6,"power":35,"charge":4,"key":"MOVE_ANCIENT_POWER","id":77},{"type":6,"power":30,"charge":4,"key":"MOVE_ROCK_TOMB","id":78},{"type":6,"power":50,"charge":3,"key":"MOVE_ROCK_SLIDE","id":79},{"type":6,"power":40,"charge":3,"key":"MOVE_POWER_GEM","id":80},{"type":8,"power":15,"charge":5,"key":"MOVE_SHADOW_SNEAK","id":81},{"type":8,"power":20,"charge":4,"key":"MOVE_SHADOW_PUNCH","id":82},{"type":8,"power":30,"charge":4,"key":"MOVE_OMINOUS_WIND","id":83},{"type":8,"power":45,"charge":3,"key":"MOVE_SHADOW_BALL","id":84},{"type":9,"power":30,"charge":4,"key":"MOVE_MAGNET_BOMB","id":85},{"type":9,"power":30,"charge":3,"key":"MOVE_IRON_HEAD","id":86},{"type":13,"power":15,"charge":5,"key":"MOVE_PARABOLIC_CHARGE","id":87},{"type":13,"power":40,"charge":3,"key":"MOVE_THUNDER_PUNCH","id":88},{"type":13,"power":100,"charge":1,"key":"MOVE_THUNDER","id":89},{"type":13,"power":55,"charge":2,"key":"MOVE_THUNDERBOLT","id":90},{"type":16,"power":25,"charge":5,"key":"MOVE_TWISTER","id":91},{"type":16,"power":65,"charge":2,"key":"MOVE_DRAGON_PULSE","id":92},{"type":16,"power":35,"charge":2,"key":"MOVE_DRAGON_CLAW","id":93},{"type":18,"power":25,"charge":5,"key":"MOVE_DISARMING_VOICE","id":94},{"type":18,"power":25,"charge":5,"key":"MOVE_DRAINING_KISS","id":95},{"type":18,"power":55,"charge":3,"key":"MOVE_DAZZLING_GLEAM","id":96},{"type":18,"power":85,"charge":1,"key":"MOVE_MOONBLAST","id":97},{"type":18,"power":55,"charge":2,"key":"MOVE_PLAY_ROUGH","id":98},{"type":4,"power":25,"charge":4,"key":"MOVE_CROSS_POISON","id":99},{"type":4,"power":55,"charge":2,"key":"MOVE_SLUDGE_BOMB","id":100},{"type":4,"power":70,"charge":1,"key":"MOVE_SLUDGE_WAVE","id":101},{"type":4,"power":65,"charge":1,"key":"MOVE_GUNK_SHOT","id":102},{"type":5,"power":25,"charge":4,"key":"MOVE_BONE_CLUB","id":103},{"type":5,"power":35,"charge":4,"key":"MOVE_BULLDOZE","id":104},{"type":5,"power":30,"charge":4,"key":"MOVE_MUD_BOMB","id":105},{"type":7,"power":45,"charge":3,"key":"MOVE_SIGNAL_BEAM","id":106},{"type":7,"power":35,"charge":3,"key":"MOVE_X_SCISSOR","id":107},{"type":10,"power":25,"charge":5,"key":"MOVE_FLAME_CHARGE","id":108},{"type":10,"power":30,"charge":4,"key":"MOVE_FLAME_BURST","id":109},{"type":10,"power":100,"charge":1,"key":"MOVE_FIRE_BLAST","id":110},{"type":11,"power":25,"charge":4,"key":"MOVE_BRINE","id":111},{"type":11,"power":35,"charge":4,"key":"MOVE_WATER_PULSE","id":112},{"type":11,"power":55,"charge":3,"key":"MOVE_SCALD","id":113},{"type":11,"power":90,"charge":1,"key":"MOVE_HYDRO_PUMP","id":114},{"type":14,"power":55,"charge":2,"key":"MOVE_PSYCHIC","id":115},{"type":14,"power":70,"charge":1,"key":"MOVE_PSYSTRIKE","id":116},{"type":15,"power":25,"charge":5,"key":"MOVE_ICY_WIND","id":117},{"type":12,"power":35,"charge":3,"key":"MOVE_GIGA_DRAIN","id":118},{"type":10,"power":40,"charge":3,"key":"MOVE_FIRE_PUNCH","id":119},{"type":12,"power":120,"charge":1,"key":"MOVE_SOLAR_BEAM","id":120},{"type":12,"power":45,"charge":2,"key":"MOVE_LEAF_BLADE","id":121},{"type":12,"power":70,"charge":1,"key":"MOVE_POWER_WHIP","id":122},{"type":3,"power":30,"charge":4,"key":"MOVE_AIR_CUTTER","id":123},{"type":3,"power":80,"charge":1,"key":"MOVE_HURRICANE","id":124},{"type":2,"power":30,"charge":3,"key":"MOVE_BRICK_BREAK","id":125},{"type":1,"power":30,"charge":4,"key":"MOVE_SWIFT","id":126},{"type":1,"power":25,"charge":4,"key":"MOVE_HORN_ATTACK","id":127},{"type":1,"power":30,"charge":4,"key":"MOVE_STOMP","id":128},{"type":1,"power":35,"charge":3,"key":"MOVE_HYPER_FANG","id":129},{"type":1,"power":40,"charge":2,"key":"MOVE_BODY_SLAM","id":130},{"type":1,"power":35,"charge":3,"key":"MOVE_REST","id":131},{"type":1,"power":15,"charge":5,"key":"MOVE_STRUGGLE","id":132}]
+[
+  {
+    "type": 7,
+    "power": 3,
+    "key": "MOVE_FURY_CUTTER",
+    "id": 0
+  },
+  {
+    "type": 7,
+    "power": 5,
+    "key": "MOVE_BUG_BITE",
+    "id": 1
+  },
+  {
+    "type": 17,
+    "power": 6,
+    "key": "MOVE_BITE",
+    "id": 2
+  },
+  {
+    "type": 17,
+    "power": 7,
+    "key": "MOVE_SUCKER_PUNCH",
+    "id": 3
+  },
+  {
+    "type": 16,
+    "power": 6,
+    "key": "MOVE_DRAGON_BREATH",
+    "id": 4
+  },
+  {
+    "type": 13,
+    "power": 5,
+    "key": "MOVE_THUNDER_SHOCK",
+    "id": 5
+  },
+  {
+    "type": 13,
+    "power": 7,
+    "key": "MOVE_SPARK",
+    "id": 6
+  },
+  {
+    "type": 2,
+    "power": 5,
+    "key": "MOVE_LOW_KICK",
+    "id": 7
+  },
+  {
+    "type": 2,
+    "power": 6,
+    "key": "MOVE_KARATE_CHOP",
+    "id": 8
+  },
+  {
+    "type": 10,
+    "power": 0,
+    "key": "MOVE_EMBER",
+    "id": 9
+  },
+  {
+    "type": 3,
+    "power": 9,
+    "key": "MOVE_WING_ATTACK",
+    "id": 10
+  },
+  {
+    "type": 3,
+    "power": 0,
+    "key": "MOVE_PECK",
+    "id": 11
+  },
+  {
+    "type": 8,
+    "power": 5,
+    "key": "MOVE_LICK",
+    "id": 12
+  },
+  {
+    "type": 8,
+    "power": 1,
+    "key": "MOVE_SHADOW_CLAW",
+    "id": 13
+  },
+  {
+    "type": 12,
+    "power": 7,
+    "key": "MOVE_VINE_WHIP",
+    "id": 14
+  },
+  {
+    "type": 12,
+    "power": 5,
+    "key": "MOVE_RAZOR_LEAF",
+    "id": 15
+  },
+  {
+    "type": 5,
+    "power": 6,
+    "key": "MOVE_MUD_SHOT",
+    "id": 16
+  },
+  {
+    "type": 15,
+    "power": 5,
+    "key": "MOVE_ICE_SHARD",
+    "id": 17
+  },
+  {
+    "type": 15,
+    "power": 9,
+    "key": "MOVE_FROST_BREATH",
+    "id": 18
+  },
+  {
+    "type": 1,
+    "power": 0,
+    "key": "MOVE_QUICK_ATTACK",
+    "id": 19
+  },
+  {
+    "type": 1,
+    "power": 6,
+    "key": "MOVE_SCRATCH",
+    "id": 20
+  },
+  {
+    "type": 1,
+    "power": 2,
+    "key": "MOVE_TACKLE",
+    "id": 21
+  },
+  {
+    "type": 1,
+    "power": 7,
+    "key": "MOVE_POUND",
+    "id": 22
+  },
+  {
+    "type": 1,
+    "power": 2,
+    "key": "MOVE_CUT",
+    "id": 23
+  },
+  {
+    "type": 4,
+    "power": 2,
+    "key": "MOVE_POISON_JAB",
+    "id": 24
+  },
+  {
+    "type": 4,
+    "power": 0,
+    "key": "MOVE_ACID",
+    "id": 25
+  },
+  {
+    "type": 14,
+    "power": 7,
+    "key": "MOVE_PSYCHO_CUT",
+    "id": 26
+  },
+  {
+    "type": 6,
+    "power": 2,
+    "key": "MOVE_ROCK_THROW",
+    "id": 27
+  },
+  {
+    "type": 9,
+    "power": 8,
+    "key": "MOVE_METAL_CLAW",
+    "id": 28
+  },
+  {
+    "type": 9,
+    "power": 0,
+    "key": "MOVE_BULLET_PUNCH",
+    "id": 29
+  },
+  {
+    "type": 11,
+    "power": 6,
+    "key": "MOVE_WATER_GUN",
+    "id": 30
+  },
+  {
+    "type": 11,
+    "power": 0,
+    "key": "MOVE_SPLASH",
+    "id": 31
+  },
+  {
+    "type": 11,
+    "power": 0,
+    "key": "MOVE_WATER_GUN",
+    "id": 32
+  },
+  {
+    "type": 5,
+    "power": 5,
+    "key": "MOVE_MUD_SLAP",
+    "id": 33
+  },
+  {
+    "type": 14,
+    "power": 2,
+    "key": "MOVE_ZEN_HEADBUTT",
+    "id": 34
+  },
+  {
+    "type": 14,
+    "power": 5,
+    "key": "MOVE_CONFUSION",
+    "id": 35
+  },
+  {
+    "type": 4,
+    "power": 6,
+    "key": "MOVE_POISON_STING",
+    "id": 36
+  },
+  {
+    "type": 11,
+    "power": 5,
+    "key": "MOVE_BUBBLE",
+    "id": 37
+  },
+  {
+    "type": 17,
+    "power": 2,
+    "key": "MOVE_FEINT_ATTACK",
+    "id": 38
+  },
+  {
+    "type": 9,
+    "power": 5,
+    "key": "MOVE_STEEL_WING",
+    "id": 39
+  },
+  {
+    "type": 10,
+    "power": 0,
+    "key": "MOVE_FIRE_FANG",
+    "id": 40
+  },
+  {
+    "type": 2,
+    "power": 5,
+    "key": "MOVE_ROCK_SMASH",
+    "id": 41
+  },
+  {
+    "type": 1,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_WRAP",
+    "id": 42
+  },
+  {
+    "type": 1,
+    "power": 120,
+    "charge": 1,
+    "key": "MOVE_HYPER_BEAM",
+    "id": 43
+  },
+  {
+    "type": 17,
+    "power": 45,
+    "charge": 3,
+    "key": "MOVE_DARK_PULSE",
+    "id": 44
+  },
+  {
+    "type": 4,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_SLUDGE",
+    "id": 45
+  },
+  {
+    "type": 1,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_VICE_GRIP",
+    "id": 46
+  },
+  {
+    "type": 10,
+    "power": 40,
+    "charge": 4,
+    "key": "MOVE_FLAME_WHEEL",
+    "id": 47
+  },
+  {
+    "type": 7,
+    "power": 80,
+    "charge": 1,
+    "key": "MOVE_MEGAHORN",
+    "id": 48
+  },
+  {
+    "type": 10,
+    "power": 55,
+    "charge": 2,
+    "key": "MOVE_FLAMETHROWER",
+    "id": 49
+  },
+  {
+    "type": 5,
+    "power": 70,
+    "charge": 3,
+    "key": "MOVE_DIG",
+    "id": 50
+  },
+  {
+    "type": 2,
+    "power": 60,
+    "charge": 1,
+    "key": "MOVE_CROSS_CHOP",
+    "id": 51
+  },
+  {
+    "type": 14,
+    "power": 40,
+    "charge": 4,
+    "key": "MOVE_PSYBEAM",
+    "id": 52
+  },
+  {
+    "type": 5,
+    "power": 100,
+    "charge": 1,
+    "key": "MOVE_EARTHQUAKE",
+    "id": 53
+  },
+  {
+    "type": 6,
+    "power": 80,
+    "charge": 1,
+    "key": "MOVE_STONE_EDGE",
+    "id": 54
+  },
+  {
+    "type": 15,
+    "power": 45,
+    "charge": 3,
+    "key": "MOVE_ICE_PUNCH",
+    "id": 55
+  },
+  {
+    "type": 14,
+    "power": 20,
+    "charge": 4,
+    "key": "MOVE_HEART_STAMP",
+    "id": 56
+  },
+  {
+    "type": 13,
+    "power": 35,
+    "charge": 3,
+    "key": "MOVE_DISCHARGE",
+    "id": 57
+  },
+  {
+    "type": 9,
+    "power": 60,
+    "charge": 3,
+    "key": "MOVE_FLASH_CANNON",
+    "id": 58
+  },
+  {
+    "type": 3,
+    "power": 40,
+    "charge": 3,
+    "key": "MOVE_DRILL_PECK",
+    "id": 59
+  },
+  {
+    "type": 15,
+    "power": 65,
+    "charge": 2,
+    "key": "MOVE_ICE_BEAM",
+    "id": 60
+  },
+  {
+    "type": 15,
+    "power": 100,
+    "charge": 1,
+    "key": "MOVE_BLIZZARD",
+    "id": 61
+  },
+  {
+    "type": 10,
+    "power": 80,
+    "charge": 1,
+    "key": "MOVE_HEAT_WAVE",
+    "id": 62
+  },
+  {
+    "type": 3,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_AERIAL_ACE",
+    "id": 63
+  },
+  {
+    "type": 5,
+    "power": 50,
+    "charge": 3,
+    "key": "MOVE_DRILL_RUN",
+    "id": 64
+  },
+  {
+    "type": 12,
+    "power": 65,
+    "charge": 2,
+    "key": "MOVE_PETAL_BLIZZARD",
+    "id": 65
+  },
+  {
+    "type": 12,
+    "power": 15,
+    "charge": 5,
+    "key": "MOVE_MEGA_DRAIN",
+    "id": 66
+  },
+  {
+    "type": 7,
+    "power": 75,
+    "charge": 2,
+    "key": "MOVE_BUG_BUZZ",
+    "id": 67
+  },
+  {
+    "type": 4,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_POISON_FANG",
+    "id": 68
+  },
+  {
+    "type": 17,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_NIGHT_SLASH",
+    "id": 69
+  },
+  {
+    "type": 11,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_BUBBLE_BEAM",
+    "id": 70
+  },
+  {
+    "type": 2,
+    "power": 30,
+    "charge": 3,
+    "key": "MOVE_SUBMISSION",
+    "id": 71
+  },
+  {
+    "type": 2,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_LOW_SWEEP",
+    "id": 72
+  },
+  {
+    "type": 11,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_AQUA_JET",
+    "id": 73
+  },
+  {
+    "type": 11,
+    "power": 45,
+    "charge": 2,
+    "key": "MOVE_AQUA_TAIL",
+    "id": 74
+  },
+  {
+    "type": 12,
+    "power": 40,
+    "charge": 3,
+    "key": "MOVE_SEED_BOMB",
+    "id": 75
+  },
+  {
+    "type": 14,
+    "power": 40,
+    "charge": 3,
+    "key": "MOVE_PSYSHOCK",
+    "id": 76
+  },
+  {
+    "type": 6,
+    "power": 35,
+    "charge": 4,
+    "key": "MOVE_ANCIENT_POWER",
+    "id": 77
+  },
+  {
+    "type": 6,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_ROCK_TOMB",
+    "id": 78
+  },
+  {
+    "type": 6,
+    "power": 50,
+    "charge": 3,
+    "key": "MOVE_ROCK_SLIDE",
+    "id": 79
+  },
+  {
+    "type": 6,
+    "power": 40,
+    "charge": 3,
+    "key": "MOVE_POWER_GEM",
+    "id": 80
+  },
+  {
+    "type": 8,
+    "power": 15,
+    "charge": 5,
+    "key": "MOVE_SHADOW_SNEAK",
+    "id": 81
+  },
+  {
+    "type": 8,
+    "power": 20,
+    "charge": 4,
+    "key": "MOVE_SHADOW_PUNCH",
+    "id": 82
+  },
+  {
+    "type": 8,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_OMINOUS_WIND",
+    "id": 83
+  },
+  {
+    "type": 8,
+    "power": 45,
+    "charge": 3,
+    "key": "MOVE_SHADOW_BALL",
+    "id": 84
+  },
+  {
+    "type": 9,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_MAGNET_BOMB",
+    "id": 85
+  },
+  {
+    "type": 9,
+    "power": 30,
+    "charge": 3,
+    "key": "MOVE_IRON_HEAD",
+    "id": 86
+  },
+  {
+    "type": 13,
+    "power": 15,
+    "charge": 5,
+    "key": "MOVE_PARABOLIC_CHARGE",
+    "id": 87
+  },
+  {
+    "type": 13,
+    "power": 40,
+    "charge": 3,
+    "key": "MOVE_THUNDER_PUNCH",
+    "id": 88
+  },
+  {
+    "type": 13,
+    "power": 100,
+    "charge": 1,
+    "key": "MOVE_THUNDER",
+    "id": 89
+  },
+  {
+    "type": 13,
+    "power": 55,
+    "charge": 2,
+    "key": "MOVE_THUNDERBOLT",
+    "id": 90
+  },
+  {
+    "type": 16,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_TWISTER",
+    "id": 91
+  },
+  {
+    "type": 16,
+    "power": 65,
+    "charge": 2,
+    "key": "MOVE_DRAGON_PULSE",
+    "id": 92
+  },
+  {
+    "type": 16,
+    "power": 35,
+    "charge": 2,
+    "key": "MOVE_DRAGON_CLAW",
+    "id": 93
+  },
+  {
+    "type": 18,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_DISARMING_VOICE",
+    "id": 94
+  },
+  {
+    "type": 18,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_DRAINING_KISS",
+    "id": 95
+  },
+  {
+    "type": 18,
+    "power": 55,
+    "charge": 3,
+    "key": "MOVE_DAZZLING_GLEAM",
+    "id": 96
+  },
+  {
+    "type": 18,
+    "power": 85,
+    "charge": 1,
+    "key": "MOVE_MOONBLAST",
+    "id": 97
+  },
+  {
+    "type": 18,
+    "power": 55,
+    "charge": 2,
+    "key": "MOVE_PLAY_ROUGH",
+    "id": 98
+  },
+  {
+    "type": 4,
+    "power": 25,
+    "charge": 4,
+    "key": "MOVE_CROSS_POISON",
+    "id": 99
+  },
+  {
+    "type": 4,
+    "power": 55,
+    "charge": 2,
+    "key": "MOVE_SLUDGE_BOMB",
+    "id": 100
+  },
+  {
+    "type": 4,
+    "power": 70,
+    "charge": 1,
+    "key": "MOVE_SLUDGE_WAVE",
+    "id": 101
+  },
+  {
+    "type": 4,
+    "power": 65,
+    "charge": 1,
+    "key": "MOVE_GUNK_SHOT",
+    "id": 102
+  },
+  {
+    "type": 5,
+    "power": 25,
+    "charge": 4,
+    "key": "MOVE_BONE_CLUB",
+    "id": 103
+  },
+  {
+    "type": 5,
+    "power": 35,
+    "charge": 4,
+    "key": "MOVE_BULLDOZE",
+    "id": 104
+  },
+  {
+    "type": 5,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_MUD_BOMB",
+    "id": 105
+  },
+  {
+    "type": 7,
+    "power": 45,
+    "charge": 3,
+    "key": "MOVE_SIGNAL_BEAM",
+    "id": 106
+  },
+  {
+    "type": 7,
+    "power": 35,
+    "charge": 3,
+    "key": "MOVE_X_SCISSOR",
+    "id": 107
+  },
+  {
+    "type": 10,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_FLAME_CHARGE",
+    "id": 108
+  },
+  {
+    "type": 10,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_FLAME_BURST",
+    "id": 109
+  },
+  {
+    "type": 10,
+    "power": 100,
+    "charge": 1,
+    "key": "MOVE_FIRE_BLAST",
+    "id": 110
+  },
+  {
+    "type": 11,
+    "power": 25,
+    "charge": 4,
+    "key": "MOVE_BRINE",
+    "id": 111
+  },
+  {
+    "type": 11,
+    "power": 35,
+    "charge": 4,
+    "key": "MOVE_WATER_PULSE",
+    "id": 112
+  },
+  {
+    "type": 11,
+    "power": 55,
+    "charge": 3,
+    "key": "MOVE_SCALD",
+    "id": 113
+  },
+  {
+    "type": 11,
+    "power": 90,
+    "charge": 1,
+    "key": "MOVE_HYDRO_PUMP",
+    "id": 114
+  },
+  {
+    "type": 14,
+    "power": 55,
+    "charge": 2,
+    "key": "MOVE_PSYCHIC",
+    "id": 115
+  },
+  {
+    "type": 14,
+    "power": 70,
+    "charge": 1,
+    "key": "MOVE_PSYSTRIKE",
+    "id": 116
+  },
+  {
+    "type": 15,
+    "power": 25,
+    "charge": 5,
+    "key": "MOVE_ICY_WIND",
+    "id": 117
+  },
+  {
+    "type": 12,
+    "power": 35,
+    "charge": 3,
+    "key": "MOVE_GIGA_DRAIN",
+    "id": 118
+  },
+  {
+    "type": 10,
+    "power": 40,
+    "charge": 3,
+    "key": "MOVE_FIRE_PUNCH",
+    "id": 119
+  },
+  {
+    "type": 12,
+    "power": 120,
+    "charge": 1,
+    "key": "MOVE_SOLAR_BEAM",
+    "id": 120
+  },
+  {
+    "type": 12,
+    "power": 45,
+    "charge": 2,
+    "key": "MOVE_LEAF_BLADE",
+    "id": 121
+  },
+  {
+    "type": 12,
+    "power": 70,
+    "charge": 1,
+    "key": "MOVE_POWER_WHIP",
+    "id": 122
+  },
+  {
+    "type": 3,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_AIR_CUTTER",
+    "id": 123
+  },
+  {
+    "type": 3,
+    "power": 80,
+    "charge": 1,
+    "key": "MOVE_HURRICANE",
+    "id": 124
+  },
+  {
+    "type": 2,
+    "power": 30,
+    "charge": 3,
+    "key": "MOVE_BRICK_BREAK",
+    "id": 125
+  },
+  {
+    "type": 1,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_SWIFT",
+    "id": 126
+  },
+  {
+    "type": 1,
+    "power": 25,
+    "charge": 4,
+    "key": "MOVE_HORN_ATTACK",
+    "id": 127
+  },
+  {
+    "type": 1,
+    "power": 30,
+    "charge": 4,
+    "key": "MOVE_STOMP",
+    "id": 128
+  },
+  {
+    "type": 1,
+    "power": 35,
+    "charge": 3,
+    "key": "MOVE_HYPER_FANG",
+    "id": 129
+  },
+  {
+    "type": 1,
+    "power": 40,
+    "charge": 2,
+    "key": "MOVE_BODY_SLAM",
+    "id": 130
+  },
+  {
+    "type": 1,
+    "power": 35,
+    "charge": 3,
+    "key": "MOVE_REST",
+    "id": 131
+  },
+  {
+    "type": 1,
+    "power": 15,
+    "charge": 5,
+    "key": "MOVE_STRUGGLE",
+    "id": 132
+  }
+]
