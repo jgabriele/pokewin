@@ -71,6 +71,7 @@ const FavouritesModel = {
   }
 };
 
-FavouritesModel.init();
+// TODO FAVOURITE
+// FavouritesModel.init();
 
 export default FavouritesModel;
