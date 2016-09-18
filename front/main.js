@@ -26,7 +26,7 @@ const NAVIGATOR_LANG_TO_LANG = {
   'fr': 'fr'
 };
 
-const MINIUM_MOVE_EFFICIENCY_REQUIRED = 1.25;
+const MINIUM_MOVE_EFFICIENCY_REQUIRED = 1;
 
 //------------------
 
