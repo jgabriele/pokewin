@@ -3,889 +3,1022 @@
     "type": 7,
     "power": 3,
     "key": "MOVE_FURY_CUTTER",
-    "id": 0
+    "id": 0,
+    "dps": 7.5
   },
   {
     "type": 7,
     "power": 5,
     "key": "MOVE_BUG_BITE",
-    "id": 1
+    "id": 1,
+    "dps": 11.11
   },
   {
     "type": 17,
     "power": 6,
     "key": "MOVE_BITE",
-    "id": 2
+    "id": 2,
+    "dps": 12
   },
   {
     "type": 17,
     "power": 7,
     "key": "MOVE_SUCKER_PUNCH",
-    "id": 3
+    "id": 3,
+    "dps": 10
   },
   {
     "type": 16,
     "power": 6,
     "key": "MOVE_DRAGON_BREATH",
-    "id": 4
+    "id": 4,
+    "dps": 12
   },
   {
     "type": 13,
     "power": 5,
     "key": "MOVE_THUNDER_SHOCK",
-    "id": 5
+    "id": 5,
+    "dps": 8.33
   },
   {
     "type": 13,
     "power": 7,
     "key": "MOVE_SPARK",
-    "id": 6
+    "id": 6,
+    "dps": 10
   },
   {
     "type": 2,
     "power": 5,
     "key": "MOVE_LOW_KICK",
-    "id": 7
+    "id": 7,
+    "dps": 8.33
   },
   {
     "type": 2,
     "power": 6,
     "key": "MOVE_KARATE_CHOP",
-    "id": 8
+    "id": 8,
+    "dps": 7.5
   },
   {
     "type": 10,
     "power": 0,
     "key": "MOVE_EMBER",
-    "id": 9
+    "id": 9,
+    "dps": 9.52
   },
   {
     "type": 3,
     "power": 9,
     "key": "MOVE_WING_ATTACK",
-    "id": 10
+    "id": 10,
+    "dps": 12
   },
   {
     "type": 3,
     "power": 0,
     "key": "MOVE_PECK",
-    "id": 11
+    "id": 11,
+    "dps": 8.7
   },
   {
     "type": 8,
     "power": 5,
     "key": "MOVE_LICK",
-    "id": 12
+    "id": 12,
+    "dps": 10
   },
   {
     "type": 8,
     "power": 1,
     "key": "MOVE_SHADOW_CLAW",
-    "id": 13
+    "id": 13,
+    "dps": 11.58
   },
   {
     "type": 12,
     "power": 7,
     "key": "MOVE_VINE_WHIP",
-    "id": 14
+    "id": 14,
+    "dps": 10.77
   },
   {
     "type": 12,
     "power": 5,
     "key": "MOVE_RAZOR_LEAF",
-    "id": 15
+    "id": 15,
+    "dps": 10.34
   },
   {
     "type": 5,
     "power": 6,
     "key": "MOVE_MUD_SHOT",
-    "id": 16
+    "id": 16,
+    "dps": 10.91
   },
   {
     "type": 15,
     "power": 5,
     "key": "MOVE_ICE_SHARD",
-    "id": 17
+    "id": 17,
+    "dps": 10.71
   },
   {
     "type": 15,
     "power": 9,
     "key": "MOVE_FROST_BREATH",
-    "id": 18
+    "id": 18,
+    "dps": 11.11
   },
   {
     "type": 1,
     "power": 0,
     "key": "MOVE_QUICK_ATTACK",
-    "id": 19
+    "id": 19,
+    "dps": 7.52
   },
   {
     "type": 1,
     "power": 6,
     "key": "MOVE_SCRATCH",
-    "id": 20
+    "id": 20,
+    "dps": 12
   },
   {
     "type": 1,
     "power": 2,
     "key": "MOVE_TACKLE",
-    "id": 21
+    "id": 21,
+    "dps": 10.91
   },
   {
     "type": 1,
     "power": 7,
     "key": "MOVE_POUND",
-    "id": 22
+    "id": 22,
+    "dps": 12.96
   },
   {
     "type": 1,
     "power": 2,
     "key": "MOVE_CUT",
-    "id": 23
+    "id": 23,
+    "dps": 10.62
   },
   {
     "type": 4,
     "power": 2,
     "key": "MOVE_POISON_JAB",
-    "id": 24
+    "id": 24,
+    "dps": 11.43
   },
   {
     "type": 4,
     "power": 0,
     "key": "MOVE_ACID",
-    "id": 25
+    "id": 25,
+    "dps": 9.52
   },
   {
     "type": 14,
     "power": 7,
     "key": "MOVE_PSYCHO_CUT",
-    "id": 26
+    "id": 26,
+    "dps": 12.28
   },
   {
     "type": 6,
     "power": 2,
     "key": "MOVE_ROCK_THROW",
-    "id": 27
+    "id": 27,
+    "dps": 8.82
   },
   {
     "type": 9,
     "power": 8,
     "key": "MOVE_METAL_CLAW",
-    "id": 28
+    "id": 28,
+    "dps": 12.7
   },
   {
     "type": 9,
     "power": 0,
     "key": "MOVE_BULLET_PUNCH",
-    "id": 29
+    "id": 29,
+    "dps": 8.33
   },
   {
     "type": 11,
     "power": 6,
     "key": "MOVE_WATER_GUN",
-    "id": 30
+    "id": 30,
+    "dps": 12
   },
   {
     "type": 11,
     "power": 0,
     "key": "MOVE_SPLASH",
-    "id": 31
+    "id": 31,
+    "dps": 0
   },
   {
     "type": 11,
     "power": 0,
     "key": "MOVE_WATER_GUN",
-    "id": 32
+    "id": 32,
+    "dps": 12
   },
   {
     "type": 5,
     "power": 5,
     "key": "MOVE_MUD_SLAP",
-    "id": 33
+    "id": 33,
+    "dps": 11.11
   },
   {
     "type": 14,
     "power": 2,
     "key": "MOVE_ZEN_HEADBUTT",
-    "id": 34
+    "id": 34,
+    "dps": 11.43
   },
   {
     "type": 14,
     "power": 5,
     "key": "MOVE_CONFUSION",
-    "id": 35
+    "id": 35,
+    "dps": 9.93
   },
   {
     "type": 4,
     "power": 6,
     "key": "MOVE_POISON_STING",
-    "id": 36
+    "id": 36,
+    "dps": 10.43
   },
   {
     "type": 11,
     "power": 5,
     "key": "MOVE_BUBBLE",
-    "id": 37
+    "id": 37,
+    "dps": 10.87
   },
   {
     "type": 17,
     "power": 2,
     "key": "MOVE_FEINT_ATTACK",
-    "id": 38
+    "id": 38,
+    "dps": 11.54
   },
   {
     "type": 9,
     "power": 5,
     "key": "MOVE_STEEL_WING",
-    "id": 39
+    "id": 39,
+    "dps": 11.28
   },
   {
     "type": 10,
     "power": 0,
     "key": "MOVE_FIRE_FANG",
-    "id": 40
+    "id": 40,
+    "dps": 11.9
   },
   {
     "type": 2,
     "power": 5,
     "key": "MOVE_ROCK_SMASH",
-    "id": 41
+    "id": 41,
+    "dps": 10.64
   },
   {
     "type": 1,
     "power": 25,
     "charge": 5,
     "key": "MOVE_WRAP",
-    "id": 42
+    "id": 42,
+    "dps": 6.25
   },
   {
     "type": 1,
     "power": 120,
     "charge": 1,
     "key": "MOVE_HYPER_BEAM",
-    "id": 43
+    "id": 43,
+    "dps": 24
   },
   {
     "type": 17,
     "power": 45,
     "charge": 3,
     "key": "MOVE_DARK_PULSE",
-    "id": 44
+    "id": 44,
+    "dps": 12.86
   },
   {
     "type": 4,
     "power": 30,
     "charge": 4,
     "key": "MOVE_SLUDGE",
-    "id": 45
+    "id": 45,
+    "dps": 11.54
   },
   {
     "type": 1,
     "power": 25,
     "charge": 5,
     "key": "MOVE_VICE_GRIP",
-    "id": 46
+    "id": 46,
+    "dps": 11.9
   },
   {
     "type": 10,
     "power": 40,
     "charge": 4,
     "key": "MOVE_FLAME_WHEEL",
-    "id": 47
+    "id": 47,
+    "dps": 8.7
   },
   {
     "type": 7,
     "power": 80,
     "charge": 1,
     "key": "MOVE_MEGAHORN",
-    "id": 48
+    "id": 48,
+    "dps": 25
   },
   {
     "type": 10,
     "power": 55,
     "charge": 2,
     "key": "MOVE_FLAMETHROWER",
-    "id": 49
+    "id": 49,
+    "dps": 18.97
   },
   {
     "type": 5,
     "power": 70,
     "charge": 3,
     "key": "MOVE_DIG",
-    "id": 50
+    "id": 50,
+    "dps": 12.07
   },
   {
     "type": 2,
     "power": 60,
     "charge": 1,
     "key": "MOVE_CROSS_CHOP",
-    "id": 51
+    "id": 51,
+    "dps": 30
   },
   {
     "type": 14,
     "power": 40,
     "charge": 4,
     "key": "MOVE_PSYBEAM",
-    "id": 52
+    "id": 52,
+    "dps": 10.53
   },
   {
     "type": 5,
     "power": 100,
     "charge": 1,
     "key": "MOVE_EARTHQUAKE",
-    "id": 53
+    "id": 53,
+    "dps": 23.81
   },
   {
     "type": 6,
     "power": 80,
     "charge": 1,
     "key": "MOVE_STONE_EDGE",
-    "id": 54
+    "id": 54,
+    "dps": 25.81
   },
   {
     "type": 15,
     "power": 45,
     "charge": 3,
     "key": "MOVE_ICE_PUNCH",
-    "id": 55
+    "id": 55,
+    "dps": 12.86
   },
   {
     "type": 14,
     "power": 20,
     "charge": 4,
     "key": "MOVE_HEART_STAMP",
-    "id": 56
+    "id": 56,
+    "dps": 9.8
   },
   {
     "type": 13,
     "power": 35,
     "charge": 3,
     "key": "MOVE_DISCHARGE",
-    "id": 57
+    "id": 57,
+    "dps": 14
   },
   {
     "type": 9,
     "power": 60,
     "charge": 3,
     "key": "MOVE_FLASH_CANNON",
-    "id": 58
+    "id": 58,
+    "dps": 15.38
   },
   {
     "type": 3,
     "power": 40,
     "charge": 3,
     "key": "MOVE_DRILL_PECK",
-    "id": 59
+    "id": 59,
+    "dps": 14.81
   },
   {
     "type": 15,
     "power": 65,
     "charge": 2,
     "key": "MOVE_ICE_BEAM",
-    "id": 60
+    "id": 60,
+    "dps": 17.81
   },
   {
     "type": 15,
     "power": 100,
     "charge": 1,
     "key": "MOVE_BLIZZARD",
-    "id": 61
+    "id": 61,
+    "dps": 25.64
   },
   {
     "type": 10,
     "power": 80,
     "charge": 1,
     "key": "MOVE_HEAT_WAVE",
-    "id": 62
+    "id": 62,
+    "dps": 21.05
   },
   {
     "type": 3,
     "power": 30,
     "charge": 4,
     "key": "MOVE_AERIAL_ACE",
-    "id": 63
+    "id": 63,
+    "dps": 10.34
   },
   {
     "type": 5,
     "power": 50,
     "charge": 3,
     "key": "MOVE_DRILL_RUN",
-    "id": 64
+    "id": 64,
+    "dps": 14.71
   },
   {
     "type": 12,
     "power": 65,
     "charge": 2,
     "key": "MOVE_PETAL_BLIZZARD",
-    "id": 65
+    "id": 65,
+    "dps": 20.31
   },
   {
     "type": 12,
     "power": 15,
     "charge": 5,
     "key": "MOVE_MEGA_DRAIN",
-    "id": 66
+    "id": 66,
+    "dps": 7.81
   },
   {
     "type": 7,
     "power": 75,
     "charge": 2,
     "key": "MOVE_BUG_BUZZ",
-    "id": 67
+    "id": 67,
+    "dps": 17.65
   },
   {
     "type": 4,
     "power": 25,
     "charge": 5,
     "key": "MOVE_POISON_FANG",
-    "id": 68
+    "id": 68,
+    "dps": 10.42
   },
   {
     "type": 17,
     "power": 30,
     "charge": 4,
     "key": "MOVE_NIGHT_SLASH",
-    "id": 69
+    "id": 69,
+    "dps": 11.11
   },
   {
     "type": 11,
     "power": 30,
     "charge": 4,
     "key": "MOVE_BUBBLE_BEAM",
-    "id": 70
+    "id": 70,
+    "dps": 10.34
   },
   {
     "type": 2,
     "power": 30,
     "charge": 3,
     "key": "MOVE_SUBMISSION",
-    "id": 71
+    "id": 71,
+    "dps": 14.29
   },
   {
     "type": 2,
     "power": 30,
     "charge": 4,
     "key": "MOVE_LOW_SWEEP",
-    "id": 72
+    "id": 72,
+    "dps": 13.33
   },
   {
     "type": 11,
     "power": 25,
     "charge": 5,
     "key": "MOVE_AQUA_JET",
-    "id": 73
+    "id": 73,
+    "dps": 10.64
   },
   {
     "type": 11,
     "power": 45,
     "charge": 2,
     "key": "MOVE_AQUA_TAIL",
-    "id": 74
+    "id": 74,
+    "dps": 19.15
   },
   {
     "type": 12,
     "power": 40,
     "charge": 3,
     "key": "MOVE_SEED_BOMB",
-    "id": 75
+    "id": 75,
+    "dps": 16.67
   },
   {
     "type": 14,
     "power": 40,
     "charge": 3,
     "key": "MOVE_PSYSHOCK",
-    "id": 76
+    "id": 76,
+    "dps": 14.81
   },
   {
     "type": 6,
     "power": 35,
     "charge": 4,
     "key": "MOVE_ANCIENT_POWER",
-    "id": 77
+    "id": 77,
+    "dps": 9.72
   },
   {
     "type": 6,
     "power": 30,
     "charge": 4,
     "key": "MOVE_ROCK_TOMB",
-    "id": 78
+    "id": 78,
+    "dps": 8.82
   },
   {
     "type": 6,
     "power": 50,
     "charge": 3,
     "key": "MOVE_ROCK_SLIDE",
-    "id": 79
+    "id": 79,
+    "dps": 15.63
   },
   {
     "type": 6,
     "power": 40,
     "charge": 3,
     "key": "MOVE_POWER_GEM",
-    "id": 80
+    "id": 80,
+    "dps": 13.79
   },
   {
     "type": 8,
     "power": 15,
     "charge": 5,
     "key": "MOVE_SHADOW_SNEAK",
-    "id": 81
+    "id": 81,
+    "dps": 8.06
   },
   {
     "type": 8,
     "power": 20,
     "charge": 4,
     "key": "MOVE_SHADOW_PUNCH",
-    "id": 82
+    "id": 82,
+    "dps": 11.9
   },
   {
     "type": 8,
     "power": 30,
     "charge": 4,
     "key": "MOVE_OMINOUS_WIND",
-    "id": 83
+    "id": 83,
+    "dps": 9.68
   },
   {
     "type": 8,
     "power": 45,
     "charge": 3,
     "key": "MOVE_SHADOW_BALL",
-    "id": 84
+    "id": 84,
+    "dps": 14.61
   },
   {
     "type": 9,
     "power": 30,
     "charge": 4,
     "key": "MOVE_MAGNET_BOMB",
-    "id": 85
+    "id": 85,
+    "dps": 10.71
   },
   {
     "type": 9,
     "power": 30,
     "charge": 3,
     "key": "MOVE_IRON_HEAD",
-    "id": 86
+    "id": 86,
+    "dps": 15
   },
   {
     "type": 13,
     "power": 15,
     "charge": 5,
     "key": "MOVE_PARABOLIC_CHARGE",
-    "id": 87
+    "id": 87,
+    "dps": 11.9
   },
   {
     "type": 13,
     "power": 40,
     "charge": 3,
     "key": "MOVE_THUNDER_PUNCH",
-    "id": 88
+    "id": 88,
+    "dps": 16.67
   },
   {
     "type": 13,
     "power": 100,
     "charge": 1,
     "key": "MOVE_THUNDER",
-    "id": 89
+    "id": 89,
+    "dps": 23.26
   },
   {
     "type": 13,
     "power": 55,
     "charge": 2,
     "key": "MOVE_THUNDERBOLT",
-    "id": 90
+    "id": 90,
+    "dps": 20.37
   },
   {
     "type": 16,
     "power": 25,
     "charge": 5,
     "key": "MOVE_TWISTER",
-    "id": 91
+    "id": 91,
+    "dps": 9.26
   },
   {
     "type": 16,
     "power": 65,
     "charge": 2,
     "key": "MOVE_DRAGON_PULSE",
-    "id": 92
+    "id": 92,
+    "dps": 18.06
   },
   {
     "type": 16,
     "power": 35,
     "charge": 2,
     "key": "MOVE_DRAGON_CLAW",
-    "id": 93
+    "id": 93,
+    "dps": 23.33
   },
   {
     "type": 18,
     "power": 25,
     "charge": 5,
     "key": "MOVE_DISARMING_VOICE",
-    "id": 94
+    "id": 94,
+    "dps": 6.41
   },
   {
     "type": 18,
     "power": 25,
     "charge": 5,
     "key": "MOVE_DRAINING_KISS",
-    "id": 95
+    "id": 95,
+    "dps": 8.93
   },
   {
     "type": 18,
     "power": 55,
     "charge": 3,
     "key": "MOVE_DAZZLING_GLEAM",
-    "id": 96
+    "id": 96,
+    "dps": 13.1
   },
   {
     "type": 18,
     "power": 85,
     "charge": 1,
     "key": "MOVE_MOONBLAST",
-    "id": 97
+    "id": 97,
+    "dps": 20.73
   },
   {
     "type": 18,
     "power": 55,
     "charge": 2,
     "key": "MOVE_PLAY_ROUGH",
-    "id": 98
+    "id": 98,
+    "dps": 18.97
   },
   {
     "type": 4,
     "power": 25,
     "charge": 4,
     "key": "MOVE_CROSS_POISON",
-    "id": 99
+    "id": 99,
+    "dps": 16.67
   },
   {
     "type": 4,
     "power": 55,
     "charge": 2,
     "key": "MOVE_SLUDGE_BOMB",
-    "id": 100
+    "id": 100,
+    "dps": 21.15
   },
   {
     "type": 4,
     "power": 70,
     "charge": 1,
     "key": "MOVE_SLUDGE_WAVE",
-    "id": 101
+    "id": 101,
+    "dps": 20.59
   },
   {
     "type": 4,
     "power": 65,
     "charge": 1,
     "key": "MOVE_GUNK_SHOT",
-    "id": 102
+    "id": 102,
+    "dps": 21.67
   },
   {
     "type": 5,
     "power": 25,
     "charge": 4,
     "key": "MOVE_BONE_CLUB",
-    "id": 103
+    "id": 103,
+    "dps": 15.63
   },
   {
     "type": 5,
     "power": 35,
     "charge": 4,
     "key": "MOVE_BULLDOZE",
-    "id": 104
+    "id": 104,
+    "dps": 10.29
   },
   {
     "type": 5,
     "power": 30,
     "charge": 4,
     "key": "MOVE_MUD_BOMB",
-    "id": 105
+    "id": 105,
+    "dps": 11.54
   },
   {
     "type": 7,
     "power": 45,
     "charge": 3,
     "key": "MOVE_SIGNAL_BEAM",
-    "id": 106
+    "id": 106,
+    "dps": 14.52
   },
   {
     "type": 7,
     "power": 35,
     "charge": 3,
     "key": "MOVE_X_SCISSOR",
-    "id": 107
+    "id": 107,
+    "dps": 16.67
   },
   {
     "type": 10,
     "power": 25,
     "charge": 5,
     "key": "MOVE_FLAME_CHARGE",
-    "id": 108
+    "id": 108,
+    "dps": 8.06
   },
   {
     "type": 10,
     "power": 30,
     "charge": 4,
     "key": "MOVE_FLAME_BURST",
-    "id": 109
+    "id": 109,
+    "dps": 14.29
   },
   {
     "type": 10,
     "power": 100,
     "charge": 1,
     "key": "MOVE_FIRE_BLAST",
-    "id": 110
+    "id": 110,
+    "dps": 24.39
   },
   {
     "type": 11,
     "power": 25,
     "charge": 4,
     "key": "MOVE_BRINE",
-    "id": 111
+    "id": 111,
+    "dps": 10.42
   },
   {
     "type": 11,
     "power": 35,
     "charge": 4,
     "key": "MOVE_WATER_PULSE",
-    "id": 112
+    "id": 112,
+    "dps": 10.61
   },
   {
     "type": 11,
     "power": 55,
     "charge": 3,
     "key": "MOVE_SCALD",
-    "id": 113
+    "id": 113,
+    "dps": 12.5
   },
   {
     "type": 11,
     "power": 90,
     "charge": 1,
     "key": "MOVE_HYDRO_PUMP",
-    "id": 114
+    "id": 114,
+    "dps": 23.68
   },
   {
     "type": 14,
     "power": 55,
     "charge": 2,
     "key": "MOVE_PSYCHIC",
-    "id": 115
+    "id": 115,
+    "dps": 19.64
   },
   {
     "type": 14,
     "power": 70,
     "charge": 1,
     "key": "MOVE_PSYSTRIKE",
-    "id": 116
+    "id": 116,
+    "dps": 19.61
   },
   {
     "type": 15,
     "power": 25,
     "charge": 5,
     "key": "MOVE_ICY_WIND",
-    "id": 117
+    "id": 117,
+    "dps": 6.58
   },
   {
     "type": 12,
     "power": 35,
     "charge": 3,
     "key": "MOVE_GIGA_DRAIN",
-    "id": 118
+    "id": 118,
+    "dps": 13.89
   },
   {
     "type": 10,
     "power": 40,
     "charge": 3,
     "key": "MOVE_FIRE_PUNCH",
-    "id": 119
+    "id": 119,
+    "dps": 14.29
   },
   {
     "type": 12,
     "power": 120,
     "charge": 1,
     "key": "MOVE_SOLAR_BEAM",
-    "id": 120
+    "id": 120,
+    "dps": 24.49
   },
   {
     "type": 12,
     "power": 45,
     "charge": 2,
     "key": "MOVE_LEAF_BLADE",
-    "id": 121
+    "id": 121,
+    "dps": 19.64
   },
   {
     "type": 12,
     "power": 70,
     "charge": 1,
     "key": "MOVE_POWER_WHIP",
-    "id": 122
+    "id": 122,
+    "dps": 25
   },
   {
     "type": 3,
     "power": 30,
     "charge": 4,
     "key": "MOVE_AIR_CUTTER",
-    "id": 123
+    "id": 123,
+    "dps": 9.09
   },
   {
     "type": 3,
     "power": 80,
     "charge": 1,
     "key": "MOVE_HURRICANE",
-    "id": 124
+    "id": 124,
+    "dps": 25
   },
   {
     "type": 2,
     "power": 30,
     "charge": 3,
     "key": "MOVE_BRICK_BREAK",
-    "id": 125
+    "id": 125,
+    "dps": 18.75
   },
   {
     "type": 1,
     "power": 30,
     "charge": 4,
     "key": "MOVE_SWIFT",
-    "id": 126
+    "id": 126,
+    "dps": 10
   },
   {
     "type": 1,
     "power": 25,
     "charge": 4,
     "key": "MOVE_HORN_ATTACK",
-    "id": 127
+    "id": 127,
+    "dps": 11.36
   },
   {
     "type": 1,
     "power": 30,
     "charge": 4,
     "key": "MOVE_STOMP",
-    "id": 128
+    "id": 128,
+    "dps": 14.29
   },
   {
     "type": 1,
     "power": 35,
     "charge": 3,
     "key": "MOVE_HYPER_FANG",
-    "id": 129
+    "id": 129,
+    "dps": 16.67
   },
   {
     "type": 1,
     "power": 40,
     "charge": 2,
     "key": "MOVE_BODY_SLAM",
-    "id": 130
+    "id": 130,
+    "dps": 25.64
   },
   {
     "type": 1,
     "power": 35,
     "charge": 3,
     "key": "MOVE_REST",
-    "id": 131
+    "id": 131,
+    "dps": 16.13
   },
   {
     "type": 1,
     "power": 15,
     "charge": 5,
     "key": "MOVE_STRUGGLE",
-    "id": 132
+    "id": 132,
+    "dps": 8.85
   }
 ]

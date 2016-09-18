@@ -9,9 +9,9 @@ export default {
   },
 
   getCountersDataForPokemon(efficiencyThreshold, pokemon, otherPokemon){
-    const moves = _getMovesEfficiency(otherPokemon, pokemon, efficiencyThreshold);
+    const moves = _getEnoughEfficienMoves(otherPokemon, pokemon, efficiencyThreshold);
 
-    if (!moves.length) {
+    if (!moves) {
       return null;
     }
 
@@ -25,73 +25,96 @@ export default {
   }
 };
 
+/*
+ * Return the list of moves that are efficient enough for attackPokemon to
+ * win against defensePokemon.
+ * To do that we take the best moves against each pokemon, and "make them fight".
+ * We get two ratio:
+ *   - attackPokemon moves against defensePokemon - attackRatio
+ *   - defensePokemon moves against attackPokemon - defenseRatio
+ * We return the moves only if attackRatio / defenseRatio >= efficiencyThreshold
+ * @return {Array} moves or nothing
+ */
+function _getEnoughEfficienMoves(attackPokemon, defensePokemon, efficiencyThreshold) {
+  const bestMovesAttack = _getBestMoves(attackPokemon, defensePokemon);
+  const bestMovesDefense = _getBestMoves(defensePokemon, attackPokemon);
 
-// Return list of moves augmented with their efficiency where efficiency is attackEff / defenseEff
-// attackEff is efficiency of attackPokemon's move against defensePokemon type
-// defenseEff is efficiency of each defensePokemon moveS against attackPokemon type
-function _getMovesEfficiency(attackPokemon, defensePokemon, efficiencyThreshold) {
-  const attackPokemonMoves = attackPokemon.moves.quick.concat(attackPokemon.moves.charge);
-  const defensePokemonMoves = defensePokemon.moves.quick.concat(defensePokemon.moves.charge);
+  const totalAttack = bestMovesAttack.quick.efficiency + bestMovesAttack.special.efficiency;
+  const totalDefense = bestMovesDefense.quick.efficiency + bestMovesDefense.special.efficiency;
 
-  const efficientMoves = attackPokemonMoves
-    .map((move) => {
-      return _calculatePokemonEfficiency(
-        attackPokemon,
-        move,
-        defensePokemon,
-        defensePokemonMoves
-      );
-    })
-    .filter((move) => {
-      return move.efficiency >= efficiencyThreshold;
-    });
+  const efficiency = totalAttack / totalDefense;
 
-  // Among the moves, all are above the efficiency threshold but
-  // sometimes some are less efficient than other ones. We're only
-  // taking the most efficient
-  // eg: x1.45 and x1.8 are above x1.25, we want only x1.8 efficiency
-  const maxEfficiency = efficientMoves.reduce((state, move) =>
-    move.efficiency > state ? move.efficiency : state
-  , 0);
+  bestMovesAttack.quick.efficiency = efficiency;
+  bestMovesAttack.special.efficiency = efficiency;
 
-  return efficientMoves
-    .filter((move) => move.efficiency >= maxEfficiency);
+  if (efficiency >= efficiencyThreshold) {
+    return [].concat(bestMovesAttack.quick).concat(bestMovesAttack.special);
+  }
 }
 
-// Tell the type efficiency of one attack with one move against a defense Pokemon
-// Average is made against all possible defense pokemon moves as we never
-// know which move a defense pokemon has
-function _calculatePokemonEfficiency(attackPokemon, attackPokemonMove, defensePokemon, defensePokemonMoves) {
-  const attackEfficiency = _calculateMoveEfficiency(
-    attackPokemon,
-    attackPokemonMove,
-    defensePokemon.types
-  );
+/*
+ * Calculates the best moves from an attacker against a defenser
+ * Try all quick and special moves of attackPokemon against defensePokemon
+ * and return the best of each
+ * @param {Pokemon} attackPokemon – The attacker
+ * @param {Pokemon} defensePokemon – The defenser
+ * @return {Object} Best moves
+ */
+function _getBestMoves(attackPokemon, defensePokemon) {
+  const quickMoves = attackPokemon.moves.quick;
+  const specialMoves = attackPokemon.moves.charge;
 
-  // Efficiency of defense pokemon moves against attackPokemon
-  let index = 0; // Used to calculate average on the fly
-  const defenseEfficiency = defensePokemonMoves.reduce((state, defensePokemonMove) => {
-    const oldIndex = index++;
-    const currentMoveEfficiency = _calculateMoveEfficiency(
-      defensePokemon,
-      defensePokemonMove,
-      attackPokemon.types
+  let bestQuickMove;
+  quickMoves.reduce((state, move) => {
+    const moveEfficiency = _calculateMoveEfficiency(
+      attackPokemon,
+      move,
+      defensePokemon.types
     );
-    return (state * oldIndex + currentMoveEfficiency) / index;
-  }, 1);
 
-  return Object.assign({}, attackPokemonMove, {
-    efficiency: (attackEfficiency / defenseEfficiency).toFixed(3)
+    if (!bestQuickMove || bestQuickMove.efficiency < moveEfficiency) {
+      bestQuickMove = Object.assign({}, move, {
+        efficiency: moveEfficiency
+      });
+    }
+  }, quickMoves[0]);
+
+  let bestSpecialMove;
+  specialMoves.forEach((move) => {
+    const moveEfficiency = _calculateMoveEfficiency(
+      attackPokemon,
+      move,
+      defensePokemon.types
+    );
+
+    if (!bestSpecialMove || bestSpecialMove.efficiency < moveEfficiency) {
+      bestSpecialMove = Object.assign({}, move, {
+        efficiency: moveEfficiency
+      });
+    }
   });
+
+  return {
+    quick: bestQuickMove,
+    special: bestSpecialMove
+  }
 }
 
+/*
+ * Calculate the efficiency of a single move from an attacker to a defenser
+ * Takes in account STAB and weaknesses of defenser against this move
+ * @param {Pokemon} attackPokemon – Attacker. We could only need its types, just used for STAB
+ * @param {Move} attackMove – Move used for the attack
+ * @param {Array} defenseTypes – Types of the defenser pokemon
+ * @return {Number} efficiency multiplier for the move
+ */
 function _calculateMoveEfficiency(attackPokemon, attackMove, defenseTypes) {
   // Efficiency of attack pokemon move against defensePokemon
-  let attackEfficiency = 1;
+  let attackEfficiency = attackMove.dps;
 
   // STAB
   if (_isSTAB(attackMove, attackPokemon)) {
-    attackEfficiency *= 1.25;
+    attackEfficiency *= RATIO_EFFICIENT;
   }
 
   defenseTypes.forEach((defenseType) => {
@@ -105,16 +128,30 @@ function _calculateMoveEfficiency(attackPokemon, attackMove, defenseTypes) {
   return attackEfficiency;
 }
 
-
+/*
+ * Calculate whether type 1 is efficient against type 2
+ * @param {Type} type1
+ * @param {Type} type2
+ */
 function _isTypeEfficient(type1, type2) {
   return type1.damages.double.to.indexOf(type2.id) !== -1; // type1 does 1.25 damages on type2
 }
 
+/*
+ * Calculate whether type 1 is weak against type 2
+ * @param {Type} type1
+ * @param {Type} type2
+ */
 function _isTypeWeak(type1, type2) {
   return type1.damages.half.to.indexOf(type2.id) !== -1 || // type1 does 0.8 damages on type2
     type1.damages.no.to.indexOf(type2.id) !== -1; // no === half in PokeGo
 }
 
+/*
+ * Calculate whether the move is STAB or not
+ * @param {Move} move
+ * @param {Pokemon} pokemon
+ */
 function _isSTAB(move, pokemon) {
   return (pokemon.types.map(t => t.id).indexOf(move.type.id) !== -1);
 }
