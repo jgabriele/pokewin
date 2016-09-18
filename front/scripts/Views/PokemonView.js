@@ -24,8 +24,8 @@ PokemonView.prototype.prerender = function(pokemon) {
     </div>`);
 
   if (Utils.isMobileDevice()) {
-    domEl.addEventListener('touchstart', this.onTouchStart.bind(this));
-    domEl.addEventListener('touchend', () => this.onTouchEnd(pokemon));
+    domEl.addEventListener('touchstart', () => this.onTouchStart(pokemon));
+    domEl.addEventListener('touchend', (e) => this.onTouchEnd(pokemon, e));
   } else {
     domEl.addEventListener('click', () => this.onTouchEnd(pokemon));
   }
@@ -33,23 +33,33 @@ PokemonView.prototype.prerender = function(pokemon) {
   return domEl;
 }
 
-PokemonView.prototype.onTouchStart = function() {
-  this._touchStartTime = new Date();
+PokemonView.prototype.onTouchStart = function(pokemon) {
+  this._longSelectHandled = false;
+  // Start a timer to emit LONG_SELECT_POKEMON event after 500ms
+  this._startTimeoutId = setTimeout(() => {
+    this._longSelectHandled = true;
+    this.emit(ACTIONS.LONG_SELECT_POKEMON, pokemon);
+  }, 500);
 }
 
-PokemonView.prototype.onTouchEnd = function(pokemon) {
+PokemonView.prototype.onTouchEnd = function(pokemon, e) {
+  if (this._longSelectHandled) {
+    // To avoid triggering other stuff later
+    e.preventDefault();
+    return;
+  }
+
+  // Finally it was not a long select
+  clearTimeout(this._startTimeoutId);
+
   if (Utils.isDocumentScrolling()) {
     return;
   }
 
-  const diff = new Date() - this._touchStartTime;
+  this.emit(ACTIONS.SELECT_POKEMON, pokemon);
 
-  // More than 250ms is a long select
-  if (diff > 250) {
-    this.emit(ACTIONS.LONG_SELECT_POKEMON, pokemon);
-  } else {
-    this.emit(ACTIONS.SELECT_POKEMON, pokemon);
-  }
+  // To avoid triggering other stuff later
+  e.preventDefault();
 
 }
 

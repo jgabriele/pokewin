@@ -153,13 +153,14 @@ function _onPokemonSelected(pokemons, pokemon) {
 
 function _onPokemonLongSelected(pokemon) {
   const isFavourited = FavouritesModel.get(pokemon.id);
-  const title = 'What do you want to do?';
+  const pokemonName = LocaleManager.getInstance().translate(pokemon.key);
+  const title = `What do you want to do with ${pokemonName}?`;
   const choices = [
     {
       icon: 'star',
       title: isFavourited ? 'Remove from favourites' : 'Add to favourite',
       onClick: () => {
-        FavouritesModel[isFavourited ? 'remove' : 'add'](pokemon.id);
+        FavouritesModel.toggle(pokemon.id);
         ModalView.hide();
       }
     },
@@ -184,7 +185,6 @@ function _onPokemonLongSelected(pokemon) {
   setTimeout(() => {
     ModalView.render(message, {
       onOverlayBackground: () => {
-        console.log(arguments);
         ModalView.hide();
       }
     });
