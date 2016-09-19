@@ -23,12 +23,12 @@ PokemonView.prototype.prerender = function(pokemon) {
       </div>
     </div>`);
 
-  if (Utils.isMobileDevice()) {
-    domEl.addEventListener('touchstart', () => this.onTouchStart(pokemon));
-    domEl.addEventListener('touchend', (e) => this.onTouchEnd(pokemon, e));
-  } else {
-    domEl.addEventListener('click', () => this.onTouchEnd(pokemon));
-  }
+  // if (Utils.isMobileDevice()) {
+  //   domEl.addEventListener('touchstart', () => this.onTouchStart(pokemon));
+  //   domEl.addEventListener('touchend', (e) => this.onTouchEnd(pokemon, e));
+  // } else {
+    domEl.addEventListener('click', (e) => this.onTouchEnd(pokemon, e));
+  // }
 
   return domEl;
 }
