@@ -21,20 +21,7 @@
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimum-scale=1.0, width=device-width" />
   <meta name="format-detection" content="telephone=no">
   <meta name="fragment" content="!">
-</head>
-<body>
-
-  <div class="js-language-selector-wrapper"></div>
-
-  <h1 class="is-hidden" style="position: absolute; top: -1000px; left: -1000px;">
-    Poké Win
-  </h1>
-
-  <section class="loading-screen">
-
-    <div class="loading-message">
-      <p class="spinner">
-        <style type="text/css">
+  <style type="text/css">
           @-webkit-keyframes rotate-circle {
             0% {
               -webkit-transform:rotate(0deg);
@@ -94,6 +81,19 @@
             animation:rotate-circle .8s linear infinite
           }
         </style>
+</head>
+<body>
+
+  <div class="js-language-selector-wrapper"></div>
+
+  <h1 class="is-hidden" style="position: absolute; top: -1000px; left: -1000px;">
+    Poké Win
+  </h1>
+
+  <section class="loading-screen">
+
+    <div class="loading-message">
+      <p class="spinner">
         <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
          <path id="rotating-element-outer" fill="red" d="M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3
           c-8.4-21.3,2-45.4,23.3-53.8L31.6,3.5z">
@@ -157,15 +157,16 @@
         <div class="stats">
           <div class="cp">
             <div class="title">CP</div>
-            <div class="value">
-              <input class="js-cp-input" type="number" min=0 max=4000 value="2400" />
-            </div>
+            <span class="value js-cp-value">2000</span>
           </div>
           <div class="picture js-picture"></div>
           <div class="types js-types"></div>
         </div>
 
         <div class="counters">
+          <div class="level-selector">
+            <input class="level-selector__input js-level-range" type="range" min="1" max="4200" value="2000" />
+          </div>
           <h3 class="title title--normal" data-localisable-key="TEXT_CAN_BE_BEATEN_BY"></h3>
 
           <div class="beaten-by js-beaten-by"></div>

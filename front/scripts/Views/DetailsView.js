@@ -24,9 +24,10 @@ function DetailsView() {
     defensePokemonCP: INITIAL_DEFENSE_POKEMON_CP
   };
 
-  this._input = document.querySelector('.js-cp-input');
+  this._input = document.querySelector('.js-level-range');
   this._input.addEventListener('input', this.onInputUpdate.bind(this));
-  this._input.value = this._state.defensePokemonCP;
+
+  this._level = document.querySelector('.js-cp-value');
 
   this._name = document.querySelector('.overlay__data .js-name');
   this._picture = document.querySelector('.overlay__data .js-picture');
@@ -97,6 +98,7 @@ DetailsView.prototype.renderCounters = function(counters, isLoading) {
 
 DetailsView.prototype.onInputUpdate = function(e) {
   this._state.defensePokemonCP = e.target.value;
+  this._level.innerText = e.target.value;
   this.recomputeCounters();
 }
 
