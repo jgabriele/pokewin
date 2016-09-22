@@ -11,7 +11,8 @@ LocaleManager.prototype.getLanguages = function() {
     { name: 'ES', code: 'es' },
     { name: 'IT', code: 'it' },
     { name: 'JP', code: 'jp' },
-    { name: 'KO', code: 'ko' }
+    { name: 'KO', code: 'ko' },
+    { name: 'PO', code: 'po' }
   ];
 }
 

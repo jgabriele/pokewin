@@ -6,7 +6,8 @@
     "jp": "Poké Win",
     "ko": "Poké Win",
     "it": "Poké Win",
-    "es": "Poké Win"
+    "es": "Poké Win",
+    "po": "Poké Win"
   },
   "TEXT_APP_SUBTITLE": {
     "de": "Arena-Konter",
@@ -15,16 +16,18 @@
     "jp": "Master of Gyms",
     "ko": "Master of Gyms",
     "it": "Master of Gyms",
-    "es": "Master of Gyms"
+    "es": "Master of Gyms",
+    "po": "Mestre dos Ginásios"
   },
   "TEXT_MOST_SEEN": {
-    "de": "Beste Verteidiger",
+    "de": "Die besten Verteidiger",
     "en": "Top tiers",
     "fr": "Les plus rencontrés",
     "jp": "Top tiers",
     "ko": "Top tiers",
     "it": "I migliori",
-    "es": "Los mejores"
+    "es": "Los mejores",
+    "po": "Os melhores"
   },
   "TEXT_BIT_LESS_SEEN": {
     "de": "Etwas schwächer",
@@ -33,7 +36,8 @@
     "jp": "A bit less poweful",
     "ko": "A bit less poweful",
     "it": "Un po' meno potente",
-    "es": "Algo menos poderosos"
+    "es": "Algo menos poderosos",
+    "po": "Um pouco mesmo poderosos"
   },
   "TEXT_OTHER": {
     "de": "Restlicher Müll",
@@ -42,7 +46,8 @@
     "jp": "Other sh*ts",
     "ko": "Other sh*ts",
     "it": "Varie ed eventuali",
-    "es": "Otros"
+    "es": "Otros",
+    "po": "Outros"
   },
   "TEXT_CAN_BE_BEATEN_BY": {
     "de": "Kann besiegt werden durch",
@@ -51,7 +56,8 @@
     "jp": "Can be beaten by",
     "ko": "Can be beaten by",
     "it": "Viene battuto da",
-    "es": "Pueden ser derrotados por"
+    "es": "Pueden ser derrotados por",
+    "po": "Podem ser derrotados por"
   },
   "TEXT_INTRO_1": {
     "de": "In einem Arenakampf erhöhen sich deine Siegeschancen um 60%, wenn du ein Pokémon mit seinem Konter bekämpfst.",
@@ -60,7 +66,8 @@
     "jp": "In a gym battle, fighting a pokémon with its counter type will increase your victory chances by 60%.",
     "ko": "In a gym battle, fighting a pokémon with its counter type will increase your victory chances by 60%.",
     "it": "Combattendo contro un pokemon con il suo tipo opposto, la tua possibilità di vittoria aumenta del 60%.",
-    "es": "En una batalla de gimnasio, luchar contra un pokemon usando uno de tipo contrario incrementará tus posiblidades de victoria en un 60%."
+    "es": "En una batalla de gimnasio, luchar contra un pokemon usando uno de tipo contrario incrementará tus posiblidades de victoria en un 60%.",
+    "po": "Em uma batalha de ginásio, lutar contra um pokémon usando o tipo contrário pode aumentar suas chances de vitória em 60%."
   },
   "TEXT_INTRO_2": {
     "de": "In dieser App wirst du herausfinden, wie man Pokémon kontert, um Arenakämpfe leichter zu gewinnen!",
@@ -69,7 +76,8 @@
     "jp": "On this app you will find how to counter a pokémon so you can win gym battle easier!",
     "ko": "On this app you will find how to counter a pokémon so you can win gym battle easier!",
     "it": "In questa app troverai come combattere contro un pokemon in modo da vincere più facilmente i combattimenti in palestra!",
-    "es": "En esta app encotnrarás como contrarestar pokemons, de manera que podrás ganar batallas de gimnasio más fácilmente!"
+    "es": "En esta app encotnrarás como contrarestar pokemons, de manera que podrás ganar batallas de gimnasio más fácilmente!",
+    "po": "Neste app você encontrará maneiras de contra-atacar um pokémon que tornarão suas vitórias mais fáceis!"
   },
   "TEXT_INTRO_3": {
     "de": "Wähle ein Pokémon in der nachfolgenden Liste, um zu sehen, welches Pokémon es kontert.",
@@ -77,8 +85,9 @@
     "fr": "Choisis un pokémon dans la liste ci-dessous pour savoir comment le contrer.",
     "jp": "Select a pokémon in the below list to see which pokémon counters it.",
     "ko": "Select a pokémon in the below list to see which pokémon counters it.",
-    "it": "Select a pokémon in the below list to see which pokémon counters it.",
-    "es": "Seleziona un pokemon dalla lista per scoprire i suoi antagonisti migliori."
+    "it": "Seleziona un pokemon dalla lista per scoprire i suoi antagonisti migliori.",
+    "es": "Select a pokémon in the below list to see which pokémon counters it.",
+    "po": "Selecione um pokémon da lista para encontrar qual pokémon tem vantagem contra ele."
   },
   "TEXT_FOOTER": {
     "de": "Irgendwelche Vorschläge? Sende eine Mail an <strong>shyrion[at]pokewin.win</strong>",
@@ -87,27 +96,34 @@
     "jp": "Any suggestion? Send a mail to <strong>shyrion[at]pokewin.win</strong>",
     "ko": "Any suggestion? Send a mail to <strong>shyrion[at]pokewin.win</strong>",
     "it": "Hai Suggerimenti? Scrivimi a <strong>shyrion[at]pokewin.win</strong>",
-    "es": "Alguna sugerencia? Envía un correo electrónico a <strong>shyrion[at]pokewin.win</strong>"
+    "es": "Alguna sugerencia? Envía un correo electrónico a <strong>shyrion[at]pokewin.win</strong>",
+    "po": "Alguma sugestão? Envie um email para <strong>shyrion[at]pokewin.win</strong>"
   },
   "TEXT_FOOTER_2": {
     "de": "Besonderer Dank an <a target='_blank' href='http://reddit.com/u/ClintRasiert'>ClintRasiert</a> für die deutsche Übersetzung",
     "en": "",
     "it": "Un ringraziamento speciale ad <a target='_blank' href='https://twitter.com/unlucio'>unLucio</a> per la traduzione in Italiano.",
-    "es": "Especiales agradecimientos a <a target='_blank' href='https://twitter.com/rafayepes'>Rafa Yepes</a> por la traducción al Español."
+    "es": "Especiales agradecimientos a <a target='_blank' href='https://twitter.com/rafayepes'>Rafa Yepes</a> por la traducción al Español.",
+    "po": "Agradecimento especial para <a href='https://www.facebook.com/matheus.albuquerque.391'>Matheus Albuquerque de Saturno</a> por traduzir para Português."
   },
   "TEXT_LOADING_MODAL_FACEBOOK_TITLE": {
+    "de": "Hallo mein Freund!",
     "en": "Hello, you!",
-    "fr": "Salut, toi!"
+    "fr": "Salut, toi!",
+    "po": "Olá!"
   },
   "TEXT_LOADING_MODAL_FACEBOOK_TEXT": {
+    "de": "Wußtest du schon dass Pokéwin eine Facebookseite hat? Es würde mich freuen, wenn du meine Arbeit mit einem gefällt mir unterstützt. Dadurch wirst du nicht nur nie neusten Infos zu Pokéwin erhalten, sondern kannst schnell und einfach deine persönlichern Anregungen, Verbesserungsvorschläge und Fragen stellen.",
     "en": "<p>Did you know that Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>had a Facebook page</a>?</p><p>I'll be happy if you dropped a like there! You will be able to get latest news about the future of Pokéwin!</p><p><strong>And bonus:</strong> it's the esiest way to propose suggestion and contact the Pokéwin developer.</p><p>Thanks for your support!</p>",
     "fr": "<p>Tu savais que Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>avait sa propre page Facebook</a> ?</p><p>Tu pourras y trouver toutes les dernières nouveautés sur Pokéwin et l'avancement du développement!</p><p><strong>Et bonus:</strong> c'est le meilleur endroit pour proposer des suggestions et contacter le développeur!</p><p>Allez, viens on est bien!</p>"
   },
   "TEXT_LOADING_MODAL_FACEBOOK_OK_TEXT": {
+    "de": "OK!",
     "en": "Thanks for the tip!",
     "fr": "Merci du conseil !"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_ROTATION_TITLE": {
+    "de": "Was gibt es neues auf Pokéwin?",
     "en": "What's new on Pokéwin?",
     "fr": "Quoi d'neuf sur Pokéwin ?"
   },
@@ -116,6 +132,7 @@
     "fr": "<ul><li><h3>Messages d'accueil</h3>Tu ne rateras plus jamais une seule fonctionnalité de Pokéwin!</li><li><h3>Rotations des attaques</h3>Pour chaque contre, on affiche désormais toutes les attaques qui sont efficaces. Elles permuttent toutes les 4 secondes.</li><li><h3>Stabilité et résolution de bugs</h3>La qualité de l'application a été améliorée pour rendre Pokéwin encore plus rapide!</li></ul>"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_ROTATION_OK_TEXT": {
+    "de": "OK!",
     "en": "Nice job!",
     "fr": "Bravo le veau !"
   },
