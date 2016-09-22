@@ -26,7 +26,7 @@ function DetailsView() {
   };
 
   this._input = document.querySelector('.js-level-range');
-  this._input.addEventListener('input', this.onInputUpdate.bind(this));
+  this._input.addEventListener('change', this.onInputUpdate.bind(this));
 
   this._level = document.querySelector('.js-cp-value');
 
