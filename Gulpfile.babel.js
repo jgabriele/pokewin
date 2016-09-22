@@ -69,7 +69,7 @@ function buildJS() {
     .pipe(md5(10, `${BUILD_DIR}*.html`))
 
     .pipe(sourcemaps.init({loadMaps: true}))
-       .pipe(uglify())
+       // .pipe(uglify())
     .pipe(sourcemaps.write('./'))
 
     .pipe(gulp.dest(BUILD_DIR));
