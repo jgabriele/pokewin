@@ -15,6 +15,7 @@ const ACTIONS = {
 }
 
 const INITIAL_DEFENSE_POKEMON_CP = 2000;
+const INPUT_RANGE_STEP = 10;
 
 function DetailsView() {
   this.EVENTS = EVENTS;
@@ -40,15 +41,9 @@ function DetailsView() {
 DetailsView.prototype = Object.create(Event.prototype);
 
 DetailsView.prototype.render = function(data) {
+
   const pokemon = data.pokemon;
   this._state.counters = data.counters;
-
-  const counters = this._state.counters
-    // Filter out pokemons that cannot have enough CP
-    .filter(highCPMaxFilter.bind(this, this._state.defensePokemonCP))
-    .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
-    .sort((item1, item2) => item1.cp - item2.cp);
-
 
   const typesHTML = pokemon.types
             .map((type) => `
@@ -67,14 +62,34 @@ DetailsView.prototype.render = function(data) {
   this._picture.innerHTML = imageHTML;
   this._types.innerHTML = typesHTML;
 
-  this.renderCounters(counters, data.isLoading);
+  this._input.max = data.pokemon.cpMax / INPUT_RANGE_STEP;
+  this.onInputUpdate({ target: this._input });
+
+  this.renderCounters(data.isLoading);
 }
 
-DetailsView.prototype.renderCounters = function(counters, isLoading) {
-  const counterViewsAndData = counters
+DetailsView.prototype.renderCounters = function(isLoading) {
+  const counterViewsAndData = this._state.counters
+
+    // Filter out pokemons that cannot have enough CP
+    .filter(highCPMaxFilter.bind(this, this._state.defensePokemonCP))
+
+    // Convert data to view data
+    .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
+
+    // Sort them
+    .sort((item1, item2) => {
+      if (item1.cp !== item2.cp) {
+        return item1.cp - item2.cp;
+      } else {
+        return Number(item1.id) - Number(item2.id)
+      }
+    })
     // .map((counterData) => Object.assign({}, counterData, {
     //   isFavourite: FavouritesModel.get(counterData.id)
     // }))
+
+    // Create CounterView for each element
     .map((counterData) => {
       const counterView = new CounterView()
         .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon));
@@ -97,8 +112,8 @@ DetailsView.prototype.renderCounters = function(counters, isLoading) {
 }
 
 DetailsView.prototype.onInputUpdate = function(e) {
-  this._state.defensePokemonCP = e.target.value;
-  this._level.innerText = e.target.value;
+  const value = e.target.value * INPUT_RANGE_STEP;
+  this._state.defensePokemonCP = this._level.innerText = value;
   this.recomputeCounters();
 }
 
@@ -109,7 +124,7 @@ DetailsView.prototype.recomputeCounters = function() {
     .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
     .sort((item1, item2) => item1.cp - item2.cp);
 
-  this.renderCounters(counters);
+  this.renderCounters();
 }
 
 DetailsView.prototype.onClose = function() {
