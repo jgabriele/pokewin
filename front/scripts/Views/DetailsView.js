@@ -114,16 +114,6 @@ DetailsView.prototype.renderCounters = function(isLoading) {
 DetailsView.prototype.onInputUpdate = function(e) {
   const value = e.target.value * INPUT_RANGE_STEP;
   this._state.defensePokemonCP = this._level.innerText = value;
-  this.recomputeCounters();
-}
-
-DetailsView.prototype.recomputeCounters = function() {
-  const newValue = this._state.defensePokemonCP;
-  const counters = this._state.counters
-    .filter(highCPMaxFilter.bind(this, newValue))
-    .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
-    .sort((item1, item2) => item1.cp - item2.cp);
-
   this.renderCounters();
 }
 
