@@ -39,40 +39,53 @@ html {
   }
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+input[type=number] {
+
+  .is-mobile & {
+    display: none;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 input[type=range]{
-    -webkit-appearance: none;
-}
+  display: none;
 
-input[type=range]::-webkit-slider-runnable-track {
+  .is-mobile & {
+    display: initial;
+  }
+
+  -webkit-appearance: none;
+
+  &::-webkit-slider-runnable-track {
     width: 300px;
     height: 5px;
     background: #ddd;
     border: none;
     border-radius: 3px;
-}
+  }
 
-input[type=range]::-webkit-slider-thumb {
+  &::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
-    height: 26px;
-    width: 26px;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
     background: #197979;
-    margin-top: -10px;
-}
+    margin-top: -14px;
+  }
 
-input[type=range]:focus {
+  &:focus {
     outline: none;
-}
 
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #ccc;
+    &::-webkit-slider-runnable-track {
+      background: #ccc;
+    }
+  }
 }
 
 
@@ -220,8 +233,15 @@ a {
   }
 }
 
-.level-selector__input {
-  width: 90%;
+.level-selector {
+
+  .is-mobile & {
+    margin: 10px 0px;
+  }
+
+  .level-selector__input {
+    width: 90%;
+  }
 }
 
 .pokedex {
@@ -609,20 +629,33 @@ h3.title {
           @include flex(1);
           text-align: center;
 
-          .value {
+          .cp__value {
 
-            input {
-              box-sizing: border-box;
-              border: none;
-              border-bottom: 1px solid black;
-
-              font-family: Helvetica, 'Segoe UI', Roboto, Arial;
-              font-size: 16px;
-              text-align: center;
-
-              padding-bottom: 4px;
-              width: 70px;
+            &.cp__value-text {
+              display: none;
+              border-bottom: none;
+              .is-mobile & {
+                display: initial;
+              }
             }
+
+            &.cp__value-input {
+              display: initial;
+              .is-mobile & {
+                display: none;
+              }
+            }
+
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 1px solid black;
+
+            font-family: Helvetica, 'Segoe UI', Roboto, Arial;
+            font-size: 16px;
+            text-align: center;
+
+            padding-bottom: 4px;
+            width: 70px;
           }
         }
         .picture {

@@ -157,7 +157,8 @@
         <div class="stats">
           <div class="cp">
             <div class="title">CP</div>
-            <span class="value js-cp-value">2000</span>
+            <input class="cp__value cp__value-input js-level-text" type="number" min="1" max="4200" value="2000" />
+            <span class="cp__value cp__value-text js-cp-value">2000</span>
           </div>
           <div class="picture js-picture"></div>
           <div class="types js-types"></div>
@@ -165,6 +166,7 @@
 
         <div class="counters">
           <div class="level-selector">
+            <div class="js-input-mobile"></div>
             <input class="level-selector__input js-level-range" type="range" min="1" max="4200" value="2000" />
           </div>
           <h3 class="title title--normal" data-localisable-key="TEXT_CAN_BE_BEATEN_BY"></h3>

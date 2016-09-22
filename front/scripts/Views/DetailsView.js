@@ -15,7 +15,7 @@ const ACTIONS = {
 }
 
 const INITIAL_DEFENSE_POKEMON_CP = 2000;
-const INPUT_RANGE_STEP = 10;
+const INPUT_RANGE_STEP = Utils.isMobileDevice() && 10 || 1;
 
 function DetailsView() {
   this.EVENTS = EVENTS;
@@ -25,9 +25,14 @@ function DetailsView() {
     defensePokemonCP: INITIAL_DEFENSE_POKEMON_CP
   };
 
-  this._input = document.querySelector('.js-level-range');
-  this._input.addEventListener('input', this.onInputUpdate.bind(this));
-  this._input.addEventListener('change', this.onInputRelease.bind(this));
+  if (Utils.isMobileDevice()) {
+    this._input = document.querySelector('.js-level-range');
+    this._input.addEventListener('input', this.onInputUpdate.bind(this));
+    this._input.addEventListener('change', this.onInputRelease.bind(this));
+  } else {
+    this._input = document.querySelector('.js-level-text');
+    this._input.addEventListener('input', (e) => { this.onInputUpdate(e); this.onInputRelease(e) });
+  }
 
   this._level = document.querySelector('.js-cp-value');
 

@@ -214,6 +214,10 @@ let pokemons = null, types = null, moves = null, dictionary = null;
 let pokemonsFull;
 let isLoading = true;
 
+if (Utils.isMobileDevice()) {
+  document.querySelector('body').classList.add('is-mobile');
+}
+
 function _startup () {
   const preloader = new Preloader()
     .on(Preloader.EVENTS.PROGRESS, _setProgress);
