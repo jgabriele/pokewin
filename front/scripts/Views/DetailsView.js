@@ -26,7 +26,8 @@ function DetailsView() {
   };
 
   this._input = document.querySelector('.js-level-range');
-  this._input.addEventListener('change', this.onInputUpdate.bind(this));
+  this._input.addEventListener('input', this.onInputUpdate.bind(this));
+  this._input.addEventListener('change', this.onInputRelease.bind(this));
 
   this._level = document.querySelector('.js-cp-value');
 
@@ -114,6 +115,9 @@ DetailsView.prototype.renderCounters = function(isLoading) {
 DetailsView.prototype.onInputUpdate = function(e) {
   const value = e.target.value * INPUT_RANGE_STEP;
   this._state.defensePokemonCP = this._level.innerText = value;
+}
+
+DetailsView.prototype.onInputRelease = function(e) {
   this.renderCounters();
 }
 
