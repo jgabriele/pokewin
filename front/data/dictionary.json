@@ -115,17 +115,20 @@
   "TEXT_LOADING_MODAL_FACEBOOK_TEXT": {
     "de": "Wußtest du schon dass Pokéwin eine Facebookseite hat? Es würde mich freuen, wenn du meine Arbeit mit einem gefällt mir unterstützt. Dadurch wirst du nicht nur nie neusten Infos zu Pokéwin erhalten, sondern kannst schnell und einfach deine persönlichern Anregungen, Verbesserungsvorschläge und Fragen stellen.",
     "en": "<p>Did you know that Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>had a Facebook page</a>?</p><p>I'll be happy if you dropped a like there! You will be able to get latest news about the future of Pokéwin!</p><p><strong>And bonus:</strong> it's the esiest way to propose suggestion and contact the Pokéwin developer.</p><p>Thanks for your support!</p>",
-    "fr": "<p>Tu savais que Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>avait sa propre page Facebook</a> ?</p><p>Tu pourras y trouver toutes les dernières nouveautés sur Pokéwin et l'avancement du développement!</p><p><strong>Et bonus:</strong> c'est le meilleur endroit pour proposer des suggestions et contacter le développeur!</p><p>Allez, viens on est bien!</p>"
+    "fr": "<p>Tu savais que Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>avait sa propre page Facebook</a> ?</p><p>Tu pourras y trouver toutes les dernières nouveautés sur Pokéwin et l'avancement du développement!</p><p><strong>Et bonus:</strong> c'est le meilleur endroit pour proposer des suggestions et contacter le développeur!</p><p>Allez, viens on est bien!</p>",
+    "po": "<p>Você sabia que Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>tem uma página no Facebook</a>?</p><p>Ficaríamos felizes se você curtisse! Você também receberá as últimas notícias sobre as próximas atualizações de Pokéwin!</p><p><strong>E mais:</strong> Essa é a maneira mais fácil de enviar sugestões para o desenvolvedor.</p><p>Obrigado pelo apoio!</p>"
   },
   "TEXT_LOADING_MODAL_FACEBOOK_OK_TEXT": {
     "de": "OK!",
     "en": "Thanks for the tip!",
-    "fr": "Merci du conseil !"
+    "fr": "Merci du conseil !",
+    "po": "Obrigado pela dica!"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_ROTATION_TITLE": {
     "de": "Was gibt es neues auf Pokéwin?",
     "en": "What's new on Pokéwin?",
-    "fr": "Quoi d'neuf sur Pokéwin ?"
+    "fr": "Quoi d'neuf sur Pokéwin ?",
+    "po": "O que há de novo no Pokéwin?"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_ROTATION_TEXT": {
     "en": "<ul><li><h3>Loading messages</h3>You'll never miss a single feature of Pokéwin!</li><li><h3>Counters move rotation</h3>All efficient moves are shown for each counter. They rotate every 4 seconds.</li><li><h3>Stability and bug fixes</h3>Memory leaks and code quality has been improved to make Pokéwin even faster!</li></ul>",
@@ -134,19 +137,22 @@
   "TEXT_LOADING_MODAL_WHATS_NEW_ROTATION_OK_TEXT": {
     "de": "OK!",
     "en": "Nice job!",
-    "fr": "Bravo le veau !"
+    "fr": "Bravo le veau !",
+    "po": "Bom trabalho!"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_DPS_TITLE": {
     "en": "What's new on Pokéwin?",
-    "fr": "Quoi d'neuf sur Pokéwin ?"
+    "fr": "Quoi d'neuf sur Pokéwin ?",
+    "po": "O que há de novo no Pokéwin?"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_DPS_TEXT": {
-    "en": "<ul><li><h3>Move DPS taken in account</h3>You've been all waiting for it, now it's here! Pokéwin now <strong>takes the move dps</strong> in account while calculating the best counter to win the gym.<br/>This means the counters are <strong>even more precise than ever!</strong></li><li><h3>More moves displayed</h3>We now display two moves below each counter: the <strong>best quick move</strong> along with the <strong>best special move</strong> for the pokemon.</li></ul>Thank you for your support, you're more than 6000 to use Pokéwin everyday!",
-    "fr": "<ul><li><h3>Pokéwin plus précis</h3>Vous attendiez tous ça, et maintenant ça y est ! Pokéwin <strong>prend en compte les dégâts des attaques</strong> lors du calcul des meilleurs contres.<br/>En gros, ça veut dire que les contres sont <strong>plus justes que jamais</strong>!</li><li><h3>Plus d'attaques affichées</h3>Les deux meilleures attaques sont affichées pour chaque contre: la <strong>meilleure attaque rapide</strong> ainsi que la <strong>meilleure attaque spéciale</strong>.</li></ul>Merci pour votre soutien, vous êtes plus de 6000 à utiliser Pokéwin chaque jour!"
+    "en": "<ul><li><h3>Move DPS taken in account</h3>You've been all waiting for it, now it's here! Pokéwin now <strong>takes the move dps</strong> in account while calculating the best counter to win the gym.<br/>This means the counters are <strong>even more precise than ever!</strong></li><li><h3>More moves displayed</h3>We now display two moves below each counter: the <strong>best quick move</strong> along with the <strong>best special move</strong> for the pokemon.</li></ul>Thank you for your support, you're more than 4000 to use Pokéwin everyday!",
+    "fr": "<ul><li><h3>Pokéwin plus précis</h3>Vous attendiez tous ça, et maintenant ça y est ! Pokéwin <strong>prend en compte les dégâts des attaques</strong> lors du calcul des meilleurs contres.<br/>En gros, ça veut dire que les contres sont <strong>plus justes que jamais</strong>!</li><li><h3>Plus d'attaques affichées</h3>Les deux meilleures attaques sont affichées pour chaque contre: la <strong>meilleure attaque rapide</strong> ainsi que la <strong>meilleure attaque spéciale</strong>.</li></ul>Merci pour votre soutien, vous êtes plus de 4000 à utiliser Pokéwin chaque jour!"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_DPS_OK_TEXT": {
     "en": "Finally!",
-    "fr": "C'est pas trop tôt !"
+    "fr": "C'est pas trop tôt !",
+    "po": "Bom trabalho!"
   },
   "POKE_001": {
     "de": "Bisasam",
