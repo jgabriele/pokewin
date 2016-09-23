@@ -11,6 +11,7 @@ import DetailsView          from './scripts/Views/DetailsView';
 import LanguageSelectView   from './scripts/Views/LanguageSelectView';
 import ModalView            from './scripts/Views/ModalView';
 import MultipleChoices      from './scripts/Views/Modal/MultipleChoices';
+import FloatingButton       from './scripts/Views/FloatingButton';
 
 import LoadingModal from './scripts/Controllers/LoadingModal';
 
@@ -70,6 +71,11 @@ function _augmentPokemonsData(pokemons) {
       }
     });
 }
+
+//------------------
+
+const fb = new FloatingButton(document.querySelector('.js-floating-button-wrapper'));
+fb.render();
 
 //------------------
 
