@@ -14,7 +14,8 @@ import MultipleChoices      from './scripts/Views/Modal/MultipleChoices';
 import FloatingButton       from './scripts/Views/FloatingButton';
 import Menu                 from './scripts/Views/Menu';
 
-import LoadingModal from './scripts/Controllers/LoadingModal';
+import LoadingModal       from './scripts/Controllers/LoadingModal';
+import MainFloatingButton from './scripts/Controllers/MainFloatingButton';
 
 import FavouritesModel from './scripts/Models/Favourites';
 
@@ -75,13 +76,23 @@ function _augmentPokemonsData(pokemons) {
 
 //------------------
 
+
 const menu = new Menu()
   .on(Menu.EVENTS.FAVOURITES, console.log);
 
-const fb = new FloatingButton(document.querySelector('.js-floating-button-wrapper'))
-  .on(FloatingButton.EVENTS.CLICK, () => menu.render())
-  .render();
-
+MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'));
+MainFloatingButton.addState('BASE', {
+  action: () => {
+    menu.update();
+    setTimeout(() => menu.show(), 0);
+  },
+  nextState: 'MENU'
+});
+MainFloatingButton.addState('MENU', {
+  action: () => menu.hide(),
+  nextState: 'BASE'
+});
+MainFloatingButton.setState('BASE');
 
 //------------------
 

@@ -24,7 +24,27 @@ function Menu() {}
 Menu.prototype = Object.create(Event.prototype);
 
 Menu.prototype.render = function () {
-  const menuButtons = buttons.map((button) => {
+  this.createButtonsEl();
+
+  const el = Utils.DOMElementFromString('<div class="menu"></div>');
+
+  this._buttonsEl.forEach((button) => {
+    el.appendChild(button);
+  });
+
+  this._el = el;
+
+  document.querySelector('body').appendChild(el);
+
+  return this;
+}
+
+Menu.prototype.createButtonsEl = function () {
+  if (this._buttonsEl) {
+    return this._buttonsEl;
+  }
+
+  this._buttonsEl = buttons.map((button) => {
     const el = Utils.DOMElementFromString(
       `<div class="button">
         <div class="button__icon"></div>
@@ -32,36 +52,69 @@ Menu.prototype.render = function () {
       </div>`
     );
 
+    // Will be triggered for each transition end, show or hide
+    el.addEventListener('transitionend', (e) => {
+      if (this._isOpened) {
+        // We finish by animating the text, if that's the case we don't care
+        if (e.target !== el.querySelector('.button__text')) {
+          showButton(el);
+        }
+      } else {
+        // We start by animating the text, if that's the case we care
+        if (e.target === el.querySelector('.button__text')) {
+          hideButton(el);
+        } else {
+          this._el.classList.add('is-closed');
+        }
+      }
+    });
+
     el.addEventListener('click', this.emit.bind(this, button.event));
 
-    setTimeout(() => {
-      el.style.transform = button.transform;
-      el.style.transitionDelay = button.transitionDelay;
-      el.addEventListener('transitionend', function () {
-        const buttonTextEl = el.querySelector('.button__text');
-        const buttonOverflowWidth = buttonTextEl.offsetWidth - el.offsetWidth;
-        const left = Math.round(-1 * buttonOverflowWidth / 2);
-        buttonTextEl.style.left = `${left}px`;
-        buttonTextEl.classList.remove('is-hidden');
-      });
-    }, 50);
+    el.data = button;
+
     return el;
   });
+}
 
-  const el = Utils.DOMElementFromString(
-    `<div class="menu">
-    </div>`
-  );
+Menu.prototype.update = function () {
+  if (!this._el) {
+    this.render();
+  }
+}
 
-  menuButtons.forEach((button) => {
-    el.appendChild(button);
-  })
+Menu.prototype.show = function () {
+  this._isOpened = true;
 
-  document.querySelector('body').appendChild(el);
+  this._buttonsEl.forEach((buttonEl) => {
+    buttonEl.style.transform = buttonEl.data.transform;
+    buttonEl.style.transitionDelay = buttonEl.data.transitionDelay;
+  });
 
-  setTimeout(() => { el.classList.add('is-visible') }, 0);
+  this._el.classList.add('is-visible');
+  this._el.classList.remove('is-closed');
+}
 
-  return this;
+Menu.prototype.hide = function () {
+  this._isOpened = false;
+
+  this._buttonsEl.forEach((buttonEl) => {
+    const buttonTextEl = buttonEl.querySelector('.button__text');
+    buttonTextEl.classList.add('is-hidden');
+  });
+}
+
+function showButton (buttonEl) {
+  const buttonTextEl = buttonEl.querySelector('.button__text');
+  const buttonOverflowWidth = buttonTextEl.offsetWidth - buttonEl.offsetWidth;
+  const left = Math.round(-1 * buttonOverflowWidth / 2);
+  buttonTextEl.style.left = `${left}px`;
+  buttonTextEl.classList.remove('is-hidden');
+}
+
+function hideButton (buttonEl) {
+  buttonEl.style.transform = '';
+  buttonEl.style.transitionDelay = buttonEl.data.transitionDelay;
 }
 
 Menu.EVENTS = EVENTS;
