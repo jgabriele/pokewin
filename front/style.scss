@@ -634,6 +634,17 @@ h3.title {
     align-self: center;
     text-align: center;
 
+    // Same as counters. TODO refactor
+    .overlay__container {
+      background: white;
+      border: 2px solid black;
+      border-radius: 5px 5px 0px 0px;
+      box-sizing: border-box;
+
+      margin: auto;
+      width: 96%;
+    }
+
     .favourite {
       background: white;
 

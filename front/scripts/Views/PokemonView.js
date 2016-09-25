@@ -3,8 +3,7 @@ import Event          from 'events';
 import LocaleManager  from '../LocaleManager';
 
 const ACTIONS = {
-  SELECT_POKEMON: 'select-pokemon',
-  LONG_SELECT_POKEMON: 'long-select-pokemon'
+  SELECT_POKEMON: 'select-pokemon'
 }
 
 function PokemonView() {}
@@ -23,44 +22,13 @@ PokemonView.prototype.prerender = function(pokemon) {
       </div>
     </div>`);
 
-  // if (Utils.isMobileDevice()) {
-  //   domEl.addEventListener('touchstart', () => this.onTouchStart(pokemon));
-  //   domEl.addEventListener('touchend', (e) => this.onTouchEnd(pokemon, e));
-  // } else {
-    domEl.addEventListener('click', (e) => this.onTouchEnd(pokemon, e));
-  // }
+  domEl.addEventListener('click', (e) => this.onClick(pokemon, e));
 
   return domEl;
 }
 
-PokemonView.prototype.onTouchStart = function(pokemon) {
-  this._longSelectHandled = false;
-  // Start a timer to emit LONG_SELECT_POKEMON event after 500ms
-  this._startTimeoutId = setTimeout(() => {
-    this._longSelectHandled = true;
-    this.emit(ACTIONS.LONG_SELECT_POKEMON, pokemon);
-  }, 500);
-}
-
-PokemonView.prototype.onTouchEnd = function(pokemon, e) {
-  if (this._longSelectHandled) {
-    // To avoid triggering other stuff later
-    e.preventDefault();
-    return;
-  }
-
-  // Finally it was not a long select
-  clearTimeout(this._startTimeoutId);
-
-  if (Utils.isDocumentScrolling()) {
-    return;
-  }
-
+PokemonView.prototype.onClick = function(pokemon, e) {
   this.emit(ACTIONS.SELECT_POKEMON, pokemon);
-
-  // To avoid triggering other stuff later
-  e.preventDefault();
-
 }
 
 PokemonView.ACTIONS = ACTIONS;

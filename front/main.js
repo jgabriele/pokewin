@@ -13,6 +13,7 @@ import ModalView            from './scripts/Views/ModalView';
 import MultipleChoices      from './scripts/Views/Modal/MultipleChoices';
 import FloatingButton       from './scripts/Views/FloatingButton';
 import Menu                 from './scripts/Views/Menu';
+import PokemonToggleList    from './scripts/Views/PokemonToggleList';
 
 import LoadingModal       from './scripts/Controllers/LoadingModal';
 import MainFloatingButton from './scripts/Controllers/MainFloatingButton';
@@ -78,7 +79,24 @@ function _augmentPokemonsData(pokemons) {
 
 
 const menu = new Menu()
-  .on(Menu.EVENTS.FAVOURITES, console.log);
+  .on(Menu.EVENTS.FAVOURITES, showFavouritesPage);
+
+const overlay = Utils.DOMElementFromString(
+  `<div class="overlay">
+      <div class="overlay__background"></div>
+      <div class="overlay__data">
+        <div class="overlay__container js-togglelist-wrapper"></div>
+      </div>
+    </div>`
+);
+const toggleList = new PokemonToggleList(overlay.querySelector('.js-togglelist-wrapper'))
+  .on(PokemonToggleList.EVENTS.TOGGLE_POKEMON, console.log);
+function showFavouritesPage() {
+  MainFloatingButton.setState('FAVOURITES');
+  menu.hide();
+  toggleList.render(pokemonsFull);
+  document.body.appendChild(overlay);
+}
 
 MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'));
 MainFloatingButton.addState('BASE', {
@@ -90,6 +108,10 @@ MainFloatingButton.addState('BASE', {
 });
 MainFloatingButton.addState('MENU', {
   action: () => menu.hide(),
+  nextState: 'BASE'
+});
+MainFloatingButton.addState('FAVOURITES', {
+  action: () => { menu.hide(); toggleList.hide() },
   nextState: 'BASE'
 });
 MainFloatingButton.setState('BASE');
