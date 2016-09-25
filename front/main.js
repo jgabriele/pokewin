@@ -12,6 +12,7 @@ import LanguageSelectView   from './scripts/Views/LanguageSelectView';
 import ModalView            from './scripts/Views/ModalView';
 import MultipleChoices      from './scripts/Views/Modal/MultipleChoices';
 import FloatingButton       from './scripts/Views/FloatingButton';
+import Menu                 from './scripts/Views/Menu';
 
 import LoadingModal from './scripts/Controllers/LoadingModal';
 
@@ -74,8 +75,13 @@ function _augmentPokemonsData(pokemons) {
 
 //------------------
 
-const fb = new FloatingButton(document.querySelector('.js-floating-button-wrapper'));
-fb.render();
+const menu = new Menu()
+  .on(Menu.EVENTS.FAVOURITES, console.log);
+
+const fb = new FloatingButton(document.querySelector('.js-floating-button-wrapper'))
+  .on(FloatingButton.EVENTS.CLICK, () => menu.render())
+  .render();
+
 
 //------------------
 

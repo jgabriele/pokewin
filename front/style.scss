@@ -104,6 +104,66 @@ input[type=range]{
 
   width: 34px;
   height: 34px;
+  z-index: 1000;
+}
+
+
+.menu {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));;
+  position: fixed;
+  top: 100%;
+
+  width: 100%;
+  height: 100%;
+  transition: top 400ms, opacity 400ms;
+
+  &.is-visible {
+    top: 0%;
+  }
+
+  &.is-closed {
+    opacity: 0;
+  }
+
+  .button {
+    position: fixed;
+    bottom: 20px;
+    left: calc(50% - 20px);
+    transition: transform, 250ms;
+    transition-timing-function: ease-out;
+
+    .button__text {
+      position: absolute;
+    }
+  }
+}
+
+
+
+.button {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 100;
+
+  .button__icon {
+    background: rgba(24, 195, 187, 0.9);
+    border: 3px solid #0e7974;
+    border-radius: 50%;
+    box-shadow: black 0px 0px 4px;
+
+    display: inline-block;
+
+    width: 34px;
+    height: 34px;
+  }
+
+  .button__text {
+    transition: opacity 200ms;
+    &.is-hidden {
+      opacity: 0;
+    }
+  }
 }
 
 
@@ -509,27 +569,6 @@ h3.title {
         margin-bottom: 10px;
       }
     }
-  }
-
-  button {
-    background: #fff;
-    border: 1px solid #000;
-    color: #197979;
-    font-size: 1em;
-    padding: 10px 0px;
-    margin-top: 10px;
-    width: 100%;
-
-    &.button--left {
-      text-align: left;
-      padding-left: 10px;
-    }
-
-    &.button--close {
-      background: lightgrey;
-      color: black;
-    }
-
   }
 }
 
