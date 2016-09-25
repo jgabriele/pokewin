@@ -103,6 +103,10 @@ MainFloatingButton.addState('MENU', {
   action: () => menu.hide(),
   nextState: 'BASE'
 });
+MainFloatingButton.addState('DETAILS', {
+  action: hideDetail,
+  nextState: 'BASE'
+});
 MainFloatingButton.addState('FAVOURITES', {
   action: () => { menu.hide(); toggleList.hide() },
   nextState: 'BASE'
@@ -113,11 +117,11 @@ MainFloatingButton.setState('BASE');
 
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
 
-
 // Init favourites model
 FavouritesModel.init();
 
 //------------------
+
 
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
@@ -126,12 +130,13 @@ function updateDetail(pokemons, pokemon) {
   DetailsView
     .removeAllListeners()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
-    .on(DetailsView.ACTIONS.CLOSE, hideDetail)
     .render({
       pokemon,
       counters,
       isLoading
-    })
+    });
+
+  MainFloatingButton.setState('DETAILS');
 }
 
 const detailsOverlay = document.querySelector('.js-details-overlay');
