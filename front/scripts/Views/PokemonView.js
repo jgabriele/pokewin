@@ -12,8 +12,9 @@ PokemonView.prototype = Object.create(Event.prototype);
 
 PokemonView.prototype.prerender = function(pokemon) {
   const pokemonName = LocaleManager.getInstance().translate(pokemon.key);
+  const favouriteClass = pokemon.isFavourite ? 'is-favourite' : '';
   const domEl = Utils.DOMElementFromString(
-    `<div class="pokemon js-pokemon">
+    `<div class="pokemon ${favouriteClass} js-pokemon">
       <div class="picture">
         <div class="pokemon-image is-loading" style="${Utils.getPokemonSpritesheetPosition(pokemon)}" /></div>
       </div>

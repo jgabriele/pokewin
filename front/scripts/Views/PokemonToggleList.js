@@ -11,13 +11,19 @@ function ListView(parent) {
   this._parent = parent;
 }
 
+
 ListView.prototype = Object.create(Event.prototype);
 
 ListView.prototype.render = function(pokemons) {
   this._el = Utils.DOMElementFromString(
-    `<div class="pokedex">
+    `<div>
       <p>Select any pokemon to add it to your favourites</p>
-      <p>Favourites pokemons are displayed first in the list of counters</p>
+      <p>
+        Favourites pokemons are displayed first in the list of counters.
+        If you favourites the pokemons you own it'll be easier to find who they
+        counter.
+      </p>
+      <div class="pokedex js-favourite-list"></div>
     </div>`
   );
 
@@ -27,8 +33,9 @@ ListView.prototype.render = function(pokemons) {
   const fragment = document.createDocumentFragment();
   pokemonNodes.forEach(fragment.appendChild.bind(fragment));
 
-  this._el.appendChild(fragment);
+  this._el.querySelector('.js-favourite-list').appendChild(fragment);
 
+  this._parent.innerHTML = '';
   this._parent.appendChild(this._el);
 }
 

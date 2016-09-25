@@ -15,6 +15,7 @@ import FloatingButton       from './scripts/Views/FloatingButton';
 import Menu                 from './scripts/Views/Menu';
 import PokemonToggleList    from './scripts/Views/PokemonToggleList';
 
+import FavouritesPage     from './scripts/Controllers/FavouritesPage';
 import LoadingModal       from './scripts/Controllers/LoadingModal';
 import MainFloatingButton from './scripts/Controllers/MainFloatingButton';
 
@@ -77,25 +78,17 @@ function _augmentPokemonsData(pokemons) {
 
 //------------------
 
-
 const menu = new Menu()
   .on(Menu.EVENTS.FAVOURITES, showFavouritesPage);
 
-const overlay = Utils.DOMElementFromString(
-  `<div class="overlay">
-      <div class="overlay__background"></div>
-      <div class="overlay__data">
-        <div class="overlay__container js-togglelist-wrapper"></div>
-      </div>
-    </div>`
-);
-const toggleList = new PokemonToggleList(overlay.querySelector('.js-togglelist-wrapper'))
-  .on(PokemonToggleList.EVENTS.TOGGLE_POKEMON, console.log);
+FavouritesPage.init(document.body);
+
 function showFavouritesPage() {
   MainFloatingButton.setState('FAVOURITES');
   menu.hide();
-  toggleList.render(pokemonsFull);
-  document.body.appendChild(overlay);
+
+  FavouritesPage.render(pokemonsFull);
+  FavouritesPage.show();
 }
 
 MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'));
@@ -119,6 +112,10 @@ MainFloatingButton.setState('BASE');
 //------------------
 
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
+
+
+// Init favourites model
+FavouritesModel.init();
 
 //------------------
 
@@ -194,46 +191,6 @@ function _addKeyboardListener() {
 function _onPokemonSelected(pokemons, pokemon) {
   updateDetail(pokemons, pokemon);
   showDetail();
-}
-
-function _onPokemonLongSelected(pokemon) {
-  const isFavourited = FavouritesModel.get(pokemon.id);
-  const pokemonName = LocaleManager.getInstance().translate(pokemon.key);
-  const title = `What do you want to do with ${pokemonName}?`;
-  const choices = [
-    {
-      icon: 'star',
-      title: isFavourited ? 'Remove from favourites' : 'Add to favourite',
-      onClick: () => {
-        FavouritesModel.toggle(pokemon.id);
-        ModalView.hide();
-      }
-    },
-    // {
-    //   icon: 'star',
-    //   title: 'Add to custom section',
-    //   onClick: () => console.log('Custom Section')
-    // },
-    {
-      icon: 'star',
-      type: 'EXIT',
-      title: 'Nothing thanks',
-      onClick: () => {
-        ModalView.hide();
-      }
-    }
-  ];
-  const message = MultipleChoices.render(title, choices);
-
-  // Need setTimeout here because else background of ModalView will
-  // receive touchend as well
-  setTimeout(() => {
-    ModalView.render(message, {
-      onOverlayBackground: () => {
-        ModalView.hide();
-      }
-    });
-  }, 0);
 }
 
 function _removeLoadingState() {

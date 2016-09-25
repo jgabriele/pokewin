@@ -327,16 +327,29 @@ a {
 .pokedex {
   text-align: center;
   .pokemon {
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 8px;
+
     &:hover {
       cursor: pointer;
     }
 
-    display: inline-block;
+    &.is-favourite::before {
+      content: "";
+      background: #ff0;
+      border: 1px solid #000;
 
-    font-weight: bold;
-    font-size: 12px;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
 
-    margin: 8px;
+      width: 15px;
+      height: 15px;
+    }
 
     .picture {
       width: 70px;

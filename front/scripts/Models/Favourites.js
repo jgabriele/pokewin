@@ -16,7 +16,7 @@ const FavouritesModel = {
     }
 
     const storageFavourites = localStorage.getItem(FAVOURITES_KEY);
-    const favourites = storageFavourites.split(',').map((numberString) => Number(numberString)) || [];
+    const favourites = storageFavourites && storageFavourites.split(',').map((numberString) => Number(numberString)) || [];
 
     // If we passed an id, return if this id is favourited
     // Else return all the favourites
