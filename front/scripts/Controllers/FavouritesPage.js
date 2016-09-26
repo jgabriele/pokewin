@@ -3,13 +3,23 @@ import PokemonToggleList  from '../Views/PokemonToggleList';
 import Utils              from '../Utils';
 import FavouritesModel    from '../Models/Favourites';
 
+
 export default {
   init(parent) {
     this._el = Utils.DOMElementFromString(
-      `<div class="overlay">
+      `<div class="overlay page-favourite">
           <div class="overlay__background"></div>
           <div class="overlay__data">
-            <div class="overlay__container js-togglelist-wrapper"></div>
+            <h2 class="title title--large title--white">Favourites</h2>
+            <div class="overlay__container js-togglelist-wrapper">
+              <p>Select any pokemon to add it to your favourites</p>
+              <p>
+                Favourites pokemons are displayed first in the list of counters.
+              </p>
+              <p class="hint">
+                hint: favourite the pokemons you own to find easily who they counter.
+              </p>
+            </div>
           </div>
         </div>`
     );

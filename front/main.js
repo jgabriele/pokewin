@@ -83,6 +83,7 @@ const menu = new Menu()
 
 FavouritesPage.init(document.body);
 
+
 function showFavouritesPage() {
   MainFloatingButton.setState('FAVOURITES');
   menu.hide();

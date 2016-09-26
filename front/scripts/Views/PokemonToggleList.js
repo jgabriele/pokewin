@@ -8,23 +8,18 @@ const EVENTS = {
 }
 
 function ListView(parent) {
-  this._parent = parent;
-}
+  this._el = Utils.DOMElementFromString(
+    `<div></div>`
+  );
 
+  parent.appendChild(this._el);
+}
 
 ListView.prototype = Object.create(Event.prototype);
 
 ListView.prototype.render = function(pokemons) {
-  this._el = Utils.DOMElementFromString(
-    `<div>
-      <p>Select any pokemon to add it to your favourites</p>
-      <p>
-        Favourites pokemons are displayed first in the list of counters.
-        If you favourites the pokemons you own it'll be easier to find who they
-        counter.
-      </p>
-      <div class="pokedex js-favourite-list"></div>
-    </div>`
+  const el = Utils.DOMElementFromString(
+    `<div class="pokedex js-favourite-list"></div>`
   );
 
   const pokemonNodes = pokemons
@@ -33,10 +28,10 @@ ListView.prototype.render = function(pokemons) {
   const fragment = document.createDocumentFragment();
   pokemonNodes.forEach(fragment.appendChild.bind(fragment));
 
-  this._el.querySelector('.js-favourite-list').appendChild(fragment);
+  el.appendChild(fragment);
 
-  this._parent.innerHTML = '';
-  this._parent.appendChild(this._el);
+  this._el.innerHTML = '';
+  this._el.appendChild(el);
 }
 
 ListView.prototype._prerenderPokemon = function(pokemon) {
