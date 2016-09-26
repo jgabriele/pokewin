@@ -8,11 +8,13 @@ const EVENTS = {
 const buttons = [
   {
     name: 'Favourites',
+    iconName: 'icon-heart',
     event: EVENTS.FAVOURITES,
     transform: 'translate3d(-70px, -70px, 0px)'
   },
   {
     name: 'Pinned section',
+    iconName: 'icon-pin',
     event: EVENTS.PINNED_SECTION,
     transform: 'translate3d(70px, -70px, 0px)'
   }
@@ -46,7 +48,9 @@ Menu.prototype.createButtonsEl = function () {
   this._buttonsEl = buttons.map((button) => {
     const el = Utils.DOMElementFromString(
       `<div class="button">
-        <div class="button__icon"></div>
+        <div class="button__icon">
+          <img src="/images/${button.iconName}.png" />
+        </div>
         <div class="button__text is-hidden">${button.name}</div>
       </div>`
     );

@@ -41,9 +41,9 @@ FloatingButton.prototype.setButtonType = function (buttonType) {
 function getIconForButton (buttonType) {
   switch (buttonType) {
     case 'CLOSE':
-      return 'X';
+      return '<img src="/images/icon-close.png" />';
     case 'MENU':
-      return '=';
+      return '<img src="/images/icon-menu.png" />';
     default:
       return '';
   }
