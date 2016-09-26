@@ -35,7 +35,6 @@ function ListView(parent) {
   parent.appendChild(this._el);
 }
 
-
 ListView.prototype = Object.create(Event.prototype);
 
 ListView.prototype.render = function(pinnedPokemons, t1Pokemons, t2Pokemons, t3Pokemons) {
@@ -70,6 +69,14 @@ ListView.prototype._renderSection = function(pokemons, titleKey) {
     section.appendChild(fragment);
 
     this._el.querySelector('.sections').appendChild(section);
+}
+
+ListView.prototype.block = function () {
+  this._el.classList.remove('is-behind');
+}
+
+ListView.prototype.unBlock = function () {
+  this._el.classList.remove('is-behind');
 }
 
 ListView.prototype._prerenderPokemon = function(pokemon) {

@@ -166,13 +166,12 @@ function updateDetail(pokemons, pokemon) {
 }
 
 const detailsOverlay = document.querySelector('.js-details-overlay');
-const pokedex = document.querySelector('.pokedex');
 
 function showDetail() {
   window.scroll(0, 0);
   detailsOverlay.style.display = "initial";
   detailsOverlay.classList.remove('is-hidden');
-  pokedex.classList.add('is-behind');
+  listView.block();
 }
 
 detailsOverlay.addEventListener('transitionend', () => {
@@ -181,7 +180,7 @@ detailsOverlay.addEventListener('transitionend', () => {
 detailsOverlay.style.display = "none";
 function hideDetail() {
   detailsOverlay.classList.add('is-hidden');
-  pokedex.classList.remove('is-behind');
+  listView.unBlock();
 }
 
 function toggleIntro() {
