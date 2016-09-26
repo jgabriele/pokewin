@@ -148,8 +148,9 @@ input[type=range]{
     transition-timing-function: ease-out;
 
     .button__text {
+      -webkit-transition: none;
+      transition: none;
       position: absolute;
-      transition-delay: 200ms;
       white-space: nowrap;
     }
   }
@@ -176,7 +177,6 @@ input[type=range]{
   }
 
   .button__text {
-    transition: opacity 100ms;
     &.is-hidden {
       opacity: 0;
     }

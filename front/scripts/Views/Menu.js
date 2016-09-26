@@ -14,8 +14,7 @@ const buttons = [
   {
     name: 'Pinned section',
     event: EVENTS.FAVOURITES,
-    transform: 'translate3d(70px, -70px, 0px)',
-    transitionDelay: '200ms'
+    transform: 'translate3d(70px, -70px, 0px)'
   }
 ];
 
@@ -60,12 +59,7 @@ Menu.prototype.createButtonsEl = function () {
           showButton(el);
         }
       } else {
-        // We start by animating the text, if that's the case we care
-        if (e.target === el.querySelector('.button__text')) {
-          hideButton(el);
-        } else {
-          this._el.classList.add('is-closed');
-        }
+        this._el.classList.add('is-closed');
       }
     });
 
@@ -101,9 +95,12 @@ Menu.prototype.show = function () {
 Menu.prototype.hide = function () {
   this._isOpened = false;
 
+  this._el.classList.remove('is-visible');
+
   this._buttonsEl.forEach((buttonEl) => {
     const buttonTextEl = buttonEl.querySelector('.button__text');
     buttonTextEl.classList.add('is-hidden');
+    hideButton(buttonEl);
   });
 }
 
