@@ -146,21 +146,6 @@ MainFloatingButton.addState('PINNED_SECTION', {
 });
 MainFloatingButton.setState('BASE');
 
-// Avoid main floating button to hide the footer text
-//
-let _scrollEndProcessedValue;
-Utils.addScrollEndListener((isEnd) => {
-  if (listView.isBlocked() || _scrollEndProcessedValue === isEnd) {
-    return;
-  }
-  if (isEnd) {
-    MainFloatingButton.hide();
-  } else {
-    MainFloatingButton.show();
-  }
-
-  _scrollEndProcessedValue = isEnd;
-})
 
 //------------------
 
