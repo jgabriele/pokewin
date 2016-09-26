@@ -716,6 +716,8 @@ h3.title {
     align-self: center;
     text-align: center;
 
+    margin-bottom: 100px;
+
     // Same as counters. TODO refactor
     .overlay__container {
       background: white;
@@ -743,10 +745,11 @@ h3.title {
     }
 
     .main-pokemon {
-      margin: auto;
-      width: 96%;
       position: relative;
       top: -50px;
+
+      margin: auto;
+      width: 96%;
 
       .stats {
         @include display-flex();

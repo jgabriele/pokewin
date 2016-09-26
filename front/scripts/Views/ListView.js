@@ -72,8 +72,9 @@ ListView.prototype._renderSection = function(pokemons, titleKey, additionalClass
     this._el.querySelector('.sections').appendChild(section);
 }
 
+
 ListView.prototype.block = function () {
-  this._el.classList.remove('is-behind');
+  this._el.classList.add('is-behind');
 }
 
 ListView.prototype.unBlock = function () {

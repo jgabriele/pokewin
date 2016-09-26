@@ -86,17 +86,21 @@ const menu = new Menu()
 function showFavouritesPage() {
   MainFloatingButton.setState('FAVOURITES');
   menu.hide();
+  listView.block();
 
   FavouritesPage.render(pokemonsFull);
   FavouritesPage.show();
+  window.scroll(0, 0);
 }
 
 function showPinnedSectionPage() {
   MainFloatingButton.setState('PINNED_SECTION');
   menu.hide();
+  listView.block();
 
   PinnedSectionPage.render(pokemonsFull);
   PinnedSectionPage.show();
+  window.scroll(0, 0);
 }
 
 FavouritesPage.init(document.body);
@@ -122,19 +126,27 @@ MainFloatingButton.addState('DETAILS', {
   nextState: 'BASE'
 });
 MainFloatingButton.addState('FAVOURITES', {
-  action: () => { menu.hide(); FavouritesPage.hide() },
+  action: () => {
+    menu.hide();
+    FavouritesPage.hide();
+    listView.unBlock();
+  },
   buttonType: 'CLOSE',
   nextState: 'BASE'
 });
 MainFloatingButton.addState('PINNED_SECTION', {
-  action: () => { updateListView(pokemonsFull); menu.hide(); PinnedSectionPage.hide() },
+  action: () => {
+    menu.hide();
+    updateListView(pokemonsFull);
+    PinnedSectionPage.hide();
+    listView.unBlock();
+  },
   buttonType: 'CLOSE',
   nextState: 'BASE'
 });
 MainFloatingButton.setState('BASE');
 
 //------------------
-
 
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
 
@@ -310,6 +322,7 @@ function _startup () {
       const requestedLang = queryLanguage || storedLanguage || browserLang;
 
       pokemonsFull = _augmentPokemonsData(pokemons);
+
       listView = new ListView(document.querySelector('.js-list-view-wrapper'))
         .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull));
       updateListView(pokemonsFull);
