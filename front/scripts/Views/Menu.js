@@ -86,13 +86,16 @@ Menu.prototype.update = function () {
 Menu.prototype.show = function () {
   this._isOpened = true;
 
-  this._buttonsEl.forEach((buttonEl) => {
-    buttonEl.style.transform = buttonEl.data.transform;
-    buttonEl.style.transitionDelay = buttonEl.data.transitionDelay;
-  });
-
-  this._el.classList.add('is-visible');
   this._el.classList.remove('is-closed');
+
+  setTimeout(() => {
+    this._buttonsEl.forEach((buttonEl) => {
+      buttonEl.style.transform = buttonEl.data.transform;
+      buttonEl.style.transitionDelay = buttonEl.data.transitionDelay;
+    });
+
+    this._el.classList.add('is-visible');
+  }, 100);
 }
 
 Menu.prototype.hide = function () {
