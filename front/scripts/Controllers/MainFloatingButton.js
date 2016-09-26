@@ -20,6 +20,14 @@ export default {
     this._floatingButton.setButtonType(this._currentState.buttonType);
   },
 
+  show() {
+    this._floatingButton.show();
+  },
+
+  hide() {
+    this._floatingButton.hide();
+  },
+
   onClick() {
     if (this._currentState) {
       this._currentState.action && this._currentState.action();

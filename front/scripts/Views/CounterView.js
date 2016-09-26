@@ -35,18 +35,14 @@ CounterView.prototype.prerender = function(counter) {
       </div>
     </div>`);
 
-  domEl.addEventListener('click', () => this.onTouchEnd(counter));
+  domEl.addEventListener('click', () => this.onClick(counter));
 
   this._el = domEl;
 
   return domEl;
 }
 
-CounterView.prototype.onTouchEnd = function (counter) {
-  if (Utils.isDocumentScrolling()) {
-    return;
-  }
-
+CounterView.prototype.onClick = function (counter) {
   this.emit(ACTIONS.SELECT_COUNTER, counter);
 }
 

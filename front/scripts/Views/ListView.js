@@ -74,11 +74,17 @@ ListView.prototype._renderSection = function(pokemons, titleKey, additionalClass
 
 
 ListView.prototype.block = function () {
+  this._isBlocked = true;
   this._el.classList.add('is-behind');
 }
 
 ListView.prototype.unBlock = function () {
+  this._isBlocked = false;
   this._el.classList.remove('is-behind');
+}
+
+ListView.prototype.isBlocked = function () {
+  return this._isBlocked;
 }
 
 ListView.prototype._prerenderPokemon = function(pokemon) {

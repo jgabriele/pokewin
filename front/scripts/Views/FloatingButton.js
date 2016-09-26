@@ -29,6 +29,14 @@ FloatingButton.prototype.render = function (buttonType) {
   return this;
 }
 
+FloatingButton.prototype.show = function () {
+  this._el.style.display = 'initial';
+}
+
+FloatingButton.prototype.hide = function () {
+  this._el.style.display = 'none';
+}
+
 FloatingButton.prototype.setButtonType = function (buttonType) {
   const icon = this._el.querySelector('.floating-button__icon');
 

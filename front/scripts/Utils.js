@@ -7,13 +7,15 @@ const NB_VISITS_KEY = 'number-of-visits';
 // Attaching the "click" tp touchend triggers it even in case of scroll
 // and we don't want that. So we set a flag when we scroll and during 50ms
 // after stopping;
-let _isScrolling = false;
-let _scrollStopTimoutId = null;
-document.addEventListener('scroll', () => {
-  _isScrolling = true;
-  window.clearTimeout(_scrollStopTimoutId);
-  _scrollStopTimoutId = window.setTimeout(() => { _isScrolling = false }, 50);
+let _scrollEndListener = [];
+document.addEventListener('scroll', (e) => {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    _scrollEndListener.forEach((fn) => fn(true));
+  } else {
+    _scrollEndListener.forEach((fn) => fn(false));
+  }
 });
+
 
 // Check of device  type
 var _check = false;
@@ -87,12 +89,12 @@ const Utils = {
     }
   },
 
-  isDocumentScrolling() {
-    return _isScrolling;
-  },
-
   isMobileDevice() {
     return _check;
+  },
+
+  addScrollEndListener(fn) {
+    _scrollEndListener.push(fn);
   }
 }
 

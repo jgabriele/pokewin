@@ -105,8 +105,8 @@ function showPinnedSectionPage() {
 
 FavouritesPage.init(document.body);
 PinnedSectionPage.init(document.body);
-MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'), 'MENU');
 
+MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'), 'MENU');
 MainFloatingButton.addState('BASE', {
   action: () => {
     menu.update();
@@ -145,6 +145,22 @@ MainFloatingButton.addState('PINNED_SECTION', {
   nextState: 'BASE'
 });
 MainFloatingButton.setState('BASE');
+
+// Avoid main floating button to hide the footer text
+//
+let _scrollEndProcessedValue;
+Utils.addScrollEndListener((isEnd) => {
+  if (listView.isBlocked() || _scrollEndProcessedValue === isEnd) {
+    return;
+  }
+  if (isEnd) {
+    MainFloatingButton.hide();
+  } else {
+    MainFloatingButton.show();
+  }
+
+  _scrollEndProcessedValue = isEnd;
+})
 
 //------------------
 
