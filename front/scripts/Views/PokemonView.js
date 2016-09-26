@@ -16,7 +16,7 @@ PokemonView.prototype.prerender = function(pokemon) {
   const domEl = Utils.DOMElementFromString(
     `<div class="pokemon ${favouriteClass} js-pokemon">
       <div class="picture">
-        <div class="pokemon-image is-loading" style="${Utils.getPokemonSpritesheetPosition(pokemon)}" /></div>
+        <div class="pokemon-image" style="${Utils.getPokemonSpritesheetPosition(pokemon)}" /></div>
       </div>
       <div class="name" data-localisable-key="${pokemon.key}">
         ${pokemonName}

@@ -382,7 +382,7 @@ a {
 .picture {
   .pokemon-image {
 
-    &.is-loading {
+    .is-loading & {
       background-image: url('images/pokemon-spritesheet-lowres.png');
     }
 

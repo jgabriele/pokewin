@@ -205,9 +205,7 @@ function _onPokemonSelected(pokemons, pokemon) {
 
 function _removeLoadingState() {
   isLoading = false;
-  Array.prototype.forEach.call(document.querySelectorAll('.pokemon-image'), (el) => {
-    el.classList.remove('is-loading');
-  });
+  document.body.classList.remove('is-loading');
 }
 
 function _onLanguageSelected(lang = 'en') {

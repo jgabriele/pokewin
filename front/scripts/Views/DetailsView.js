@@ -50,9 +50,8 @@ DetailsView.prototype.render = function(data) {
               </div>`)
             .join('');
 
-  const isLoadingClass = data.isLoading ? ' is-loading' : '';
   const imageHTML = `
-    <div class="pokemon-image${isLoadingClass}"
+    <div class="pokemon-image"
         style="${Utils.getPokemonSpritesheetPosition(pokemon, 150)}"/>
     </div>`;
 
