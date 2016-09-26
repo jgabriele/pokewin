@@ -19,6 +19,16 @@
     "es": "Master of Gyms",
     "po": "Mestre dos Ginásios"
   },
+  "TEXT_PINNED": {
+    "de": "Pinned",
+    "en": "Pinned",
+    "fr": "Épinglés",
+    "jp": "Pinned",
+    "ko": "Pinned",
+    "it": "Pinned",
+    "es": "Pinned",
+    "po": "Pinned"
+  },
   "TEXT_MOST_SEEN": {
     "de": "Die besten Verteidiger",
     "en": "Top tiers",

@@ -20,7 +20,7 @@ import LoadingModal       from './scripts/Controllers/LoadingModal';
 import MainFloatingButton from './scripts/Controllers/MainFloatingButton';
 import PinnedSectionPage  from './scripts/Controllers/PinnedSectionPage';
 
-import FavouritesModel from './scripts/Models/Favourites';
+import PinnedModel from './scripts/Models/Pinned';
 
 Polyfills.objectAssign();
 
@@ -127,7 +127,7 @@ MainFloatingButton.addState('FAVOURITES', {
   nextState: 'BASE'
 });
 MainFloatingButton.addState('PINNED_SECTION', {
-  action: () => { menu.hide(); PinnedSectionPage.hide() },
+  action: () => { updateListView(pokemonsFull); menu.hide(); PinnedSectionPage.hide() },
   buttonType: 'CLOSE',
   nextState: 'BASE'
 });
@@ -135,9 +135,19 @@ MainFloatingButton.setState('BASE');
 
 //------------------
 
+
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
 
 //------------------
+
+function updateListView(pokemonsFull) {
+  const pinnedPokemons = pokemonsFull.filter((p) => PinnedModel.getInstance().get(p.id));
+  const t1Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 1);
+  const t2Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 2);
+  const t3Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 3);
+
+  listView.render(pinnedPokemons, t1Pokemons, t2Pokemons, t3Pokemons);
+}
 
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
@@ -233,6 +243,7 @@ function _onLanguageSelected(lang = 'en') {
 
 let pokemons = null, types = null, moves = null, dictionary = null;
 let pokemonsFull;
+let listView;
 let isLoading = true;
 
 if (Utils.isMobileDevice()) {
@@ -298,13 +309,11 @@ function _startup () {
       const storedLanguage = localStorage && localStorage.getItem(LANGUAGE_KEY);
       const browserLang = NAVIGATOR_LANG_TO_LANG[navigator.language || navigator.userLanguage || 'en'];
       const requestedLang = queryLanguage || storedLanguage || browserLang;
-      languageSelectView.selectLanguage(requestedLang);
 
       pokemonsFull = _augmentPokemonsData(pokemons);
-      const listView = new ListView()
+      listView = new ListView(document.querySelector('.js-list-view-wrapper'))
         .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull));
-        // .on(ListView.EVENTS.POKEMON_LONG_SELECTED, _onPokemonLongSelected);
-      listView.render(pokemonsFull);
+      updateListView(pokemonsFull);
 
       _addKeyboardListener();
 
@@ -324,6 +333,9 @@ function _startup () {
       // Preload the high res spritesheet now that the page has loaded
       preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
         .then(_removeLoadingState);
+
+      // Localise all tagged text
+      languageSelectView.selectLanguage(requestedLang);
 
       setTimeout(_hideLoading, 200);
 
