@@ -354,16 +354,16 @@ a {
 
     &.is-favourite::before {
       content: "";
-      background: #ff0;
-      border: 1px solid #000;
+      background: url(/images/icon-heart.png);
+      background-size: cover;
 
       display: block;
       position: absolute;
       top: 0;
       right: 0;
 
-      width: 15px;
-      height: 15px;
+      width: 22px;
+      height: 22px;
     }
 
     &.is-pinned::before {
@@ -642,13 +642,14 @@ h3.title {
         }
 
         .icon-favourite {
-          background: #ff0;
+          background: url(/images/icon-heart.png);
+          background-size: cover;
           position: absolute;
-          top: -30px;
-          left: calc(50% - 25px);
+          top: -36px;
+          left: calc(50% - 32px);
           margin: auto;
-          width: 50px;
-          height: 50px;
+          width: 64px;
+          height: 64px;
         }
       }
     }
@@ -821,16 +822,16 @@ h3.title {
 
         &.is-favourite::before {
           content: "";
-          background: #ff0;
-          border: 1px solid #000;
+          background: url(/images/icon-heart.png);
+          background-size: cover;
 
           display: block;
           position: absolute;
           top: 0;
           right: 0;
 
-          width: 15px;
-          height: 15px;
+          width: 22px;
+          height: 22px;
         }
 
         display: inline-block;
