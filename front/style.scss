@@ -89,10 +89,9 @@ input[type=range]{
 }
 
 .floating-button {
-  background: rgba(24, 195, 187, 0.9);
+  background: #18c3bb;
   border: 3px solid #0e7974;
   border-radius: 50%;
-  box-shadow: black 0px 0px 4px;
 
   color: white;
   font-size: 1em;
@@ -163,10 +162,9 @@ input[type=range]{
   font-weight: 100;
 
   .button__icon {
-    background: rgba(24, 195, 187, 0.9);
+    background: #18c3bb;
     border: 3px solid #0e7974;
     border-radius: 50%;
-    box-shadow: black 0px 0px 4px;
 
     display: flex;
 
