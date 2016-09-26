@@ -13,7 +13,7 @@ const buttons = [
   },
   {
     name: 'Pinned section',
-    event: EVENTS.FAVOURITES,
+    event: EVENTS.PINNED_SECTION,
     transform: 'translate3d(70px, -70px, 0px)'
   }
 ];

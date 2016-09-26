@@ -18,6 +18,7 @@ import PokemonToggleList    from './scripts/Views/PokemonToggleList';
 import FavouritesPage     from './scripts/Controllers/FavouritesPage';
 import LoadingModal       from './scripts/Controllers/LoadingModal';
 import MainFloatingButton from './scripts/Controllers/MainFloatingButton';
+import PinnedSectionPage  from './scripts/Controllers/PinnedSectionPage';
 
 import FavouritesModel from './scripts/Models/Favourites';
 
@@ -79,9 +80,8 @@ function _augmentPokemonsData(pokemons) {
 //------------------
 
 const menu = new Menu()
-  .on(Menu.EVENTS.FAVOURITES, showFavouritesPage);
-
-FavouritesPage.init(document.body);
+  .on(Menu.EVENTS.FAVOURITES, showFavouritesPage)
+  .on(Menu.EVENTS.PINNED_SECTION, showPinnedSectionPage);
 
 function showFavouritesPage() {
   MainFloatingButton.setState('FAVOURITES');
@@ -91,6 +91,16 @@ function showFavouritesPage() {
   FavouritesPage.show();
 }
 
+function showPinnedSectionPage() {
+  MainFloatingButton.setState('PINNED_SECTION');
+  menu.hide();
+
+  PinnedSectionPage.render(pokemonsFull);
+  PinnedSectionPage.show();
+}
+
+FavouritesPage.init(document.body);
+PinnedSectionPage.init(document.body);
 MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'), 'MENU');
 
 MainFloatingButton.addState('BASE', {
@@ -116,14 +126,16 @@ MainFloatingButton.addState('FAVOURITES', {
   buttonType: 'CLOSE',
   nextState: 'BASE'
 });
+MainFloatingButton.addState('PINNED_SECTION', {
+  action: () => { menu.hide(); PinnedSectionPage.hide() },
+  buttonType: 'CLOSE',
+  nextState: 'BASE'
+});
 MainFloatingButton.setState('BASE');
 
 //------------------
 
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
-
-// Init favourites model
-FavouritesModel.init();
 
 //------------------
 

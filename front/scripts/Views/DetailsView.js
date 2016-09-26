@@ -85,7 +85,7 @@ DetailsView.prototype.renderCounters = function(isLoading) {
 
     // Favourite data
     .map((counterData) => Object.assign({}, counterData, {
-      isFavourite: FavouritesModel.get(counterData.id)
+      isFavourite: FavouritesModel.getInstance().get(counterData.id)
     }))
     .sort((item1, item2) => {
       const fav1 = item1.isFavourite ? 1 : 0;

@@ -366,6 +366,20 @@ a {
       height: 15px;
     }
 
+    &.is-pinned::before {
+      content: "";
+      background: #f00;
+      border: 1px solid #000;
+
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 5px;
+
+      width: 15px;
+      height: 15px;
+    }
+
     .picture {
       width: 70px;
       height: 70px;
@@ -609,7 +623,7 @@ h3.title {
   }
 }
 
-.page-favourite {
+.page-favourite, .page-pinned-section {
   &.overlay {
     .overlay__data {
       .overlay__container {

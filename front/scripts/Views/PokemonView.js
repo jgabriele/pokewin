@@ -16,8 +16,9 @@ PokemonView.prototype.prerender = function() {
   const pokemon = this._pokemon;
   const pokemonName = LocaleManager.getInstance().translate(pokemon.key);
   const favouriteClass = pokemon.isFavourite ? 'is-favourite' : '';
+  const pinnedClass = pokemon.isPinned ? 'is-pinned' : '';
   const domEl = Utils.DOMElementFromString(
-    `<div class="pokemon ${favouriteClass} js-pokemon">
+    `<div class="pokemon ${favouriteClass} ${pinnedClass} js-pokemon">
       <div class="picture">
         <div class="pokemon-image" style="${Utils.getPokemonSpritesheetPosition(pokemon)}" /></div>
       </div>
