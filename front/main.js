@@ -91,24 +91,29 @@ function showFavouritesPage() {
   FavouritesPage.show();
 }
 
-MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'));
+MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'), 'MENU');
+
 MainFloatingButton.addState('BASE', {
   action: () => {
     menu.update();
     setTimeout(() => menu.show(), 0);
   },
+  buttonType: 'MENU',
   nextState: 'MENU'
 });
 MainFloatingButton.addState('MENU', {
   action: () => menu.hide(),
+  buttonType: 'CLOSE',
   nextState: 'BASE'
 });
 MainFloatingButton.addState('DETAILS', {
   action: hideDetail,
+  buttonType: 'CLOSE',
   nextState: 'BASE'
 });
 MainFloatingButton.addState('FAVOURITES', {
-  action: () => { menu.hide(); toggleList.hide() },
+  action: () => { menu.hide(); FavouritesPage.hide() },
+  buttonType: 'CLOSE',
   nextState: 'BASE'
 });
 MainFloatingButton.setState('BASE');
@@ -121,7 +126,6 @@ LoadingModal.init(document.querySelector('.js-modal-wrapper'));
 FavouritesModel.init();
 
 //------------------
-
 
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils

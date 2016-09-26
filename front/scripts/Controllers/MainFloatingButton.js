@@ -3,10 +3,10 @@ import LocaleManager  from '../LocaleManager';
 import Utils          from '../Utils';
 
 export default {
-  init(el) {
+  init(el, firstButton) {
     this._floatingButton = new FloatingButton(el)
       .on(FloatingButton.EVENTS.CLICK, this.onClick.bind(this))
-      .render();
+      .render(firstButton);
 
     this._states = {};
   },
@@ -17,12 +17,14 @@ export default {
 
   setState(state) {
     this._currentState = this._states[state];
+    this._floatingButton.setButtonType(this._currentState.buttonType);
   },
 
   onClick() {
     if (this._currentState) {
       this._currentState.action && this._currentState.action();
-      this._currentState = this._states[this._currentState.nextState];
+
+      this.setState(this._currentState.nextState);
     }
   }
 };

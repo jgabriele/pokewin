@@ -5,22 +5,48 @@ const EVENTS = {
   CLICK: 'click'
 };
 
-function FloatingButton(el) {
-  this._el = el;
+function FloatingButton(parent) {
+  this._el = Utils.DOMElementFromString('<div></div>');
+  parent.appendChild(this._el);
 }
 
 FloatingButton.prototype = Object.create(Event.prototype);
 
-FloatingButton.prototype.render = function () {
+FloatingButton.prototype.render = function (buttonType) {
   const el = Utils.DOMElementFromString(
-    `<div class="floating-button"></div>`
+    `<div class="floating-button">
+      <div class="floating-button__icon">
+        ${getIconForButton(buttonType)}
+      </div>
+    </div>`
   );
 
   el.addEventListener('click', this.emit.bind(this, EVENTS.CLICK))
 
+  this._el.innerHTML = '';
   this._el.appendChild(el);
 
   return this;
+}
+
+FloatingButton.prototype.setButtonType = function (buttonType) {
+  const icon = this._el.querySelector('.floating-button__icon');
+
+  icon.addEventListener('transitionend', () => {
+    this.render(buttonType);
+  });
+  setTimeout(() => icon.classList.add('is-hidden'), 0);
+}
+
+function getIconForButton (buttonType) {
+  switch (buttonType) {
+    case 'CLOSE':
+      return 'X';
+    case 'MENU':
+      return '-';
+    default:
+      return '';
+  }
 }
 
 FloatingButton.EVENTS = EVENTS;
