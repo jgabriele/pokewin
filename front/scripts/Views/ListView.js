@@ -11,9 +11,8 @@ function ListView(parent) {
   this._el = Utils.DOMElementFromString(
     `<section class="pokedex">
       <h2 class="title">
-        <span data-localisable-key="TEXT_APP_TITLE"></span>
-        <img class="image-inline" src="/images/favicon.png">
-        <span data-localisable-key="TEXT_APP_SUBTITLE"></span>
+        <span class='app-title' data-localisable-key="TEXT_APP_TITLE">
+        </span><span data-localisable-key="TEXT_APP_SUBTITLE"></span>
       </h2>
       <div class="intro js-intro">
         <p data-localisable-key="TEXT_INTRO_1"></p>
@@ -41,7 +40,7 @@ ListView.prototype.render = function(pinnedPokemons, t1Pokemons, t2Pokemons, t3P
   this.reset();
 
   if (pinnedPokemons.length) {
-    this._renderSection(pinnedPokemons, 'TEXT_PINNED');
+    this._renderSection(pinnedPokemons, 'TEXT_PINNED', 'pinned-section');
   }
   this._renderSection(t1Pokemons, 'TEXT_MOST_SEEN');
   this._renderSection(t2Pokemons, 'TEXT_BIT_LESS_SEEN');
@@ -52,7 +51,7 @@ ListView.prototype.reset = function () {
   this._el.querySelector('.sections').innerHTML = '';
 }
 
-ListView.prototype._renderSection = function(pokemons, titleKey) {
+ListView.prototype._renderSection = function(pokemons, titleKey, additionalClass) {
     const tiersDOMNodes = pokemons
       .map(this._prerenderPokemon.bind(this));
 
@@ -61,8 +60,10 @@ ListView.prototype._renderSection = function(pokemons, titleKey) {
 
     const section = Utils.DOMElementFromString(
       `<div>
-        <h3 class="title" data-localisable-key="${titleKey}">
-          ${LocaleManager.getInstance().translate(titleKey)}
+        <h3 class="title">
+          <span class="${additionalClass}" data-localisable-key="${titleKey}">
+            ${LocaleManager.getInstance().translate(titleKey)}
+          </span>
         </h3>
       <div>`
     );
