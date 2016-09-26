@@ -10,13 +10,13 @@ const buttons = [
     name: 'Favourites',
     iconName: 'icon-heart',
     event: EVENTS.FAVOURITES,
-    transform: 'translate3d(-70px, -70px, 0px)'
+    transform: 'translate3d(-90px, -90px, 0px)'
   },
   {
     name: 'Pinned section',
     iconName: 'icon-pin',
     event: EVENTS.PINNED_SECTION,
-    transform: 'translate3d(70px, -70px, 0px)'
+    transform: 'translate3d(90px, -90px, 0px)'
   }
 ];
 
