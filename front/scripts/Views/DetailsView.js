@@ -74,7 +74,7 @@ DetailsView.prototype.renderCounters = function(isLoading) {
     // Convert data to view data
     .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
 
-    // Sort them
+    // Sort them by CP
     .sort((item1, item2) => {
       if (item1.cp !== item2.cp) {
         return item1.cp - item2.cp;
@@ -82,9 +82,16 @@ DetailsView.prototype.renderCounters = function(isLoading) {
         return Number(item1.id) - Number(item2.id)
       }
     })
-    // .map((counterData) => Object.assign({}, counterData, {
-    //   isFavourite: FavouritesModel.get(counterData.id)
-    // }))
+
+    // Favourite data
+    .map((counterData) => Object.assign({}, counterData, {
+      isFavourite: FavouritesModel.get(counterData.id)
+    }))
+    .sort((item1, item2) => {
+      const fav1 = item1.isFavourite ? 1 : 0;
+      const fav2 = item2.isFavourite ? 1 : 0;
+      return fav2 - fav1;
+    })
 
     // Create CounterView for each element
     .map((counterData) => {
