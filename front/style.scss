@@ -98,11 +98,11 @@ input[type=range]{
   font-weight: 100;
 
   position: fixed;
-  bottom: 40px;
+  bottom: 5%;
   left: calc(50% - 19px);
 
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   z-index: 2000;
 
   transition: opacity 200ms;
@@ -142,8 +142,8 @@ input[type=range]{
 
   .button {
     position: fixed;
-    bottom: 40px;
-    left: calc(50% - 20px);
+    bottom: 5%;
+    left: calc(50% - 21px);
     transition: transform, 150ms;
     transition-timing-function: ease-out;
 
@@ -170,8 +170,8 @@ input[type=range]{
 
     display: flex;
 
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
 
     img {
       margin: auto;
