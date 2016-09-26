@@ -11,6 +11,7 @@ export default {
           <div class="overlay__data">
             <h2 class="title title--large title--white">Favourites</h2>
             <div class="overlay__container js-favourites-pokemons-wrapper">
+              <div class="icon-favourite"></div>
               <p>Select any pokemon to add it to your favourites</p>
               <p>
                 Favourites pokemons are displayed first in the list of counters.

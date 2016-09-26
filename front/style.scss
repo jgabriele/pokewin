@@ -627,11 +627,34 @@ h3.title {
   &.overlay {
     .overlay__data {
       .overlay__container {
-        margin-top: 20px;
+        position: relative;
+        margin-top: 40px;
+        padding-top: 20px;
+
+        .icon-pin {
+          background: #f00;
+          position: absolute;
+          top: -30px;
+          left: calc(50% - 25px);
+          margin: auto;
+          width: 50px;
+          height: 50px;
+        }
+
+        .icon-favourite {
+          background: #ff0;
+          position: absolute;
+          top: -30px;
+          left: calc(50% - 25px);
+          margin: auto;
+          width: 50px;
+          height: 50px;
+        }
       }
     }
   }
 }
+
 
 .overlay {
   -webkit-transition: opacity 200ms;

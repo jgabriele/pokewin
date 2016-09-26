@@ -13,6 +13,7 @@ export default {
               Pinned Section
             </h2>
             <div class="overlay__container js-pinned-pokemons-wrapper">
+              <div class="icon-pin"></div>
               <p>Select any pokemon to add it to the Pinned Section on the main page</p>
               <p>
                 The Pinned Section is displayed at the top of the main page
@@ -33,7 +34,6 @@ export default {
 
     this.hide();
   },
-
 
   render(pokemons) {
     pokemons = pokemons.map((p) => Object.assign({}, p, {

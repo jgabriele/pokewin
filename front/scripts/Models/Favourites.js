@@ -4,7 +4,6 @@ const FavouritesModel = function () {
   Model.apply(this, arguments);
 }
 
-
 FavouritesModel.prototype = Object.create(Model.prototype);
 
 const _instance = null;
