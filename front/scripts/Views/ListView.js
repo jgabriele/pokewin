@@ -29,10 +29,10 @@ ListView.prototype._renderPokemonTiers = function(tiers, pokemons) {
 }
 
 ListView.prototype._prerenderPokemon = function(pokemon) {
-  const pokeView = new PokemonView()
+  const pokeView = new PokemonView(pokemon)
     .on(PokemonView.ACTIONS.SELECT_POKEMON, this.emit.bind(this, EVENTS.POKEMON_SELECTED, pokemon));
 
-  return pokeView.prerender(pokemon);
+  return pokeView.prerender();
 }
 
 ListView.EVENTS = EVENTS;

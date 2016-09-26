@@ -35,10 +35,10 @@ ListView.prototype.render = function(pokemons) {
 }
 
 ListView.prototype._prerenderPokemon = function(pokemon) {
-  const pokeView = new PokemonView()
-    .on(PokemonView.ACTIONS.SELECT_POKEMON, this.emit.bind(this, EVENTS.TOGGLE_POKEMON, pokemon));
+  const pokeView = new PokemonView(pokemon)
+    .on(PokemonView.ACTIONS.SELECT_POKEMON, this.emit.bind(this, EVENTS.TOGGLE_POKEMON));
 
-  return pokeView.prerender(pokemon);
+  return pokeView.prerender();
 }
 
 function getTitleForTiers (tiers) {

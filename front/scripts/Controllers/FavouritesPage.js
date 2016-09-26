@@ -3,7 +3,6 @@ import PokemonToggleList  from '../Views/PokemonToggleList';
 import Utils              from '../Utils';
 import FavouritesModel    from '../Models/Favourites';
 
-
 export default {
   init(parent) {
     this._el = Utils.DOMElementFromString(
@@ -47,7 +46,9 @@ export default {
     this._el.style.display = 'none';
   },
 
-  onClick(pokemon) {
+
+  onClick(pokemon, el) {
+    el.classList.toggle('is-favourite');
     FavouritesModel.toggle(pokemon.id);
   }
 };

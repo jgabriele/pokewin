@@ -43,7 +43,7 @@ function getIconForButton (buttonType) {
     case 'CLOSE':
       return 'X';
     case 'MENU':
-      return '-';
+      return '=';
     default:
       return '';
   }
