@@ -136,18 +136,18 @@
     "fr": "Merci du conseil !",
     "po": "Obrigado pela dica!"
   },
-  "TEXT_LOADING_MODAL_WHATS_NEW_TITLE": {
+  "TEXT_LOADING_MODAL_WHATS_NEW_FAVOURITES_TITLE": {
     "de": "Was gibt es neues auf Pokéwin?",
     "en": "What's new on Pokéwin?",
     "fr": "Quoi d'neuf sur Pokéwin ?",
     "po": "O que há de novo no Pokéwin?"
   },
-  "TEXT_LOADING_MODAL_WHATS_NEW_TEXT": {
+  "TEXT_LOADING_MODAL_WHATS_NEW_FAVOURITES_TEXT": {
     "de": "<h3>Favoriten</h3><span>Wähle Pokémon zu deinen Favoriten und siehe leichter wen sie schlagen.</span><h3>Pinnwand</h3><span>Pin Pokémon, die dir häufig in Arenen begegnet, dran und du musst sie nicht mehr in der Liste suchen.</span><h3>Design Verbesserung</h3><span>Pokewin wird jeden Tag schöner, oder nicht? :).</span><div>Danke für die Unterstützung! Zögert nicht ein <a target='_blank' href='https://www.facebook.com/pokewin.win/'>Like auf Facebook</a> zu hinterlassen und eine nette Nachricht zu hinterlassen!</div>",
     "en": "<h3>Favourites</h3><span>Add pokemons to your favourites and see easier who they counter.</span><h3>Pinned Section</h3><span>Pin pokemons you often meet in gym so you don't search for them through the whole list.</span><h3>Design enhancement</h3><span>Pokéwin is a bit more beautiful everyday, don't you feel it? :).</span><div>Thank you for your support, don't hesitate to give a like <a target='_blank' href='https://www.facebook.com/pokewin.win/'>on Facebook</a> and drop a love message!</div>",
     "fr": "<h3>Favoris</h3><span>Ajoute des pokémons favoris pour les voir en priorité dans la liste des contres.</span><h3>Epingler des pokémons</h3><span>Épingle des pokémons que tu rencontres souvent en arène pour éviter de les chercher dans toute la liste.</span><h3>Améliorations visuelles</h3><span>Pokéwin est plus beau de jour en jour, non ? :).</span><div>Encore merci de votre soutien, n'hésitez pas à <a target='_blank' href='https://www.facebook.com/pokewin.win/'>liker la page Facebook</a> et d'y laisser des messages d'amour!</div>"
   },
-  "TEXT_LOADING_MODAL_WHATS_NEW_OK_TEXT": {
+  "TEXT_LOADING_MODAL_WHATS_NEW_FAVOURITES_OK_TEXT": {
     "de": "Gut gemacht!",
     "en": "Well done!",
     "fr": "Bravo le veau!",

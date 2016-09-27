@@ -6,7 +6,7 @@ import Utils          from '../Utils';
 const MODALS_SHOWN_KEY = 'modals-shown';
 const availableModals = [
   { type: 'FACEBOOK', condition: hasSeenWebsiteMultipleTimes },
-  { type: 'WHATS_NEW' }
+  { type: 'WHATS_NEW_FAVOURITES' }
 ];
 
 export default {
