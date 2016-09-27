@@ -17,13 +17,16 @@ export default {
 
     const el = Utils.DOMElementFromString(
       `<div class="overlay page-pinned-section">
-          <div class="overlay__background"></div>
-          <div class="overlay__data">
-            <h2 class="title title--large title--white">
-              ${pinnedTitle}
-            </h2>
-            <div class="overlay__container js-pinned-pokemons-wrapper">
-              <div class="icon-pin"></div>
+        <div class="overlay__background"></div>
+        <div class="overlay__data">
+
+          <h2 class="title title--large title--white">
+            ${pinnedTitle}
+          </h2>
+
+          <div class="overlay__container js-pinned-pokemons-wrapper">
+            <div class="icon-pin"></div>
+            <header>
               <div>
                 ${pinnedIntro}
               </div>
@@ -31,9 +34,10 @@ export default {
                 <p>${hintTitle}</p>
                 <p>${hintText}</p>
               </div>
-            </div>
+            </header>
           </div>
-        </div>`
+        </div>
+      </div>`
     );
 
     this._el.innerHTML = '';

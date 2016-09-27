@@ -26,13 +26,15 @@ export default {
 
           <div class="overlay__container js-favourites-pokemons-wrapper">
             <div class="icon-favourite"></div>
-            <div>
-              ${favouritesIntro}
-            </div>
-            <div class="hint">
-              <p>${hintTitle}</p>
-              <p>${hintText}</p>
-            </div>
+            <header>
+              <div>
+                ${favouritesIntro}
+              </div>
+              <div class="hint">
+                <p>${hintTitle}</p>
+                <p>${hintText}</p>
+              </div>
+            </header>
           </div>
         </div>
       </div>`

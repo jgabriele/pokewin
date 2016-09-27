@@ -678,7 +678,7 @@ h3.title {
       .overlay__container {
         position: relative;
         margin-top: 56px;
-        padding-top: 30px;
+        padding-top: 24px;
 
         .icon-pin {
           background: url(/images/icon-pin.png);
@@ -700,6 +700,24 @@ h3.title {
           margin: auto;
           width: 80px;
           height: 80px;
+        }
+
+        header {
+          padding-bottom: 10px;
+
+          p {
+            padding: 0px 5px;
+          }
+        }
+
+        .pokemon {
+          opacity: .4;
+          &.is-favourite {
+            opacity: 1;
+          }
+          &.is-pinned {
+            opacity: 1;
+          }
         }
       }
     }
