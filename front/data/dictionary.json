@@ -125,7 +125,7 @@
     "po": "Olá!"
   },
   "TEXT_LOADING_MODAL_FACEBOOK_TEXT": {
-    "de": "Wußtest du schon dass Pokéwin eine Facebookseite hat? Es würde mich freuen, wenn du meine Arbeit mit einem gefällt mir unterstützt. Dadurch wirst du nicht nur nie neusten Infos zu Pokéwin erhalten, sondern kannst schnell und einfach deine persönlichern Anregungen, Verbesserungsvorschläge und Fragen stellen.",
+    "de": "<p>Wußtest du schon dass <a target='_blank' href='https://www.facebook.com/pokewin.win/'>Pokéwin eine Facebookseite</a> hat?</p><p>Es würde mich freuen, wenn du meine Arbeit mit einem gefällt mir unterstützt.</p><p>Dadurch wirst du nicht nur nie <strong>neusten Infos</strong> zu Pokéwin erhalten, sondern kannst schnell und einfach deine <strong>persönlichern Anregungen</strong>, Verbesserungsvorschläge und Fragen stellen.</p>",
     "en": "<p>Did you know that Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>had a Facebook page</a>?</p><p>I'll be happy if you dropped a like there! You will be able to get latest news about the future of Pokéwin!</p><p><strong>And bonus:</strong> it's the esiest way to propose suggestion and contact the Pokéwin developer.</p><p>Thanks for your support!</p>",
     "fr": "<p>Tu savais que Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>avait sa propre page Facebook</a> ?</p><p>Tu pourras y trouver toutes les dernières nouveautés sur Pokéwin et l'avancement du développement!</p><p><strong>Et bonus:</strong> c'est le meilleur endroit pour proposer des suggestions et contacter le développeur!</p><p>Allez, viens on est bien!</p>",
     "po": "<p>Você sabia que Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>tem uma página no Facebook</a>?</p><p>Ficaríamos felizes se você curtisse! Você também receberá as últimas notícias sobre as próximas atualizações de Pokéwin!</p><p><strong>E mais:</strong> Essa é a maneira mais fácil de enviar sugestões para o desenvolvedor.</p><p>Obrigado pelo apoio!</p>"
@@ -137,50 +137,60 @@
     "po": "Obrigado pela dica!"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_TITLE": {
+    "de": "Was gibt es neues auf Pokéwin?",
     "en": "What's new on Pokéwin?",
     "fr": "Quoi d'neuf sur Pokéwin ?",
     "po": "O que há de novo no Pokéwin?"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_TEXT": {
+    "de": "<h3>Favoriten</h3><span>Wähle Pokémon zu deinen Favoriten und siehe leichter wen sie schlagen.</span><h3>Pinnwand</h3><span>Pin Pokémon, die dir häufig in Arenen begegnet, dran und du musst sie nicht mehr in der Liste suchen.</span><h3>Design Verbesserung</h3><span>Pokewin wird jeden Tag schöner, oder nicht? :).</span><div>Danke für die Unterstützung! Zögert nicht ein <a target='_blank' href='https://www.facebook.com/pokewin.win/'>Like auf Facebook</a> zu hinterlassen und eine nette Nachricht zu hinterlassen!</div>",
     "en": "<h3>Favourites</h3><span>Add pokemons to your favourites and see easier who they counter.</span><h3>Pinned Section</h3><span>Pin pokemons you often meet in gym so you don't search for them through the whole list.</span><h3>Design enhancement</h3><span>Pokéwin is a bit more beautiful everyday, don't you feel it? :).</span><div>Thank you for your support, don't hesitate to give a like <a target='_blank' href='https://www.facebook.com/pokewin.win/'>on Facebook</a> and drop a love message!</div>",
     "fr": "<h3>Favoris</h3><span>Ajoute des pokémons favoris pour les voir en priorité dans la liste des contres.</span><h3>Epingler des pokémons</h3><span>Épingle des pokémons que tu rencontres souvent en arène pour éviter de les chercher dans toute la liste.</span><h3>Améliorations visuelles</h3><span>Pokéwin est plus beau de jour en jour, non ? :).</span><div>Encore merci de votre soutien, n'hésitez pas à <a target='_blank' href='https://www.facebook.com/pokewin.win/'>liker la page Facebook</a> et d'y laisser des messages d'amour!</div>"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_OK_TEXT": {
+    "de": "Gut gemacht!",
     "en": "Well done!",
     "fr": "Bravo le veau!",
     "po": "Bom trabalho!"
   },
 
   "TEXT_HINT_TITLE": {
+    "de": "Hinweis",
     "en": "Hint",
     "fr": "Astuce",
     "po": "Dica"
   },
 
   "TEXT_FAVOURITES": {
+    "de": "Favoriten",
     "en": "Favourites",
     "fr": "Favoris",
     "po": "Favoritos"
   },
   "TEXT_FAVOURITES_INTRO": {
+    "de": "<p>Wähle ein Pokémon, um es zu deinen Favoriten hinzuzufügen.</p><p>Favorisierte Pokémon <strong>werden zuerst angezeigt</strong> in der Konterliste.</p>",
     "en": "<p>Select any pokemon to add it to your favourites.</p><p>Favourites pokemons <strong>are displayed first</strong> in the list of counters.</p>",
     "fr": "<p>Selectionne tes pokémon favoris.</p><p>Les pokémons favoris <strong>sont affichés en premier</strong> dans la liste des contres.</p>",
     "po": "<p>Selecione qualquer pokemon para adicioná-lo aos seus favoritos</p><p>Pokémons favoritos<strong>são mostrados em primeiro</strong> na lista de tipos contrários.</p>"
   },
   "TEXT_FAVOURITES_HINT_TEXT": {
+    "de": "<strong>Favorisiere deine eigenen Pokémon</strong>, um leichter herauszufinden, gegen wen sie stark sind.",
     "en": "<strong>Favourite the pokemons you own</strong> to find easily who they counter.",
     "fr": "<strong>Met en favoris les pokémons que tu possèdes</strong> pour trouver plus facilement contre qui ils sont efficaces."
   },
 
   "TEXT_PINNED": {
+    "de": "Gepinnt",
     "en": "Pinned",
     "fr": "Épinglés"
   },
   "TEXT_PINNED_INTRO": {
+    "de": "<p>Wähle ein Pokemon für die Pinnwand.</p><p>Die Pinnwand<strong> wird dir oben auf der Startseite angezeigt</strong>.<p>",
     "en": "<p>Select any pokemon to add it to the Pinned Section.</p><p>The Pinned Section is displayed <strong>at the top of the main page</strong>.</p>",
     "fr": "<p>Selectionne un pokémon pour l'épingler.</p><p>Les pokémons épinglés <strong>sont affichés tout en haut</strong> de la page d'accueil.</p>"
   },
   "TEXT_PINNED_HINT_TEXT": {
+    "de": "<strong>Pin ein Pokemon, das häufig in Arenen vorkommt,</strong> damit du nicht den Pokedex durchsuchen musst.",
     "en": "<strong>Pin the pokemons you often see in gyms</strong> so you don't have to search them through the whole pokedex.",
     "fr": "<strong>Épingles les pokémons que tu rencontres le plus souvent aux arènes</strong> pour éviter de les chercher partout dans la liste."
   },
