@@ -91,7 +91,8 @@ Menu.prototype.show = function () {
 
   setTimeout(() => {
     this._buttonsEl.forEach((buttonEl) => {
-      buttonEl.style = `transform: ${buttonEl.data.transform}; -webkit-transform: ${buttonEl.data.transform}`; // Yep :/...
+      buttonEl.style.transform = buttonEl.data.transform;
+      buttonEl.style.webkitTransform = buttonEl.data.transform;
       buttonEl.style.transitionDelay = buttonEl.data.transitionDelay;
     });
 
@@ -121,6 +122,7 @@ function showButton (buttonEl) {
 
 function hideButton (buttonEl) {
   buttonEl.style.transform = '';
+  buttonEl.style.webkitTransform = '';
   buttonEl.style.transitionDelay = buttonEl.data.transitionDelay;
 }
 

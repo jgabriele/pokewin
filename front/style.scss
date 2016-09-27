@@ -105,7 +105,6 @@ input[type=range]{
   height: 42px;
   z-index: 2000;
 
-  -webkit-transition: opacity 200ms;
   transition: opacity 200ms;
 
   .floating-button__icon {
@@ -146,12 +145,11 @@ input[type=range]{
     position: fixed;
     bottom: 5%;
     left: calc(50% - 21px);
-    -webkit-transition: -webkit-transform, 150ms;
     transition: transform, 150ms;
+    transition: -webkit-transform, 150ms;
     transition-timing-function: ease-out;
 
     .button__text {
-      -webkit-transition: none;
       transition: none;
       position: absolute;
       white-space: nowrap;
@@ -593,7 +591,6 @@ h3.title {
 }
 
 .is-hidden {
-  -webkit-transition: opacity 200ms;
   transition: opacity 200ms;
 
   opacity: 0;
@@ -736,7 +733,6 @@ h3.title {
 
 
 .overlay {
-  -webkit-transition: opacity 200ms;
   transition: opacity 200ms;
 
   position: absolute;
