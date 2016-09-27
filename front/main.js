@@ -11,10 +11,16 @@ import DetailsView          from './scripts/Views/DetailsView';
 import LanguageSelectView   from './scripts/Views/LanguageSelectView';
 import ModalView            from './scripts/Views/ModalView';
 import MultipleChoices      from './scripts/Views/Modal/MultipleChoices';
+import FloatingButton       from './scripts/Views/FloatingButton';
+import Menu                 from './scripts/Views/Menu';
+import PokemonToggleList    from './scripts/Views/PokemonToggleList';
 
-import LoadingModal from './scripts/Controllers/LoadingModal';
+import FavouritesPage     from './scripts/Controllers/FavouritesPage';
+import LoadingModal       from './scripts/Controllers/LoadingModal';
+import MainFloatingButton from './scripts/Controllers/MainFloatingButton';
+import PinnedSectionPage  from './scripts/Controllers/PinnedSectionPage';
 
-import FavouritesModel from './scripts/Models/Favourites';
+import PinnedModel from './scripts/Models/Pinned';
 
 Polyfills.objectAssign();
 
@@ -73,9 +79,85 @@ function _augmentPokemonsData(pokemons) {
 
 //------------------
 
+const menu = new Menu()
+  .on(Menu.EVENTS.FAVOURITES, showFavouritesPage)
+  .on(Menu.EVENTS.PINNED_SECTION, showPinnedSectionPage);
+
+function showFavouritesPage() {
+  MainFloatingButton.setState('FAVOURITES');
+  menu.hide();
+  listView.block();
+
+  FavouritesPage.render(pokemonsFull);
+  FavouritesPage.show();
+  window.scroll(0, 0);
+}
+
+function showPinnedSectionPage() {
+  MainFloatingButton.setState('PINNED_SECTION');
+  menu.hide();
+  listView.block();
+
+  PinnedSectionPage.render(pokemonsFull);
+  PinnedSectionPage.show();
+  window.scroll(0, 0);
+}
+
+MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'), 'MENU');
+MainFloatingButton.addState('BASE', {
+  action: () => {
+    menu.update();
+    setTimeout(() => menu.show(), 0);
+  },
+  buttonType: 'MENU',
+  nextState: 'MENU'
+});
+MainFloatingButton.addState('MENU', {
+  action: () => menu.hide(),
+  buttonType: 'CLOSE',
+  nextState: 'BASE'
+});
+MainFloatingButton.addState('DETAILS', {
+  action: hideDetail,
+  buttonType: 'CLOSE',
+  nextState: 'BASE'
+});
+MainFloatingButton.addState('FAVOURITES', {
+  action: () => {
+    menu.hide();
+    FavouritesPage.hide();
+    listView.unBlock();
+  },
+  buttonType: 'CLOSE',
+  nextState: 'BASE'
+});
+MainFloatingButton.addState('PINNED_SECTION', {
+  action: () => {
+    menu.hide();
+    updateListView(pokemonsFull);
+    PinnedSectionPage.hide();
+    listView.unBlock();
+  },
+  buttonType: 'CLOSE',
+  nextState: 'BASE'
+});
+MainFloatingButton.setState('BASE');
+
+
+//------------------
+
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
 
 //------------------
+
+function updateListView(pokemonsFull) {
+  const pinnedPokemons = pokemonsFull.filter((p) => PinnedModel.getInstance().get(p.id));
+  const t1Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 1);
+  const t2Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 2);
+  const t3Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 3);
+
+  listView.render(pinnedPokemons, t1Pokemons, t2Pokemons, t3Pokemons);
+}
 
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
@@ -84,22 +166,22 @@ function updateDetail(pokemons, pokemon) {
   DetailsView
     .removeAllListeners()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
-    .on(DetailsView.ACTIONS.CLOSE, hideDetail)
     .render({
       pokemon,
       counters,
       isLoading
-    })
+    });
+
+  MainFloatingButton.setState('DETAILS');
 }
 
 const detailsOverlay = document.querySelector('.js-details-overlay');
-const pokedex = document.querySelector('.pokedex');
 
 function showDetail() {
   window.scroll(0, 0);
   detailsOverlay.style.display = "initial";
   detailsOverlay.classList.remove('is-hidden');
-  pokedex.classList.add('is-behind');
+  listView.block();
 }
 
 detailsOverlay.addEventListener('transitionend', () => {
@@ -108,7 +190,7 @@ detailsOverlay.addEventListener('transitionend', () => {
 detailsOverlay.style.display = "none";
 function hideDetail() {
   detailsOverlay.classList.add('is-hidden');
-  pokedex.classList.remove('is-behind');
+  listView.unBlock();
 }
 
 function toggleIntro() {
@@ -151,51 +233,9 @@ function _onPokemonSelected(pokemons, pokemon) {
   showDetail();
 }
 
-function _onPokemonLongSelected(pokemon) {
-  const isFavourited = FavouritesModel.get(pokemon.id);
-  const pokemonName = LocaleManager.getInstance().translate(pokemon.key);
-  const title = `What do you want to do with ${pokemonName}?`;
-  const choices = [
-    {
-      icon: 'star',
-      title: isFavourited ? 'Remove from favourites' : 'Add to favourite',
-      onClick: () => {
-        FavouritesModel.toggle(pokemon.id);
-        ModalView.hide();
-      }
-    },
-    // {
-    //   icon: 'star',
-    //   title: 'Add to custom section',
-    //   onClick: () => console.log('Custom Section')
-    // },
-    {
-      icon: 'star',
-      type: 'EXIT',
-      title: 'Nothing thanks',
-      onClick: () => {
-        ModalView.hide();
-      }
-    }
-  ];
-  const message = MultipleChoices.render(title, choices);
-
-  // Need setTimeout here because else background of ModalView will
-  // receive touchend as well
-  setTimeout(() => {
-    ModalView.render(message, {
-      onOverlayBackground: () => {
-        ModalView.hide();
-      }
-    });
-  }, 0);
-}
-
 function _removeLoadingState() {
   isLoading = false;
-  Array.prototype.forEach.call(document.querySelectorAll('.pokemon-image'), (el) => {
-    el.classList.remove('is-loading');
-  });
+  document.body.classList.remove('is-loading');
 }
 
 function _onLanguageSelected(lang = 'en') {
@@ -212,6 +252,7 @@ function _onLanguageSelected(lang = 'en') {
 
 let pokemons = null, types = null, moves = null, dictionary = null;
 let pokemonsFull;
+let listView;
 let isLoading = true;
 
 if (Utils.isMobileDevice()) {
@@ -277,13 +318,12 @@ function _startup () {
       const storedLanguage = localStorage && localStorage.getItem(LANGUAGE_KEY);
       const browserLang = NAVIGATOR_LANG_TO_LANG[navigator.language || navigator.userLanguage || 'en'];
       const requestedLang = queryLanguage || storedLanguage || browserLang;
-      languageSelectView.selectLanguage(requestedLang);
 
       pokemonsFull = _augmentPokemonsData(pokemons);
-      const listView = new ListView()
+
+      listView = new ListView(document.querySelector('.js-list-view-wrapper'))
         .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull));
-        // .on(ListView.EVENTS.POKEMON_LONG_SELECTED, _onPokemonLongSelected);
-      listView.render(pokemonsFull);
+      updateListView(pokemonsFull);
 
       _addKeyboardListener();
 
@@ -303,6 +343,13 @@ function _startup () {
       // Preload the high res spritesheet now that the page has loaded
       preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
         .then(_removeLoadingState);
+
+      // Prepare the favourites. TODO remove from here
+      FavouritesPage.init(document.body);
+      PinnedSectionPage.init(document.body);
+
+      // Localise all tagged text
+      languageSelectView.selectLanguage(requestedLang);
 
       setTimeout(_hideLoading, 200);
 

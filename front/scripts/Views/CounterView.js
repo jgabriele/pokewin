@@ -10,8 +10,6 @@ function CounterView() {}
 CounterView.prototype = Object.create(Event.prototype);
 
 CounterView.prototype.prerender = function(counter) {
-  const isLoadingClass = counter.isLoading ? ' is-loading' : '';
-
   const cp = counter.cp;
   const quickMove = counter.moves[0];
   const quickMoveFontSize = Utils.getFontSize(quickMove.name, 70);
@@ -22,7 +20,7 @@ CounterView.prototype.prerender = function(counter) {
   const domEl = Utils.DOMElementFromString(
     `<div class="other-pokemon${favouriteClass} js-pokemon">
       <div class="picture">
-        <div class="pokemon-image${isLoadingClass}"
+        <div class="pokemon-image"
             style="${Utils.getPokemonSpritesheetPosition(counter)}"/>
         </div>
       </div>
@@ -37,22 +35,14 @@ CounterView.prototype.prerender = function(counter) {
       </div>
     </div>`);
 
-  // if (Utils.isMobileDevice()) {
-  //   domEl.addEventListener('touchend', () => this.onTouchEnd(counter));
-  // } else {
-    domEl.addEventListener('click', () => this.onTouchEnd(counter));
-  // }
+  domEl.addEventListener('click', () => this.onClick(counter));
 
   this._el = domEl;
 
   return domEl;
 }
 
-CounterView.prototype.onTouchEnd = function (counter) {
-  if (Utils.isDocumentScrolling()) {
-    return;
-  }
-
+CounterView.prototype.onClick = function (counter) {
   this.emit(ACTIONS.SELECT_COUNTER, counter);
 }
 

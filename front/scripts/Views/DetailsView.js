@@ -10,16 +10,11 @@ const EVENTS = {
   COUNTER_SELECTED: 'pokemon-selected'
 }
 
-const ACTIONS = {
-  CLOSE: 'close'
-}
-
 const INITIAL_DEFENSE_POKEMON_CP = 2000;
 const INPUT_RANGE_STEP = Utils.isMobileDevice() && 10 || 1;
 
 function DetailsView() {
   this.EVENTS = EVENTS;
-  this.ACTIONS = ACTIONS;
 
   this._state = {
     defensePokemonCP: INITIAL_DEFENSE_POKEMON_CP
@@ -39,9 +34,6 @@ function DetailsView() {
   this._name = document.querySelector('.overlay__data .js-name');
   this._picture = document.querySelector('.overlay__data .js-picture');
   this._types = document.querySelector('.overlay__data .js-types');
-
-  this._close = document.querySelector('.js-close');
-  this._close.addEventListener('click', this.onClose.bind(this));
 }
 
 DetailsView.prototype = Object.create(Event.prototype);
@@ -58,9 +50,8 @@ DetailsView.prototype.render = function(data) {
               </div>`)
             .join('');
 
-  const isLoadingClass = data.isLoading ? ' is-loading' : '';
   const imageHTML = `
-    <div class="pokemon-image${isLoadingClass}"
+    <div class="pokemon-image"
         style="${Utils.getPokemonSpritesheetPosition(pokemon, 150)}"/>
     </div>`;
 
@@ -83,7 +74,7 @@ DetailsView.prototype.renderCounters = function(isLoading) {
     // Convert data to view data
     .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
 
-    // Sort them
+    // Sort them by CP
     .sort((item1, item2) => {
       if (item1.cp !== item2.cp) {
         return item1.cp - item2.cp;
@@ -91,9 +82,16 @@ DetailsView.prototype.renderCounters = function(isLoading) {
         return Number(item1.id) - Number(item2.id)
       }
     })
-    // .map((counterData) => Object.assign({}, counterData, {
-    //   isFavourite: FavouritesModel.get(counterData.id)
-    // }))
+
+    // Favourite data
+    .map((counterData) => Object.assign({}, counterData, {
+      isFavourite: FavouritesModel.getInstance().get(counterData.id)
+    }))
+    .sort((item1, item2) => {
+      const fav1 = item1.isFavourite ? 1 : 0;
+      const fav2 = item2.isFavourite ? 1 : 0;
+      return fav2 - fav1;
+    })
 
     // Create CounterView for each element
     .map((counterData) => {
@@ -124,10 +122,6 @@ DetailsView.prototype.onInputUpdate = function(e) {
 
 DetailsView.prototype.onInputRelease = function(e) {
   this.renderCounters();
-}
-
-DetailsView.prototype.onClose = function() {
-  this.emit(ACTIONS.CLOSE);
 }
 
 DetailsView.prototype.onSelectCounter = function(pokemon) {
