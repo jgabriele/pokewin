@@ -648,37 +648,51 @@ h3.title {
   }
 }
 
-.page-favourite, .page-pinned-section {
+.page-favourite,
+.page-pinned-section {
   &.overlay {
     .overlay__data {
       .overlay__container {
         position: relative;
-        margin-top: 40px;
-        padding-top: 20px;
+        margin-top: 56px;
+        padding-top: 30px;
 
         .icon-pin {
           background: url(/images/icon-pin.png);
           background-size: cover;
           position: absolute;
-          top: -36px;
-          left: calc(50% - 32px);
+          top: -50px;
+          left: calc(50% - 40px);
           margin: auto;
-          width: 64px;
-          height: 64px;
+          width: 80px;
+          height: 80px;
         }
 
         .icon-favourite {
           background: url(/images/icon-heart.png);
           background-size: cover;
           position: absolute;
-          top: -36px;
-          left: calc(50% - 32px);
+          top: -50px;
+          left: calc(50% - 40px);
           margin: auto;
-          width: 64px;
-          height: 64px;
+          width: 80px;
+          height: 80px;
         }
       }
     }
+  }
+}
+
+.page-favourite {
+  .hint {
+    background: #ff4f4f;
+    color: #fff;
+  }
+}
+.page-pinned-section {
+  .hint {
+    background: #ffdf48;
+    color: black;
   }
 }
 
@@ -731,7 +745,12 @@ h3.title {
       width: 96%;
 
       .hint {
+        padding: 5px;
         font-size: 10px;
+
+        p {
+          margin: 0;
+        }
       }
     }
 

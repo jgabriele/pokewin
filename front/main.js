@@ -103,9 +103,6 @@ function showPinnedSectionPage() {
   window.scroll(0, 0);
 }
 
-FavouritesPage.init(document.body);
-PinnedSectionPage.init(document.body);
-
 MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'), 'MENU');
 MainFloatingButton.addState('BASE', {
   action: () => {
@@ -346,6 +343,10 @@ function _startup () {
       // Preload the high res spritesheet now that the page has loaded
       preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
         .then(_removeLoadingState);
+
+      // Prepare the favourites. TODO remove from here
+      FavouritesPage.init(document.body);
+      PinnedSectionPage.init(document.body);
 
       // Localise all tagged text
       languageSelectView.selectLanguage(requestedLang);

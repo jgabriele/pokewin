@@ -164,6 +164,39 @@
     "fr": "C'est pas trop tôt !",
     "po": "Bom trabalho!"
   },
+
+  "TEXT_HINT_TITLE": {
+    "en": "Hint",
+    "fr": "Astuce"
+  },
+
+  "TEXT_FAVOURITES_TITLE": {
+    "en": "Favourites",
+    "fr": "Favoris"
+  },
+  "TEXT_FAVOURITES_INTRO": {
+    "en": "<p>Select any pokemon to add it to your favourites.</p><p>Favourites pokemons <strong>are displayed first</strong> in the list of counters.</p>",
+    "fr": "<p>Selectionne tes pokémon favoris.</p><p>Les pokémons favoris <strong>sont affichés en premier</strong> dans la liste des contres.</p>"
+  },
+  "TEXT_FAVOURITES_HINT_TEXT": {
+    "en": "<strong>Favourite the pokemons you own</strong> to find easily who they counter.",
+    "fr": "<strong>Met en favoris les pokémons que tu possèdes</strong> pour trouver plus facilement contre qui ils sont efficaces."
+  },
+
+  "TEXT_PINNED_TITLE": {
+    "en": "Pinned",
+    "fr": "Épinglés"
+  },
+  "TEXT_PINNED_INTRO": {
+    "en": "<p>Select any pokemon to add it to the Pinned Section.</p><p>The Pinned Section is displayed <strong>at the top of the main page</strong>.</p>",
+    "fr": "<p>Selectionne un pokémon pour l'épingler.</p><p>Les pokémons épinglés <strong>sont affichés tout en haut</strong> de la page d'accueil.</p>"
+  },
+  "TEXT_PINNED_HINT_TEXT": {
+    "en": "<strong>Pin the pokemons you often see in gyms</strong> so you don't have to search them through the whole pokedex.",
+    "fr": "<strong>Épingles les pokémons que tu rencontres le plus souvent aux arènes</strong> pour éviter de les chercher partout dans la liste."
+  },
+
+
   "POKE_001": {
     "de": "Bisasam",
     "en": "Bulbasaur",

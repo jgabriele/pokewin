@@ -1,42 +1,56 @@
 import PokemonToggleList  from '../Views/PokemonToggleList';
-// import LocaleManager      from '../LocaleManager';
+import LocaleManager      from '../LocaleManager';
 import Utils              from '../Utils';
 import FavouritesModel    from '../Models/Favourites';
 
+
 export default {
   init(parent) {
-    this._el = Utils.DOMElementFromString(
-      `<div class="overlay page-favourite">
-          <div class="overlay__background"></div>
-          <div class="overlay__data">
-            <h2 class="title title--large title--white">Favourites</h2>
-            <div class="overlay__container js-favourites-pokemons-wrapper">
-              <div class="icon-favourite"></div>
-              <p>Select any pokemon to add it to your favourites</p>
-              <p>
-                Favourites pokemons are displayed first in the list of counters.
-              </p>
-              <p class="hint">
-                hint: favourite the pokemons you own to find easily who they counter.
-              </p>
-            </div>
-          </div>
-        </div>`
-    );
-
-    this._toggleList = new PokemonToggleList(this._el.querySelector('.js-favourites-pokemons-wrapper'))
-      .on(PokemonToggleList.EVENTS.TOGGLE_POKEMON, this.onClick.bind(this));
-
+    this._el = Utils.DOMElementFromString('<div></div>');
     parent.appendChild(this._el);
-
-    this.hide();
   },
 
   render(pokemons) {
+    const favouritesTitle = LocaleManager.getInstance().translate('TEXT_FAVOURITES_TITLE');
+    const favouritesIntro = LocaleManager.getInstance().translate('TEXT_FAVOURITES_INTRO');
+    const hintTitle = LocaleManager.getInstance().translate('TEXT_HINT_TITLE');
+    const hintText = LocaleManager.getInstance().translate('TEXT_FAVOURITES_HINT_TEXT');
+
+    const el = Utils.DOMElementFromString(
+      `<div class="overlay page-favourite">
+        <div class="overlay__background"></div>
+        <div class="overlay__data">
+
+          <h2 class="title title--large title--white">
+            ${favouritesTitle}
+          </h2>
+
+          <div class="overlay__container js-favourites-pokemons-wrapper">
+            <div class="icon-favourite"></div>
+            <div>
+              ${favouritesIntro}
+            </div>
+            <div class="hint">
+              <p>${hintTitle}</p>
+              <p>${hintText}</p>
+            </div>
+          </div>
+        </div>
+      </div>`
+    );
+
+    this._el.innerHTML = '';
+    this._el.appendChild(el);
+
     pokemons = pokemons.map((p) => Object.assign({}, p, {
       isFavourite: FavouritesModel.getInstance().get(p.id)
     }));
-    this._toggleList.render(pokemons);
+
+    // OPTIM – avoid creating a new object everytime
+    this._toggleList = null;
+    this._toggleList = new PokemonToggleList(this._el.querySelector('.js-favourites-pokemons-wrapper'))
+      .on(PokemonToggleList.EVENTS.TOGGLE_POKEMON, this.onClick.bind(this))
+      .render(pokemons);
   },
 
   show() {
