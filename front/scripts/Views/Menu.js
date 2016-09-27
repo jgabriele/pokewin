@@ -84,7 +84,6 @@ Menu.prototype.update = function () {
   }
 }
 
-
 Menu.prototype.show = function () {
   this._isOpened = true;
 
