@@ -746,6 +746,10 @@ h3.title {
   &.overlay--modal {
     position: fixed;
     z-index: 5000;
+
+    .overlay__data {
+      margin-bottom: 0;
+    }
   }
 
   .overlay__background {
