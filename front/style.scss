@@ -105,6 +105,7 @@ input[type=range]{
   height: 42px;
   z-index: 2000;
 
+  -webkit-transition: opacity 200ms;
   transition: opacity 200ms;
 
   .floating-button__icon {
@@ -145,6 +146,7 @@ input[type=range]{
     position: fixed;
     bottom: 5%;
     left: calc(50% - 21px);
+    -webkit-transition: transform, 150ms;
     transition: transform, 150ms;
     transition-timing-function: ease-out;
 
@@ -171,8 +173,8 @@ input[type=range]{
 
     display: flex;
 
-    width: 42px;
-    height: 42px;
+    width: 46px;
+    height: 46px;
 
     img {
       margin: auto;
