@@ -638,13 +638,8 @@ h3.title {
       }
     }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
-
-      li {
-        margin-bottom: 10px;
-      }
+    div {
+      margin: 15px 0px;
     }
   }
 
@@ -752,6 +747,7 @@ h3.title {
 
   &.overlay--modal {
     position: fixed;
+    z-index: 5000;
   }
 
   .overlay__background {

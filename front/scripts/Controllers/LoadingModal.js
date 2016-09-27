@@ -4,10 +4,10 @@ import LocaleManager  from '../LocaleManager';
 import Utils          from '../Utils';
 
 const MODALS_SHOWN_KEY = 'modals-shown';
-
+//
 const availableModals = [
   { type: 'FACEBOOK', condition: hasSeenWebsiteMultipleTimes },
-  { type: 'WHATS_NEW_DPS' }
+  { type: 'WHATS_NEW' }
 ];
 
 export default {

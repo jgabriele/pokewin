@@ -116,6 +116,8 @@
     "es": "Especiales agradecimientos a <a target='_blank' href='https://twitter.com/rafayepes'>Rafa Yepes</a> por la traducción al Español.",
     "po": "Agradecimento especial para <a target='_blank' href='https://www.facebook.com/matheus.albuquerque.391'>Matheus Albuquerque de Saturno</a> por traduzir para Português."
   },
+
+
   "TEXT_LOADING_MODAL_FACEBOOK_TITLE": {
     "de": "Hallo mein Freund!",
     "en": "Hello, you!",
@@ -134,49 +136,36 @@
     "fr": "Merci du conseil !",
     "po": "Obrigado pela dica!"
   },
-  "TEXT_LOADING_MODAL_WHATS_NEW_ROTATION_TITLE": {
-    "de": "Was gibt es neues auf Pokéwin?",
+  "TEXT_LOADING_MODAL_WHATS_NEW_TITLE": {
     "en": "What's new on Pokéwin?",
     "fr": "Quoi d'neuf sur Pokéwin ?",
     "po": "O que há de novo no Pokéwin?"
   },
-  "TEXT_LOADING_MODAL_WHATS_NEW_ROTATION_TEXT": {
-    "en": "<ul><li><h3>Loading messages</h3>You'll never miss a single feature of Pokéwin!</li><li><h3>Counters move rotation</h3>All efficient moves are shown for each counter. They rotate every 4 seconds.</li><li><h3>Stability and bug fixes</h3>Memory leaks and code quality has been improved to make Pokéwin even faster!</li></ul>",
-    "fr": "<ul><li><h3>Messages d'accueil</h3>Tu ne rateras plus jamais une seule fonctionnalité de Pokéwin!</li><li><h3>Rotations des attaques</h3>Pour chaque contre, on affiche désormais toutes les attaques qui sont efficaces. Elles permuttent toutes les 4 secondes.</li><li><h3>Stabilité et résolution de bugs</h3>La qualité de l'application a été améliorée pour rendre Pokéwin encore plus rapide!</li></ul>"
+  "TEXT_LOADING_MODAL_WHATS_NEW_TEXT": {
+    "en": "<h3>Favourites</h3><span>Add pokemons to your favourites and see easier who they counter.</span><h3>Pinned Section</h3><span>Pin pokemons you often meet in gym so you don't search for them through the whole list.</span><h3>Design enhancement</h3><span>Pokéwin is a bit more beautiful everyday, don't you feel it? :).</span><div>Thank you for your support, don't hesitate to give a like <a target='_blank' href='https://www.facebook.com/pokewin.win/'>on Facebook</a> and drop a love message!</div>",
+    "fr": "<h3>Favoris</h3><span>Ajoute des pokémons favourites pour voir facilement leur forces.</span><h3>Epingler des pokémons</h3><span>Épingles des pokémons que tu rencontres souvent en arène pour éviter de les chercher dans toute la liste.</span><h3>Améliorations visuelles</h3><span>Pokéwin est plus beau de jour en jour, non ? :).</span><div>Encore merci de votre soutien, n'hésitez pas à <a target='_blank' href='https://www.facebook.com/pokewin.win/'>like la page Facebook</a> et d'y laisser des messages d'amour!</div>"
   },
-  "TEXT_LOADING_MODAL_WHATS_NEW_ROTATION_OK_TEXT": {
-    "de": "OK!",
-    "en": "Nice job!",
-    "fr": "Bravo le veau !",
-    "po": "Bom trabalho!"
-  },
-  "TEXT_LOADING_MODAL_WHATS_NEW_DPS_TITLE": {
-    "en": "What's new on Pokéwin?",
-    "fr": "Quoi d'neuf sur Pokéwin ?",
-    "po": "O que há de novo no Pokéwin?"
-  },
-  "TEXT_LOADING_MODAL_WHATS_NEW_DPS_TEXT": {
-    "en": "<ul><li><h3>Move DPS taken in account</h3>You've been all waiting for it, now it's here! Pokéwin now <strong>takes the move dps</strong> in account while calculating the best counter to win the gym.<br/>This means the counters are <strong>even more precise than ever!</strong></li><li><h3>More moves displayed</h3>We now display two moves below each counter: the <strong>best quick move</strong> along with the <strong>best special move</strong> for the pokemon.</li></ul>Thank you for your support, you're more than 4000 to use Pokéwin everyday!",
-    "fr": "<ul><li><h3>Pokéwin plus précis</h3>Vous attendiez tous ça, et maintenant ça y est ! Pokéwin <strong>prend en compte les dégâts des attaques</strong> lors du calcul des meilleurs contres.<br/>En gros, ça veut dire que les contres sont <strong>plus justes que jamais</strong>!</li><li><h3>Plus d'attaques affichées</h3>Les deux meilleures attaques sont affichées pour chaque contre: la <strong>meilleure attaque rapide</strong> ainsi que la <strong>meilleure attaque spéciale</strong>.</li></ul>Merci pour votre soutien, vous êtes plus de 4000 à utiliser Pokéwin chaque jour!"
-  },
-  "TEXT_LOADING_MODAL_WHATS_NEW_DPS_OK_TEXT": {
-    "en": "Finally!",
-    "fr": "C'est pas trop tôt !",
+  "TEXT_LOADING_MODAL_WHATS_NEW_OK_TEXT": {
+    "en": "Well done!",
+    "fr": "Bravo le veau!",
     "po": "Bom trabalho!"
   },
 
   "TEXT_HINT_TITLE": {
     "en": "Hint",
-    "fr": "Astuce"
+    "fr": "Astuce",
+    "po": "Dica"
   },
 
   "TEXT_FAVOURITES": {
     "en": "Favourites",
-    "fr": "Favoris"
+    "fr": "Favoris",
+    "po": "Favoritos"
   },
   "TEXT_FAVOURITES_INTRO": {
     "en": "<p>Select any pokemon to add it to your favourites.</p><p>Favourites pokemons <strong>are displayed first</strong> in the list of counters.</p>",
-    "fr": "<p>Selectionne tes pokémon favoris.</p><p>Les pokémons favoris <strong>sont affichés en premier</strong> dans la liste des contres.</p>"
+    "fr": "<p>Selectionne tes pokémon favoris.</p><p>Les pokémons favoris <strong>sont affichés en premier</strong> dans la liste des contres.</p>",
+    "po": "<p>Selecione qualquer pokemon para adicioná-lo aos seus favoritos</p><p>Pokémons favoritos<strong>são mostrados em primeiro</strong> na lista de tipos contrários.</p>"
   },
   "TEXT_FAVOURITES_HINT_TEXT": {
     "en": "<strong>Favourite the pokemons you own</strong> to find easily who they counter.",
