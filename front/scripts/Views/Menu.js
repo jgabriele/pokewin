@@ -92,6 +92,7 @@ Menu.prototype.show = function () {
   setTimeout(() => {
     this._buttonsEl.forEach((buttonEl) => {
       buttonEl.style.transform = buttonEl.data.transform;
+      buttonEl.style.webkitTransform = `-webkit-${buttonEl.data.transform}`; // Yep :/...
       buttonEl.style.transitionDelay = buttonEl.data.transitionDelay;
     });
 

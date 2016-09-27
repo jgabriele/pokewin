@@ -146,7 +146,7 @@ input[type=range]{
     position: fixed;
     bottom: 5%;
     left: calc(50% - 21px);
-    -webkit-transition: transform, 150ms;
+    -webkit-transition: -webkit-transform, 150ms;
     transition: transform, 150ms;
     transition-timing-function: ease-out;
 
