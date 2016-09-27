@@ -84,6 +84,7 @@ Menu.prototype.update = function () {
   }
 }
 
+
 Menu.prototype.show = function () {
   this._isOpened = true;
 
@@ -91,8 +92,7 @@ Menu.prototype.show = function () {
 
   setTimeout(() => {
     this._buttonsEl.forEach((buttonEl) => {
-      buttonEl.style.transform = buttonEl.data.transform;
-      buttonEl.style.webkitTransform = `-webkit-${buttonEl.data.transform}`; // Yep :/...
+      buttonEl.style = `transform: ${buttonEl.data.transform}; -webkit-transform: ${buttonEl.data.transform}`; // Yep :/...
       buttonEl.style.transitionDelay = buttonEl.data.transitionDelay;
     });
 
