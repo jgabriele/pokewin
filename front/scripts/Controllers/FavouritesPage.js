@@ -3,7 +3,6 @@ import LocaleManager      from '../LocaleManager';
 import Utils              from '../Utils';
 import FavouritesModel    from '../Models/Favourites';
 
-
 export default {
   init(parent) {
     this._el = Utils.DOMElementFromString('<div></div>');
@@ -11,7 +10,7 @@ export default {
   },
 
   render(pokemons) {
-    const favouritesTitle = LocaleManager.getInstance().translate('TEXT_FAVOURITES_TITLE');
+    const favouritesTitle = LocaleManager.getInstance().translate('TEXT_FAVOURITES');
     const favouritesIntro = LocaleManager.getInstance().translate('TEXT_FAVOURITES_INTRO');
     const hintTitle = LocaleManager.getInstance().translate('TEXT_HINT_TITLE');
     const hintText = LocaleManager.getInstance().translate('TEXT_FAVOURITES_HINT_TEXT');

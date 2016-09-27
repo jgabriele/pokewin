@@ -10,7 +10,7 @@ export default {
   },
 
   render(pokemons) {
-    const pinnedTitle = LocaleManager.getInstance().translate('TEXT_PINNED_TITLE');
+    const pinnedTitle = LocaleManager.getInstance().translate('TEXT_PINNED');
     const pinnedIntro = LocaleManager.getInstance().translate('TEXT_PINNED_INTRO');
     const hintTitle = LocaleManager.getInstance().translate('TEXT_HINT_TITLE');
     const hintText = LocaleManager.getInstance().translate('TEXT_PINNED_HINT_TEXT');

@@ -1,5 +1,6 @@
-import Event        from 'events';
-import Utils        from '../Utils';
+import Event          from 'events';
+import LocaleManager  from '../LocaleManager';
+import Utils          from '../Utils';
 
 const EVENTS = {
   FAVOURITES: 'favourites'
@@ -7,13 +8,13 @@ const EVENTS = {
 
 const buttons = [
   {
-    name: 'Favourites',
+    key: 'TEXT_FAVOURITES',
     iconName: 'icon-heart',
     event: EVENTS.FAVOURITES,
     transform: 'translate3d(-90px, -90px, 0px)'
   },
   {
-    name: 'Pinned section',
+    key: 'TEXT_PINNED',
     iconName: 'icon-pin',
     event: EVENTS.PINNED_SECTION,
     transform: 'translate3d(90px, -90px, 0px)'
@@ -51,7 +52,9 @@ Menu.prototype.createButtonsEl = function () {
         <div class="button__icon">
           <img src="/images/${button.iconName}.png" />
         </div>
-        <div class="button__text is-hidden">${button.name}</div>
+        <div class="button__text is-hidden" data-localisable-key="${button.key}">
+          ${LocaleManager.getInstance().translate(button.key)}
+        </div>
       </div>`
     );
 

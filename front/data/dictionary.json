@@ -170,7 +170,7 @@
     "fr": "Astuce"
   },
 
-  "TEXT_FAVOURITES_TITLE": {
+  "TEXT_FAVOURITES": {
     "en": "Favourites",
     "fr": "Favoris"
   },
@@ -183,7 +183,7 @@
     "fr": "<strong>Met en favoris les pokémons que tu possèdes</strong> pour trouver plus facilement contre qui ils sont efficaces."
   },
 
-  "TEXT_PINNED_TITLE": {
+  "TEXT_PINNED": {
     "en": "Pinned",
     "fr": "Épinglés"
   },
