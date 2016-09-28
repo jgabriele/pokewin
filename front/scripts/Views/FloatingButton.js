@@ -43,7 +43,7 @@ FloatingButton.prototype.setButtonType = function (buttonType) {
   icon.addEventListener('transitionend', () => {
     this.render(buttonType);
   });
-  setTimeout(() => icon.classList.add('is-hidden'), 0);
+  setTimeout(() => icon.classList.add('is-hidden'), 100);
 }
 
 function getIconForButton (buttonType) {
