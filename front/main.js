@@ -86,8 +86,7 @@ function _findMoveById(id) {
 
 function _augmentPokemonsData(pokemons) {
   return pokemons
-    .map((pokemon) => {
-      return {
+    .map((pokemon) => Object.assign({}, pokemon, {
         id: pokemon.id,
         name: LocaleManager.getInstance().translate(pokemon.key),
         key: pokemon.key,
@@ -103,9 +102,9 @@ function _augmentPokemonsData(pokemons) {
         },
         tiers: pokemon.tiers,
         cpMax: pokemon.cpMax
-      }
-    });
+    }));
 }
+
 
 //------------------
 

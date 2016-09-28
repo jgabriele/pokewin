@@ -69,7 +69,7 @@ function _getBestMoves(attackPokemon, defensePokemon) {
     const moveEfficiency = _calculateMoveEfficiency(
       attackPokemon,
       move,
-      defensePokemon.types
+      defensePokemon
     );
 
     if (!bestQuickMove || bestQuickMove.efficiency < moveEfficiency) {
@@ -84,7 +84,7 @@ function _getBestMoves(attackPokemon, defensePokemon) {
     const moveEfficiency = _calculateMoveEfficiency(
       attackPokemon,
       move,
-      defensePokemon.types
+      defensePokemon
     );
 
     if (!bestSpecialMove || bestSpecialMove.efficiency < moveEfficiency) {
@@ -108,16 +108,16 @@ function _getBestMoves(attackPokemon, defensePokemon) {
  * @param {Array} defenseTypes – Types of the defenser pokemon
  * @return {Number} efficiency multiplier for the move
  */
-function _calculateMoveEfficiency(attackPokemon, attackMove, defenseTypes) {
+function _calculateMoveEfficiency(attackPokemon, attackMove, defensePokemon) {
   // Efficiency of attack pokemon move against defensePokemon
-  let attackEfficiency = attackMove.dps;
+  let attackEfficiency = 1;
 
   // STAB
   if (_isSTAB(attackMove, attackPokemon)) {
     attackEfficiency *= RATIO_EFFICIENT;
   }
 
-  defenseTypes.forEach((defenseType) => {
+  defensePokemon.types.forEach((defenseType) => {
     if (_isTypeEfficient(attackMove.type, defenseType)) {
       attackEfficiency *= RATIO_EFFICIENT;
     } else if (_isTypeWeak(attackMove.type, defenseType)) {
@@ -125,7 +125,15 @@ function _calculateMoveEfficiency(attackPokemon, attackMove, defenseTypes) {
     }
   });
 
-  return attackEfficiency;
+  return computeDamage(attackPokemon.atk, defensePokemon.def, attackMove.dps, attackEfficiency);
+}
+
+// Formula taken on
+// https://www.reddit.com/r/TheSilphRoad/comments/4wzll7/testing_gym_combat_misconceptions
+// Floor ( .5 Attack / Defense * Power * STAB * Weakness ) + 1
+function computeDamage(attackerAttack, defenserDefense, baseDamage, efficiency) {
+  const atkDefRatio = attackerAttack / defenserDefense;
+  return Math.floor(0.5 * atkDefRatio * baseDamage * efficiency) + 1;
 }
 
 /*
