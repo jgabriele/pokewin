@@ -132,7 +132,7 @@
     "po": "<p>Você sabia que Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>tem uma página no Facebook</a>?</p><p>Ficaríamos felizes se você curtisse! Você também receberá as últimas notícias sobre as próximas atualizações de Pokéwin!</p><p><strong>E mais:</strong> Essa é a maneira mais fácil de enviar sugestões para o desenvolvedor.</p><p>Obrigado pelo apoio!</p>"
   },
   "TEXT_LOADING_MODAL_FACEBOOK_OK_TEXT": {
-    "de": "OK!",
+    "de": "Danke für den Hinweis!",
     "en": "Thanks for the tip!",
     "fr": "Merci du conseil !",
     "po": "Obrigado pela dica!"
@@ -155,6 +155,19 @@
     "fr": "Bravo le veau!",
     "es": "Buen trabajo!",
     "po": "Bom trabalho!"
+  },
+  "TEXT_LOADING_MODAL_WHATS_NEW_ADS_TITLE": {
+    "de": "Was gibt es neues auf Pokéwin?",
+    "en": "What's new on Pokéwin?",
+    "fr": "Quoi d'neuf sur Pokéwin ?",
+    "po": "O que há de novo no Pokéwin?"
+  },
+  "TEXT_LOADING_MODAL_WHATS_NEW_ADS_TEXT": {
+    "en": "<h3>Ads on Pokéwin</h3><span>I have decided to include ads in Pokéwin.<br/><strong>If at any time they bother you, please let me know</strong> as I do not want to downgrade Pokéwin in favor of \"revenue\".</span><div>Please take time to read <a target='_blank' href='https://www.facebook.com/pokewin.win/'>my Facebook post about it</a> to fully understand the reason.</div>",
+    "fr": "<h3>Publicité sur Pokéwin</h3><span>J'ai décidé d'intégrer de la pub sur Pokéwin.<br /><strong>Si elle devient trop chiante faites-moi le savoir</strong>, je ne veux pas dégrader l'expérience de Pokéwin à cause de ça.</span><div>Merci de lire <a target='_blank' href='https://www.facebook.com/pokewin.win/'>mon post à propos de la pub sur Facebook</a> pour plus d'explications.</div>"
+  },
+  "TEXT_LOADING_MODAL_WHATS_NEW_ADS_OK_TEXT": {
+    "en": "OK"
   },
 
   "TEXT_HINT_TITLE": {
