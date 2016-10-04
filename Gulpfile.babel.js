@@ -38,7 +38,7 @@ gulp.task('clean:fonts', () => { del([`${BUILD_DIR}fonts/*`]); })
 //=====================//
 
 gulp.task('sass', ['html', 'clean:css'], () => {
-  gulp.src(SRC_DIR + 'style.scss')
+  gulp.src(SRC_DIR + 'main.scss')
     .pipe(sass()).on('error', swallowError)
     .pipe(cssmin())
     .pipe(md5(10, `./build/*.html`))
