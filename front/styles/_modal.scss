@@ -1,14 +1,14 @@
 .modal {
-  background: #fff;
-  border: 2px solid black;
-  border-radius: 5px;
+  width: 96%;
   box-sizing: border-box;
   margin: auto;
+  border: 2px solid $color-black;
   padding: 5px;
-  width: 96%;
+  background: $color-white;
+  border-radius: 5px;
 
   .text {
-    margin: 25px 0px;
+    margin: 25px 0;
 
     h3 {
       display: block;
@@ -18,44 +18,43 @@
         vertical-align: middle;
       }
 
-      &::before, &::after {
-        content: "";
-        background: url(/images/favicon.png);
-        background-size: cover;
+      &::before,
+      &::after {
+        content: '';
         display: inline-block;
-
-        vertical-align: middle;
         position: relative;
         top: -1px;
-
-        margin: 0px 5px;
-        width: 0.8em;
-        height: 0.8em;
+        width: .8em;
+        height: .8em;
+        margin: 0 5px;
+        vertical-align: middle;
+        background: url('/images/favicon.png');
+        background-size: cover;
       }
     }
 
     div {
-      margin: 15px 0px;
+      margin: 15px 0;
     }
   }
 
   button {
-    background: #fff;
-    border: 1px solid #000;
-    color: #197979;
-    font-size: 1em;
-    padding: 10px 0px;
-    margin-top: 10px;
     width: 100%;
+    margin-top: 10px;
+    border: 1px solid $color-black;
+    padding: 10px 0;
+    background: $color-white;
+    color: $color-slider-thumb;
+    font-size: 1em;
 
     &.button--left {
-      text-align: left;
       padding-left: 10px;
+      text-align: left;
     }
 
     &.button--close {
-      background: lightgrey;
-      color: black;
+      background: $color-grey-lighter;
+      color: $color-black;
     }
   }
 }

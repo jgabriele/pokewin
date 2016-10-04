@@ -1,20 +1,16 @@
 .floating-button {
-  background: #18c3bb;
-  border: 3px solid #0e7974;
-  border-radius: 50%;
-
-  color: white;
-  font-size: 1em;
-  font-weight: 100;
-
   position: fixed;
   bottom: 12%;
   left: calc(50% - 19px);
-
+  z-index: 2000;
   width: 42px;
   height: 42px;
-  z-index: 2000;
-
+  border: 3px solid $color-button-border;
+  background: $color-button;
+  border-radius: 50%;
+  color: $color-white;
+  font-size: 1em;
+  font-weight: 100;
   transition: opacity 200ms;
 
   .floating-button__icon {

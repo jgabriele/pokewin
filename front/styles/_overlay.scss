@@ -1,13 +1,11 @@
 .overlay {
-  transition: opacity 200ms;
-
   position: absolute;
   top: 0;
-
-  margin-bottom: 50px;
+  z-index: 1000;
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  margin-bottom: 50px;
+  transition: opacity 200ms;
 
   &.overlay--modal {
     position: fixed;
@@ -19,36 +17,31 @@
   }
 
   .overlay__background {
-    background: black;
-    opacity: 0.8;
     position: fixed;
-
-    height: 100%;
-    width: 100%;
     z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: $color-black;
+    opacity: .8;
   }
 
   .overlay__data {
+    flex: 1;
     position: relative;
     z-index: 100;
-
-    flex: 1;
-    align-self: center;
-    text-align: center;
-
     margin-bottom: 100px;
+    text-align: center;
+    align-self: center;
 
     // Same as counters. TODO refactor
     .overlay__container {
-      background: white;
-      border: 2px solid black;
-      border-radius: 5px 5px 0px 0px;
-      box-sizing: border-box;
-
-      font-size: 14px;
-
-      margin: auto;
       width: 96%;
+      box-sizing: border-box;
+      margin: auto;
+      border: 2px solid $color-black;
+      background: $color-white;
+      border-radius: 5px 5px 0 0;
+      font-size: 14px;
 
       .hint {
         padding: 5px;
@@ -61,20 +54,19 @@
     }
 
     .pokemon-name {
-      color: white;
+      margin: 0 0 5px;
+      padding-top: 15px;
+      color: $color-white;
       font-size: 18px;
       text-align: center;
       text-transform: uppercase;
-      padding-top: 15px;
-      margin: 0 0 5px 0;
     }
 
     .main-pokemon {
       position: relative;
       top: -50px;
-
-      margin: auto;
       width: 96%;
+      margin: auto;
 
       .stats {
         @include display-flex();
@@ -82,14 +74,14 @@
 
         position: relative;
         top: 60px;
-
-        padding: 0px 15px;
+        padding: 0 15px;
 
         > * {
           display: inline-block;
         }
 
-        .cp, .types {
+        .cp,
+        .types {
           position: relative;
           top: 10px;
         }
@@ -99,10 +91,19 @@
           text-align: center;
 
           .cp__value {
+            width: 70px;
+            box-sizing: border-box;
+            border: 0;
+            border-bottom: 1px solid$color-black;
+            padding-bottom: 4px;
+            font-family: $font-default;
+            font-size: 16px;
+            text-align: center;
 
             &.cp__value-text {
               display: none;
-              border-bottom: none;
+              border-bottom: 0;
+
               .is-mobile & {
                 display: initial;
               }
@@ -110,33 +111,26 @@
 
             &.cp__value-input {
               display: initial;
+
               .is-mobile & {
                 display: none;
               }
             }
 
-            box-sizing: border-box;
-            border: none;
-            border-bottom: 1px solid black;
-
-            font-family: Helvetica, 'Segoe UI', Roboto, Arial;
-            font-size: 16px;
-            text-align: center;
-
-            padding-bottom: 4px;
-            width: 70px;
           }
         }
+
         .picture {
           // @include flex(3);
-          text-align: center;
           width: 150px;
           height: 150px;
+          text-align: center;
 
           .pokemon-image {
             background-size: calc(2400px*150/200);
           }
         }
+
         .types {
           @include flex(1);
 
@@ -146,18 +140,18 @@
           }
         }
       }
+
       .counters {
-        background: white;
-        border: 2px solid black;
-        border-radius: 5px 5px 0px 0px;
-        box-sizing: border-box;
-
-        padding-top: 70px;
-        height: 100%;
-
         z-index: -1;
+        height: 100%;
+        box-sizing: border-box;
+        border: 2px solid$color-black;
+        padding-top: 70px;
+        background: $color-white;
+        border-radius: 5px 5px 0 0;
 
-        .type, .cp-value {
+        .type,
+        .cp-value {
           margin: 5px auto;
         }
 
@@ -169,38 +163,35 @@
 
     .counters {
       text-align: center;
+
       .other-pokemon {
+        display: inline-block;
+        position: relative;
+        margin: 8px;
+        background-position: bottom;
+        font-size: 12px;
+        font-weight: bold;
+
         &:hover {
           cursor: pointer;
         }
 
         &.is-favourite::before {
-          content: "";
-          background: url(/images/icon-heart.png);
-          background-size: cover;
-
+          content: '';
           display: block;
           position: absolute;
           top: 0;
           right: 0;
-
           width: 22px;
           height: 22px;
+          background: url('/images/icon-heart.png');
+          background-size: cover;
         }
-
-        display: inline-block;
-        position: relative;
-
-        font-weight: bold;
-        font-size: 12px;
-
-        margin: 8px;
 
         .picture {
           width: 70px;
           height: 70px;
         }
-        background-position: bottom;
       }
     }
   }

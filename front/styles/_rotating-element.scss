@@ -4,9 +4,6 @@
 // Because it's really sexy to have vendor rules aligned
 // scss-lint:disable Indentation
 
-// Because we don't use autoprefixer
-// scss-lint:disable VendorPrefix
-
 #rotating-element-inner {
   -webkit-animation: rotate-circle 1s linear infinite;
           animation: rotate-circle 1s linear infinite;

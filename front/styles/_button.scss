@@ -1,23 +1,21 @@
 .button {
-  text-align: center;
-  color: white;
+  color: $color-white;
   font-size: 14px;
   font-weight: 100;
+  text-align: center;
 
   .button__icon {
-    background: #18c3bb;
-    border: 3px solid #0e7974;
-    border-radius: 50%;
-
     display: flex;
-
     width: 46px;
     height: 46px;
+    border: 3px solid $color-button-border;
+    background: $color-button;
+    border-radius: 50%;
 
     img {
-      margin: auto;
       width: 60%;
       height: 60%;
+      margin: auto;
     }
   }
 

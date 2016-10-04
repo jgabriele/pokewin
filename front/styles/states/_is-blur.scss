@@ -1,4 +1,7 @@
+// Because it's really sexy to have vendor rules aligned
+// scss-lint:disable Indentation
+
 .is-blur {
-  filter: blur(4px);
   -webkit-filter: blur(4px);
+          filter: blur(4px);
 }

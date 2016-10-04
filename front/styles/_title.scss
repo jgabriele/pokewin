@@ -11,29 +11,32 @@
   }
 
   &.title--white {
-    color: white;
-    &:before, &:after {
-      background: white;
+    color: $color-white;
+
+    &::before,
+    &::after {
+      background: $color-white;
     }
   }
 
-  &:before, &:after {
-    background: black;
-    content: "";
+  &::before,
+  &::after {
+    content: '';
     display: inline-block;
-    height: 1px;
     position: relative;
-    vertical-align: middle;
     width: 50%;
+    height: 1px;
+    vertical-align: middle;
+    background: $color-black;
   }
 
-  &:before {
-    right: 0.5em;
+  &::before {
+    right: .5em;
     margin-left: -50%;
   }
 
-  &:after {
-    left: 0.5em;
+  &::after {
+    left: .5em;
     margin-right: -50%;
   }
 }

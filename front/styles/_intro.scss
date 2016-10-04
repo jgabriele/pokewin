@@ -2,8 +2,8 @@
   padding: 10px;
 
   p {
+    margin: 5px 0;
     font-size: 14px;
-    margin: 5px 0px;
   }
 
   &.is-collapsed {
@@ -13,18 +13,19 @@
 
     p:first-child {
       display: inline-block;
-      white-space: nowrap;
-      vertical-align: middle;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 0;
       width: 100%;
+      margin-bottom: 0;
+      overflow: hidden;
+      vertical-align: middle;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
-    &:after {
+
+    &::after {
       content: '+';
       display: block;
+      color: $color-slider-thumb;
       font-weight: bold;
-      color: #197979;
     }
   }
 
@@ -32,10 +33,10 @@
     margin-bottom: 0;
   }
 
-  &:after {
+  &::after {
     content: '-';
     display: block;
+    color: $color-slider-thumb;
     font-weight: bold;
-    color: #197979;
   }
 }

@@ -1,42 +1,39 @@
 .pokedex {
   text-align: center;
+
   .pokemon {
     display: inline-block;
     position: relative;
-    font-weight: bold;
-    font-size: 12px;
     margin: 8px;
+    font-size: 12px;
+    font-weight: bold;
 
     &:hover {
       cursor: pointer;
     }
 
     &.is-favourite::before {
-      content: "";
-      background: url(/images/icon-heart.png);
-      background-size: cover;
-
+      content: '';
       display: block;
       position: absolute;
       top: 0;
       right: 0;
-
       width: 22px;
       height: 22px;
+      background: url('/images/icon-heart.png');
+      background-size: cover;
     }
 
     &.is-pinned::before {
-      content: "";
-      background: url(/images/icon-pin.png);
-      background-size: cover;
-
+      content: '';
       display: block;
       position: absolute;
       top: 0;
       right: 5px;
-
       width: 22px;
       height: 22px;
+      background: url('/images/icon-pin.png');
+      background-size: cover;
     }
 
     .picture {

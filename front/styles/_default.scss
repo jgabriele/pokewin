@@ -1,77 +1,78 @@
-html {
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
+// Because it's really sexy to have vendor rules aligned
+// scss-lint:disable Indentation
 
+html {
   margin: 0;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+
   body {
-    font-family: Helvetica, 'Segoe UI', Roboto, Arial;
     margin: 0;
+    font-family: $font-default;
   }
 }
 
 h2.title {
+  margin: 0;
   padding-top: 15px;
   font-size: 16px;
-  margin: 0;
 }
 
 h3.title {
-  padding: 15px 0px;
-  font-size: 14px;
   margin: 0;
+  padding: 15px 0;
+  font-size: 14px;
 }
 
 input[type=number] {
-
   .is-mobile & {
     display: none;
   }
 
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
     margin: 0;
+    -webkit-appearance: none;
   }
 }
 
-input[type=range]{
+input[type=range] {
   display: none;
+  -webkit-appearance: none;
 
   .is-mobile & {
     display: initial;
   }
 
-  -webkit-appearance: none;
-
   &::-webkit-slider-runnable-track {
     width: 300px;
     height: 5px;
-    background: #ddd;
-    border: none;
+    border: 0;
+    background: $color-grey-lighter;
     border-radius: 3px;
   }
 
   &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 32px;
     width: 32px;
-    border-radius: 50%;
-    background: #197979;
+    height: 32px;
     margin-top: -14px;
+    border: 0;
+    background: $color-slider-thumb;
+    border-radius: 50%;
+    -webkit-appearance: none;
   }
 
   &:focus {
     outline: none;
 
     &::-webkit-slider-runnable-track {
-      background: #ccc;
+      background: $color-grey-light;
     }
   }
 }
 
 a {
-  color: #197979;
-  text-decoration: none;
+  color: $color-slider-thumb;
   font-weight: bold;
+  text-decoration: none;
 }

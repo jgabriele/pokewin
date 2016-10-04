@@ -1,3 +1,4 @@
+@import 'styles/constants';
 @import 'styles/mixins';
 @import 'styles/animations';
 
@@ -37,40 +38,42 @@
         padding-top: 24px;
 
         .icon-pin {
-          background: url(/images/icon-pin.png);
-          background-size: cover;
           position: absolute;
           top: -50px;
           left: calc(50% - 40px);
-          margin: auto;
           width: 80px;
           height: 80px;
+          margin: auto;
+          background: url('/images/icon-pin.png');
+          background-size: cover;
         }
 
         .icon-favourite {
-          background: url(/images/icon-heart.png);
-          background-size: cover;
           position: absolute;
           top: -50px;
           left: calc(50% - 40px);
-          margin: auto;
           width: 80px;
           height: 80px;
+          margin: auto;
+          background: url('/images/icon-heart.png');
+          background-size: cover;
         }
 
         header {
           padding-bottom: 10px;
 
           p {
-            padding: 0px 5px;
+            padding: 0 5px;
           }
         }
 
         .pokemon {
           opacity: .4;
+
           &.is-favourite {
             opacity: 1;
           }
+
           &.is-pinned {
             opacity: 1;
           }

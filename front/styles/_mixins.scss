@@ -2,9 +2,6 @@
 // scss-lint:disable Indentation
 // scss-lint:disable SpaceAfterPropertyColon
 
-// Because we don't use autoprefixer
-// scss-lint:disable VendorPrefix
-
 @mixin flex($value) {
   -webkit-flex: $value;
      -moz-flex: $value;

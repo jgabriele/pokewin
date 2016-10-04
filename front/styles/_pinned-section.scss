@@ -1,17 +1,17 @@
-.pinned-section:before,
-.pinned-section:after, {
-  content: "";
-  background: url(/images/icon-pin.png);
-  background-size: cover;
+.pinned-section::before,
+.pinned-section::after, {
+  content: '';
   display: inline-block;
   width: 1em;
   height: 1em;
+  background: url('/images/icon-pin.png');
+  background-size: cover;
 }
 
-.pinned-section:before {
+.pinned-section::before {
   margin-right: 5px;
 }
 
-.pinned-section:after, {
+.pinned-section::after, {
   margin-left: 5px;
 }

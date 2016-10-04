@@ -1,96 +1,40 @@
-
+// scss-lint:disable SpaceBeforeBrace
 
 .type {
-
-  border-radius: 3px;
-  box-sizing: border-box;
-
   @include display-flex();
   @include align-items(center);
 
-  color: white;
-  text-align: center;
-  font-size: 10px;
-  text-transform: uppercase;
-
-  padding: 2px;
   min-height: 16px;
   max-width: 70px;
+  box-sizing: border-box;
+  padding: 2px;
+  border-radius: 3px;
+  color: $color-white;
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
 
   .name {
     display: inline-block;
     width: 100%;
   }
 
-  &.normal {
-    background: #8a8a59;
-  }
-
-  &.fighting {
-    background: #c03028;
-  }
-
-  &.flying {
-    background: #a890f0;
-  }
-
-  &.poison {
-    background: #a040a0;
-  }
-
-  &.ground {
-    background: #e0c068;
-  }
-
-  &.rock {
-    background: #b8a038;
-  }
-
-  &.bug {
-    background: #a8b820;
-  }
-
-  &.ghost {
-    background: #705898;
-  }
-
-  &.steel {
-    background: #b8b8d0;
-  }
-
-  &.fire {
-    background: #f08030;
-  }
-
-  &.water {
-    background: #6890f0;
-  }
-
-  &.grass {
-    background: #78c850;
-  }
-
-  &.electric {
-    background: #f8d030;
-  }
-
-  &.psychic {
-    background: #f85888;
-  }
-
-  &.ice {
-    background: #98d8d8;
-  }
-
-  &.dragon {
-    background: #7038f8;
-  }
-
-  &.dark {
-    background: #705848;
-  }
-
-  &.fairy {
-    background: #e898e8;
-  }
+  &.normal    { background: $color-type-normal;   }
+  &.fighting  { background: $color-type-fighting; }
+  &.flying    { background: $color-type-flying;   }
+  &.poison    { background: $color-type-poison;   }
+  &.ground    { background: $color-type-ground;   }
+  &.rock      { background: $color-type-rock;     }
+  &.bug       { background: $color-type-bug;      }
+  &.ghost     { background: $color-type-ghost;    }
+  &.steel     { background: $color-type-steel;    }
+  &.fire      { background: $color-type-fire;     }
+  &.water     { background: $color-type-water;    }
+  &.grass     { background: $color-type-grass;    }
+  &.electric  { background: $color-type-electric; }
+  &.psychic   { background: $color-type-psychic;  }
+  &.ice       { background: $color-type-ice;      }
+  &.dragon    { background: $color-type-dragon;   }
+  &.dark      { background: $color-type-dark;     }
+  &.fairy     { background: $color-type-fairy;    }
 }
