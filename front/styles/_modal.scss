@@ -1,0 +1,61 @@
+.modal {
+  background: #fff;
+  border: 2px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 5px;
+  width: 96%;
+
+  .text {
+    margin: 25px 0px;
+
+    h3 {
+      display: block;
+      margin-bottom: 3px;
+
+      > * {
+        vertical-align: middle;
+      }
+
+      &::before, &::after {
+        content: "";
+        background: url(/images/favicon.png);
+        background-size: cover;
+        display: inline-block;
+
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
+
+        margin: 0px 5px;
+        width: 0.8em;
+        height: 0.8em;
+      }
+    }
+
+    div {
+      margin: 15px 0px;
+    }
+  }
+
+  button {
+    background: #fff;
+    border: 1px solid #000;
+    color: #197979;
+    font-size: 1em;
+    padding: 10px 0px;
+    margin-top: 10px;
+    width: 100%;
+
+    &.button--left {
+      text-align: left;
+      padding-left: 10px;
+    }
+
+    &.button--close {
+      background: lightgrey;
+      color: black;
+    }
+  }
+}

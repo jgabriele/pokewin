@@ -1,0 +1,29 @@
+.button {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 100;
+
+  .button__icon {
+    background: #18c3bb;
+    border: 3px solid #0e7974;
+    border-radius: 50%;
+
+    display: flex;
+
+    width: 46px;
+    height: 46px;
+
+    img {
+      margin: auto;
+      width: 60%;
+      height: 60%;
+    }
+  }
+
+  .button__text {
+    &.is-hidden {
+      opacity: 0;
+    }
+  }
+}

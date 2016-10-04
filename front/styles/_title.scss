@@ -1,0 +1,39 @@
+.title {
+  overflow: hidden;
+  text-align: center;
+
+  &.title--normal {
+    font-weight: normal;
+  }
+
+  &.title--large {
+    font-size: 20px;
+  }
+
+  &.title--white {
+    color: white;
+    &:before, &:after {
+      background: white;
+    }
+  }
+
+  &:before, &:after {
+    background: black;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+  &:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+
+  &:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
+}

@@ -1,0 +1,9 @@
+.app-title:after {
+  content: "";
+  background: url(/images/favicon.png);
+  background-size: cover;
+  display: inline-block;
+  margin: 0px 5px;
+  width: 1em;
+  height: 1em;
+}

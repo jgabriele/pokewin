@@ -1,0 +1,17 @@
+.pinned-section:before,
+.pinned-section:after, {
+  content: "";
+  background: url(/images/icon-pin.png);
+  background-size: cover;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+
+.pinned-section:before {
+  margin-right: 5px;
+}
+
+.pinned-section:after, {
+  margin-left: 5px;
+}
