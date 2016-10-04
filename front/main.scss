@@ -1,6 +1,8 @@
 @import 'styles/mixins';
 @import 'styles/animations';
 
+@import 'styles/rotating-element';
+
 html {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
