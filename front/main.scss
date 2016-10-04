@@ -1,67 +1,8 @@
 @import 'styles/mixins';
 @import 'styles/animations';
 
+@import 'styles/default';
 @import 'styles/rotating-element';
-
-html {
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-
-  margin: 0;
-  body {
-    font-family: Helvetica, 'Segoe UI', Roboto, Arial;
-    margin: 0;
-  }
-}
-
-input[type=number] {
-
-  .is-mobile & {
-    display: none;
-  }
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-}
-
-input[type=range]{
-  display: none;
-
-  .is-mobile & {
-    display: initial;
-  }
-
-  -webkit-appearance: none;
-
-  &::-webkit-slider-runnable-track {
-    width: 300px;
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
-  }
-
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    background: #197979;
-    margin-top: -14px;
-  }
-
-  &:focus {
-    outline: none;
-
-    &::-webkit-slider-runnable-track {
-      background: #ccc;
-    }
-  }
-}
 
 .floating-button {
   background: #18c3bb;
