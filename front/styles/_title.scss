@@ -2,15 +2,15 @@
   overflow: hidden;
   text-align: center;
 
-  &.title--normal {
+  &--normal {
     font-weight: normal;
   }
 
-  &.title--large {
+  &--large {
     font-size: 20px;
   }
 
-  &.title--white {
+  &--white {
     color: $color-white;
 
     &::before,

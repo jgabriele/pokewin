@@ -7,7 +7,7 @@
   margin-bottom: 50px;
   transition: opacity 200ms;
 
-  &.overlay--modal {
+  &--modal {
     position: fixed;
     z-index: 5000;
 
@@ -16,7 +16,7 @@
     }
   }
 
-  .overlay__background {
+  &__background {
     position: fixed;
     z-index: -1;
     width: 100%;
@@ -25,7 +25,7 @@
     opacity: .8;
   }
 
-  .overlay__data {
+  &__data {
     flex: 1;
     position: relative;
     z-index: 100;
