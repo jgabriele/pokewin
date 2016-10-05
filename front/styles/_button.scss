@@ -4,7 +4,7 @@
   font-weight: 100;
   text-align: center;
 
-  .button__icon {
+  &__icon {
     display: flex;
     width: 46px;
     height: 46px;
@@ -16,12 +16,6 @@
       width: 60%;
       height: 60%;
       margin: auto;
-    }
-  }
-
-  .button__text {
-    &.is-hidden {
-      opacity: 0;
     }
   }
 }
