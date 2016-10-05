@@ -5,11 +5,11 @@ html {
   margin: 0;
   -ms-touch-action: manipulation;
       touch-action: manipulation;
+}
 
-  body {
-    margin: 0;
-    font-family: $font-default;
-  }
+body {
+  margin: 0;
+  font-family: $font-default;
 }
 
 h2.title {
