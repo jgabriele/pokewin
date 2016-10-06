@@ -8,25 +8,27 @@
 @import 'styles/states/is-blur';
 @import 'styles/states/is-hidden';
 
-@import 'styles/rotating-element';
-@import 'styles/floating-button';
-@import 'styles/menu';
-@import 'styles/button';
-@import 'styles/loading-screen';
-@import 'styles/intro';
-@import 'styles/language-selector';
-@import 'styles/level-selector';
-@import 'styles/pokedex';
-@import 'styles/picture';
-@import 'styles/app-title';
-@import 'styles/pinned-section';
-@import 'styles/title';
-@import 'styles/modal';
-@import 'styles/type';
-@import 'styles/footer';
-@import 'styles/page-favourite';
-@import 'styles/page-pinned-section';
-@import 'styles/overlay';
+@import 'styles/components/app-title';
+@import 'styles/components/button';
+@import 'styles/components/floating-button';
+@import 'styles/components/footer';
+@import 'styles/components/intro';
+@import 'styles/components/language-selector';
+@import 'styles/components/level-selector';
+@import 'styles/components/loading-screen';
+@import 'styles/components/menu';
+@import 'styles/components/modal';
+@import 'styles/components/overlay';
+@import 'styles/components/picture';
+@import 'styles/components/pinned-section';
+@import 'styles/components/pokedex';
+@import 'styles/components/rotating-element';
+@import 'styles/components/title';
+@import 'styles/components/type';
+
+@import 'styles/layouts/page-favourite';
+@import 'styles/layouts/page-pinned-section';
+
 
 .page-favourite,
 .page-pinned-section {
