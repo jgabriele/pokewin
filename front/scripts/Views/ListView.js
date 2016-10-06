@@ -10,10 +10,11 @@ const EVENTS = {
 function ListView(parent) {
   this._el = Utils.DOMElementFromString(
     `<section class="pokedex">
-      <h2 class="title">
-        <span class='app-title' data-localisable-key="TEXT_APP_TITLE">
-        </span><span data-localisable-key="TEXT_APP_SUBTITLE"></span>
-      </h2>
+      <h1 class="title">
+        <span data-localisable-key="TEXT_APP_TITLE"></span>
+        <span class="pokeball"></span>
+        <span data-localisable-key="TEXT_APP_SUBTITLE"></span>
+      </h1>
       <div class="intro js-intro">
         <p data-localisable-key="TEXT_INTRO_1"></p>
         <p data-localisable-key="TEXT_INTRO_2"></p>
