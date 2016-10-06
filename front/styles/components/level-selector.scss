@@ -1,0 +1,9 @@
+.level-selector {
+  .is-mobile & {
+    margin: 10px 0;
+  }
+
+  .level-selector__input {
+    width: 90%;
+  }
+}

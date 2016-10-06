@@ -1,0 +1,26 @@
+// Rotating element is unique. Leave it alone
+// scss-lint:disable IdSelector
+
+// Because it's really sexy to have vendor rules aligned
+// scss-lint:disable Indentation
+
+#rotating-element-inner {
+  -webkit-animation: rotate-circle 1s linear infinite;
+          animation: rotate-circle 1s linear infinite;
+  -webkit-transform-origin: 50px 50px;
+          transform-origin: 50px 50px;
+}
+
+#rotating-element-center {
+  -webkit-animation: rotate-circle-reverse .7s linear infinite;
+          animation: rotate-circle-reverse .7s linear infinite;
+  -webkit-transform-origin: 50px 50px;
+          transform-origin: 50px 50px;
+}
+
+#rotating-element-outer {
+  -webkit-animation: rotate-circle .8s linear infinite;
+          animation: rotate-circle .8s linear infinite;
+  -webkit-transform-origin: 50px 50px;
+          transform-origin: 50px 50px;
+}

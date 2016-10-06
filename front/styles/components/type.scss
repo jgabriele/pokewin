@@ -1,0 +1,40 @@
+// scss-lint:disable SpaceBeforeBrace
+
+.type {
+  @include display-flex();
+  @include align-items(center);
+
+  min-height: 16px;
+  max-width: 70px;
+  box-sizing: border-box;
+  padding: 2px;
+  border-radius: 3px;
+  color: $color-white;
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
+
+  .name {
+    display: inline-block;
+    width: 100%;
+  }
+
+  &.normal    { background: $color-type-normal;   }
+  &.fighting  { background: $color-type-fighting; }
+  &.flying    { background: $color-type-flying;   }
+  &.poison    { background: $color-type-poison;   }
+  &.ground    { background: $color-type-ground;   }
+  &.rock      { background: $color-type-rock;     }
+  &.bug       { background: $color-type-bug;      }
+  &.ghost     { background: $color-type-ghost;    }
+  &.steel     { background: $color-type-steel;    }
+  &.fire      { background: $color-type-fire;     }
+  &.water     { background: $color-type-water;    }
+  &.grass     { background: $color-type-grass;    }
+  &.electric  { background: $color-type-electric; }
+  &.psychic   { background: $color-type-psychic;  }
+  &.ice       { background: $color-type-ice;      }
+  &.dragon    { background: $color-type-dragon;   }
+  &.dark      { background: $color-type-dark;     }
+  &.fairy     { background: $color-type-fairy;    }
+}

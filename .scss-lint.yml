@@ -1,0 +1,84 @@
+linters:
+  NestingDepth:
+    enabled: false
+
+  PropertySortOrder:
+    enabled: true
+    order:
+      - content
+      - display
+      - flex
+      - flex-direction
+      - position
+      - top
+      - right
+      - bottom
+      - left
+      - z-index
+      - float
+      - width
+      - height
+      - min-width
+      - min-height
+      - max-width
+      - max-height
+      - box-sizing
+      - margin
+      - margin-top
+      - margin-right
+      - margin-bottom
+      - margin-left
+      - border
+      - border-top
+      - border-right
+      - border-bottom
+      - border-left
+      - padding
+      - padding-top
+      - padding-right
+      - padding-bottom
+      - padding-left
+      - clear
+      - overflow
+      - vertical-align
+      - background
+      - background-color
+      - background-image
+      - background-position
+      - background-repeat
+      - border-collapse
+      - border-color
+      - border-radius
+      - border-spacing
+      - box-shadow
+      - cursor
+      - list-style-type
+      - opacity
+      - color
+      - direction
+      - font
+      - font-family
+      - font-size
+      - font-weight
+      - line-height
+      - text-align
+      - text-decoration
+      - text-indent
+      - text-transform
+      - text-overflow
+      - white-space
+      - word-break
+      - word-spacing
+      - word-wrap
+
+  QualifyingElement:
+    enabled: false
+
+  SelectorFormat:
+    enabled: false
+
+  SelectorDepth:
+    enabled: false
+
+  VendorPrefix:
+    enabled: false

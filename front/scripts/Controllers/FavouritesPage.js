@@ -16,7 +16,7 @@ export default {
     const hintText = LocaleManager.getInstance().translate('TEXT_FAVOURITES_HINT_TEXT');
 
     const el = Utils.DOMElementFromString(
-      `<div class="overlay page-favourite">
+      `<div class="overlay page">
         <div class="overlay__background"></div>
         <div class="overlay__data">
 
@@ -30,7 +30,7 @@ export default {
               <div>
                 ${favouritesIntro}
               </div>
-              <div class="hint">
+              <div class="hint hint--favourite">
                 <p>${hintTitle}</p>
                 <p>${hintText}</p>
               </div>

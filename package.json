@@ -23,6 +23,7 @@
     "watchify": "3.7.0"
   },
   "scripts": {
+    "start": "http-server build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

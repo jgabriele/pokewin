@@ -1,0 +1,42 @@
+.intro {
+  padding: 10px;
+
+  p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+  &.is-collapsed {
+    > * {
+      display: none;
+    }
+
+    p:first-child {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 0;
+      overflow: hidden;
+      vertical-align: middle;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &::after {
+      content: '+';
+      display: block;
+      color: $color-button-dark;
+      font-weight: bold;
+    }
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  &::after {
+    content: '-';
+    display: block;
+    color: $color-button-dark;
+    font-weight: bold;
+  }
+}

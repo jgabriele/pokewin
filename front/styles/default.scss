@@ -1,0 +1,78 @@
+// Because it's really sexy to have vendor rules aligned
+// scss-lint:disable Indentation
+
+html {
+  margin: 0;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+body {
+  margin: 0;
+  font-family: $font-default;
+}
+
+h2.title {
+  margin: 0;
+  padding-top: 15px;
+  font-size: 16px;
+}
+
+h3.title {
+  margin: 0;
+  padding: 15px 0;
+  font-size: 14px;
+}
+
+input[type=number] {
+  .is-mobile & {
+    display: none;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+}
+
+input[type=range] {
+  display: none;
+  -webkit-appearance: none;
+
+  .is-mobile & {
+    display: initial;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    border: 0;
+    background: $color-grey-light;
+    border-radius: 3px;
+  }
+
+  &::-webkit-slider-thumb {
+    width: 32px;
+    height: 32px;
+    margin-top: -14px;
+    border: 0;
+    background: $color-button-dark;
+    border-radius: 50%;
+    -webkit-appearance: none;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::-webkit-slider-runnable-track {
+      background: $color-grey-light;
+    }
+  }
+}
+
+a {
+  color: $color-button-dark;
+  font-weight: bold;
+  text-decoration: none;
+}

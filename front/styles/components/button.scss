@@ -1,0 +1,21 @@
+.button {
+  color: $color-white;
+  font-size: 14px;
+  font-weight: 100;
+  text-align: center;
+
+  &__icon {
+    display: flex;
+    width: 46px;
+    height: 46px;
+    border: 3px solid $color-button-dark;
+    background: $color-button;
+    border-radius: 50%;
+
+    img {
+      width: 60%;
+      height: 60%;
+      margin: auto;
+    }
+  }
+}
