@@ -30,7 +30,7 @@ export default {
               <div>
                 ${pinnedIntro}
               </div>
-              <div class="hint">
+              <div class="hint hint--pinned">
                 <p>${hintTitle}</p>
                 <p>${hintText}</p>
               </div>

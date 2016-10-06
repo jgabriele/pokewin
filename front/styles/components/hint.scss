@@ -1,0 +1,18 @@
+.hint {
+  padding: 5px;
+  font-size: 10px;
+
+  p {
+    margin: 0;
+  }
+
+  &--favourite {
+    background: $color-favourite;
+    color: $color-white;
+  }
+
+  &--pinned {
+    background: $color-pinned;
+    color: $color-black;
+  }
+}

@@ -30,7 +30,7 @@ export default {
               <div>
                 ${favouritesIntro}
               </div>
-              <div class="hint">
+              <div class="hint hint--favourite">
                 <p>${hintTitle}</p>
                 <p>${hintText}</p>
               </div>
