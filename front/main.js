@@ -25,6 +25,16 @@ import PinnedModel from './scripts/Models/Pinned';
 
 Polyfills.objectAssign();
 
+
+// Add ads if user is not a patron
+if (!PatronsModal.userIsPatron()) {
+  document.querySelector('.ads-wrapper').innerHTML = `<script type="text/javascript">
+    var infolinks_pid = 2867010;
+    var infolinks_wsid = 0;
+  </script>
+  <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>`;
+}
+
 const LANGUAGE_KEY = 'language';
 
 const NAVIGATOR_LANG_TO_LANG = {

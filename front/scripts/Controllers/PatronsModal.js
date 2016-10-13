@@ -76,5 +76,9 @@ export default {
 
   onDismiss() {
     ModalView.hide();
+  },
+
+  userIsPatron() {
+    return localStorage && localStorage.getItem(IS_PATRON_KEY) === 'true';
   }
 }
