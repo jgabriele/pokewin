@@ -59,7 +59,7 @@ export default {
       }
     };
 
-    xhttp.open("GET", `http://localhost:1310/patrons/${patronName}`, true);
+    xhttp.open("GET", `http://api.pokewin.win/patrons/${patronName}`, true);
 
     xhttp.send();
   },
