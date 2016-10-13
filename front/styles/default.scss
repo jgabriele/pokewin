@@ -42,6 +42,12 @@ input[type=number] {
   }
 }
 
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
 input[type=range] {
   display: none;
   -webkit-appearance: none;
@@ -63,7 +69,7 @@ input[type=range] {
     height: 32px;
     margin-top: -14px;
     border: 0;
-    background: $color-button-dark;
+    background: $color-blue-green;
     border-radius: 50%;
     -webkit-appearance: none;
   }
@@ -78,7 +84,7 @@ input[type=range] {
 }
 
 a {
-  color: $color-button-dark;
+  color: $color-blue-green;
   font-weight: bold;
   text-decoration: none;
 }

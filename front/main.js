@@ -17,6 +17,7 @@ import PokemonToggleList    from './scripts/Views/PokemonToggleList';
 
 import FavouritesPage     from './scripts/Controllers/FavouritesPage';
 import LoadingModal       from './scripts/Controllers/LoadingModal';
+import PatronsModal       from './scripts/Controllers/PatronsModal';
 import MainFloatingButton from './scripts/Controllers/MainFloatingButton';
 import PinnedSectionPage  from './scripts/Controllers/PinnedSectionPage';
 
@@ -354,6 +355,8 @@ function _startup () {
       setTimeout(_hideLoading, 200);
 
       setTimeout(() => LoadingModal.showModal(), 600);
+
+      PatronsModal.showModal();
 
       // debug
       window.__localeManager = localeManager;
