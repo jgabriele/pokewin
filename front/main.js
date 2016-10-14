@@ -34,11 +34,9 @@ if (!PatronsModal.userIsPatron()) {
   const configScript = document.createElement("script");
   configScript.type = 'text/javascript';
   configScript.appendChild(document.createTextNode(
-    `<script type="text/javascript">
-        var infolinks_pid = 2867010;
-        var infolinks_wsid = 0;
-        console.log('WTFFFFFFF?');
-      </script>`
+    `var infolinks_pid = 2867010;
+      var infolinks_wsid = 0;
+      console.log('WTFFFFFFF?');`
   ));
   adsScripts.appendChild(configScript);
 
