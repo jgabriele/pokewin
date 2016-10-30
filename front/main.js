@@ -25,6 +25,7 @@ import PinnedModel from './scripts/Models/Pinned';
 
 Polyfills.objectAssign();
 
+
 // Add ads if user is not a patron
 if (!PatronsModal.userIsPatron()) {
   const adsScripts = Utils.DOMElementFromString(
@@ -218,10 +219,6 @@ function hideDetail() {
   listView.unBlock();
 }
 
-function toggleIntro() {
-  document.querySelector('.intro').classList.toggle('is-collapsed');
-}
-
 //===== Loading screen =====//
 
 const loadingEl = document.querySelector('.loading-screen');
@@ -353,17 +350,6 @@ function _startup () {
       _addKeyboardListener();
 
       document.querySelector('.js-background').addEventListener('click', hideDetail);
-      document.querySelector('.js-intro').addEventListener('click', toggleIntro);
-
-      // Check in localStorage whether we need to show the intro collapsed on start
-      if (localStorage) {
-        let nbVisits = Utils.getNumberOfVisits();
-        if (nbVisits && nbVisits >= 3) {
-          toggleIntro();
-        }
-
-        Utils.increateVisits();
-      }
 
       // Preload the high res spritesheet now that the page has loaded
       preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
@@ -379,8 +365,6 @@ function _startup () {
       setTimeout(_hideLoading, 200);
 
       setTimeout(() => LoadingModal.showModal(), 600);
-
-      PatronsModal.showModal();
 
       // debug
       window.__localeManager = localeManager;
