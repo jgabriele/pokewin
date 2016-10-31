@@ -3,8 +3,6 @@ import PatronsModal   from '../Views/Modal/Patrons';
 import LocaleManager  from '../LocaleManager';
 import Utils          from '../Utils';
 
-const IS_PATRON_KEY = 'is-patron';
-
 export default {
   init(el) {
     ModalView.attach(el);
@@ -76,9 +74,5 @@ export default {
 
   onDismiss() {
     ModalView.hide();
-  },
-
-  userIsPatron() {
-    return localStorage && localStorage.getItem(IS_PATRON_KEY) === 'true';
   }
 }

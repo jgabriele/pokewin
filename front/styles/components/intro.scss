@@ -49,10 +49,11 @@
 
   &.subtext--patreon {
     .inline-image {
-      display: inline-block;content: '';
+      content: '';
+      display: inline-block;
       width: 14px;
       height: 14px;
-      background-image: url(https://camo.githubusercontent.com/234dde84d231ee1fe67e45f66e93065e3d827f70/687474703a2f2f737667706f726e2e636f6d2f6c6f676f732f70617472656f6e2e737667);
+      background-image: url('/images/logo-patreon.png');
       background-size: cover;
     }
   }
