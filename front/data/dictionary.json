@@ -196,7 +196,7 @@
   "TEXT_FAVOURITES_HINT_TEXT": {
     "de": "<strong>Favorisiere deine eigenen Pokémon</strong>, um leichter herauszufinden, gegen wen sie stark sind.",
     "en": "<strong>Favourite the pokemons you own</strong> to find easily who they counter.",
-    "fr": "<strong>Met en favoris les pokémons que tu possèdes</strong> pour trouver plus facilement contre qui ils sont efficaces.",
+    "fr": "<strong>Mets en favoris les pokémons que tu possèdes</strong> pour trouver plus facilement contre qui ils sont efficaces.",
     "es": "<strong>Añade a favoritos los pokémons que tú tienes</strong> para encontrar facílmente a quienes contrarrestan.",
     "po": "<strong>Favorite os Pokémons que você tem</strong> para achá-los mais facilmente.</strong>"
   },
@@ -223,13 +223,17 @@
     "po": "<strong>Fixe os pokémos que você geralmente vê nos ginásios</strong>, então você não terá que pocurar por toda pokédex"
   },
 
+  "TEXT_PATRONS_INTRO": {
+    "en": "Pokéwin on <span class='inline-image'></span>atreon. Click for more details.",
+    "fr": "Pokéwin sur <span class='inline-image'></span>atreon. Clique pour plus d'infos."
+  },
   "TEXT_PATRONS_MODAL_TITLE": {
     "en": "Your patron name",
     "fr": "Ton nom de Patron"
   },
   "TEXT_PATRONS_MODAL_TEXT": {
-    "en": "Hey, are you supporting Pokéwin <a target='_blank' href='http://patreon.com'>on Patreon</a>?<br /><br />If you are, please give me your name and start enjoying the true powers of being a patron!",
-    "fr": "Hey, tu sais que tu peux apporter du soutien à Pokéwin <a target='_blank' href='http://patreon.com'>sur Patreon</a>?<br /><br />Si c'est déjà fait, dis-moi ton nom et profite dès maintenant des avantages d'être un patron!"
+    "en": "Hey, are you supporting Pokéwin <a target='_blank' href='http://patreon.com'>on Patreon</a>?<br /><br />If you are, please give me your name and start enjoying the true powers of being a patron! This includes <strong>No more ads</strong>, early access to new features, private skype, and more!",
+    "fr": "Hey, tu sais que tu peux apporter du soutien à Pokéwin <a target='_blank' href='http://patreon.com'>sur Patreon</a>?<br /><br />Si c'est déjà fait, dis-moi ton nom et profite dès maintenant des avantages d'être un patron (<strong>Fini les pubs</strong>, accès anticipé aux nouvelles fonctionnalités, Skype privé,...)!"
   },
   "TEXT_PATRONS_MODAL_INPUT_PLACEHOLDER": {
     "en": "Your Patron name",

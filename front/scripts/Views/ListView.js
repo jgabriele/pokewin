@@ -24,7 +24,7 @@ function ListView(parent) {
 
       <div class="subtext subtext--patreon js-patreon">
         <p>
-          <span>Pokéwin is on </span><span class="inline-image"></span><span>atreon !</span>
+          <span data-localisable-key="TEXT_PATRONS_INTRO"></span>
         </p>
       </div>
 
@@ -39,14 +39,15 @@ function ListView(parent) {
     </section>`
   );
 
-  parent.appendChild(this._el);
+  parent.appendChild(this._el)
 
   // Onclick in the subtext, show Patreon's modal
   document.querySelector('.js-patreon').addEventListener('click', () => PatronsModal.showModal());
 
   // Toggling the intro on click
   this._introEl = document.querySelector('.js-intro');
-  this._introEl.addEventListener('click', this.toggleIntro);
+  this._introEl.addEventListener('click', this.toggleIntro.bind(this));
+
 
   // Check in localStorage whether we need to show the intro collapsed on start
   if (localStorage) {

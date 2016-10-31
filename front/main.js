@@ -1,10 +1,10 @@
 import Polyfills from './scripts/Polyfills';
 
-import LocaleManager  from './scripts/LocaleManager';
-import Preloader      from './scripts/Preloader';
-import Utils          from './scripts/Utils';
-import PokeUtils      from './scripts/Utils/PokeUtils';
-import PatreonUtils   from './scripts/Utils/PatreonUtils';
+import LocaleManager    from './scripts/LocaleManager';
+import Preloader        from './scripts/Preloader';
+import Utils            from './scripts/Utils';
+import PokeUtils        from './scripts/Utils/PokeUtils';
+import { userIsPatron } from './scripts/Utils/PatreonUtils';
 
 import ListView             from './scripts/Views/ListView';
 import CounterView          from './scripts/Views/CounterView';
@@ -25,8 +25,9 @@ import PinnedModel from './scripts/Models/Pinned';
 
 Polyfills.objectAssign();
 
+
 // Add ads if user is not a patron
-if (!PatreonUtils.userIsPatron()) {
+if (!userIsPatron()) {
   const adsScripts = Utils.DOMElementFromString(
     `<div class="ads-wrapper">
     </div>`

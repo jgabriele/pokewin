@@ -1,7 +1,5 @@
-const IS_PATRON_KEY = 'is-patron';
+export const IS_PATRON_KEY = 'is-patron';
 
-export default {
-  userIsPatron() {
-    return localStorage && localStorage.getItem(IS_PATRON_KEY) === 'true';
-  }
+export function userIsPatron() {
+  return localStorage && localStorage.getItem(IS_PATRON_KEY) === 'true';
 }
