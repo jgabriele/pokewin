@@ -24,7 +24,7 @@
     &::after {
       content: '+';
       display: block;
-      color: $color-button-dark;
+      color: $color-blue-green;
       font-weight: bold;
     }
   }
@@ -36,7 +36,26 @@
   &::after {
     content: '-';
     display: block;
-    color: $color-button-dark;
+    color: $color-blue-green;
     font-weight: bold;
   }
+}
+
+.subtext {
+  p {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  &.subtext--patreon {
+    .inline-image {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background-image: url('/images/logo-patreon.png');
+      background-size: cover;
+    }
+  }
+
 }

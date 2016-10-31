@@ -2,6 +2,7 @@ import Event          from 'events';
 import LocaleManager  from '../LocaleManager';
 import PokemonView    from './PokemonView';
 import Utils          from '../Utils.js';
+import PatronsModal   from '../Controllers/PatronsModal';
 
 const EVENTS = {
   POKEMON_SELECTED: 'pokemon-selected'
@@ -21,6 +22,12 @@ function ListView(parent) {
         <p data-localisable-key="TEXT_INTRO_3"></p>
       </div>
 
+      <div class="subtext subtext--patreon js-patreon">
+        <p>
+          <span>Pokéwin is on </span><span class="inline-image"></span><span>atreon !</span>
+        </p>
+      </div>
+
       <div class='sections'></div>
 
       <footer>
@@ -33,6 +40,23 @@ function ListView(parent) {
   );
 
   parent.appendChild(this._el);
+
+  // Onclick in the subtext, show Patreon's modal
+  document.querySelector('.js-patreon').addEventListener('click', () => PatronsModal.showModal());
+
+  // Toggling the intro on click
+  this._introEl = document.querySelector('.js-intro');
+  this._introEl.addEventListener('click', this.toggleIntro);
+
+  // Check in localStorage whether we need to show the intro collapsed on start
+  if (localStorage) {
+    let nbVisits = Utils.getNumberOfVisits();
+    if (nbVisits && nbVisits >= 3) {
+      this.toggleIntro();
+    }
+
+    Utils.increateVisits();
+  }
 }
 
 ListView.prototype = Object.create(Event.prototype);
@@ -73,6 +97,9 @@ ListView.prototype._renderSection = function(pokemons, titleKey, additionalClass
     this._el.querySelector('.sections').appendChild(section);
 }
 
+ListView.prototype.toggleIntro = function () {
+  this._introEl.classList.toggle('is-collapsed');
+}
 
 ListView.prototype.block = function () {
   this._isBlocked = true;

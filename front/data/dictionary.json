@@ -223,6 +223,31 @@
     "po": "<strong>Fixe os pokémos que você geralmente vê nos ginásios</strong>, então você não terá que pocurar por toda pokédex"
   },
 
+  "TEXT_PATRONS_MODAL_TITLE": {
+    "en": "Your patron name",
+    "fr": "Ton nom de Patron"
+  },
+  "TEXT_PATRONS_MODAL_TEXT": {
+    "en": "Hey, are you supporting Pokéwin <a target='_blank' href='http://patreon.com'>on Patreon</a>?<br /><br />If you are, please give me your name and start enjoying the true powers of being a patron!",
+    "fr": "Hey, tu sais que tu peux apporter du soutien à Pokéwin <a target='_blank' href='http://patreon.com'>sur Patreon</a>?<br /><br />Si c'est déjà fait, dis-moi ton nom et profite dès maintenant des avantages d'être un patron!"
+  },
+  "TEXT_PATRONS_MODAL_INPUT_PLACEHOLDER": {
+    "en": "Your Patron name",
+    "fr": "Ton nom de Patron"
+  },
+  "TEXT_SEND": {
+    "en": "Send",
+    "fr": "Envoyer"
+  },
+  "TEXT_CANCEL": {
+    "en": "Cancel",
+    "fr": "Annuler"
+  },
+  "ERROR_PATRON_NOT_FOUND": {
+    "en": "No Patron was found with this name",
+    "fr": "Aucun Patron n'a été trouvé avec ce nom"
+  },
+
 
   "POKE_001": {
     "de": "Bisasam",

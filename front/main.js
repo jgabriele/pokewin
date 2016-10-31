@@ -4,6 +4,7 @@ import LocaleManager  from './scripts/LocaleManager';
 import Preloader      from './scripts/Preloader';
 import Utils          from './scripts/Utils';
 import PokeUtils      from './scripts/Utils/PokeUtils';
+import PatreonUtils   from './scripts/Utils/PatreonUtils';
 
 import ListView             from './scripts/Views/ListView';
 import CounterView          from './scripts/Views/CounterView';
@@ -23,6 +24,30 @@ import PinnedSectionPage  from './scripts/Controllers/PinnedSectionPage';
 import PinnedModel from './scripts/Models/Pinned';
 
 Polyfills.objectAssign();
+
+// Add ads if user is not a patron
+if (!PatreonUtils.userIsPatron()) {
+  const adsScripts = Utils.DOMElementFromString(
+    `<div class="ads-wrapper">
+    </div>`
+  );
+  const configScript = document.createElement("script");
+  configScript.type = 'text/javascript';
+  configScript.appendChild(document.createTextNode(
+    `var infolinks_pid = 2867010;
+      var infolinks_wsid = 0;
+      console.log('WTFFFFFFF?');`
+  ));
+  adsScripts.appendChild(configScript);
+
+  const libScript = document.createElement("script");
+  libScript.type = 'text/javascript';
+  libScript.src = '//resources.infolinks.com/js/infolinks_main.js'
+  adsScripts.appendChild(libScript);
+
+  document.body.appendChild(adsScripts);
+}
+
 
 const LANGUAGE_KEY = 'language';
 
@@ -193,10 +218,6 @@ function hideDetail() {
   listView.unBlock();
 }
 
-function toggleIntro() {
-  document.querySelector('.intro').classList.toggle('is-collapsed');
-}
-
 //===== Loading screen =====//
 
 const loadingEl = document.querySelector('.loading-screen');
@@ -328,17 +349,6 @@ function _startup () {
       _addKeyboardListener();
 
       document.querySelector('.js-background').addEventListener('click', hideDetail);
-      document.querySelector('.js-intro').addEventListener('click', toggleIntro);
-
-      // Check in localStorage whether we need to show the intro collapsed on start
-      if (localStorage) {
-        let nbVisits = Utils.getNumberOfVisits();
-        if (nbVisits && nbVisits >= 3) {
-          toggleIntro();
-        }
-
-        Utils.increateVisits();
-      }
 
       // Preload the high res spritesheet now that the page has loaded
       preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
