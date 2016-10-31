@@ -25,7 +25,6 @@ import PinnedModel from './scripts/Models/Pinned';
 
 Polyfills.objectAssign();
 
-
 // Add ads if user is not a patron
 if (!userIsPatron()) {
   const adsScripts = Utils.DOMElementFromString(
