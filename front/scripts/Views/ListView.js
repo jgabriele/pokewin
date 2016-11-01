@@ -3,6 +3,7 @@ import LocaleManager  from '../LocaleManager';
 import PokemonView    from './PokemonView';
 import Utils          from '../Utils.js';
 import PatronsModal   from '../Controllers/PatronsModal';
+import { getSorting } from '../Config'
 
 const EVENTS = {
   POKEMON_SELECTED: 'pokemon-selected'
@@ -78,24 +79,27 @@ ListView.prototype.reset = function () {
 }
 
 ListView.prototype._renderSection = function(pokemons, titleKey, additionalClass) {
-    const tiersDOMNodes = pokemons
-      .map(this._prerenderPokemon.bind(this));
+  const sortingFunction = getSorting() === 'A-Z' ? Utils.sortAlphabetically : Utils.sortByNumber
+  pokemons = pokemons.sort((item1, item2) => sortingFunction(item1, item2))
 
-    const fragment = document.createDocumentFragment();
-    tiersDOMNodes.forEach(fragment.appendChild.bind(fragment));
+  const tiersDOMNodes = pokemons
+    .map(this._prerenderPokemon.bind(this));
 
-    const section = Utils.DOMElementFromString(
-      `<div>
-        <h3 class="title">
-          <span class="${additionalClass}" data-localisable-key="${titleKey}">
-            ${LocaleManager.getInstance().translate(titleKey)}
-          </span>
-        </h3>
-      <div>`
-    );
-    section.appendChild(fragment);
+  const fragment = document.createDocumentFragment();
+  tiersDOMNodes.forEach(fragment.appendChild.bind(fragment));
 
-    this._el.querySelector('.sections').appendChild(section);
+  const section = Utils.DOMElementFromString(
+    `<div>
+      <h3 class="title">
+        <span class="${additionalClass}" data-localisable-key="${titleKey}">
+          ${LocaleManager.getInstance().translate(titleKey)}
+        </span>
+      </h3>
+    <div>`
+  );
+  section.appendChild(fragment);
+
+  this._el.querySelector('.sections').appendChild(section);
 }
 
 ListView.prototype.toggleIntro = function () {

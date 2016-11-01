@@ -1,5 +1,7 @@
 import Polyfills from './scripts/Polyfills';
 
+import { init as initConfig }  from './scripts/Config';
+
 import LocaleManager    from './scripts/LocaleManager';
 import Preloader        from './scripts/Preloader';
 import Utils            from './scripts/Utils';
@@ -10,6 +12,7 @@ import ListView             from './scripts/Views/ListView';
 import CounterView          from './scripts/Views/CounterView';
 import DetailsView          from './scripts/Views/DetailsView';
 import LanguageSelectView   from './scripts/Views/LanguageSelectView';
+import SortingSelectView    from './scripts/Views/SortingSelectView';
 import ModalView            from './scripts/Views/ModalView';
 import MultipleChoices      from './scripts/Views/Modal/MultipleChoices';
 import FloatingButton       from './scripts/Views/FloatingButton';
@@ -24,6 +27,8 @@ import PinnedSectionPage  from './scripts/Controllers/PinnedSectionPage';
 import PinnedModel from './scripts/Models/Pinned';
 
 Polyfills.objectAssign();
+
+initConfig()
 
 // Add ads if user is not a patron
 if (!userIsPatron()) {
@@ -331,6 +336,13 @@ function _startup () {
         .on(LanguageSelectView.ACTIONS.SELECT_LANGUAGE, _onLanguageSelected);
       languageSelectView.render();
 
+      // Sorting control to define if Pokemons are sorted by A/Z or #
+      const sortingSelectView = new SortingSelectView(
+          document.querySelector('.js-sorting-selector-wrapper')
+        )
+        .on(SortingSelectView.EVENTS.SORTING_TOGGLED, () => updateListView(pokemonsFull));
+      sortingSelectView.render();
+
       // Priority for language:
       // 1) lang parameter in Query String
       // 2) value for localStorage
@@ -339,6 +351,11 @@ function _startup () {
       const storedLanguage = localStorage && localStorage.getItem(LANGUAGE_KEY);
       const browserLang = NAVIGATOR_LANG_TO_LANG[navigator.language || navigator.userLanguage || 'en'];
       const requestedLang = queryLanguage || storedLanguage || browserLang;
+
+      // We need to setup the language for LocaleManager right away
+      // because we will need languages to sort pokemons by name probably
+      // when instanciating the List view
+      _onLanguageSelected(requestedLang)
 
       pokemonsFull = _augmentPokemonsData(pokemons);
 

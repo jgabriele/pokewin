@@ -78,6 +78,30 @@ const Utils = {
 
   isMobileDevice() {
     return _check;
+  },
+
+  sortByNumber(pokemon1, pokemon2) {
+    return pokemon1.id - pokemon2.id
+  },
+
+  sortAlphabetically(pokemon1, pokemon2) {
+    const pokemon1LocalisedName = LocaleManager.getInstance().translate(pokemon1.key)
+    const pokemon2LocalisedName = LocaleManager.getInstance().translate(pokemon2.key)
+
+    // We check up to 3 chars
+    const firstLetterDiff = pokemon1LocalisedName.charCodeAt(0) - pokemon2LocalisedName.charCodeAt(0)
+    const secondLetterDiff = pokemon1LocalisedName.charCodeAt(1) - pokemon2LocalisedName.charCodeAt(1)
+    const thirdLetterDiff = pokemon1LocalisedName.charCodeAt(2) - pokemon2LocalisedName.charCodeAt(2)
+
+    if (firstLetterDiff === 0) {
+      if (secondLetterDiff === 0) {
+        return thirdLetterDiff
+      }
+
+      return secondLetterDiff
+    }
+
+    return firstLetterDiff
   }
 }
 
