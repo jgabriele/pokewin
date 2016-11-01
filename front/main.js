@@ -1,6 +1,6 @@
 import Polyfills from './scripts/Polyfills';
 
-import { init as initConfig }  from './scripts/Config';
+import { init as initConfig, getSorting }  from './scripts/Config';
 
 import LocaleManager    from './scripts/LocaleManager';
 import Preloader        from './scripts/Preloader';
@@ -271,6 +271,12 @@ function _onLanguageSelected(lang = 'en') {
   // Save preferred language in localstorage
   if (localStorage) {
     localStorage.setItem(LANGUAGE_KEY, lang);
+  }
+
+  // If we're sorting alphabetically, we need to re-render the view
+  //
+  if (pokemonsFull && getSorting() === 'A-Z') {
+    updateListView(pokemonsFull)
   }
 }
 

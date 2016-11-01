@@ -86,7 +86,11 @@ const Utils = {
 
   sortAlphabetically(pokemon1, pokemon2) {
     const pokemon1LocalisedName = LocaleManager.getInstance().translate(pokemon1.key)
+      .replace(/É/g, 'E')
+      .replace(/é/g, 'e')
     const pokemon2LocalisedName = LocaleManager.getInstance().translate(pokemon2.key)
+      .replace(/É/g, 'E')
+      .replace(/é/g, 'e')
 
     // We check up to 3 chars
     const firstLetterDiff = pokemon1LocalisedName.charCodeAt(0) - pokemon2LocalisedName.charCodeAt(0)
