@@ -14,7 +14,7 @@ function LanguageSelectView(el, languages) {
 
 LanguageSelectView.prototype = Object.create(Event.prototype);
 
-LanguageSelectView.prototype.render = function(pokemons) {
+LanguageSelectView.prototype.render = function() {
   // Generate <li> for options
   const langHTMLString = this._languages
     .map((lang) => `<li class="language js-language" data-language="${lang.code}">

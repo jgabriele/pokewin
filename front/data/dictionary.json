@@ -224,8 +224,8 @@
   },
 
   "TEXT_PATRONS_INTRO": {
-    "en": "Pokéwin on <span class='inline-image'></span>atreon. Click for more details.",
-    "fr": "Pokéwin sur <span class='inline-image'></span>atreon. Clique pour plus d'infos."
+    "en": "<strong>Julia C.</strong> supported me on <span class='inline-image'></span>atreon.<br /><a href='#'>What does this mean?</a>",
+    "fr": "<strong>Julia C.</strong> me soutient sur <span class='inline-image'></span>atreon.<br /><a href='#''>Qu'est-ce que c'est?</a>"
   },
   "TEXT_PATRONS_MODAL_TITLE": {
     "en": "Your patron name",

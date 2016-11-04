@@ -2,6 +2,7 @@ import PokemonToggleList  from '../Views/PokemonToggleList';
 import LocaleManager      from '../LocaleManager';
 import Utils              from '../Utils';
 import FavouritesModel    from '../Models/Favourites';
+import { getSorting }     from '../Config'
 
 export default {
   init(parent) {
@@ -43,9 +44,12 @@ export default {
     this._el.innerHTML = '';
     this._el.appendChild(el);
 
-    pokemons = pokemons.map((p) => Object.assign({}, p, {
-      isFavourite: FavouritesModel.getInstance().get(p.id)
-    }));
+    const sortingFunction = getSorting() === 'A-Z' ? Utils.sortAlphabetically : Utils.sortByNumber
+    pokemons = pokemons
+      .map((p) => Object.assign({}, p, {
+        isFavourite: FavouritesModel.getInstance().get(p.id)
+      }))
+      .sort((item1, item2) => sortingFunction(item1, item2))
 
     // OPTIM – avoid creating a new object everytime
     this._toggleList = null;
