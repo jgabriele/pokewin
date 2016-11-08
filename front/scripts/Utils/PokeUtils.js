@@ -1,15 +1,24 @@
+import DodgeFrequencyController from '../Controllers/DodgeFrequency';
+
 const RATIO_EFFICIENT = 1.25;
 const RATIO_WEAK = 0.8;
 
+const DODGE_TO_MULTIPLER = {
+  undefined: 1,
+  [DodgeFrequencyController.FREQUENCY.NEVER]: 1,
+  [DodgeFrequencyController.FREQUENCY.PARTLY]: 0.85,
+  [DodgeFrequencyController.FREQUENCY.ALWAYS]: 0.7
+}
+
 export default {
-  getCounters(efficiencyThreshold, pokemons, pokemon){
+  getCounters(efficiencyThreshold, pokemons, pokemon) {
     return pokemons
       .map(this.getCountersDataForPokemon.bind(null, efficiencyThreshold, pokemon))
       .filter(p => p); // Filter null efficiencies
   },
 
   getCountersDataForPokemon(efficiencyThreshold, pokemon, otherPokemon){
-    const moves = _getEnoughEfficienMoves(otherPokemon, pokemon, efficiencyThreshold);
+    const moves = _getEnoughEfficientMoves(otherPokemon, pokemon, efficiencyThreshold);
 
     if (!moves) {
       return null;
@@ -35,12 +44,16 @@ export default {
  * We return the moves only if attackRatio / defenseRatio >= efficiencyThreshold
  * @return {Array} moves or nothing
  */
-function _getEnoughEfficienMoves(attackPokemon, defensePokemon, efficiencyThreshold) {
+function _getEnoughEfficientMoves(attackPokemon, defensePokemon, efficiencyThreshold) {
   const bestMovesAttack = _getBestMoves(attackPokemon, defensePokemon);
   const bestMovesDefense = _getBestMoves(defensePokemon, attackPokemon);
 
-  const totalAttack = bestMovesAttack.quick.efficiency + bestMovesAttack.special.efficiency;
-  const totalDefense = bestMovesDefense.quick.efficiency + bestMovesDefense.special.efficiency;
+  const quickFrequencyMultiplier = DODGE_TO_MULTIPLER[DodgeFrequencyController.getQuickMovesDodgeFrequency()]
+  const specialFrequencyMultiplier = DODGE_TO_MULTIPLER[DodgeFrequencyController.getSpecialMovesDodgeFrequency()]
+
+  const totalAttack = bestMovesAttack.quick.efficiency + bestMovesAttack.special.efficiency
+  const totalDefense = bestMovesDefense.quick.efficiency * quickFrequencyMultiplier +
+    bestMovesDefense.special.efficiency  * specialFrequencyMultiplier
 
   const efficiency = totalAttack / totalDefense;
 
@@ -48,7 +61,7 @@ function _getEnoughEfficienMoves(attackPokemon, defensePokemon, efficiencyThresh
   bestMovesAttack.special.efficiency = efficiency;
 
   if (efficiency >= efficiencyThreshold) {
-    return [].concat(bestMovesAttack.quick).concat(bestMovesAttack.special);
+    return [].concat(bestMovesAttack.quick).concat(bestMovesAttack.special)
   }
 }
 

@@ -3,19 +3,19 @@ import Utils          from '../Utils.js';
 import LocaleManager  from '../LocaleManager';
 import CounterView    from './CounterView';
 import FavouritesModel from '../Models/Favourites';
+import DodgeFrequencyController from '../Controllers/DodgeFrequency';
 
 const ROLLING_TIMEOUT = 4 * 1000; // 4 sec
 
 const EVENTS = {
-  COUNTER_SELECTED: 'pokemon-selected'
+  COUNTER_SELECTED: 'pokemon-selected',
+  DODGE_FREQUENCY_UPDATED: 'frequency-updated'
 }
 
 const INITIAL_DEFENSE_POKEMON_CP = 2000;
 const INPUT_RANGE_STEP = Utils.isMobileDevice() && 10 || 1;
 
 function DetailsView() {
-  this.EVENTS = EVENTS;
-
   this._state = {
     defensePokemonCP: INITIAL_DEFENSE_POKEMON_CP
   };
@@ -32,8 +32,15 @@ function DetailsView() {
   this._level = document.querySelector('.js-cp-value');
 
   this._name = document.querySelector('.overlay__data .js-name');
-  this._picture = document.querySelector('.overlay__data .js-picture');
-  this._types = document.querySelector('.overlay__data .js-types');
+  this._picture = document.querySelector('.overlay__data .js-picture')
+  this._types = document.querySelector('.overlay__data .js-types')
+
+  DodgeFrequencyController.init(document.querySelector('.dodge-frequency'))
+
+  DodgeFrequencyController.on(DodgeFrequencyController.EVENTS.CHANGE_QUICK_FREQUENCY,
+    this._onQuickFrequencyChange.bind(this));
+  DodgeFrequencyController.on(DodgeFrequencyController.EVENTS.CHANGE_SPECIAL_FREQUENCY,
+    this._onSpecialFrequencyChange.bind(this));
 }
 
 DetailsView.prototype = Object.create(Event.prototype);
@@ -133,6 +140,16 @@ DetailsView.prototype.onSelectCounter = function(pokemon) {
   this.emit(EVENTS.COUNTER_SELECTED, pokemon);
 }
 
+DetailsView.prototype._onQuickFrequencyChange = function(frequency) {
+  this._quickDodge = frequency
+  this.emit(EVENTS.DODGE_FREQUENCY_UPDATED)
+}
+
+DetailsView.prototype._onSpecialFrequencyChange = function(frequency) {
+  this._specialDodge = frequency
+  this.emit(EVENTS.DODGE_FREQUENCY_UPDATED)
+}
+
 function highCPMaxFilter(cp, counter) {
   return counter.cpMax * counter.moves[0].efficiency >= cp;
 }
@@ -152,4 +169,15 @@ function counterDataToViewData(defensePokemonCP, counter){
     };
 }
 
-export default new DetailsView();
+let _instance
+DetailsView.getInstance = function () {
+  if (!_instance) {
+    _instance = new DetailsView()
+  }
+
+  return _instance
+}
+
+DetailsView.EVENTS = EVENTS
+
+export default DetailsView

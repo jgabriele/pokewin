@@ -247,11 +247,32 @@
     "en": "Cancel",
     "fr": "Annuler"
   },
+
+  "TEXT_DODGE_NEVER": {
+    "en": "Never",
+    "fr": "Jamais"
+  },
+  "TEXT_DODGE_PARTLY": {
+    "en": "Partly",
+    "fr": "En partie"
+  },
+  "TEXT_DODGE_ALWAYS": {
+    "en": "Always",
+    "fr": "Toujours"
+  },
+  "TEXT_DODGE_QUICK": {
+    "en": "Quick moves",
+    "fr": "Attaques rapides"
+  },
+  "TEXT_DODGE_SPECIAL": {
+    "en": "Special moves",
+    "fr": "Attaques spéciales"
+  },
+
   "ERROR_PATRON_NOT_FOUND": {
     "en": "No Patron was found with this name",
     "fr": "Aucun Patron n'a été trouvé avec ce nom"
   },
-
 
   "POKE_001": {
     "de": "Bisasam",

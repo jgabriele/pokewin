@@ -192,9 +192,11 @@ function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
     .getCounters(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon);
 
-  DetailsView
+
+  DetailsView.getInstance()
     .removeAllListeners()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
+    .on(DetailsView.EVENTS.DODGE_FREQUENCY_UPDATED, updateDetail.bind(null, pokemons, pokemon))
     .render({
       pokemon,
       counters,
