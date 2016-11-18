@@ -58,7 +58,7 @@ function _getEnoughEfficientMoves(attackPokemon, defensePokemon, efficiencyThres
   // Usually HP is (Base Stamina + Stamina IV) * CPM
   // But we'll simplify this version not to include CPM but 0.7 (0.8 is max CPM)
   const attackHP = attackPokemon.stm * 0.7
-  const defenseHP = defensePokemon.stm * 0.7 * 1.8 // Should be x2 but people are not ready for this
+  const defenseHP = defensePokemon.stm * 0.7 * 1.25 // Should be x2 but people are not ready for this
 
   // We know the total DPS for atk/def, we know the HP of each pokemons (stamina)
   // We can calculate how many seconds will be needed to make the pokemon KO
