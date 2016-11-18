@@ -1,0 +1,36 @@
+.dodge-frequency {
+  display: flex;
+  padding: 8px 0px;
+
+  .dodge-type {
+    display: inline-block;
+    flex: 1;
+
+    .dodge-type__name {
+      padding-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .dodge-type__button {
+      width: 80%;
+      border: 0;
+      padding: 10px;
+
+      &:focus {
+        outline:0;
+      }
+
+      &.dodge-type__button--never {
+        background: #d3d3d3;
+      }
+
+      &.dodge-type__button--partly {
+        background: #ffc345;
+      }
+
+      &.dodge-type__button--always {
+        background: #90ee90;
+      }
+    }
+  }
+}

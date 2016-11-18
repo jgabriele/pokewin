@@ -1,15 +1,24 @@
+import DodgeFrequencyController from '../Controllers/DodgeFrequency';
+
 const RATIO_EFFICIENT = 1.25;
 const RATIO_WEAK = 0.8;
 
+const DODGE_TO_MULTIPLER = {
+  undefined: 1,
+  [DodgeFrequencyController.FREQUENCY.NEVER]: 1,
+  [DodgeFrequencyController.FREQUENCY.PARTLY]: 0.85,
+  [DodgeFrequencyController.FREQUENCY.ALWAYS]: 0.7
+}
+
 export default {
-  getCounters(efficiencyThreshold, pokemons, pokemon){
+  getCounters(efficiencyThreshold, pokemons, pokemon) {
     return pokemons
       .map(this.getCountersDataForPokemon.bind(null, efficiencyThreshold, pokemon))
       .filter(p => p); // Filter null efficiencies
   },
 
   getCountersDataForPokemon(efficiencyThreshold, pokemon, otherPokemon){
-    const moves = _getEnoughEfficienMoves(otherPokemon, pokemon, efficiencyThreshold);
+    const moves = _getEnoughEfficientMoves(otherPokemon, pokemon, efficiencyThreshold);
 
     if (!moves) {
       return null;
@@ -35,12 +44,16 @@ export default {
  * We return the moves only if attackRatio / defenseRatio >= efficiencyThreshold
  * @return {Array} moves or nothing
  */
-function _getEnoughEfficienMoves(attackPokemon, defensePokemon, efficiencyThreshold) {
+function _getEnoughEfficientMoves(attackPokemon, defensePokemon, efficiencyThreshold) {
   const bestMovesAttack = _getBestMoves(attackPokemon, defensePokemon);
   const bestMovesDefense = _getBestMoves(defensePokemon, attackPokemon);
 
-  const totalAttack = bestMovesAttack.quick.efficiency + bestMovesAttack.special.efficiency;
-  const totalDefense = bestMovesDefense.quick.efficiency + bestMovesDefense.special.efficiency;
+  const quickFrequencyMultiplier = DODGE_TO_MULTIPLER[DodgeFrequencyController.getQuickMovesDodgeFrequency()]
+  const specialFrequencyMultiplier = DODGE_TO_MULTIPLER[DodgeFrequencyController.getSpecialMovesDodgeFrequency()]
+
+  const totalAttack = bestMovesAttack.quick.efficiency + bestMovesAttack.special.efficiency
+  const totalDefense = bestMovesDefense.quick.efficiency * quickFrequencyMultiplier +
+    bestMovesDefense.special.efficiency  * specialFrequencyMultiplier
 
   const efficiency = totalAttack / totalDefense;
 
@@ -48,7 +61,7 @@ function _getEnoughEfficienMoves(attackPokemon, defensePokemon, efficiencyThresh
   bestMovesAttack.special.efficiency = efficiency;
 
   if (efficiency >= efficiencyThreshold) {
-    return [].concat(bestMovesAttack.quick).concat(bestMovesAttack.special);
+    return [].concat(bestMovesAttack.quick).concat(bestMovesAttack.special)
   }
 }
 
@@ -69,7 +82,7 @@ function _getBestMoves(attackPokemon, defensePokemon) {
     const moveEfficiency = _calculateMoveEfficiency(
       attackPokemon,
       move,
-      defensePokemon.types
+      defensePokemon
     );
 
     if (!bestQuickMove || bestQuickMove.efficiency < moveEfficiency) {
@@ -84,7 +97,7 @@ function _getBestMoves(attackPokemon, defensePokemon) {
     const moveEfficiency = _calculateMoveEfficiency(
       attackPokemon,
       move,
-      defensePokemon.types
+      defensePokemon
     );
 
     if (!bestSpecialMove || bestSpecialMove.efficiency < moveEfficiency) {
@@ -108,16 +121,16 @@ function _getBestMoves(attackPokemon, defensePokemon) {
  * @param {Array} defenseTypes – Types of the defenser pokemon
  * @return {Number} efficiency multiplier for the move
  */
-function _calculateMoveEfficiency(attackPokemon, attackMove, defenseTypes) {
+function _calculateMoveEfficiency(attackPokemon, attackMove, defensePokemon) {
   // Efficiency of attack pokemon move against defensePokemon
-  let attackEfficiency = attackMove.dps;
+  let attackEfficiency = 1;
 
   // STAB
   if (_isSTAB(attackMove, attackPokemon)) {
     attackEfficiency *= RATIO_EFFICIENT;
   }
 
-  defenseTypes.forEach((defenseType) => {
+  defensePokemon.types.forEach((defenseType) => {
     if (_isTypeEfficient(attackMove.type, defenseType)) {
       attackEfficiency *= RATIO_EFFICIENT;
     } else if (_isTypeWeak(attackMove.type, defenseType)) {
@@ -125,7 +138,15 @@ function _calculateMoveEfficiency(attackPokemon, attackMove, defenseTypes) {
     }
   });
 
-  return attackEfficiency;
+  return computeDamage(attackPokemon.atk, defensePokemon.def, attackMove.dps, attackEfficiency);
+}
+
+// Formula taken on
+// https://www.reddit.com/r/TheSilphRoad/comments/4wzll7/testing_gym_combat_misconceptions
+// Floor ( .5 Attack / Defense * Power * STAB * Weakness ) + 1
+function computeDamage(attackerAttack, defenserDefense, baseDamage, efficiency) {
+  const atkDefRatio = attackerAttack / defenserDefense;
+  return Math.floor(0.5 * atkDefRatio * baseDamage * efficiency) + 1;
 }
 
 /*

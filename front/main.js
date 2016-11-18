@@ -86,8 +86,7 @@ function _findMoveById(id) {
 
 function _augmentPokemonsData(pokemons) {
   return pokemons
-    .map((pokemon) => {
-      return {
+    .map((pokemon) => Object.assign({}, pokemon, {
         id: pokemon.id,
         name: LocaleManager.getInstance().translate(pokemon.key),
         key: pokemon.key,
@@ -103,9 +102,9 @@ function _augmentPokemonsData(pokemons) {
         },
         tiers: pokemon.tiers,
         cpMax: pokemon.cpMax
-      }
-    });
+    }));
 }
+
 
 //------------------
 
@@ -193,9 +192,11 @@ function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
     .getCounters(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon);
 
-  DetailsView
+
+  DetailsView.getInstance()
     .removeAllListeners()
     .on(DetailsView.EVENTS.COUNTER_SELECTED, updateDetail.bind(null, pokemons))
+    .on(DetailsView.EVENTS.DODGE_FREQUENCY_UPDATED, updateDetail.bind(null, pokemons, pokemon))
     .render({
       pokemon,
       counters,
