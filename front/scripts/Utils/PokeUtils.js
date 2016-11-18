@@ -6,19 +6,19 @@ const RATIO_WEAK = 0.8;
 const DODGE_TO_MULTIPLER = {
   undefined: 1,
   [DodgeFrequencyController.FREQUENCY.NEVER]: 1,
-  [DodgeFrequencyController.FREQUENCY.PARTLY]: 0.85,
-  [DodgeFrequencyController.FREQUENCY.ALWAYS]: 0.7
+  [DodgeFrequencyController.FREQUENCY.PARTLY]: 0.6,
+  [DodgeFrequencyController.FREQUENCY.ALWAYS]: 0.25
 }
 
 export default {
   getCounters(efficiencyThreshold, pokemons, pokemon) {
     return pokemons
       .map(this.getCountersDataForPokemon.bind(null, efficiencyThreshold, pokemon))
-      .filter(p => p); // Filter null efficiencies
+      .filter(p => p) // Filter null efficiencies
   },
 
   getCountersDataForPokemon(efficiencyThreshold, pokemon, otherPokemon){
-    const moves = _getEnoughEfficientMoves(otherPokemon, pokemon, efficiencyThreshold);
+    const moves = _getEnoughEfficientMoves(otherPokemon, pokemon, efficiencyThreshold)
 
     if (!moves) {
       return null;
@@ -30,23 +30,23 @@ export default {
       moves,
       cpMax: otherPokemon.cpMax,
       pokemon: otherPokemon // Keep trace of initial pokemon data (used for onClick)
-    };
+    }
   }
-};
+}
 
 /*
  * Return the list of moves that are efficient enough for attackPokemon to
  * win against defensePokemon.
  * To do that we take the best moves against each pokemon, and "make them fight".
- * We get two ratio:
- *   - attackPokemon moves against defensePokemon - attackRatio
- *   - defensePokemon moves against attackPokemon - defenseRatio
- * We return the moves only if attackRatio / defenseRatio >= efficiencyThreshold
+ * We get the total DPS for each side, but we also know the HP of pokemons so
+ * we can easily calculate how long it will take for each pokemon to put the other
+ * one KO. We do a ratio between those two times and we only return it if this
+ * ratio reaches a particular threshold
  * @return {Array} moves or nothing
  */
 function _getEnoughEfficientMoves(attackPokemon, defensePokemon, efficiencyThreshold) {
-  const bestMovesAttack = _getBestMoves(attackPokemon, defensePokemon);
-  const bestMovesDefense = _getBestMoves(defensePokemon, attackPokemon);
+  const bestMovesAttack = _getBestMoves(attackPokemon, defensePokemon)
+  const bestMovesDefense = _getBestMoves(defensePokemon, attackPokemon)
 
   const quickFrequencyMultiplier = DODGE_TO_MULTIPLER[DodgeFrequencyController.getQuickMovesDodgeFrequency()]
   const specialFrequencyMultiplier = DODGE_TO_MULTIPLER[DodgeFrequencyController.getSpecialMovesDodgeFrequency()]
@@ -55,22 +55,32 @@ function _getEnoughEfficientMoves(attackPokemon, defensePokemon, efficiencyThres
   const totalDefense = bestMovesDefense.quick.efficiency * quickFrequencyMultiplier +
     bestMovesDefense.special.efficiency  * specialFrequencyMultiplier
 
-  const efficiency = totalAttack / totalDefense;
+  // Usually HP is (Base Stamina + Stamina IV) * CPM
+  // But we'll simplify this version not to include CPM but 0.7 (0.8 is max CPM)
+  const attackHP = attackPokemon.stm * 0.7
+  const defenseHP = defensePokemon.stm * 0.7 * 1.8 // Should be x2 but people are not ready for this
 
-  bestMovesAttack.quick.efficiency = efficiency;
-  bestMovesAttack.special.efficiency = efficiency;
+  // We know the total DPS for atk/def, we know the HP of each pokemons (stamina)
+  // We can calculate how many seconds will be needed to make the pokemon KO
+  const attackTimeToKO = defenseHP / totalAttack
+  const defenseTimeToKO = attackHP / totalDefense
+
+  const efficiency = Math.min(defenseTimeToKO / attackTimeToKO, 4) // Not to show unrealistic results
 
   if (efficiency >= efficiencyThreshold) {
-    return [].concat(bestMovesAttack.quick).concat(bestMovesAttack.special)
+    bestMovesAttack.quick.efficiency = efficiency
+    bestMovesAttack.special.efficiency = efficiency
+
+    return [bestMovesAttack.quick, bestMovesAttack.special]
   }
 }
 
 /*
- * Calculates the best moves from an attacker against a defenser
+ * Calculates the best moves from an attacker against a defender
  * Try all quick and special moves of attackPokemon against defensePokemon
  * and return the best of each
  * @param {Pokemon} attackPokemon – The attacker
- * @param {Pokemon} defensePokemon – The defenser
+ * @param {Pokemon} defensePokemon – The defender
  * @return {Object} Best moves
  */
 function _getBestMoves(attackPokemon, defensePokemon) {
@@ -114,11 +124,11 @@ function _getBestMoves(attackPokemon, defensePokemon) {
 }
 
 /*
- * Calculate the efficiency of a single move from an attacker to a defenser
- * Takes in account STAB and weaknesses of defenser against this move
+ * Calculate the efficiency of a single move from an attacker to a defender
+ * Takes in account STAB and weaknesses of defender against this move
  * @param {Pokemon} attackPokemon – Attacker. We could only need its types, just used for STAB
  * @param {Move} attackMove – Move used for the attack
- * @param {Array} defenseTypes – Types of the defenser pokemon
+ * @param {Array} defenseTypes – Types of the defender pokemon
  * @return {Number} efficiency multiplier for the move
  */
 function _calculateMoveEfficiency(attackPokemon, attackMove, defensePokemon) {

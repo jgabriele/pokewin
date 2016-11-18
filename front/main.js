@@ -26,7 +26,7 @@ import PinnedSectionPage  from './scripts/Controllers/PinnedSectionPage';
 
 import PinnedModel from './scripts/Models/Pinned';
 
-Polyfills.objectAssign();
+Polyfills.objectAssign()
 
 initConfig()
 
@@ -40,8 +40,7 @@ if (!userIsPatron()) {
   configScript.type = 'text/javascript';
   configScript.appendChild(document.createTextNode(
     `var infolinks_pid = 2867010;
-      var infolinks_wsid = 0;
-      console.log('WTFFFFFFF?');`
+      var infolinks_wsid = 0;`
   ));
   adsScripts.appendChild(configScript);
 
@@ -62,7 +61,7 @@ const NAVIGATOR_LANG_TO_LANG = {
   'fr': 'fr'
 };
 
-const MINIUM_MOVE_EFFICIENCY_REQUIRED = 1;
+const MINIUM_MOVE_EFFICIENCY_REQUIRED = 1
 
 //------------------
 

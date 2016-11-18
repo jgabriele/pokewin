@@ -85,10 +85,7 @@ function getNextFrequency(frequency) {
   }
 }
 
-DodgeFrequencyController.EVENTS = EVENTS;
-
-console.log(DodgeFrequencyController);
-console.log(Object.create(DodgeFrequencyController));
+DodgeFrequencyController.EVENTS = EVENTS
 
 DodgeFrequencyController.FREQUENCY = FREQUENCY
 
