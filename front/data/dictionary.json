@@ -151,7 +151,7 @@
     "po": "<h3>Favoritos</h3><span>Adicione pokémons aos seus favoritos e veja mais fácil quem tem vantagem contra eles.</span><h3>Seção fixa</h3><span>Fixe os pokémons achados nos ginásios para achá-lo mais facilmente, assim você não precisa procurar por toda lista.</span><h3>Melhora no Design</h3><span>Pokéwin está um pouco mais bonito todos os dias, você percebeu isto? :).</span><div>Obrigado pelo seu apoio, não esqueça de deixar um like <a target='_blank' href='https://www.facebook.com/pokewin.win/'>no nosso facebook</a>!</div>"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_FAVOURITES_OK_TEXT": {
-    "de": "Gut gemacht!",
+    "de": "Gute Arbeit!",
     "en": "Well done!",
     "fr": "Bravo le veau!",
     "es": "Buen trabajo!",
@@ -177,6 +177,7 @@
     "po": "O que há de novo no Pokéwin?"
   },
   "TEXT_LOADING_MODAL_WHATS_NEW_DODGE_FREQUENCY_TEXT": {
+    "de": "<h3>Pokéwin Algorythmus V3</h3><span>Der Pokéwin Algorythmus zählt jetzt auch die Basiswerte und ist genauer als zuvor. Mehr Informationen gibt's <a target='_blank' href='https://www.facebook.com/pokewin.win/'>auf der Facebookseite</a>.</span><h3>Häufigkeit des Ausweichens</h3><span>Du kannst nun auswählen wie häufig du ausweichst in Kämpfen, um genauere Ergebnisse zu bekommen.</span><h3>Patreon</h3><span>Wenn du möchtest, darfst du Pokéwin <a target='_blank' href='https://patreon.com/pokewin'>auf Patreon</a> unterstützen und ich kann neue Features hinzufügen.</span><div>Vergiss nicht Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>auf Facebook</a> und <a target='_blank' href='https://twitter.com/pokewin_app/'>Twitter</a> zu abonnieren und hinterlass gerne eine Nachricht!</div>",
     "en": "<h3>Pokéwin algorithm V3</h3><span>The Pokéwin algorithm now takes in account pokemons base stats and is more accurate than ever. More information <a target='_blank' href='https://www.facebook.com/pokewin.win/'>on the Facebook page</a></span><h3>Dodge Frequency</h3><span>You can now define how frequently you dodge the defender moves to get even more accurate results.</span><h3>Patreon</h3><span>Pokéwin is on Patreon, if you more features on Pokéwin consider helping me <a target='_blank' href='https://patreon.com/pokewin'>here</a>.</span><div>Don't forget to like Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>on Facebook</a> and <a target='_blank' href='https://twitter.com/pokewin_app/'>Twitter</a> and leave a love message!</div>",
     "fr": "<h3>Algorithme Version 3</h3><span>Les calculs de contres prennent en compte les statistiques de base des pokemons, c'est plus précis que jamais ! Plus d'information <a target='_blank' href='https://www.facebook.com/pokewin.win/'>sur la page Facebook</a></span><h3>Fréquence d'esquive</h3><span>Vous pouvez maintenant préciser à quelle fréquence vous esquivez les attaque de l'adversaire, ce qui donne des résultats encore plus précis.</span><h3>Patreon</h3><span>Pokéwin est sur Patreon, si vous souhaitez faire évoluer Pokéwin et soutenir mon travail c'est <a target='_blank' href='https://patreon.com/pokewin'>par ici</a>.</span><div>N'oubliez pas d'aimer Pokéwin <a target='_blank' href='https://www.facebook.com/pokewin.win/'>sur Facebook</a> et <a target='_blank' href='https://twitter.com/pokewin_app'>Twitter</a> et d'y laisser des messages d'amour !</div>"
   },
@@ -237,52 +238,64 @@
   },
 
   "TEXT_PATRONS_INTRO": {
+    "de": "<strong>Julia C.</strong> unterstützt mich auf <span class='inline-image'></span>atreon.<br /><a href='#'>Was bedeutet das?</a>",
     "en": "<strong>Julia C.</strong> supported me on <span class='inline-image'></span>atreon.<br /><a href='#'>What does this mean?</a>",
     "fr": "<strong>Julia C.</strong> me soutient sur <span class='inline-image'></span>atreon.<br /><a href='#''>Qu'est-ce que c'est?</a>"
   },
   "TEXT_PATRONS_MODAL_TITLE": {
+    "de": "Dein Patron Name",
     "en": "Your patron name",
     "fr": "Ton nom de Patron"
   },
   "TEXT_PATRONS_MODAL_TEXT": {
+    "de": "Hey, unterstützt du Pokéwin <a target='_blank' href='http://patreon.com/pokewin'>auf Patreon</a>?<br /><br />Wenn ja, dann gib mir deinen Namen und genieße die Vorteile ein Patron zu sein! Das bedeutet <strong>Keine Werbung mehr</strong>, sofortige Benachrichtigung bei Änderungen, privat skypen und vieles mehr!",
     "en": "Hey, are you supporting Pokéwin <a target='_blank' href='http://patreon.com/pokewin'>on Patreon</a>?<br /><br />If you are, please give me your name and start enjoying the true powers of being a patron! This includes <strong>No more ads</strong>, early access to new features, private skype, and more!",
     "fr": "Hey, tu sais que tu peux apporter du soutien à Pokéwin <a target='_blank' href='http://patreon.com/pokewin'>sur Patreon</a>?<br /><br />Si c'est déjà fait, dis-moi ton nom et profite dès maintenant des avantages d'être un patron (<strong>Fini les pubs</strong>, accès anticipé aux nouvelles fonctionnalités, Skype privé,...)!"
   },
   "TEXT_PATRONS_MODAL_INPUT_PLACEHOLDER": {
+    "de": "Dein Patron Name",
     "en": "Your Patron name",
     "fr": "Ton nom de Patron"
   },
   "TEXT_SEND": {
+    "de": "Senden",
     "en": "Send",
     "fr": "Envoyer"
   },
   "TEXT_CANCEL": {
+    "de": "Abbrechen",
     "en": "Cancel",
     "fr": "Annuler"
   },
 
   "TEXT_DODGE_NEVER": {
-    "en": "Never",
-    "fr": "Jamais"
+    "de": "0% Ausweichen",
+    "en": "Dodge 0%",
+    "fr": "Esquive 0%"
   },
   "TEXT_DODGE_PARTLY": {
-    "en": "Partly",
-    "fr": "En partie"
+    "de": "50% Ausweichen",
+    "en": "Dodge 50%",
+    "fr": "Esquive 50%"
   },
   "TEXT_DODGE_ALWAYS": {
-    "en": "Always",
-    "fr": "Toujours"
+    "de": "100% Ausweichen",
+    "en": "Dodge 100%",
+    "fr": "Esquive 100%"
   },
   "TEXT_DODGE_QUICK": {
+    "de": "Schnellattacke",
     "en": "Quick moves",
     "fr": "Attaques rapides"
   },
   "TEXT_DODGE_SPECIAL": {
+    "de": "Spezialattacke",
     "en": "Special moves",
     "fr": "Attaques spéciales"
   },
 
   "ERROR_PATRON_NOT_FOUND": {
+    "de": "Kein Paron mit diesem Namen wurde gefunden",
     "en": "No Patron was found with this name",
     "fr": "Aucun Patron n'a été trouvé avec ce nom"
   },
