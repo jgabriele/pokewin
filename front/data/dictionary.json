@@ -20,14 +20,11 @@
     "po": "Mestre dos Ginásios"
   },
   "TEXT_PINNED": {
-    "de": "Pinned",
+    "de": "Gepinnt",
     "en": "Pinned",
     "fr": "Épinglés",
-    "jp": "Pinned",
-    "ko": "Pinned",
-    "it": "Pinned",
-    "es": "Pinned",
-    "po": "Pinned"
+    "es": "Guardados",
+    "po": "Fixado"
   },
   "TEXT_MOST_SEEN": {
     "de": "Die besten Verteidiger",
@@ -116,8 +113,6 @@
     "es": "Especiales agradecimientos a <a target='_blank' href='https://twitter.com/rafayepes'>Rafa Yepes</a> por la traducción al Español.",
     "po": "Agradecimento especial para <a target='_blank' href='https://www.facebook.com/matheus.albuquerque.391'>Matheus Albuquerque de Saturno</a> por traduzir para Português."
   },
-
-
   "TEXT_LOADING_MODAL_FACEBOOK_TITLE": {
     "de": "Hallo mein Freund!",
     "en": "Hello, you!",
@@ -184,7 +179,6 @@
   "TEXT_LOADING_MODAL_WHATS_NEW_DODGE_FREQUENCY_OK_TEXT": {
     "en": "OK"
   },
-
   "TEXT_HINT_TITLE": {
     "de": "Hinweis",
     "en": "Hint",
@@ -192,7 +186,6 @@
     "es": "Consejo",
     "po": "Dica"
   },
-
   "TEXT_FAVOURITES": {
     "de": "Favoriten",
     "en": "Favourites",
@@ -214,19 +207,10 @@
     "es": "<strong>Añade a favoritos los pokémons que tú tienes</strong> para encontrar facílmente a quienes contrarrestan.",
     "po": "<strong>Favorite os Pokémons que você tem</strong> para achá-los mais facilmente.</strong>"
   },
-
-  "TEXT_PINNED": {
-    "de": "Gepinnt",
-    "en": "Pinned",
-    "fr": "Épinglés",
-    "es": "Guardados",
-    "po": "Fixado"
-  },
   "TEXT_PINNED_INTRO": {
     "de": "<p>Wähle ein Pokemon für die Pinnwand.</p><p>Die Pinnwand<strong> wird dir oben auf der Startseite angezeigt</strong>.<p>",
     "en": "<p>Select any pokemon to add it to the Pinned Section.</p><p>The Pinned Section is displayed <strong>at the top of the main page</strong>.</p>",
     "fr": "<p>Selectionne un pokémon pour l'épingler.</p><p>Les pokémons épinglés <strong>sont affichés tout en haut</strong> de la page d'accueil.</p>",
-    "es": "<p>Selecciona cualquier pokémon para añadirlo a la Sección de Guardados.</p><p>La Sección de guardados se muestra <strong>encima de la página principal</strong>.</p>",
     "es": "<p>Selecione qualquer pokémon para adicioná-lo a seção fixa</p>A seção fixa é mostrada <strong>no topo da página principal</strong></p>"
   },
   "TEXT_PINNED_HINT_TEXT": {
@@ -236,7 +220,6 @@
     "es": "<strong>Guarda los pokémon que ves a menudo en gimnasios</strong> de manera que no tengas que buscarlos a través de toda la pokédex.",
     "po": "<strong>Fixe os pokémos que você geralmente vê nos ginásios</strong>, então você não terá que pocurar por toda pokédex"
   },
-
   "TEXT_PATRONS_INTRO": {
     "de": "<strong>Julia C.</strong> unterstützt mich auf <span class='inline-image'></span>atreon.<br /><a href='#'>Was bedeutet das?</a>",
     "en": "<strong>Julia C.</strong> supported me on <span class='inline-image'></span>atreon.<br /><a href='#'>What does this mean?</a>",
@@ -267,7 +250,6 @@
     "en": "Cancel",
     "fr": "Annuler"
   },
-
   "TEXT_DODGE_NEVER": {
     "de": "0% Ausweichen",
     "en": "Dodge 0%",
@@ -293,13 +275,11 @@
     "en": "Special moves",
     "fr": "Attaques spéciales"
   },
-
   "ERROR_PATRON_NOT_FOUND": {
     "de": "Kein Paron mit diesem Namen wurde gefunden",
     "en": "No Patron was found with this name",
     "fr": "Aucun Patron n'a été trouvé avec ce nom"
   },
-
   "POKE_001": {
     "de": "Bisasam",
     "en": "Bulbasaur",
@@ -2721,5 +2701,505 @@
     "it": "Fangosberla",
     "es": "Bofetón Lodo",
     "ko": "진흙뿌리기"
+  },
+  "POKE_152": {
+    "en": "Chikorita",
+    "fr": "Germignon",
+    "de": "Endivie"
+  },
+  "POKE_153": {
+    "en": "Bayleef",
+    "fr": "Macronium",
+    "de": "Lorblat"
+  },
+  "POKE_154": {
+    "en": "Meganium",
+    "fr": "Méganium",
+    "de": "Megani"
+  },
+  "POKE_155": {
+    "en": "Cyndaquil",
+    "fr": "Héricendre",
+    "de": "Feurige"
+  },
+  "POKE_156": {
+    "en": "Quilava",
+    "fr": "Feurisson",
+    "de": "Igelava"
+  },
+  "POKE_157": {
+    "en": "Typhlosion",
+    "fr": "Typhlosion",
+    "de": "Tornupto"
+  },
+  "POKE_158": {
+    "en": "Totodile",
+    "fr": "Kaiminus",
+    "de": "Karniman"
+  },
+  "POKE_159": {
+    "en": "Croconaw",
+    "fr": "Crocrodil",
+    "de": "Tyracroc"
+  },
+  "POKE_160": {
+    "en": "Feraligatr",
+    "fr": "Aligatueur",
+    "de": "Impergator"
+  },
+  "POKE_161": {
+    "en": "Sentret",
+    "fr": "Fouinette",
+    "de": "Wieso"
+  },
+  "POKE_162": {
+    "en": "Furret",
+    "fr": "Fouinar",
+    "de": "Wiesenio"
+  },
+  "POKE_163": {
+    "en": "Hoothoot",
+    "fr": "Hoothoot",
+    "de": "Hoothoot"
+  },
+  "POKE_164": {
+    "en": "Noctowl",
+    "fr": "Noarfang",
+    "de": "Noctu"
+  },
+  "POKE_165": {
+    "en": "Ledyba",
+    "fr": "Coxy",
+    "de": "Ledyba"
+  },
+  "POKE_166": {
+    "en": "Ledian",
+    "fr": "Coxyclaque",
+    "de": "Ledian"
+  },
+  "POKE_167": {
+    "en": "Spinarak",
+    "fr": "Mimigal",
+    "de": "Webara"
+  },
+  "POKE_168": {
+    "en": "Ariados",
+    "fr": "Migalos",
+    "de": "Ariados"
+  },
+  "POKE_169": {
+    "en": "Crobat",
+    "fr": "Nostenfer",
+    "de": "Iksbat"
+  },
+  "POKE_170": {
+    "en": "Chinchou",
+    "fr": "Loupio",
+    "de": "Lamp"
+  },
+  "POKE_171": {
+    "en": "Lanturn",
+    "fr": "Lanturn",
+    "de": "Lanturn"
+  },
+  "POKE_172": {
+    "en": "Pichu",
+    "fr": "Pichu",
+    "de": "Pichu"
+  },
+  "POKE_173": {
+    "en": "Cleffa",
+    "fr": "Mélo",
+    "de": "Pi"
+  },
+  "POKE_174": {
+    "en": "Igglybuff",
+    "fr": "Toudoudou",
+    "de": "Fluffeluf"
+  },
+  "POKE_175": {
+    "en": "Togepi",
+    "fr": "Togepi",
+    "de": "Togepi"
+  },
+  "POKE_176": {
+    "en": "Togetic",
+    "fr": "Togetic",
+    "de": "Togetic"
+  },
+  "POKE_177": {
+    "en": "Natu",
+    "fr": "Natu",
+    "de": "Natu"
+  },
+  "POKE_178": {
+    "en": "Xatu",
+    "fr": "Xatu",
+    "de": "Xatu"
+  },
+  "POKE_179": {
+    "en": "Mareep",
+    "fr": "Wattouat",
+    "de": "Voltilam"
+  },
+  "POKE_180": {
+    "en": "Flaaffy",
+    "fr": "Lainergie",
+    "de": "Waaty"
+  },
+  "POKE_181": {
+    "en": "Ampharos",
+    "fr": "Pharamp",
+    "de": "Ampharos"
+  },
+  "POKE_182": {
+    "en": "Bellossom",
+    "fr": "Joliflor",
+    "de": "Blubell"
+  },
+  "POKE_183": {
+    "en": "Marill",
+    "fr": "Marill",
+    "de": "Marill"
+  },
+  "POKE_184": {
+    "en": "Azumarill",
+    "fr": "Azumarill",
+    "de": "Azumarill"
+  },
+  "POKE_185": {
+    "en": "Sudowoodo",
+    "fr": "Simularbre",
+    "de": "Mogelbaum"
+  },
+  "POKE_186": {
+    "en": "Politoed",
+    "fr": "Tarpaud",
+    "de": "Quax"
+  },
+  "POKE_187": {
+    "en": "Hoppip",
+    "fr": "Granivol",
+    "de": "Hoppspross"
+  },
+  "POKE_188": {
+    "en": "Skiploom",
+    "fr": "Floravol",
+    "de": "Hubelupf"
+  },
+  "POKE_189": {
+    "en": "Jumpluff",
+    "fr": "Cotovol",
+    "de": "Papungha"
+  },
+  "POKE_190": {
+    "en": "Aipom",
+    "fr": "Capumain",
+    "de": "Griffel"
+  },
+  "POKE_191": {
+    "en": "Sunkern",
+    "fr": "Tournegrin",
+    "de": "Sonnker"
+  },
+  "POKE_192": {
+    "en": "Sunflora",
+    "fr": "Héliatronc",
+    "de": "Sonnflor"
+  },
+  "POKE_193": {
+    "en": "Yanma",
+    "fr": "Yanma",
+    "de": "Yanma"
+  },
+  "POKE_194": {
+    "en": "Wooper",
+    "fr": "Axoloto",
+    "de": "Felino"
+  },
+  "POKE_195": {
+    "en": "Quagsire",
+    "fr": "Maraiste",
+    "de": "Morlor"
+  },
+  "POKE_196": {
+    "en": "Espeon",
+    "fr": "Mentali",
+    "de": "Psiana"
+  },
+  "POKE_197": {
+    "en": "Umbreon",
+    "fr": "Noctali",
+    "de": "Nachtar"
+  },
+  "POKE_198": {
+    "en": "Murkrow",
+    "fr": "Cornèbre",
+    "de": "Kramurx"
+  },
+  "POKE_199": {
+    "en": "Slowking",
+    "fr": "Roigada",
+    "de": "Laschoking"
+  },
+  "POKE_200": {
+    "en": "Misdreavus",
+    "fr": "Feuforêve",
+    "de": "Traunfugil"
+  },
+  "POKE_201": {
+    "en": "Unown",
+    "fr": "Zarbi",
+    "de": "Icognit"
+  },
+  "POKE_202": {
+    "en": "Wobbuffet",
+    "fr": "Qulbutoké",
+    "de": "Woingenau"
+  },
+  "POKE_203": {
+    "en": "Girafarig",
+    "fr": "Girafarig",
+    "de": "Girafarig"
+  },
+  "POKE_204": {
+    "en": "Pineco",
+    "fr": "Pomdepik",
+    "de": "Tannza"
+  },
+  "POKE_205": {
+    "en": "Forretress",
+    "fr": "Foretress",
+    "de": "Forstellka"
+  },
+  "POKE_206": {
+    "en": "Dunsparce",
+    "fr": "Insolourdo",
+    "de": "Dummise"
+  },
+  "POKE_207": {
+    "en": "Gligar",
+    "fr": "Scorplane",
+    "de": "Skorgl"
+  },
+  "POKE_208": {
+    "en": "Steelix",
+    "fr": "Steelix",
+    "de": "Stahlos"
+  },
+  "POKE_209": {
+    "en": "Snubbull",
+    "fr": "Snubbull",
+    "de": "Snubbull"
+  },
+  "POKE_210": {
+    "en": "Granbull",
+    "fr": "Granbull",
+    "de": "Granbull"
+  },
+  "POKE_211": {
+    "en": "Qwilfish",
+    "fr": "Qwilfish",
+    "de": "Baldorfish"
+  },
+  "POKE_212": {
+    "en": "Scizor",
+    "fr": "Cizayox",
+    "de": "Schero"
+  },
+  "POKE_213": {
+    "en": "Shuckle",
+    "fr": "Caratroc",
+    "de": "Pottrot"
+  },
+  "POKE_214": {
+    "en": "Heracross",
+    "fr": "Scarhino",
+    "de": "Skaraborn"
+  },
+  "POKE_215": {
+    "en": "Sneasel",
+    "fr": "Farfuret",
+    "de": "Sniebel"
+  },
+  "POKE_216": {
+    "en": "Teddiursa",
+    "fr": "Teddiursa",
+    "de": "Teddiursa"
+  },
+  "POKE_217": {
+    "en": "Ursaring",
+    "fr": "Ursaring",
+    "de": "Ursaring"
+  },
+  "POKE_218": {
+    "en": "Slugma",
+    "fr": "Limagma",
+    "de": "Schneckmag"
+  },
+  "POKE_219": {
+    "en": "Magcargo",
+    "fr": "Volcaropod",
+    "de": "Magcargo"
+  },
+  "POKE_220": {
+    "en": "Swinub",
+    "fr": "Marcacrin",
+    "de": "Quieke"
+  },
+  "POKE_221": {
+    "en": "Piloswine",
+    "fr": "Cochignon",
+    "de": "Keife"
+  },
+  "POKE_222": {
+    "en": "Corsola",
+    "fr": "Corayon",
+    "de": "Corason"
+  },
+  "POKE_223": {
+    "en": "Remoraid",
+    "fr": "Rémoraid",
+    "de": "Remoraid"
+  },
+  "POKE_224": {
+    "en": "Octillery",
+    "fr": "Octillery",
+    "de": "Octillery"
+  },
+  "POKE_225": {
+    "en": "Delibird",
+    "fr": "Cadoizo",
+    "de": "Botoge"
+  },
+  "POKE_226": {
+    "en": "Mantine",
+    "fr": "Démanta",
+    "de": "Manta"
+  },
+  "POKE_227": {
+    "en": "Skarmory",
+    "fr": "Airmure",
+    "de": "Panzaero"
+  },
+  "POKE_228": {
+    "en": "Houndour",
+    "fr": "Malosse",
+    "de": "Hunduste"
+  },
+  "POKE_229": {
+    "en": "Houndoom",
+    "fr": "Démolosse",
+    "de": "Hundemon"
+  },
+  "POKE_230": {
+    "en": "Kingdra",
+    "fr": "Hyporoi",
+    "de": "Seedrakin"
+  },
+  "POKE_231": {
+    "en": "Phanpy",
+    "fr": "Phanpy",
+    "de": "Phanpy"
+  },
+  "POKE_232": {
+    "en": "Donphan",
+    "fr": "Donphan",
+    "de": "Donphan"
+  },
+  "POKE_233": {
+    "en": "Porygon2",
+    "fr": "Porygon2",
+    "de": "Porygon2"
+  },
+  "POKE_234": {
+    "en": "Stantler",
+    "fr": "Cerfrousse",
+    "de": "Damhirplex"
+  },
+  "POKE_235": {
+    "en": "Smeargle",
+    "fr": "Queulorior",
+    "de": "Farbeagl"
+  },
+  "POKE_236": {
+    "en": "Tyrogue",
+    "fr": "Debugant",
+    "de": "Rabau"
+  },
+  "POKE_237": {
+    "en": "Hitmontop",
+    "fr": "Kapoera",
+    "de": "Kapoera"
+  },
+  "POKE_238": {
+    "en": "Smoochum",
+    "fr": "Lippouti",
+    "de": "Kussilla"
+  },
+  "POKE_239": {
+    "en": "Elekid",
+    "fr": "Élekid",
+    "de": "Elekid"
+  },
+  "POKE_240": {
+    "en": "Magby",
+    "fr": "Magby",
+    "de": "Magby"
+  },
+  "POKE_241": {
+    "en": "Miltank",
+    "fr": "Écrémeuh",
+    "de": "Miltank"
+  },
+  "POKE_242": {
+    "en": "Blissey",
+    "fr": "Leuphorie",
+    "de": "Heiteir"
+  },
+  "POKE_243": {
+    "en": "Raikou",
+    "fr": "Raikou",
+    "de": "Raikou"
+  },
+  "POKE_244": {
+    "en": "Entei",
+    "fr": "Entei",
+    "de": "Entei"
+  },
+  "POKE_245": {
+    "en": "Suicune",
+    "fr": "Suicune",
+    "de": "Suicune"
+  },
+  "POKE_246": {
+    "en": "Larvitar",
+    "fr": "Embrylex",
+    "de": "Larvitar"
+  },
+  "POKE_247": {
+    "en": "Pupitar",
+    "fr": "Ymphect",
+    "de": "Pupitar"
+  },
+  "POKE_248": {
+    "en": "Tyranitar",
+    "fr": "Tyranocif",
+    "de": "Despota"
+  },
+  "POKE_249": {
+    "en": "Lugia",
+    "fr": "Lugia",
+    "de": "Lugia"
+  },
+  "POKE_250": {
+    "en": "Ho-Oh",
+    "fr": "Ho_Oh",
+    "de": "Ho_Oh"
+  },
+  "POKE_251": {
+    "en": "Celebi",
+    "fr": "Celebi",
+    "de": "Celebi"
   }
 }
