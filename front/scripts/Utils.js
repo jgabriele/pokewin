@@ -32,15 +32,8 @@ const Utils = {
   },
 
   getPokemonSpritesheetPosition(pokemon, size=70) {
-    const name = LocaleManager.getInstance().translate(pokemon.key, 'en');
-    const key = name.toLowerCase()
-      .replace(/♀/g, '_f')
-      .replace(/♂/g, '_m')
-      .replace(/'/g, '')
-      .replace(/\./g, '_')
-      .replace(/ /g, '');
-    const indexX = pos[key].x;
-    const indexY = pos[key].y;
+    const indexX = pos[pokemon.id - 1].x;
+    const indexY = pos[pokemon.id - 1].y;
     const x = indexX * size;
     const y = indexY * size;
 
