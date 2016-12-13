@@ -3513,5 +3513,905 @@
     "stm": 200,
     "def": 210,
     "atk": 210
+  },
+  {
+    "id": 152,
+    "tiers": 3,
+    "key": "POKE_152",
+    "cpMax": 801,
+    "atk": 92,
+    "def": 122,
+    "stm": 90
+  },
+  {
+    "id": 153,
+    "tiers": 3,
+    "key": "POKE_153",
+    "cpMax": 1296,
+    "atk": 122,
+    "def": 155,
+    "stm": 120
+  },
+  {
+    "id": 154,
+    "tiers": 3,
+    "key": "POKE_154",
+    "cpMax": 2227,
+    "atk": 168,
+    "def": 202,
+    "stm": 160
+  },
+  {
+    "id": 155,
+    "tiers": 3,
+    "key": "POKE_155",
+    "cpMax": 831,
+    "atk": 116,
+    "def": 96,
+    "stm": 78
+  },
+  {
+    "id": 156,
+    "tiers": 3,
+    "key": "POKE_156",
+    "cpMax": 1484,
+    "atk": 158,
+    "def": 129,
+    "stm": 116
+  },
+  {
+    "id": 157,
+    "tiers": 3,
+    "key": "POKE_157",
+    "cpMax": 2686,
+    "atk": 223,
+    "def": 176,
+    "stm": 156
+  },
+  {
+    "id": 158,
+    "tiers": 3,
+    "key": "POKE_158",
+    "cpMax": 1011,
+    "atk": 117,
+    "def": 116,
+    "stm": 100
+  },
+  {
+    "id": 159,
+    "tiers": 3,
+    "key": "POKE_159",
+    "cpMax": 1598,
+    "atk": 150,
+    "def": 151,
+    "stm": 130
+  },
+  {
+    "id": 160,
+    "tiers": 3,
+    "key": "POKE_160",
+    "cpMax": 2721,
+    "atk": 205,
+    "def": 197,
+    "stm": 170
+  },
+  {
+    "id": 161,
+    "tiers": 3,
+    "key": "POKE_161",
+    "cpMax": 519,
+    "atk": 79,
+    "def": 77,
+    "stm": 70
+  },
+  {
+    "id": 162,
+    "tiers": 3,
+    "key": "POKE_162",
+    "cpMax": 1667,
+    "atk": 148,
+    "def": 130,
+    "stm": 170
+  },
+  {
+    "id": 163,
+    "tiers": 3,
+    "key": "POKE_163",
+    "cpMax": 640,
+    "atk": 67,
+    "def": 101,
+    "stm": 120
+  },
+  {
+    "id": 164,
+    "tiers": 3,
+    "key": "POKE_164",
+    "cpMax": 2040,
+    "atk": 145,
+    "def": 179,
+    "stm": 200
+  },
+  {
+    "id": 165,
+    "tiers": 3,
+    "key": "POKE_165",
+    "cpMax": 663,
+    "atk": 72,
+    "def": 142,
+    "stm": 80
+  },
+  {
+    "id": 166,
+    "tiers": 3,
+    "key": "POKE_166",
+    "cpMax": 1275,
+    "atk": 107,
+    "def": 209,
+    "stm": 110
+  },
+  {
+    "id": 167,
+    "tiers": 3,
+    "key": "POKE_167",
+    "cpMax": 685,
+    "atk": 105,
+    "def": 73,
+    "stm": 80
+  },
+  {
+    "id": 168,
+    "tiers": 3,
+    "key": "POKE_168",
+    "cpMax": 1636,
+    "atk": 161,
+    "def": 128,
+    "stm": 140
+  },
+  {
+    "id": 169,
+    "tiers": 3,
+    "key": "POKE_169",
+    "cpMax": 2466,
+    "atk": 194,
+    "def": 178,
+    "stm": 170
+  },
+  {
+    "id": 170,
+    "tiers": 3,
+    "key": "POKE_170",
+    "cpMax": 1067,
+    "atk": 106,
+    "def": 106,
+    "stm": 150
+  },
+  {
+    "id": 171,
+    "tiers": 3,
+    "key": "POKE_171",
+    "cpMax": 2077,
+    "atk": 146,
+    "def": 146,
+    "stm": 250
+  },
+  {
+    "id": 172,
+    "tiers": 3,
+    "key": "POKE_172",
+    "cpMax": 376,
+    "atk": 77,
+    "def": 63,
+    "stm": 40
+  },
+  {
+    "id": 173,
+    "tiers": 3,
+    "key": "POKE_173",
+    "cpMax": 620,
+    "atk": 75,
+    "def": 91,
+    "stm": 100
+  },
+  {
+    "id": 174,
+    "tiers": 3,
+    "key": "POKE_174",
+    "cpMax": 512,
+    "atk": 69,
+    "def": 34,
+    "stm": 180
+  },
+  {
+    "id": 175,
+    "tiers": 3,
+    "key": "POKE_175",
+    "cpMax": 540,
+    "atk": 67,
+    "def": 116,
+    "stm": 70
+  },
+  {
+    "id": 176,
+    "tiers": 3,
+    "key": "POKE_176",
+    "cpMax": 1553,
+    "atk": 140,
+    "def": 191,
+    "stm": 110
+  },
+  {
+    "id": 177,
+    "tiers": 3,
+    "key": "POKE_177",
+    "cpMax": 925,
+    "atk": 134,
+    "def": 89,
+    "stm": 80
+  },
+  {
+    "id": 178,
+    "tiers": 3,
+    "key": "POKE_178",
+    "cpMax": 1975,
+    "atk": 192,
+    "def": 146,
+    "stm": 130
+  },
+  {
+    "id": 179,
+    "tiers": 3,
+    "key": "POKE_179",
+    "cpMax": 887,
+    "atk": 114,
+    "def": 82,
+    "stm": 110
+  },
+  {
+    "id": 180,
+    "tiers": 3,
+    "key": "POKE_180",
+    "cpMax": 1402,
+    "atk": 145,
+    "def": 112,
+    "stm": 140
+  },
+  {
+    "id": 181,
+    "tiers": 3,
+    "key": "POKE_181",
+    "cpMax": 2695,
+    "atk": 211,
+    "def": 172,
+    "stm": 180
+  },
+  {
+    "id": 182,
+    "tiers": 3,
+    "key": "POKE_182",
+    "cpMax": 2108,
+    "atk": 169,
+    "def": 189,
+    "stm": 150
+  },
+  {
+    "id": 183,
+    "tiers": 3,
+    "key": "POKE_183",
+    "cpMax": 420,
+    "atk": 37,
+    "def": 93,
+    "stm": 140
+  },
+  {
+    "id": 184,
+    "tiers": 3,
+    "key": "POKE_184",
+    "cpMax": 1503,
+    "atk": 112,
+    "def": 152,
+    "stm": 200
+  },
+  {
+    "id": 185,
+    "tiers": 3,
+    "key": "POKE_185",
+    "cpMax": 2065,
+    "atk": 167,
+    "def": 198,
+    "stm": 140
+  },
+  {
+    "id": 186,
+    "tiers": 3,
+    "key": "POKE_186",
+    "cpMax": 2371,
+    "atk": 174,
+    "def": 192,
+    "stm": 180
+  },
+  {
+    "id": 187,
+    "tiers": 3,
+    "key": "POKE_187",
+    "cpMax": 508,
+    "atk": 67,
+    "def": 101,
+    "stm": 70
+  },
+  {
+    "id": 188,
+    "tiers": 3,
+    "key": "POKE_188",
+    "cpMax": 882,
+    "atk": 91,
+    "def": 127,
+    "stm": 110
+  },
+  {
+    "id": 189,
+    "tiers": 3,
+    "key": "POKE_189",
+    "cpMax": 1553,
+    "atk": 118,
+    "def": 197,
+    "stm": 150
+  },
+  {
+    "id": 190,
+    "tiers": 3,
+    "key": "POKE_190",
+    "cpMax": 1188,
+    "atk": 136,
+    "def": 112,
+    "stm": 110
+  },
+  {
+    "id": 191,
+    "tiers": 3,
+    "key": "POKE_191",
+    "cpMax": 316,
+    "atk": 55,
+    "def": 55,
+    "stm": 60
+  },
+  {
+    "id": 192,
+    "tiers": 3,
+    "key": "POKE_192",
+    "cpMax": 2048,
+    "atk": 185,
+    "def": 148,
+    "stm": 150
+  },
+  {
+    "id": 193,
+    "tiers": 3,
+    "key": "POKE_193",
+    "cpMax": 1326,
+    "atk": 154,
+    "def": 94,
+    "stm": 130
+  },
+  {
+    "id": 194,
+    "tiers": 3,
+    "key": "POKE_194",
+    "cpMax": 596,
+    "atk": 75,
+    "def": 75,
+    "stm": 110
+  },
+  {
+    "id": 195,
+    "tiers": 3,
+    "key": "POKE_195",
+    "cpMax": 1929,
+    "atk": 152,
+    "def": 152,
+    "stm": 190
+  },
+  {
+    "id": 196,
+    "tiers": 3,
+    "key": "POKE_196",
+    "cpMax": 3000,
+    "atk": 261,
+    "def": 194,
+    "stm": 130
+  },
+  {
+    "id": 197,
+    "tiers": 3,
+    "key": "POKE_197",
+    "cpMax": 2052,
+    "atk": 126,
+    "def": 250,
+    "stm": 190
+  },
+  {
+    "id": 198,
+    "tiers": 3,
+    "key": "POKE_198",
+    "cpMax": 1392,
+    "atk": 175,
+    "def": 87,
+    "stm": 120
+  },
+  {
+    "id": 199,
+    "tiers": 3,
+    "key": "POKE_199",
+    "cpMax": 2482,
+    "atk": 177,
+    "def": 194,
+    "stm": 190
+  },
+  {
+    "id": 200,
+    "tiers": 3,
+    "key": "POKE_200",
+    "cpMax": 1781,
+    "atk": 167,
+    "def": 167,
+    "stm": 120
+  },
+  {
+    "id": 201,
+    "tiers": 3,
+    "key": "POKE_201",
+    "cpMax": 1022,
+    "atk": 136,
+    "def": 91,
+    "stm": 96
+  },
+  {
+    "id": 202,
+    "tiers": 3,
+    "key": "POKE_202",
+    "cpMax": 1024,
+    "atk": 60,
+    "def": 106,
+    "stm": 380
+  },
+  {
+    "id": 203,
+    "tiers": 3,
+    "key": "POKE_203",
+    "cpMax": 1863,
+    "atk": 182,
+    "def": 133,
+    "stm": 140
+  },
+  {
+    "id": 204,
+    "tiers": 3,
+    "key": "POKE_204",
+    "cpMax": 1045,
+    "atk": 108,
+    "def": 146,
+    "stm": 100
+  },
+  {
+    "id": 205,
+    "tiers": 3,
+    "key": "POKE_205",
+    "cpMax": 2263,
+    "atk": 161,
+    "def": 242,
+    "stm": 150
+  },
+  {
+    "id": 206,
+    "tiers": 3,
+    "key": "POKE_206",
+    "cpMax": 1615,
+    "atk": 131,
+    "def": 131,
+    "stm": 200
+  },
+  {
+    "id": 207,
+    "tiers": 3,
+    "key": "POKE_207",
+    "cpMax": 1758,
+    "atk": 143,
+    "def": 204,
+    "stm": 130
+  },
+  {
+    "id": 208,
+    "tiers": 3,
+    "key": "POKE_208",
+    "cpMax": 2439,
+    "atk": 148,
+    "def": 333,
+    "stm": 150
+  },
+  {
+    "id": 209,
+    "tiers": 3,
+    "key": "POKE_209",
+    "cpMax": 1124,
+    "atk": 137,
+    "def": 89,
+    "stm": 120
+  },
+  {
+    "id": 210,
+    "tiers": 3,
+    "key": "POKE_210",
+    "cpMax": 2440,
+    "atk": 212,
+    "def": 137,
+    "stm": 180
+  },
+  {
+    "id": 211,
+    "tiers": 3,
+    "key": "POKE_211",
+    "cpMax": 1910,
+    "atk": 184,
+    "def": 148,
+    "stm": 130
+  },
+  {
+    "id": 212,
+    "tiers": 3,
+    "key": "POKE_212",
+    "cpMax": 2801,
+    "atk": 236,
+    "def": 191,
+    "stm": 140
+  },
+  {
+    "id": 213,
+    "tiers": 3,
+    "key": "POKE_213",
+    "cpMax": 300,
+    "atk": 17,
+    "def": 396,
+    "stm": 40
+  },
+  {
+    "id": 214,
+    "tiers": 3,
+    "key": "POKE_214",
+    "cpMax": 2938,
+    "atk": 234,
+    "def": 189,
+    "stm": 160
+  },
+  {
+    "id": 215,
+    "tiers": 3,
+    "key": "POKE_215",
+    "cpMax": 1868,
+    "atk": 189,
+    "def": 157,
+    "stm": 110
+  },
+  {
+    "id": 216,
+    "tiers": 3,
+    "key": "POKE_216",
+    "cpMax": 1184,
+    "atk": 142,
+    "def": 93,
+    "stm": 120
+  },
+  {
+    "id": 217,
+    "tiers": 3,
+    "key": "POKE_217",
+    "cpMax": 2760,
+    "atk": 236,
+    "def": 144,
+    "stm": 180
+  },
+  {
+    "id": 218,
+    "tiers": 3,
+    "key": "POKE_218",
+    "cpMax": 750,
+    "atk": 118,
+    "def": 71,
+    "stm": 80
+  },
+  {
+    "id": 219,
+    "tiers": 3,
+    "key": "POKE_219",
+    "cpMax": 1543,
+    "atk": 139,
+    "def": 209,
+    "stm": 100
+  },
+  {
+    "id": 220,
+    "tiers": 3,
+    "key": "POKE_220",
+    "cpMax": 663,
+    "atk": 90,
+    "def": 74,
+    "stm": 100
+  },
+  {
+    "id": 221,
+    "tiers": 3,
+    "key": "POKE_221",
+    "cpMax": 2284,
+    "atk": 181,
+    "def": 147,
+    "stm": 200
+  },
+  {
+    "id": 222,
+    "tiers": 3,
+    "key": "POKE_222",
+    "cpMax": 1214,
+    "atk": 118,
+    "def": 156,
+    "stm": 110
+  },
+  {
+    "id": 223,
+    "tiers": 3,
+    "key": "POKE_223",
+    "cpMax": 749,
+    "atk": 127,
+    "def": 69,
+    "stm": 70
+  },
+  {
+    "id": 224,
+    "tiers": 3,
+    "key": "POKE_224",
+    "cpMax": 2124,
+    "atk": 197,
+    "def": 141,
+    "stm": 150
+  },
+  {
+    "id": 225,
+    "tiers": 3,
+    "key": "POKE_225",
+    "cpMax": 937,
+    "atk": 128,
+    "def": 90,
+    "stm": 90
+  },
+  {
+    "id": 226,
+    "tiers": 3,
+    "key": "POKE_226",
+    "cpMax": 2045,
+    "atk": 149,
+    "def": 260,
+    "stm": 130
+  },
+  {
+    "id": 227,
+    "tiers": 3,
+    "key": "POKE_227",
+    "cpMax": 2045,
+    "atk": 149,
+    "def": 260,
+    "stm": 130
+  },
+  {
+    "id": 228,
+    "tiers": 3,
+    "key": "POKE_228",
+    "cpMax": 1110,
+    "atk": 152,
+    "def": 93,
+    "stm": 90
+  },
+  {
+    "id": 229,
+    "tiers": 3,
+    "key": "POKE_229",
+    "cpMax": 2529,
+    "atk": 224,
+    "def": 159,
+    "stm": 150
+  },
+  {
+    "id": 230,
+    "tiers": 3,
+    "key": "POKE_230",
+    "cpMax": 2424,
+    "atk": 194,
+    "def": 194,
+    "stm": 150
+  },
+  {
+    "id": 231,
+    "tiers": 3,
+    "key": "POKE_231",
+    "cpMax": 1175,
+    "atk": 107,
+    "def": 107,
+    "stm": 180
+  },
+  {
+    "id": 232,
+    "tiers": 3,
+    "key": "POKE_232",
+    "cpMax": 3022,
+    "atk": 214,
+    "def": 214,
+    "stm": 180
+  },
+  {
+    "id": 233,
+    "tiers": 3,
+    "key": "POKE_233",
+    "cpMax": 2546,
+    "atk": 198,
+    "def": 183,
+    "stm": 170
+  },
+  {
+    "id": 234,
+    "tiers": 3,
+    "key": "POKE_234",
+    "cpMax": 1988,
+    "atk": 192,
+    "def": 132,
+    "stm": 146
+  },
+  {
+    "id": 235,
+    "tiers": 3,
+    "key": "POKE_235",
+    "cpMax": 389,
+    "atk": 40,
+    "def": 88,
+    "stm": 110
+  },
+  {
+    "id": 236,
+    "tiers": 3,
+    "key": "POKE_236",
+    "cpMax": 404,
+    "atk": 64,
+    "def": 64,
+    "stm": 70
+  },
+  {
+    "id": 237,
+    "tiers": 3,
+    "key": "POKE_237",
+    "cpMax": 1905,
+    "atk": 173,
+    "def": 214,
+    "stm": 100
+  },
+  {
+    "id": 238,
+    "tiers": 3,
+    "key": "POKE_238",
+    "cpMax": 1230,
+    "atk": 153,
+    "def": 116,
+    "stm": 90
+  },
+  {
+    "id": 239,
+    "tiers": 3,
+    "key": "POKE_239",
+    "cpMax": 1073,
+    "atk": 135,
+    "def": 110,
+    "stm": 90
+  },
+  {
+    "id": 240,
+    "tiers": 3,
+    "key": "POKE_240",
+    "cpMax": 1178,
+    "atk": 151,
+    "def": 108,
+    "stm": 90
+  },
+  {
+    "id": 241,
+    "tiers": 3,
+    "key": "POKE_241",
+    "cpMax": 2325,
+    "atk": 158,
+    "def": 211,
+    "stm": 190
+  },
+  {
+    "id": 242,
+    "tiers": 3,
+    "key": "POKE_242",
+    "cpMax": 3219,
+    "atk": 129,
+    "def": 229,
+    "stm": 510
+  },
+  {
+    "id": 243,
+    "tiers": 3,
+    "key": "POKE_243",
+    "cpMax": 3349,
+    "atk": 241,
+    "def": 210,
+    "stm": 180
+  },
+  {
+    "id": 244,
+    "tiers": 3,
+    "key": "POKE_244",
+    "cpMax": 3377,
+    "atk": 235,
+    "def": 176,
+    "stm": 230
+  },
+  {
+    "id": 245,
+    "tiers": 3,
+    "key": "POKE_245",
+    "cpMax": 2823,
+    "atk": 180,
+    "def": 235,
+    "stm": 200
+  },
+  {
+    "id": 246,
+    "tiers": 3,
+    "key": "POKE_246",
+    "cpMax": 904,
+    "atk": 115,
+    "def": 93,
+    "stm": 100
+  },
+  {
+    "id": 247,
+    "tiers": 3,
+    "key": "POKE_247",
+    "cpMax": 1608,
+    "atk": 155,
+    "def": 133,
+    "stm": 140
+  },
+  {
+    "id": 248,
+    "tiers": 3,
+    "key": "POKE_248",
+    "cpMax": 3670,
+    "atk": 251,
+    "def": 212,
+    "stm": 200
+  },
+  {
+    "id": 249,
+    "tiers": 3,
+    "key": "POKE_249",
+    "cpMax": 3598,
+    "atk": 193,
+    "def": 323,
+    "stm": 212
+  },
+  {
+    "id": 250,
+    "tiers": 3,
+    "key": "POKE_250",
+    "cpMax": 4650,
+    "atk": 263,
+    "def": 301,
+    "stm": 212
+  },
+  {
+    "id": 251,
+    "tiers": 3,
+    "key": "POKE_251",
+    "cpMax": 3090,
+    "atk": 210,
+    "def": 210,
+    "stm": 200
   }
 ]
