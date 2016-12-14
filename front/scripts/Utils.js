@@ -34,8 +34,8 @@ const Utils = {
   getPokemonSpritesheetPosition(pokemon, size=70) {
     const indexX = pos[pokemon.id - 1].x;
     const indexY = pos[pokemon.id - 1].y;
-    const x = indexX * size;
-    const y = indexY * size;
+    const x = indexX * size / 2; // No idea why / 2
+    const y = indexY * size / 2;
 
     return `background-position: -${x}px -${y}px`;
   },

@@ -6,7 +6,7 @@
     background-image: url('images/pokemon-spritesheet.png');
     background-repeat: no-repeat;
     // (size of div * Size of spritesheet / size of item in spriteseheet)
-    background-size: calc(70px*12);
+    background-size: calc(70px*16);
 
     .is-loading & {
       background-image: url('images/pokemon-spritesheet-lowres.png');
