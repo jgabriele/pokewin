@@ -85,7 +85,7 @@ function _findMoveById(id) {
 
 function _augmentPokemonsData(pokemons) {
   return pokemons
-    .filter((pokemon) => !!pokemon.isUnavailable) // remove unavailable pokemons for now
+    .filter((pokemon) => !pokemon.isUnavailable) // remove unavailable pokemons for now
     .map((pokemon) => Object.assign({}, pokemon, {
         id: pokemon.id,
         name: LocaleManager.getInstance().translate(pokemon.key),
