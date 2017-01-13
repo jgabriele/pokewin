@@ -221,9 +221,9 @@
     "po": "<strong>Fixe os pokémos que você geralmente vê nos ginásios</strong>, então você não terá que pocurar por toda pokédex"
   },
   "TEXT_PATRONS_INTRO": {
-    "de": "<strong>Julia C.</strong> unterstützt mich auf <span class='inline-image'></span>atreon.<br /><a href='#'>Was bedeutet das?</a>",
-    "en": "<strong>Julia C.</strong> supported me on <span class='inline-image'></span>atreon.<br /><a href='#'>What does this mean?</a>",
-    "fr": "<strong>Julia C.</strong> me soutient sur <span class='inline-image'></span>atreon.<br /><a href='#''>Qu'est-ce que c'est?</a>"
+    "de": "Niemand unterstützt mich auf <span class='inline-image'></span>atreon.<br /><a href='#'>Was bedeutet das?</a>",
+    "en": "Nobody supports me on <span class='inline-image'></span>atreon. That's sad :(.<br /><a href='#'>What does this mean?</a>",
+    "fr": "Personne ne me soutient sur <span class='inline-image'></span>atreon. C'est triste :(.<br /><a href='#''>Kestudi?</a>"
   },
   "TEXT_PATRONS_MODAL_TITLE": {
     "de": "Dein Patron Name",
