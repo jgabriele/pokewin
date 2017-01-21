@@ -59,7 +59,7 @@
   "TEXT_CAN_BE_BEATEN_BY": {
     "de": "Kann besiegt werden durch",
     "en": "Can be beaten by",
-    "fr": "Faible contre",
+    "fr": "Est battu par",
     "jp": "Can be beaten by",
     "ko": "Can be beaten by",
     "it": "Viene battuto da",
@@ -274,6 +274,14 @@
     "de": "Spezialattacke",
     "en": "Special moves",
     "fr": "Attaques spéciales"
+  },
+  "TEXT_NO_COUNTER_FOUND": {
+    "en": "No counter were found for this pokémon.",
+    "fr": "Aucun contre n'a été trouvé pour ce pokémon."
+  },
+  "TEXT_DODGE_EXPLANATION": {
+    "en": "If you <strong>dodge the defender moves</strong> you will defeat him easier. Click the buttons above to simulate dodge.",
+    "fr": "Si t'<strong>évites les ripostes</strong> du pokémon défenseur tu le battras plus facilement. Essaye les boutons du dessus pour voir !"
   },
   "ERROR_PATRON_NOT_FOUND": {
     "de": "Kein Paron mit diesem Namen wurde gefunden",

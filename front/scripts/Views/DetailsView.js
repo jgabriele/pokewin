@@ -73,6 +73,11 @@ DetailsView.prototype.render = function(data) {
 }
 
 DetailsView.prototype.renderCounters = function(isLoading) {
+  if (!this._state.counters || !this._state.counters.length) {
+    this._renderNoCounterMessage()
+    return;
+  }
+
   const counterViewsAndData = this._state.counters
 
     // Filter out pokemons that cannot have enough CP
@@ -113,9 +118,6 @@ DetailsView.prototype.renderCounters = function(isLoading) {
       return [counterView, counterData];
     });
 
-  // For the rotation we only need the list of views
-  const counterViews = counterViewsAndData.map((tuple) => tuple[0]);
-
   const countersNodes = counterViewsAndData.map((counterViewAndData) => {
     return counterViewAndData[0].prerender(counterViewAndData[1]);
   });
@@ -125,6 +127,20 @@ DetailsView.prototype.renderCounters = function(isLoading) {
 
   document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = '';
   document.querySelector('.overlay__data .counters .js-beaten-by').appendChild(counterFragment);
+}
+
+DetailsView.prototype._renderNoCounterMessage = function() {
+  const noCounterText = LocaleManager.getInstance().translate('TEXT_NO_COUNTER_FOUND');
+  const hintTitle = LocaleManager.getInstance().translate('TEXT_HINT_TITLE');
+  const hintText = LocaleManager.getInstance().translate('TEXT_DODGE_EXPLANATION');
+  
+  document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = `
+    <p>${noCounterText}</p>
+    <div class='hint hint--regular'>
+      <p>${hintTitle}</p>
+      <p>${hintText}</p>
+    </div>
+  `;
 }
 
 DetailsView.prototype.onInputUpdate = function(e) {
