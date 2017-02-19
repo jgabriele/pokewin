@@ -1,22 +1,11 @@
 {
   "TEXT_APP_TITLE": {
-    "de": "Poké Win",
-    "en": "Poké Win",
-    "fr": "Poké Win",
-    "jp": "Poké Win",
-    "ko": "Poké Win",
-    "it": "Poké Win",
-    "es": "Poké Win",
-    "po": "Poké Win"
+    "en": "Poké Win"
   },
   "TEXT_APP_SUBTITLE": {
     "de": "Arena-Konter",
     "en": "Master of Gyms",
     "fr": "Roi des arènes",
-    "jp": "Master of Gyms",
-    "ko": "Master of Gyms",
-    "it": "Master of Gyms",
-    "es": "Master of Gyms",
     "po": "Mestre dos Ginásios"
   },
   "TEXT_PINNED": {
@@ -30,8 +19,6 @@
     "de": "Die besten Verteidiger",
     "en": "Top tiers",
     "fr": "Les plus rencontrés",
-    "jp": "Top tiers",
-    "ko": "Top tiers",
     "it": "I migliori",
     "es": "Los mejores",
     "po": "Os melhores"
@@ -40,8 +27,6 @@
     "de": "Etwas schwächer",
     "en": "A bit less poweful",
     "fr": "Pas si puissants que ça",
-    "jp": "A bit less poweful",
-    "ko": "A bit less poweful",
     "it": "Un po' meno potente",
     "es": "Algo menos poderosos",
     "po": "Um pouco menos poderosos"
@@ -50,8 +35,6 @@
     "de": "Restlicher Müll",
     "en": "Other sh*ts",
     "fr": "Ils pressent les citrons",
-    "jp": "Other sh*ts",
-    "ko": "Other sh*ts",
     "it": "Varie ed eventuali",
     "es": "Otros",
     "po": "Outros"
@@ -60,11 +43,13 @@
     "de": "Kann besiegt werden durch",
     "en": "Can be beaten by",
     "fr": "Est battu par",
-    "jp": "Can be beaten by",
-    "ko": "Can be beaten by",
     "it": "Viene battuto da",
     "es": "Pueden ser derrotados por",
     "po": "Pode ser derrotados por"
+  },
+  "TEXT_CAN_BEAT": {
+    "en": "Will defeat the below defenders",
+    "fr": "Est bon attaquant contre"
   },
   "TEXT_INTRO_1": {
     "de": "In einem Arenakampf erhöhen sich deine Siegeschancen um 60%, wenn du ein Pokémon mit seinem Konter bekämpfst.",

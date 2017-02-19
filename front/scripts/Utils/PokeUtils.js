@@ -13,7 +13,13 @@ const DODGE_TO_MULTIPLER = {
 export default {
   getCounters(efficiencyThreshold, pokemons, pokemon) {
     return pokemons
-      .map(this.getCountersDataForPokemon.bind(null, efficiencyThreshold, pokemon))
+      .map((p) => this.getCountersDataForPokemon(efficiencyThreshold, pokemon, p))
+      .filter(p => p) // Filter null efficiencies
+  },
+
+  getWeaks(efficiencyThreshold, pokemons, pokemon) {
+    return pokemons
+      .map((p) => this.getWeaksDataForPokemon(efficiencyThreshold, pokemon, p))
       .filter(p => p) // Filter null efficiencies
   },
 
@@ -22,6 +28,22 @@ export default {
 
     if (!moves) {
       return null;
+    }
+
+    return {
+      id: otherPokemon.id,
+      key: otherPokemon.key,
+      moves,
+      cpMax: otherPokemon.cpMax,
+      pokemon: otherPokemon // Keep trace of initial pokemon data (used for onClick)
+    }
+  },
+
+  getWeaksDataForPokemon(efficiencyThreshold, pokemon, otherPokemon){
+    const moves = _getEnoughEfficientMoves(pokemon, otherPokemon, efficiencyThreshold)
+
+    if (!moves) {
+      return null
     }
 
     return {

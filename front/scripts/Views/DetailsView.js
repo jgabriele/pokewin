@@ -5,8 +5,6 @@ import CounterView    from './CounterView';
 import FavouritesModel from '../Models/Favourites';
 import DodgeFrequencyController from '../Controllers/DodgeFrequency';
 
-const ROLLING_TIMEOUT = 4 * 1000; // 4 sec
-
 const EVENTS = {
   COUNTER_SELECTED: 'pokemon-selected',
   DODGE_FREQUENCY_UPDATED: 'frequency-updated'
@@ -49,6 +47,7 @@ DetailsView.prototype.render = function(data) {
 
   const pokemon = data.pokemon;
   this._state.counters = data.counters;
+  this._state.weaks = data.weaks;
 
   const typesHTML = pokemon.types
             .map((type) => `
@@ -69,7 +68,66 @@ DetailsView.prototype.render = function(data) {
   this._input.max = data.pokemon.cpMax / INPUT_RANGE_STEP;
   this.onInputUpdate({ target: this._input });
 
-  this.renderCounters(data.isLoading);
+  this.renderCounters(data.isLoading)
+  this.renderWeaks(data.isLoading)
+}
+
+DetailsView.prototype.renderWeaks = function(isLoading) {
+  const counterViewsAndData = this._state.weaks
+
+    // Filter out pokemons of tiers 1 (no one put them in gyms)
+    .filter((p) => p.pokemon.tiers < 3)
+
+    // Convert data to view data
+    .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
+
+    // Favourite data
+    .map((counterData) => Object.assign({}, counterData, {
+      isFavourite: FavouritesModel.getInstance().get(counterData.id)
+    }))
+
+    // Sort them by Favourites => CP => ID
+    // "=>" means "if equal then sort by"
+    .sort((item1, item2) => {
+      const fav1 = item1.isFavourite ? 1 : 0
+      const fav2 = item2.isFavourite ? 1 : 0
+      const favDiff = fav2 - fav1
+
+      if (favDiff === 0) {
+        const cpDiff = item1.cp - item2.cp
+        if (cpDiff === 0) {
+          const tiersDiff = item1.pokemon.tiers - item2.pokemon.tiers
+          if (tiersDiff === 0) {
+            return item1.id - item2.id
+          }
+          return tiersDiff 
+        }
+        return cpDiff 
+      }
+
+      return favDiff
+    })
+
+    // Keep max 30 items
+    .slice(0, 30)
+
+    // Create CounterView for each element
+    .map((counterData) => {
+      const counterView = new CounterView()
+        .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon));
+      counterData.isLoading = isLoading;
+      return [counterView, counterData];
+    });
+
+  const countersNodes = counterViewsAndData.map((counterViewAndData) => {
+    return counterViewAndData[0].prerender(counterViewAndData[1]);
+  });
+
+  const counterFragment = document.createDocumentFragment()
+  countersNodes.forEach(counterFragment.appendChild.bind(counterFragment))
+
+  document.querySelector('.overlay__data .counters .js-can-beat').innerHTML = '';
+  document.querySelector('.overlay__data .counters .js-can-beat').appendChild(counterFragment);
 }
 
 DetailsView.prototype.renderCounters = function(isLoading) {
@@ -92,12 +150,12 @@ DetailsView.prototype.renderCounters = function(isLoading) {
       isFavourite: FavouritesModel.getInstance().get(counterData.id)
     }))
 
-    // Sort them by Favourites => CP => ID
+    // Sort them by Favourites => tiers => CP => ID
     // "=>" means "if equal then sort by"
     .sort((item1, item2) => {
-      const fav1 = item1.isFavourite ? 1 : 0;
-      const fav2 = item2.isFavourite ? 1 : 0;
-      const favDiff = fav2 - fav1;
+      const fav1 = item1.isFavourite ? 1 : 0
+      const fav2 = item2.isFavourite ? 1 : 0
+      const favDiff = fav2 - fav1
 
       if (favDiff === 0) {
         const cpDiff = item1.cp - item2.cp
@@ -110,6 +168,9 @@ DetailsView.prototype.renderCounters = function(isLoading) {
 
       return favDiff
     })
+
+    // Keep max 20 items
+    .slice(0, 20)
 
     // Create CounterView for each element
     .map((counterData) => {

@@ -191,19 +191,21 @@ MainFloatingButton.addState('PINNED_SECTION', {
   buttonType: 'CLOSE',
   nextState: 'BASE'
 });
-MainFloatingButton.setState('BASE');
+MainFloatingButton.setState('BASE')
 
 
 //------------------
 
-LoadingModal.init(document.querySelector('.js-modal-wrapper'));
+LoadingModal.init(document.querySelector('.js-modal-wrapper'))
 
 //------------------
 
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
-    .getCounters(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon);
-
+    .getCounters(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon)
+  
+  const weaks = PokeUtils
+    .getWeaks(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon)
 
   DetailsView.getInstance()
     .removeAllListeners()
@@ -212,6 +214,7 @@ function updateDetail(pokemons, pokemon) {
     .render({
       pokemon,
       counters,
+      weaks,
       isLoading
     });
 
