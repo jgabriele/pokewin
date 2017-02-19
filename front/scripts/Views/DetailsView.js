@@ -73,15 +73,16 @@ DetailsView.prototype.render = function(data) {
 }
 
 DetailsView.prototype.renderCounters = function(isLoading) {
-  if (!this._state.counters || !this._state.counters.length) {
+  // Filter out pokemons that cannot have enough CP
+  const countersWithEnoughCP = this._state.counters && this._state.counters
+    .filter(highCPMaxFilter.bind(this, this._state.defensePokemonCP))
+  
+  if (!countersWithEnoughCP || !countersWithEnoughCP.length) {
     this._renderNoCounterMessage()
     return;
   }
 
-  const counterViewsAndData = this._state.counters
-
-    // Filter out pokemons that cannot have enough CP
-    .filter(highCPMaxFilter.bind(this, this._state.defensePokemonCP))
+  const counterViewsAndData = countersWithEnoughCP
 
     // Convert data to view data
     .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
@@ -99,9 +100,9 @@ DetailsView.prototype.renderCounters = function(isLoading) {
       const favDiff = fav2 - fav1;
 
       if (favDiff === 0) {
-        const cpDiff = item1.cp - item2.cp;
+        const cpDiff = item1.cp - item2.cp
         if (cpDiff === 0) {
-          return item1.id - item2.id;
+          return item1.id - item2.id
         }
 
         return cpDiff
