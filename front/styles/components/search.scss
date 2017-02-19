@@ -1,0 +1,26 @@
+$padding: 8px;
+$padding_input: 4px;
+
+.search {
+  width: 100%;
+  background: #0e7974;
+  padding: $padding;
+
+  &.is-behind {
+    display: none;
+  }
+
+  .search__input {
+    height: 100%;
+    width: calc(100% - 2 * #{$padding} - 2 * #{$padding_input});
+    margin: 0;
+    padding: $padding_input;
+    color: #0e7974;
+    border: 0;
+    border-radius: 3px;
+    
+    &::-webkit-input-placeholder {
+      color: #0e7974;
+    }
+  }
+}

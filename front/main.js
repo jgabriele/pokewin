@@ -8,11 +8,10 @@ import Utils            from './scripts/Utils';
 import PokeUtils        from './scripts/Utils/PokeUtils';
 import { userIsPatron } from './scripts/Utils/PatreonUtils';
 
+import SearchView           from './scripts/Views/SearchView'
 import ListView             from './scripts/Views/ListView';
 import CounterView          from './scripts/Views/CounterView';
 import DetailsView          from './scripts/Views/DetailsView';
-import LanguageSelectView   from './scripts/Views/LanguageSelectView';
-import SortingSelectView    from './scripts/Views/SortingSelectView';
 import ModalView            from './scripts/Views/ModalView';
 import MultipleChoices      from './scripts/Views/Modal/MultipleChoices';
 import FloatingButton       from './scripts/Views/FloatingButton';
@@ -24,42 +23,58 @@ import LoadingModal       from './scripts/Controllers/LoadingModal';
 import MainFloatingButton from './scripts/Controllers/MainFloatingButton';
 import PinnedSectionPage  from './scripts/Controllers/PinnedSectionPage';
 
-import PinnedModel from './scripts/Models/Pinned';
-
 Polyfills.objectAssign()
 
 initConfig()
 
+const scriptsWrapper = Utils.DOMElementFromString(
+  `<div class="wrapper">
+  </div>`
+)
+
 // Add ads if user is not a patron
 if (!userIsPatron()) {
-  const adsScripts = Utils.DOMElementFromString(
-    `<div class="ads-wrapper">
-    </div>`
-  );
   const configScript = document.createElement("script");
   configScript.type = 'text/javascript';
   configScript.appendChild(document.createTextNode(
     `var infolinks_pid = 2867010;
       var infolinks_wsid = 0;`
-  ));
-  adsScripts.appendChild(configScript);
+  ))
+  scriptsWrapper.appendChild(configScript)
 
-  const libScript = document.createElement("script");
-  libScript.type = 'text/javascript';
+  const libScript = document.createElement("script")
+  libScript.type = 'text/javascript'
   libScript.src = '//resources.infolinks.com/js/infolinks_main.js'
-  adsScripts.appendChild(libScript);
-
-  document.body.appendChild(adsScripts);
+  scriptsWrapper.appendChild(libScript)
 }
 
+const gaScript = document.createElement("script");
+gaScript.type = 'text/javascript';
+gaScript.appendChild(document.createTextNode(
+  `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-const LANGUAGE_KEY = 'language';
+    ga('create', 'UA-45180397-2', 'auto');
+    ga('send', 'pageview');`
+))
+scriptsWrapper.appendChild(gaScript)
 
-const NAVIGATOR_LANG_TO_LANG = {
-  'en-US': 'en',
-  'fr-fr': 'fr',
-  'fr': 'fr'
-};
+const fbScript = document.createElement("script")
+fbScript.type = 'text/javascript'
+fbScript.appendChild(document.createTextNode(
+  `(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7&appId=684853784906640";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));`
+))
+scriptsWrapper.appendChild(fbScript)
+
+setTimeout(() => document.body.appendChild(scriptsWrapper), 2000)
 
 const MINIUM_MOVE_EFFICIENCY_REQUIRED = 1
 
@@ -88,7 +103,7 @@ function _augmentPokemonsData(pokemons) {
     .filter((pokemon) => !pokemon.isUnavailable) // remove unavailable pokemons for now
     .map((pokemon) => Object.assign({}, pokemon, {
         id: pokemon.id,
-        name: LocaleManager.getInstance().translate(pokemon.key),
+        name: LocaleManager.getInstance().translate(pokemon.key), // TODO remove
         key: pokemon.key,
         types: pokemon.types
           .map((typeId) => _findById(types, typeId))
@@ -116,6 +131,7 @@ function showFavouritesPage() {
   MainFloatingButton.setState('FAVOURITES');
   menu.hide();
   listView.block();
+  searchView.block()
 
   FavouritesPage.render(pokemonsFull);
   FavouritesPage.show();
@@ -126,6 +142,7 @@ function showPinnedSectionPage() {
   MainFloatingButton.setState('PINNED_SECTION');
   menu.hide();
   listView.block();
+  searchView.block()
 
   PinnedSectionPage.render(pokemonsFull);
   PinnedSectionPage.show();
@@ -135,8 +152,8 @@ function showPinnedSectionPage() {
 MainFloatingButton.init(document.querySelector('.js-floating-button-wrapper'), 'MENU');
 MainFloatingButton.addState('BASE', {
   action: () => {
-    menu.update();
-    setTimeout(() => menu.show(), 0);
+    menu.update()
+    setTimeout(() => menu.show(), 0)
   },
   buttonType: 'MENU',
   nextState: 'MENU'
@@ -154,18 +171,22 @@ MainFloatingButton.addState('DETAILS', {
 MainFloatingButton.addState('FAVOURITES', {
   action: () => {
     menu.hide();
-    FavouritesPage.hide();
-    listView.unBlock();
+    FavouritesPage.hide()
+    listView.unBlock()
+    searchView.unblock()
+    window.scroll(0, window.scrollY + searchView.getHeight())
   },
   buttonType: 'CLOSE',
   nextState: 'BASE'
 });
 MainFloatingButton.addState('PINNED_SECTION', {
   action: () => {
-    menu.hide();
-    updateListView(pokemonsFull);
-    PinnedSectionPage.hide();
-    listView.unBlock();
+    menu.hide()
+    listView.render()
+    PinnedSectionPage.hide()
+    listView.unBlock()
+    searchView.unblock()
+    window.scroll(0, window.scrollY + searchView.getHeight())
   },
   buttonType: 'CLOSE',
   nextState: 'BASE'
@@ -178,15 +199,6 @@ MainFloatingButton.setState('BASE');
 LoadingModal.init(document.querySelector('.js-modal-wrapper'));
 
 //------------------
-
-function updateListView(pokemonsFull) {
-  const pinnedPokemons = pokemonsFull.filter((p) => PinnedModel.getInstance().get(p.id));
-  const t1Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 1);
-  const t2Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 2);
-  const t3Pokemons = pokemonsFull.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === 3);
-
-  listView.render(pinnedPokemons, t1Pokemons, t2Pokemons, t3Pokemons);
-}
 
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
@@ -203,16 +215,17 @@ function updateDetail(pokemons, pokemon) {
       isLoading
     });
 
-  MainFloatingButton.setState('DETAILS');
+  MainFloatingButton.setState('DETAILS')
 }
 
-const detailsOverlay = document.querySelector('.js-details-overlay');
+const detailsOverlay = document.querySelector('.js-details-overlay')
 
 function showDetail() {
-  window.scroll(0, 0);
-  detailsOverlay.style.display = "initial";
-  detailsOverlay.classList.remove('is-hidden');
-  listView.block();
+  window.scroll(0, 0)
+  detailsOverlay.style.display = "initial"
+  detailsOverlay.classList.remove('is-hidden')
+  listView.block()
+  searchView.block()
 }
 
 detailsOverlay.addEventListener('transitionend', () => {
@@ -220,8 +233,10 @@ detailsOverlay.addEventListener('transitionend', () => {
 });
 detailsOverlay.style.display = "none";
 function hideDetail() {
-  detailsOverlay.classList.add('is-hidden');
-  listView.unBlock();
+  detailsOverlay.classList.add('is-hidden')
+  listView.unBlock()
+  searchView.unblock()
+  window.scroll(0, window.scrollY + searchView.getHeight())
 }
 
 //===== Loading screen =====//
@@ -236,7 +251,7 @@ loadingEl.addEventListener('webkitTransitionend', () => {
     loadingEl.style.display = "none";
   });
 function _hideLoading() {
-  loadingEl.classList.add('is-hidden');
+  loadingEl.classList.add('is-hidden')
 }
 
 function _setProgress(progress) {
@@ -261,31 +276,15 @@ function _onPokemonSelected(pokemons, pokemon) {
 }
 
 function _removeLoadingState() {
-  isLoading = false;
-  document.body.classList.remove('is-loading');
-}
-
-function _onLanguageSelected(lang = 'en') {
-  LocaleManager.getInstance().setLanguage(lang);
-  LocaleManager.getInstance().scanAndLocalise();
-
-  // Save preferred language in localstorage
-  if (localStorage) {
-    localStorage.setItem(LANGUAGE_KEY, lang);
-  }
-
-  // If we're sorting alphabetically, we need to re-render the view
-  //
-  if (pokemonsFull && getSorting() === 'A-Z') {
-    updateListView(pokemonsFull)
-  }
+  isLoading = false
+  document.body.classList.remove('is-loading')
 }
 
 // Startup
 
 let pokemons = null, types = null, moves = null, dictionary = null;
 let pokemonsFull;
-let listView;
+let listView, searchView;
 let isLoading = true;
 
 if (Utils.isMobileDevice()) {
@@ -336,41 +335,20 @@ function _startup () {
       LocaleManager.prepare(dictionary);
       const localeManager = LocaleManager.getInstance();
 
-      const languageSelectView = new LanguageSelectView(
-          document.querySelector('.js-language-selector-wrapper'),
-          localeManager.getLanguages()
-        )
-        .on(LanguageSelectView.ACTIONS.SELECT_LANGUAGE, _onLanguageSelected);
-      languageSelectView.render();
-
-      // Sorting control to define if Pokemons are sorted by A/Z or #
-      const sortingSelectView = new SortingSelectView(
-          document.querySelector('.js-sorting-selector-wrapper')
-        )
-        .on(SortingSelectView.EVENTS.SORTING_TOGGLED, () => updateListView(pokemonsFull));
-      sortingSelectView.render();
-
-      // Priority for language:
-      // 1) lang parameter in Query String
-      // 2) value for localStorage
-      // 3) browser language
-      const queryLanguage = Utils.getLanguageQueryParameter();
-      const storedLanguage = localStorage && localStorage.getItem(LANGUAGE_KEY);
-      const browserLang = NAVIGATOR_LANG_TO_LANG[navigator.language || navigator.userLanguage || 'en'];
-      const requestedLang = queryLanguage || storedLanguage || browserLang;
-
-      // We need to setup the language for LocaleManager right away
-      // because we will need languages to sort pokemons by name probably
-      // when instanciating the List view
-      _onLanguageSelected(requestedLang)
-
       pokemonsFull = _augmentPokemonsData(pokemons);
 
       listView = new ListView(document.querySelector('.js-list-view-wrapper'))
         .on(ListView.EVENTS.POKEMON_SELECTED, _onPokemonSelected.bind(null, pokemonsFull));
-      updateListView(pokemonsFull);
+      listView.init(pokemonsFull)
+      listView.render()
 
-      _addKeyboardListener();
+      searchView = new SearchView(document.querySelector('.search-wrapper'))
+      searchView.render()
+      searchView.on(SearchView.EVENTS.SEARCH, (value) => {
+        listView.onSearch(value)
+      })
+
+      _addKeyboardListener()
 
       document.querySelector('.js-background').addEventListener('click', hideDetail);
 
@@ -382,12 +360,26 @@ function _startup () {
       FavouritesPage.init(document.body);
       PinnedSectionPage.init(document.body);
 
-      // Localise all tagged text
-      languageSelectView.selectLanguage(requestedLang);
+      setTimeout(() => {
+        _hideLoading()
+        let shouldHideScroll = false;
+        
+        // On the first 3 visits, user will see the search on load.
+        // As it's ugly and after 3 visits people will know where the
+        // search is, we will hide it
+        if (localStorage) {
+          let nbVisits = Utils.getNumberOfVisitsSinceSearch()
+          shouldHideScroll = nbVisits >= 4
 
-      setTimeout(_hideLoading, 200);
+          Utils.increateVisitsSinceSearch();
+        }
+        
+        window.scroll(0, shouldHideScroll ? searchView.getHeight() : 0)
+      }, 200)
 
-      setTimeout(() => LoadingModal.showModal(), 600);
+      setTimeout(() => {
+        LoadingModal.showModal()
+      }, 600)
 
       // debug
       window.__localeManager = localeManager;

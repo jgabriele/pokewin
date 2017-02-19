@@ -3,6 +3,7 @@ import pos from './pos';
 import LocaleManager from './LocaleManager';
 
 const NB_VISITS_KEY = 'number-of-visits';
+const NB_VISITS_SEARCH_KEY = 'number-of-visits-since-search';
 
 // Check of device  type
 var _check = false;
@@ -62,7 +63,18 @@ const Utils = {
     return Number(localStorage.getItem(NB_VISITS_KEY)) || 0;
   },
 
+  getNumberOfVisitsSinceSearch() {
+    return Number(localStorage.getItem(NB_VISITS_SEARCH_KEY)) || 0;
+  },
+
   increateVisits() {
+    if (localStorage) {
+      let nbVisits = this.getNumberOfVisitsSinceSearch();
+      localStorage.setItem(NB_VISITS_SEARCH_KEY, ++nbVisits);
+    }
+  },
+
+  increateVisitsSinceSearch() {
     if (localStorage) {
       let nbVisits = this.getNumberOfVisits();
       localStorage.setItem(NB_VISITS_KEY, ++nbVisits);

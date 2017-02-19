@@ -1,17 +1,31 @@
-import Event          from 'events';
-import LocaleManager  from '../LocaleManager';
-import PokemonView    from './PokemonView';
-import Utils          from '../Utils.js';
-import PatronsModal   from '../Controllers/PatronsModal';
-import { getSorting } from '../Config'
+import Event                from 'events'
+import LocaleManager        from '../LocaleManager'
+import PokemonView          from './PokemonView'
+import LanguageSelectView   from './LanguageSelectView';
+import SortingSelectView    from './SortingSelectView';
+import Utils                from '../Utils.js'
+import PatronsModal         from '../Controllers/PatronsModal'
+import PinnedModel          from '../Models/Pinned';
+import { getSorting }       from '../Config'
 
 const EVENTS = {
   POKEMON_SELECTED: 'pokemon-selected'
 }
 
+const LANGUAGE_KEY = 'language'
+const NAVIGATOR_LANG_TO_LANG = {
+  'en-US': 'en',
+  'fr-fr': 'fr',
+  'fr': 'fr'
+}
+
+
 function ListView(parent) {
   this._el = Utils.DOMElementFromString(
     `<section class="pokedex">
+      <div class="js-language-selector-wrapper"></div>
+      <div class="js-sorting-selector-wrapper"></div>
+      
       <h1 class="title">
         <span data-localisable-key="TEXT_APP_TITLE"></span>
         <span class="pokeball"></span>
@@ -38,7 +52,22 @@ function ListView(parent) {
         <div class="fb-like" data-href="https://www.facebook.com/pokewin.win/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
       </footer>
     </section>`
-  );
+  )
+
+  // Init Selectors in the header
+  const languageSelectView = new LanguageSelectView(
+      this._el.querySelector('.js-language-selector-wrapper'),
+      LocaleManager.getInstance().getLanguages()
+    )
+    .on(LanguageSelectView.ACTIONS.SELECT_LANGUAGE, _onLanguageSelected);
+  languageSelectView.render()
+
+  // Sorting control to define if Pokemons are sorted by A/Z or #
+  const sortingSelectView = new SortingSelectView(
+      this._el.querySelector('.js-sorting-selector-wrapper')
+    )
+    .on(SortingSelectView.EVENTS.SORTING_TOGGLED, () => updateListView(pokemonsFull));
+  sortingSelectView.render()
 
   parent.appendChild(this._el)
 
@@ -59,19 +88,43 @@ function ListView(parent) {
 
     Utils.increateVisits();
   }
+
+  // Priority for language:
+  // 1) lang parameter in Query String
+  // 2) value for localStorage
+  // 3) browser language
+  const queryLanguage = Utils.getLanguageQueryParameter();
+  const storedLanguage = localStorage && localStorage.getItem(LANGUAGE_KEY);
+  const browserLang = NAVIGATOR_LANG_TO_LANG[navigator.language || navigator.userLanguage || 'en'];
+  const requestedLang = queryLanguage || storedLanguage || browserLang;
+
+  // Localise all tagged text
+  languageSelectView.selectLanguage(requestedLang);
 }
 
 ListView.prototype = Object.create(Event.prototype);
 
-ListView.prototype.render = function(pinnedPokemons, t1Pokemons, t2Pokemons, t3Pokemons) {
-  this.reset();
+ListView.prototype.init = function(pokemons) {
+  this._pokemons = pokemons
+}
+
+ListView.prototype.render = function(pokemonsOverride) {
+  this.reset()
+
+  const pokemons = pokemonsOverride || this._pokemons
+
+  const pinnedPokemons = _getPinnedPokemons(pokemons)
+  const t1Pokemons = _getTiersPokemons(pokemons, 1)
+  const t2Pokemons = _getTiersPokemons(pokemons, 2)
+  const t3Pokemons = _getTiersPokemons(pokemons, 3)
 
   if (pinnedPokemons.length) {
-    this._renderSection(pinnedPokemons, 'TEXT_PINNED', 'pinned-section');
+    this._renderSection(pinnedPokemons, 'TEXT_PINNED', 'pinned-section')
   }
-  this._renderSection(t1Pokemons, 'TEXT_MOST_SEEN');
-  this._renderSection(t2Pokemons, 'TEXT_BIT_LESS_SEEN');
-  this._renderSection(t3Pokemons, 'TEXT_OTHER');
+
+  t1Pokemons.length && this._renderSection(t1Pokemons, 'TEXT_MOST_SEEN')
+  t2Pokemons.length && this._renderSection(t2Pokemons, 'TEXT_BIT_LESS_SEEN')
+  t3Pokemons.length && this._renderSection(t3Pokemons, 'TEXT_OTHER')
 }
 
 ListView.prototype.reset = function () {
@@ -120,11 +173,43 @@ ListView.prototype.isBlocked = function () {
   return this._isBlocked;
 }
 
+ListView.prototype.onSearch = function(searchValue) {
+  const searchPokemons = this._pokemons.filter((p) => _isSearchMatch(p, searchValue))
+  this.render(searchPokemons)
+}
+
 ListView.prototype._prerenderPokemon = function(pokemon) {
   const pokeView = new PokemonView(pokemon)
-    .on(PokemonView.ACTIONS.SELECT_POKEMON, this.emit.bind(this, EVENTS.POKEMON_SELECTED, pokemon));
+    .on(PokemonView.ACTIONS.SELECT_POKEMON, this.emit.bind(this, EVENTS.POKEMON_SELECTED, pokemon))
 
-  return pokeView.prerender();
+  return pokeView.prerender()
+}
+
+function _onLanguageSelected(lang = 'en') {
+  LocaleManager.getInstance().setLanguage(lang)
+  LocaleManager.getInstance().scanAndLocalise()
+
+  // Save preferred language in localstorage
+  if (localStorage) {
+    localStorage.setItem(LANGUAGE_KEY, lang)
+  }
+
+  // If we're sorting alphabetically, we need to re-render the view
+  if (getSorting() === 'A-Z') {
+    this.render()
+  }
+}
+
+function _isSearchMatch(pokemon, searchValue) {
+  return LocaleManager.getInstance().translate(pokemon.key).indexOf(searchValue) !== -1
+}
+
+function _getPinnedPokemons(pokemons) {
+  return pokemons.filter((p) => PinnedModel.getInstance().get(p.id))
+}
+
+function _getTiersPokemons(pokemons, tiers) {
+  return pokemons.filter((p) => !PinnedModel.getInstance().get(p.id) && p.tiers === tiers)
 }
 
 ListView.EVENTS = EVENTS;
