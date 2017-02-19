@@ -73,10 +73,17 @@ DetailsView.prototype.render = function(data) {
 }
 
 DetailsView.prototype.renderWeaks = function(isLoading) {
-  const counterViewsAndData = this._state.weaks
+  const isOnlyShittyPokemon = this._state.weaks
+    .reduce((state, p) => state && (p.pokemon.tiers === 3), true)
 
-    // Filter out pokemons of tiers 1 (no one put them in gyms)
-    .filter((p) => p.pokemon.tiers < 3)
+  let weaks = this._state.weaks
+  // If we have T2 or T1 pokemons, filter out T3 pokemons
+  // (no one put them in gyms)
+  if (!isOnlyShittyPokemon) {
+    weaks = weaks.filter((p) => p.pokemon.tiers < 3)
+  }
+
+  const counterViewsAndData = weaks
 
     // Convert data to view data
     .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
@@ -94,17 +101,16 @@ DetailsView.prototype.renderWeaks = function(isLoading) {
       const favDiff = fav2 - fav1
 
       if (favDiff === 0) {
-        const cpDiff = item1.cp - item2.cp
-        if (cpDiff === 0) {
-          const tiersDiff = item1.pokemon.tiers - item2.pokemon.tiers
-          if (tiersDiff === 0) {
+        const tiersDiff = item1.pokemon.tiers - item2.pokemon.tiers
+        if (tiersDiff === 0) {
+          const cpDiff = item1.cp - item2.cp
+          if (cpDiff === 0) {
             return item1.id - item2.id
           }
-          return tiersDiff 
+          return cpDiff
         }
-        return cpDiff 
+        return tiersDiff
       }
-
       return favDiff
     })
 
