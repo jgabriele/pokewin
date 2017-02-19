@@ -66,17 +66,17 @@ function ListView(parent) {
   const sortingSelectView = new SortingSelectView(
       this._el.querySelector('.js-sorting-selector-wrapper')
     )
-    .on(SortingSelectView.EVENTS.SORTING_TOGGLED, () => updateListView(pokemonsFull));
+    .on(SortingSelectView.EVENTS.SORTING_TOGGLED, () => this.render())
   sortingSelectView.render()
 
   parent.appendChild(this._el)
 
   // Onclick in the subtext, show Patreon's modal
-  document.querySelector('.js-patreon').addEventListener('click', () => PatronsModal.showModal());
+  document.querySelector('.js-patreon').addEventListener('click', () => PatronsModal.showModal())
 
   // Toggling the intro on click
-  this._introEl = document.querySelector('.js-intro');
-  this._introEl.addEventListener('click', this.toggleIntro.bind(this));
+  this._introEl = document.querySelector('.js-intro')
+  this._introEl.addEventListener('click', this.toggleIntro.bind(this))
 
 
   // Check in localStorage whether we need to show the intro collapsed on start

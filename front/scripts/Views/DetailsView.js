@@ -86,7 +86,7 @@ DetailsView.prototype.renderWeaks = function(isLoading) {
   const counterViewsAndData = weaks
 
     // Convert data to view data
-    .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
+    .map((weak) => counterDataToViewData(this._state.defensePokemonCP, weak, true))
 
     // Favourite data
     .map((counterData) => Object.assign({}, counterData, {
@@ -120,9 +120,9 @@ DetailsView.prototype.renderWeaks = function(isLoading) {
     // Create CounterView for each element
     .map((counterData) => {
       const counterView = new CounterView()
-        .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon));
-      counterData.isLoading = isLoading;
-      return [counterView, counterData];
+        .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon))
+      counterData.isLoading = isLoading
+      return [counterView, counterData]
     });
 
   const countersNodes = counterViewsAndData.map((counterViewAndData) => {
@@ -132,8 +132,8 @@ DetailsView.prototype.renderWeaks = function(isLoading) {
   const counterFragment = document.createDocumentFragment()
   countersNodes.forEach(counterFragment.appendChild.bind(counterFragment))
 
-  document.querySelector('.overlay__data .counters .js-can-beat').innerHTML = '';
-  document.querySelector('.overlay__data .counters .js-can-beat').appendChild(counterFragment);
+  document.querySelector('.overlay__data .counters .js-can-beat').innerHTML = ''
+  document.querySelector('.overlay__data .counters .js-can-beat').appendChild(counterFragment)
 }
 
 DetailsView.prototype.renderCounters = function(isLoading) {
@@ -149,7 +149,7 @@ DetailsView.prototype.renderCounters = function(isLoading) {
   const counterViewsAndData = countersWithEnoughCP
 
     // Convert data to view data
-    .map(counterDataToViewData.bind(this, this._state.defensePokemonCP))
+    .map((counter) => counterDataToViewData(this._state.defensePokemonCP, counter))
 
     // Favourite data
     .map((counterData) => Object.assign({}, counterData, {
@@ -181,26 +181,26 @@ DetailsView.prototype.renderCounters = function(isLoading) {
     // Create CounterView for each element
     .map((counterData) => {
       const counterView = new CounterView()
-        .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon));
-      counterData.isLoading = isLoading;
-      return [counterView, counterData];
+        .on(CounterView.ACTIONS.SELECT_COUNTER, () => this.onSelectCounter(counterData.pokemon))
+      counterData.isLoading = isLoading
+      return [counterView, counterData]
     });
 
   const countersNodes = counterViewsAndData.map((counterViewAndData) => {
-    return counterViewAndData[0].prerender(counterViewAndData[1]);
-  });
+    return counterViewAndData[0].prerender(counterViewAndData[1])
+  })
 
-  const counterFragment = document.createDocumentFragment();
-  countersNodes.forEach(counterFragment.appendChild.bind(counterFragment));
+  const counterFragment = document.createDocumentFragment()
+  countersNodes.forEach(counterFragment.appendChild.bind(counterFragment))
 
   document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = '';
   document.querySelector('.overlay__data .counters .js-beaten-by').appendChild(counterFragment);
 }
 
 DetailsView.prototype._renderNoCounterMessage = function() {
-  const noCounterText = LocaleManager.getInstance().translate('TEXT_NO_COUNTER_FOUND');
-  const hintTitle = LocaleManager.getInstance().translate('TEXT_HINT_TITLE');
-  const hintText = LocaleManager.getInstance().translate('TEXT_DODGE_EXPLANATION');
+  const noCounterText = LocaleManager.getInstance().translate('TEXT_NO_COUNTER_FOUND')
+  const hintTitle = LocaleManager.getInstance().translate('TEXT_HINT_TITLE')
+  const hintText = LocaleManager.getInstance().translate('TEXT_DODGE_EXPLANATION')
   
   document.querySelector('.overlay__data .counters .js-beaten-by').innerHTML = `
     <p>${noCounterText}</p>
@@ -208,20 +208,21 @@ DetailsView.prototype._renderNoCounterMessage = function() {
       <p>${hintTitle}</p>
       <p>${hintText}</p>
     </div>
-  `;
+  `
 }
 
 DetailsView.prototype.onInputUpdate = function(e) {
-  const value = e.target.value * INPUT_RANGE_STEP;
-  this._state.defensePokemonCP = this._level.innerText = value;
+  const value = e.target.value * INPUT_RANGE_STEP
+  this._state.defensePokemonCP = this._level.innerText = value
 }
 
 DetailsView.prototype.onInputRelease = function(e) {
-  this.renderCounters();
+  this.renderCounters()
+  this.renderWeaks()
 }
 
 DetailsView.prototype.onSelectCounter = function(pokemon) {
-  this.emit(EVENTS.COUNTER_SELECTED, pokemon);
+  this.emit(EVENTS.COUNTER_SELECTED, pokemon)
 }
 
 DetailsView.prototype._onQuickFrequencyChange = function(frequency) {
@@ -235,12 +236,15 @@ DetailsView.prototype._onSpecialFrequencyChange = function(frequency) {
 }
 
 function highCPMaxFilter(cp, counter) {
-  return counter.cpMax * counter.moves[0].efficiency >= cp;
+  return counter.cpMax * counter.moves[0].efficiency >= cp
 }
 
-function counterDataToViewData(defensePokemonCP, counter){
-    const move = counter.moves[0];
-    const cp = Math.round(defensePokemonCP / move.efficiency);
+function counterDataToViewData(defensePokemonCP, counter, isWeak){
+    const move = counter.moves[0]
+    let cp = Math.round(defensePokemonCP / move.efficiency)
+    if (isWeak) {
+      cp = Math.min(Math.round(defensePokemonCP * move.efficiency), counter.cpMax)
+    }
 
     return {
       id: counter.id,
