@@ -3348,8 +3348,7 @@
     "cpMax": 2933,
     "stm": 180,
     "def": 249,
-    "atk": 192,
-    "isUnavailable": true
+    "atk": 192
   },
   {
     "key": "POKE_145",
@@ -3372,8 +3371,7 @@
     "cpMax": 3330,
     "stm": 180,
     "def": 188,
-    "atk": 253,
-    "isUnavailable": true
+    "atk": 253
   },
   {
     "key": "POKE_146",
@@ -3396,8 +3394,7 @@
     "cpMax": 3272,
     "stm": 180,
     "def": 184,
-    "atk": 251,
-    "isUnavailable": true
+    "atk": 251
   },
   {
     "key": "POKE_147",
@@ -3488,8 +3485,7 @@
     "cpMax": 4760,
     "stm": 212,
     "def": 200,
-    "atk": 330,
-    "isUnavailable": true
+    "atk": 330
   },
   {
     "key": "POKE_151",
@@ -3516,8 +3512,7 @@
     "cpMax": 3090,
     "stm": 200,
     "def": 210,
-    "atk": 210,
-    "isUnavailable": true
+    "atk": 210
   },
   {
     "id": 152,
@@ -5630,8 +5625,7 @@
         90,
         5
       ]
-    },
-    "isUnavailable": true
+    }
   },
   {
     "id": 244,
@@ -5653,8 +5647,7 @@
         49,
         62
       ]
-    },
-    "isUnavailable": true
+    }
   },
   {
     "id": 245,
@@ -5677,8 +5670,7 @@
         107,
         112
       ]
-    },
-    "isUnavailable": true
+    }
   },
   {
     "id": 246,
@@ -5772,8 +5764,7 @@
         52,
         63
       ]
-    },
-    "isUnavailable": true
+    }
   },
   {
     "id": 250,
@@ -5796,8 +5787,7 @@
         62,
         49
       ]
-    },
-    "isUnavailable": true
+    }
   },
   {
     "id": 251,
@@ -5820,7 +5810,6 @@
         52,
         100
       ]
-    },
-    "isUnavailable": true
+    }
   }
 ]
