@@ -32,8 +32,8 @@ const scriptsWrapper = Utils.DOMElementFromString(
   </div>`
 )
 
-// Add ads if user is not a patron
-if (!userIsPatron() || Utils.getNoAdsQueryParameter()) {
+// Add ads if user is not a patron and no query param to disable
+if (!(userIsPatron() || Utils.getNoAdsQueryParameter())) {
   const configScript = document.createElement("script");
   configScript.type = 'text/javascript';
   configScript.appendChild(document.createTextNode(
@@ -203,7 +203,7 @@ LoadingModal.init(document.querySelector('.js-modal-wrapper'))
 function updateDetail(pokemons, pokemon) {
   const counters = PokeUtils
     .getCounters(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon)
-  
+
   const weaks = PokeUtils
     .getWeaks(MINIUM_MOVE_EFFICIENCY_REQUIRED, pokemons, pokemon)
 
@@ -366,7 +366,7 @@ function _startup () {
       setTimeout(() => {
         _hideLoading()
         let shouldHideScroll = false;
-        
+
         // On the first 3 visits, user will see the search on load.
         // As it's ugly and after 3 visits people will know where the
         // search is, we will hide it
@@ -376,7 +376,7 @@ function _startup () {
 
           Utils.increateVisitsSinceSearch();
         }
-        
+
         window.scroll(0, shouldHideScroll ? searchView.getHeight() : 0)
       }, 200)
 
