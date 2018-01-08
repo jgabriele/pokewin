@@ -33,7 +33,7 @@ const scriptsWrapper = Utils.DOMElementFromString(
 )
 
 // Add ads if user is not a patron
-if (!userIsPatron()) {
+if (!userIsPatron() || Utils.getNoAdsQueryParameter()) {
   const configScript = document.createElement("script");
   configScript.type = 'text/javascript';
   configScript.appendChild(document.createTextNode(

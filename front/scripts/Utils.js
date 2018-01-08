@@ -49,6 +49,11 @@ const Utils = {
       ''
   },
 
+  getNoAdsQueryParameter() {
+    const noAds = this.getQueryParameter('noads');
+    return !!noAds;
+  },
+
   getQueryParameter(name) {
     const url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
