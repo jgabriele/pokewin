@@ -355,9 +355,11 @@ function _startup () {
 
       document.querySelector('.js-background').addEventListener('click', hideDetail);
 
-      // Preload the high res spritesheet now that the page has loaded
-      preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
-        .then(_removeLoadingState);
+      window.addEventListener('load', () => {
+        // Preload the high res spritesheet now that the page has loaded
+        preloader.preloadImage(`${location.origin}/images/pokemon-spritesheet.png`)
+          .then(_removeLoadingState);
+      });
 
       // Prepare the favourites. TODO remove from here
       FavouritesPage.init(document.body);
